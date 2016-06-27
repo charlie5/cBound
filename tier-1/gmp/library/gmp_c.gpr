@@ -1,0 +1,26 @@
+with "swig";
+
+project GMP_c is
+
+   for Languages use ("C++");
+   for Source_Dirs use (".", "../source/**");
+   for Object_Dir use "build";
+   for Exec_Dir use ".";
+   for Library_Dir use "lib";
+   for Library_Ali_Dir use "objects";
+
+   package Naming is
+      for Specification_Suffix ("C++") use ".h";
+      for Implementation_Suffix ("C++") use ".cxx";
+   end Naming;
+
+   package Ide is
+      for Compiler_Command ("C++") use "g++";
+   end Ide;
+
+   package Compiler is
+      for Default_Switches ("C++") use ("-g", "-lpthread", "-I/usr/local/include");
+   end Compiler;
+
+end GMP_c;
+

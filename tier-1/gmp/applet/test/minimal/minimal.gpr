@@ -1,0 +1,26 @@
+with "gmp";
+
+project Minimal is
+
+   for Object_Dir use "build";
+   for Exec_Dir use ".";
+   for Main use ("minimal.adb");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+   end Builder;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnato", "-fstack-check", "-g", "-gnata", "-gnat05");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+   package Linker is
+      for Default_Switches ("ada") use ("-lgmp");
+   end Linker;
+
+end Minimal;
+

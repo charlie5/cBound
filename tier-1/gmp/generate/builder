@@ -1,0 +1,23 @@
+
+echo
+echo removing prior build
+echo
+rm *.ads
+
+
+echo
+echo generating the binding ...
+echo
+swig_gnat  -gnat  -c++  -I/usr/include   gmp.i
+
+
+set -e
+
+echo
+echo pretty printing ...
+echo
+gnatpp  -rnb  -I/usr/local/include  *.ads
+indent  -sob  -di16                  *.cxx
+
+gcc -c *.cxx
+rm *.o
