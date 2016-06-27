@@ -6,5 +6,6 @@ Install
 - Add the following lines to ~/.bashrc or equivalent ...
 
 export CBOUND=/path/to/cbound
+
 source $CBOUND/cbound-gpr_paths.sh
 
