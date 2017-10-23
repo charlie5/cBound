@@ -1,0 +1,28 @@
+echo
+echo Removing prior build.
+echo
+
+rm *.ads
+rm *.adb
+rm *.cxx
+
+
+echo
+echo Generating the binding.
+echo
+
+swig_gnat  -gnat -c++  -cpperraswarn   -I/usr/include  -I/usr/include/linux  festival.i 
+
+rm portable_new_line_Token.tmp
+
+set -e
+
+echo
+echo Pretty printing.
+echo
+
+gnatpp  -rnb  -I/usr/local/include -I../../../tier-1/speech_tools/source/thin  *.ads   -cargs -gnat05
+indent  -sob  -di16                  *.cxx
+
+gcc -c *.cxx
+rm *.o

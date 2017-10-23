@@ -1,0 +1,23 @@
+with
+     "festival";
+
+project Say_Hello
+is
+
+   for Languages   use ("Ada");
+   for Source_Dirs use (".");
+   for Object_Dir  use "build";
+   for Exec_Dir    use ".";
+   for Main        use ("say_hello.adb");
+
+   package Linker
+   is
+      for Default_Switches ("ada") use ("-lncurses", "-lasound", "-lFestival", "-lestbase", "-leststring", "-lestools");
+   end Linker;
+
+   package Builder 
+   is
+      for Default_Switches ("ada") use ("-j5");
+   end Builder;
+
+end Say_Hello;

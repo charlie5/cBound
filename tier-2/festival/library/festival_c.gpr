@@ -1,0 +1,26 @@
+project Festival_C
+is
+
+   for Languages   use ("C++");
+   for Source_Dirs use ("../source/thin");
+   for Object_Dir  use "build";
+
+
+   package Naming is
+      for Spec_Suffix ("c++") use ".h";
+      for Body_Suffix ("c++") use ".cxx";
+   end Naming;
+
+   package Compiler is
+      for Default_Switches ("c++") use ("-g", "-lpthread");
+   end Compiler;
+
+   package Linker is
+      for Default_Switches ("c++") use ("-g");
+   end Linker;
+
+   package Builder is
+      for Default_Switches ("ada") use ("-lpthread", "-j13");
+   end Builder;
+
+end Festival_C;

@@ -1,0 +1,24 @@
+with
+     "festival_c",
+     "speech_tools";
+
+project Festival 
+is
+
+   for Languages       use ("Ada");
+   for Source_Dirs     use ("../source/thin");
+   for Object_Dir      use "build";
+   for Library_Name    use "festival_binding";
+
+   package Linker 
+   is
+      for Linker_Options use ("-lncurses");
+   end Linker;
+
+   package Builder
+   is
+      for Default_Switches ("ada") use ("-lpthread", "-j13");
+   end Builder;
+
+end Festival;
+
