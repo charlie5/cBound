@@ -3,3 +3,19 @@
 
 # Ada Library Information
 *.ali
+
+
+*.stderr
+*.stdout
+
+*.d
+*.db
+*.a
+*.deps
+*.cgpr
+*.bexch
+
+b__*.ad[sb]
+
+
+say_hello
