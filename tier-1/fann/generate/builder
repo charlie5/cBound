@@ -1,0 +1,30 @@
+
+echo
+echo removing prior build
+echo
+
+rm *.ads
+rm *.adb
+rm *.cxx
+
+
+
+echo
+echo generating the binding ...
+echo
+
+swig_gnat  -gnat -I/usr/include  fann.i 
+
+rm portable_new_line_Token.tmp
+
+set -e
+
+echo
+echo pretty printing ...
+echo
+
+gnatpp  -rnb  -I/usr/local/include  *.ads   -cargs -gnat05
+indent  -sob  -di16                  *.c
+
+gcc -c *.c
+rm *.o

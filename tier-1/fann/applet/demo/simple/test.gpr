@@ -1,0 +1,32 @@
+with "fann";
+
+project Test is
+
+   for Object_Dir use "build";
+   for Exec_Dir use ".";
+   for Main use ("test.adb");
+   for Languages use ("Ada");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+   end Builder;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnato", "-fstack-check", "-g", "-gnata", "-gnat05");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+   package Linker is
+      for Default_Switches ("ada") use ("-Wl,-rpath,/usr/local/lib", "-L/usr/local/lib");
+   end Linker;
+
+   package Naming is
+      for Specification_Suffix ("c++") use ".h";
+      for Implementation_Suffix ("c++") use ".cxx";
+   end Naming;
+
+end Test;
+
