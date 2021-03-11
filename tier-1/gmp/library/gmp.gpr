@@ -5,12 +5,13 @@ project GMP is
    for Languages use ("Ada");
    for Source_Dirs use (".", "../source/**");
    for Object_Dir use "build";
-   for Exec_Dir use ".";
-   for Library_Dir use "lib";
+
+   for Library_Name    use "ada_gmp";
+   for Library_Dir     use "lib";
    for Library_Ali_Dir use "objects";
 
    package Builder is
-      for Default_Switches ("ada") use ("-g", "-lpthread");
+      for Default_Switches ("ada") use ("-g");
    end Builder;
 
    package Compiler is
@@ -20,6 +21,10 @@ project GMP is
    package Binder is
       for Default_Switches ("ada") use ("-E");
    end Binder;
+
+   package Linker is
+      for Linker_Options use ("-g", "-lgmp");
+   end Linker;
 
 end GMP;
 
