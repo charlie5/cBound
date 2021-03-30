@@ -14,8 +14,12 @@
 *.deps
 *.cgpr
 *.bexch
+*.lexch
 
 b__*.ad[sb]
 
 
 say_hello
+cbound-prior
+gmp-prior
+portable_new_line_Token.tmp
