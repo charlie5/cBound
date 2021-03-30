@@ -1,5 +1,5 @@
 
-private with GMP_lean.mpz_t;
+private with GMP_c.mpz_t;
 
 
 
@@ -77,7 +77,7 @@ private
 
    type Integer is
       record
-         Lean : GMP_lean.mpz_t.Pointer; -- mpz_t_view;
+         Lean : GMP_c.mpz_t.Pointer;
       end record;
 
 

@@ -1,10 +1,10 @@
 
-with gmp_lean.Binding;
+with gmp_c.Binding;
 with ada.Unchecked_Deallocation;
-with gmp_lean.a_a_mpf_struct;
-with gmp_lean.a_a_mpz_struct;
-with gmp_lean.mpz_srcptr;
-with gmp_lean.mpz_ptr;
+with gmp_c.a_a_mpf_struct;
+with gmp_c.a_a_mpz_struct;
+with gmp_c.mpz_srcptr;
+with gmp_c.mpz_ptr;
 
 with interfaces.C.strings;
 with Interfaces.C.Strings; use Interfaces.C.Strings;
@@ -17,8 +17,8 @@ package body GMP.discrete
 --
 is
 
-   use GMP_lean.Binding;
-   use GMP_lean.mpz_t;
+   use gmp_c.Binding;
+   use gmp_c.mpz_t;
    use interfaces.C;
 
    package C renames interfaces.C;
@@ -28,8 +28,8 @@ is
    -- Private subprograms specs
    --
 
-   function Data (Self : in Integer) return gmp_lean.mpz_srcptr.item;
---     function Data (Self : in Integer) return gmp_lean.mpz_ptr.item;
+   function Data (Self : in Integer) return gmp_c.mpz_srcptr.item;
+--     function Data (Self : in Integer) return gmp_c.mpz_ptr.item;
 
 
 
@@ -42,7 +42,7 @@ is
    procedure define (Self : in out Integer)
    is
    begin
-      self.Lean := new GMP_lean.mpz_t.item;
+      self.Lean := new gmp_c.mpz_t.item;
       init (Self.lean (0)'access);
    end;
 
@@ -51,7 +51,7 @@ is
    procedure define (Self : in out Integer;   Value : in long_long_Integer)
    is
    begin
-      self.Lean := new GMP_lean.mpz_t.item;
+      self.Lean := new gmp_c.mpz_t.item;
       init_set_si (Data (Self),  c.Long (Value));
    end;
 
@@ -60,7 +60,7 @@ is
    procedure define (Self : in out Integer;   Value : in discrete.Integer)
    is
    begin
-      self.Lean := new GMP_lean.mpz_t.item;
+      self.Lean := new gmp_c.mpz_t.item;
       init_set (Data (Self),  Data (Value));
    end;
 
@@ -106,8 +106,8 @@ is
 
    procedure destroy (Self : in out Integer)
    is
-      procedure deallocate is new ada.Unchecked_Deallocation (GMP_lean.mpz_t.item,
-                                                              GMP_lean.mpz_t.pointer);
+      procedure deallocate is new ada.Unchecked_Deallocation (gmp_c.mpz_t.item,
+                                                              gmp_c.mpz_t.pointer);
    begin
       clear (Self.lean (0)'access);
       deallocate (self.Lean);
@@ -122,21 +122,21 @@ is
 
 
 
-   function Data (Self : in Integer) return gmp_lean.mpz_srcptr.item
+   function Data (Self : in Integer) return gmp_c.mpz_srcptr.item
    is
-      lean_Src : gmp_lean.a_a_mpz_struct.Pointer := Self.lean (0)'access;
+      lean_Src : gmp_c.a_a_mpz_struct.Pointer := Self.lean (0)'access;
    begin
-      return gmp_lean.mpz_srcptr.item (lean_Src);
+      return gmp_c.mpz_srcptr.item (lean_Src);
    end;
 
 
 
 
---     function Data (Self : in Integer) return gmp_lean.mpz_ptr.item
+--     function Data (Self : in Integer) return gmp_c.mpz_ptr.item
 --     is
---        lean_Src : gmp_lean.a_a_mpz_struct.view := Self.lean (0)'access;
+--        lean_Src : gmp_c.a_a_mpz_struct.view := Self.lean (0)'access;
 --     begin
---        return gmp_lean.a_a_mpz_struct.mpz_ptr (lean_Src);
+--        return gmp_c.a_a_mpz_struct.mpz_ptr (lean_Src);
 --     end;
 
 
