@@ -1,12 +1,17 @@
-with "swig";
+with
+     "swig";
 
-project Fann_C is
+library
+project Fann_C
+is
+   for Create_Missing_Dirs use "True";
 
-   for Languages use ("C");
-   for Source_Dirs use ("../source/**");
-   for Object_Dir use "build";
-   for Exec_Dir use ".";
-   for Library_Dir use "lib";
+   for Languages       use ("c");
+   for Source_Dirs     use ("../source/**");
+   for Object_Dir      use "build";
+   for Exec_Dir        use ".";
+   for Library_Name    use "Fann_C";
+   for Library_Dir     use "lib";
    for Library_Ali_Dir use "objects";
 
    package Naming is
@@ -15,7 +20,7 @@ project Fann_C is
    end Naming;
 
    package Builder is
-      for Default_Switches ("ada") use ("-g", "-lpthread", "-j13");
+      for Default_Switches ("c") use ("-g", "-j0");
    end Builder;
 
    package Compiler is

@@ -1,15 +1,20 @@
-with "swig";
+with
+     "swig";
 
-project Clib is
+library
+project cLib
+is
+   for Create_Missing_Dirs use "True";
 
-   for Languages use ("Ada", "C");
-   for Source_Dirs use ("../source/**");
-   for Object_Dir use "build";
-   for Library_Name use "clib";
+   for Languages       use ("Ada", "C");
+   for Source_Dirs     use ("../source/**");
+   for Object_Dir      use "build";
+   for Library_Dir     use "lib";
+   for Library_Name    use "clib";
    for Library_Ali_Dir use "objects";
 
    package Naming is
-      for Specification_Suffix ("c") use ".h";
+      for  Specification_Suffix ("c") use ".h";
       for Implementation_Suffix ("c") use ".c";
    end Naming;
 
@@ -18,13 +23,8 @@ project Clib is
    end Builder;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnato", "-fstack-check", "-g", "-gnata", "-gnat05");
+      for Default_Switches ("ada") use ("-g");
       for Default_Switches ("c++") use ("-g");
    end Compiler;
 
-   package Binder is
-      for Default_Switches ("ada") use ("-E");
-   end Binder;
-
-end Clib;
-
+end cLib;

@@ -1,30 +1,25 @@
-with "gmp_c";
+with
+     "gmp_c";
 
-project GMP is
+library
+project GMP
+is
+   for Create_Missing_Dirs use "True";
 
-   for Languages use ("Ada");
-   for Source_Dirs use (".", "../source/**");
-   for Object_Dir use "build";
-
-   for Library_Name    use "ada_gmp";
+   for Languages       use ("ada");
+   for Source_Dirs     use (".", "../source/**");
+   for Object_Dir      use "build";
+   for Exec_Dir        use ".";
+   for Library_Name    use "GMP";
    for Library_Dir     use "lib";
    for Library_Ali_Dir use "objects";
 
    package Builder is
-      for Default_Switches ("ada") use ("-g");
+      for Default_Switches ("ada") use ("-g", "-j0");
    end Builder;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnato", "-lpthread", "-fstack-check", "-g", "-gnata", "-gnat05");
+      for Default_Switches ("ada") use ("-g");
    end Compiler;
 
-   package Binder is
-      for Default_Switches ("ada") use ("-E");
-   end Binder;
-
-   package Linker is
-      for Linker_Options use ("-g", "-lgmp");
-   end Linker;
-
 end GMP;
-

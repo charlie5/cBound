@@ -1,12 +1,16 @@
 with
      "swig";
 
+library
 project Speech_Tools
 is
+   for Create_Missing_Dirs use "True";
 
-   for Languages   use ("Ada", "C++");
-   for Source_Dirs use ("../source/thin");
-   for Object_Dir  use "build";
+   for Languages    use ("ada", "c++");
+   for Source_Dirs  use ("../source/thin");
+   for Object_Dir   use "build";
+   for Library_Dir  use "lib";
+   for Library_Name use "Speech_Tools";
 
    package Naming is
       for Spec_Suffix ("c++") use ".h";
@@ -14,12 +18,12 @@ is
    end Naming;
 
    package Builder is
-      for Default_Switches ("ada") use ("-lpthread", "-j5");
+      for Default_Switches ("ada") use ("-g", "-j0");
    end Builder;
 
    package Compiler is
-      for Default_Switches ("c++") use ("-g", "-lpthread");
-      for Default_Switches ("ada") use ("-lpthread");
+      for Default_Switches ("c++") use ("-g");
+      for Default_Switches ("ada") use ("-g");
    end Compiler;
 
 end Speech_Tools;

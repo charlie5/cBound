@@ -1,16 +1,21 @@
-with "swig";
+with
+     "swig";
 
-project GMP_c is
+library
+project GMP_c
+is
+   for Create_Missing_Dirs use "True";
 
    for Languages       use ("C++");
    for Source_Dirs     use (".", "../source/**");
    for Object_Dir      use "build";
-   for Library_Name    use "ada_gmp_c";
+   for Exec_Dir        use ".";
+   for Library_Name    use "GMP_c";
    for Library_Dir     use "lib";
    for Library_Ali_Dir use "objects";
 
    package Naming is
-      for Specification_Suffix ("C++") use ".h";
+      for  Specification_Suffix ("C++") use ".h";
       for Implementation_Suffix ("C++") use ".cxx";
    end Naming;
 
@@ -19,8 +24,7 @@ project GMP_c is
    end Ide;
 
    package Compiler is
-      for Default_Switches ("C++") use ("-g", "-lpthread", "-I/usr/local/include");
+      for Default_Switches ("C++") use ("-g");
    end Compiler;
 
 end GMP_c;
-
