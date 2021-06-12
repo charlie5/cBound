@@ -11,7 +11,7 @@ project Swig is
    end Builder;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnato", "-lpthread", "-fstack-check", "-g", "-gnata", "-gnat05");
+      for Default_Switches ("ada") use ("-gnato", "-lpthread", "-fstack-check", "-g", "-gnata");
    end Compiler;
 
    package Binder is
