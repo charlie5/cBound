@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+
+echo
+echo Removing prior build.
+echo
+
+rm -f *.ads
+
+echo
+echo Generating the binding ...
+echo
+
+swig_ada  -ada  -cpperraswarn   -I/usr/include   xcb.i 
+
+
+echo
+echo Pretty printing ...
+echo
+
+gnatpp  --no-compact  --par-threshold=1  -rnb  -I/usr/local/include  *.ads
+clang-format  -i  --style=GNU  *.c
+
+
+echo
+echo Done.

@@ -1,0 +1,25 @@
+with
+     "swig";
+
+project Xcb
+is
+   for Create_Missing_Dirs use "true";
+
+   for Languages   use ("ada", "c");
+   for Source_Dirs use ("../source/thin");
+   for Object_Dir  use "build";
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+      for Default_Switches ("c")   use ("-g");
+   end Builder;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+   package Linker is
+      for Linker_Options use ("-g", "-lxcb", "-lxcb-glx", "-lxcb-render", "-lxcb-render-util", "-lX11", "-lX11-xcb");
+   end Linker;
+
+end Xcb;
