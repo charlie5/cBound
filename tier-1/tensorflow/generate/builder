@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo
+echo Removing prior build
+echo
+
+rm *.ads
+rm *.adb
+rm *.cxx
+
+set -e
+
+echo
+echo Generating the binding ...
+echo
+
+swig_ada  -ada -I/usr/include  tensorflow.i 
+
+echo
+echo Pretty printing ...
+echo
+
+gnatpp  -rnb  --max-line-length=74 --vertical-named-aggregates *.ads
+indent  -sob  -di16  *.c
+
+gcc -c -I/usr/include/tensorflow *.c
+rm *.o
+
+echo Done.

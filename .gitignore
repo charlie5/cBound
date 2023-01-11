@@ -1,13 +1,18 @@
-# Object file
+## Object files
+#
 *.o
 
-# Ada Library Information
-*.ali
 
+## Ada Library Information
+#
+*.ali
+*-loc.xml
+gnatinspect.db-*
 
 *.stderr
 *.stdout
 
+*.c~
 *.d
 *.db
 *.a
@@ -15,10 +20,21 @@
 *.cgpr
 *.bexch
 *.lexch
-
 b__*.ad[sb]
 
+.clang-format
+.clangd
 
+*-orig
+*.log
+
+.idea
+
+tensorflow-old
+
+
+## Binaries
+#
 say_hello
 cbound-prior
 gmp-prior
