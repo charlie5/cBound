@@ -5,7 +5,7 @@
 %module clib
 
 
-// These wil be added to the geberated C binding file.
+// These wil be added to the generated C binding file.
 //
 %{
 #include <assert.h>
