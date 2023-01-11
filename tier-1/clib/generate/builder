@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo
 echo Removing prior build.
 echo
@@ -10,7 +12,7 @@ echo
 echo Generating the binding.
 echo
 
-swig_gnat  -gnat  -I/usr/include  -I/usr/include/linux  -I/usr/lib/gcc/x86_64-linux-gnu/4.3/include   clib.i 
+swig_ada  -ada  -I/usr/include  -I/usr/include/linux  -I/usr/lib/gcc/x86_64-linux-gnu/4.3/include   clib.i 
 
 
 echo
@@ -23,7 +25,6 @@ indent  -sob  -di16                  *.c
 
 # Clean up.
 #
-rm portable_new_line_Token.tmp
 rm *~
 
 
