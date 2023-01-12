@@ -20,7 +20,7 @@ echo
 echo Pretty printing ...
 echo
 
-gnatpp  -rnb  --max-line-length=74 --vertical-named-aggregates *.ads
+gnatpp  -rnb  --max-line-length=120 --vertical-named-aggregates *.ads
 indent  -sob  -di16  *.c
 
 gcc -c -I/usr/include/tensorflow *.c
