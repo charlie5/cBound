@@ -5,7 +5,7 @@
 %module TensorFlow_C
 
 %{
-#include <tensorflow/tensorflow/c/c_api.h>
+#include <tensorflow/c/c_api.h>
 %}
 
 struct TF_Buffer;

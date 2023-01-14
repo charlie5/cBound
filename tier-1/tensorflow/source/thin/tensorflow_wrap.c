@@ -147,7 +147,7 @@
 #include <new>
 #endif
 
-#include <tensorflow/tensorflow/c/c_api.h>
+#include <tensorflow/c/c_api.h>
 
 typedef void    (*Deallocator_T) (void *data, size_t len, void *arg);
 
