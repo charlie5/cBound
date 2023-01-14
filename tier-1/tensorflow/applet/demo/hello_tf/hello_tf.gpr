@@ -1,6 +1,5 @@
 with 
-     "tensorflow",
-     "swig";
+     "tensorflow";
 
 
 project hello_TF
