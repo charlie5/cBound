@@ -30,6 +30,9 @@ b__*.ad[sb]
 
 .idea
 
+tier-1/clib/generate/*.ads
+tier-1/gaul
+
 tensorflow-old
 
 
@@ -39,4 +42,6 @@ say_hello
 cbound-prior
 gmp-prior
 opencv
+
+
 portable_new_line_Token.tmp
