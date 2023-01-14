@@ -7,11 +7,11 @@ project Swig is
    for Library_Ali_Dir use "objects";
 
    package Builder is
-      for Default_Switches ("ada") use ("-g", "-lpthread");
+      for Default_Switches ("ada") use ("-g");
    end Builder;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnato", "-lpthread", "-fstack-check", "-g", "-gnata");
+      for Default_Switches ("ada") use ("-gnato", "-fstack-check", "-g", "-gnata");
    end Compiler;
 
    package Binder is
