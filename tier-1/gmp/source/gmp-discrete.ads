@@ -1,20 +1,18 @@
-
-private with GMP_c.mpz_t;
-
+private
+with
+     GMP_c.mpz_t;
 
 
 package GMP.discrete
 --
---
+-- A thick binding to the GMP C library.
 --
 is
-
-
    type Integer is private;
 
 
-
-   -- forge
+   ---------
+   --- Forge
    --
 
    function  to_Integer                            return Integer;
@@ -29,10 +27,9 @@ is
 
 
 
-
-   -- attributes
+   -------------
+   -- Attributes
    --
-
 
    function Value (Self : in Integer) return long_long_Integer;
    function Image (Self : in Integer) return String;
@@ -42,46 +39,42 @@ is
 
 
 
-
-   -- operations
+   -------------
+   -- Operations
    --
 
+   overriding
+   function "="   (Left, Right : in Integer) return Boolean;
+   function "<"   (Left, Right : in Integer) return Boolean;
 
-   function "=" (Left, Right : in Integer) return Boolean;
-   function "<" (Left, Right : in Integer) return Boolean;
+   function "+"   (Left, Right : in Integer) return Integer;
+   function "-"   (Left, Right : in Integer) return Integer;
+   function "*"   (Left, Right : in Integer) return Integer;
+   function "/"   (Left, Right : in Integer) return Integer;     -- Rounds towards 0 and result will have the same sign as 'Left'.
 
-   function "+" (Left, Right : in Integer) return Integer;
-   function "-" (Left, Right : in Integer) return Integer;
-   function "*" (Left, Right : in Integer) return Integer;
-   function "/" (Left, Right : in Integer) return Integer;
+   type Rounding is (Up,                                         -- Rounds up   towards '+Infinity' and result will have the opposite sign to 'Right'.
+                     Down);                                      -- Rounds down towards '-Infinity' and result will have the same     sign as 'Right'.
 
-   function "**" (Left : in Integer;   Right : in long_long_Integer) return Integer;
+   function div   (Left, Right : in Integer;
+                   Round       : in Rounding) return Integer;
 
+   function "**"  (Left  : in Integer;
+                   Right : in long_long_Integer) return Integer;
 
    function "or"  (Left, Right : in Integer) return Integer;
    function "xor" (Left, Right : in Integer) return Integer;
    function "and" (Left, Right : in Integer) return Integer;
-
 
    function "-"   (Self : in Integer) return Integer;
    function "not" (Self : in Integer) return Integer;
 
 
 
-
-
-
 private
-
-
 
    type Integer is
       record
          Lean : GMP_c.mpz_t.Pointer;
       end record;
-
-
-
-
 
 end GMP.Discrete;
