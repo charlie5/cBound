@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+#  Generates the binding.
+
+set -e
+
+echo
+echo Removing prior build.
+echo
+rm -f *.ads *.cxx
+
+echo
+echo Generating the binding.
+echo
+swig4ada  -ada  -c++  -I/usr/include/opencv5  opencv.i
+
+echo
+echo Pretty printing.
+echo
+gnatpp  -rnb  -I../../../tier-0/swig/source  *.ads
+
+g++ -c -I/usr/include/opencv5 *.cxx
+rm *.o
+
+echo
+echo Done.

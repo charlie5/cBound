@@ -41,7 +41,7 @@ tensorflow-old
 say_hello
 cbound-prior
 gmp-prior
-opencv
+tier-1/opencv/include
 
 
 portable_new_line_Token.tmp

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir -p ../source/thin
+
+rm -f ../source/thin/*.ads
+rm -f ../source/thin/*.cxx
+
+mv ./*.ads ../source/thin
+mv ./*.cxx ../source/thin

@@ -1,0 +1,26 @@
+with
+     "swig";
+
+library
+project OpenCV_C
+is
+   for Create_Missing_Dirs use "True";
+
+   for Languages       use ("C++");
+   for Source_Dirs     use ("../source/**");
+   for Object_Dir      use "build";
+   for Exec_Dir        use ".";
+   for Library_Name    use "OpenCV_C";
+   for Library_Dir     use "lib";
+   for Library_Ali_Dir use "objects";
+
+   package Naming is
+      for  Specification_Suffix ("C++") use ".h";
+      for Implementation_Suffix ("C++") use ".cxx";
+   end Naming;
+
+   package Compiler is
+      for Default_Switches ("C++") use ("-g", "-I/usr/include/opencv5");
+   end Compiler;
+
+end OpenCV_C;
