@@ -22,7 +22,7 @@ is
    end Compiler;
 
    package Linker is
-      for Linker_Options use ("-L/usr/local/lib", "-lfann", "-lfloatfann");
+      for Linker_Options use ("-L/usr/local/lib", "-lfann", "-lfloatfann", "-lm");
    end Linker;
 
 end Fann;
