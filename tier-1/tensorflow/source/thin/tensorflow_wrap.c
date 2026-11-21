@@ -145,7 +145,97 @@
 
 #ifdef __cplusplus
 #include <new>
+
+/* Replaces an object of the caller by a result which C++ has just made: the object is destructed, and the
+   result is moved (or, before C++11, copied) into its place. The assignment of the class is not used. */
+template < typename T > static void
+swig_ada_replace (T *target, T & value)
+{
+  target->~T ();
+#if __cplusplus >= 201103L
+  new (target) T (static_cast < T && >(value));
+#else
+  new (target) T (value);
 #endif
+}
+#endif
+
+/* Exceptions.
+
+   A C++ exception must not leave a wrapper function, so a wrapper which catches one (see the 'throws' typemaps)
+   records it here, as does a typemap which detects an error. The record holds the latest such event, and may
+   be examined, and cleared, from Ada by importing the three functions below (Convention => C).
+*/
+
+typedef enum
+{
+  SWIG_AdaNoException = 0,
+  SWIG_AdaException,
+  SWIG_AdaNullReferenceException,
+  SWIG_AdaOutOfMemoryException,
+  SWIG_AdaIndexOutOfRangeException,
+  SWIG_AdaDivideByZeroException,
+  SWIG_AdaArgumentOutOfRangeException,
+  SWIG_AdaIOException,
+  SWIG_AdaOverflowException
+} SWIG_AdaExceptionCodes;
+
+#ifndef SWIG_ADA_PENDING_EXCEPTION
+#define SWIG_ADA_PENDING_EXCEPTION
+
+#if defined(__GNUC__)
+#define SWIG_ADA_SHARED __attribute__ ((weak))	/* One copy is shared by all of the wrapper files of a program. */
+#else
+#define SWIG_ADA_SHARED
+#endif
+
+#ifdef __cplusplus
+extern          "C"
+{
+#endif
+
+  SWIG_ADA_SHARED int swig_ada_pending_exception_code = SWIG_AdaNoException;
+  SWIG_ADA_SHARED char swig_ada_pending_exception_message[1024] = "";
+
+  SWIG_ADA_SHARED int swig_ada_pending_exception (void)
+  {
+    return swig_ada_pending_exception_code;
+  }
+  SWIG_ADA_SHARED const char *swig_ada_pending_exception_text (void)
+  {
+    return swig_ada_pending_exception_message;
+  }
+
+  SWIG_ADA_SHARED void swig_ada_clear_pending_exception (void)
+  {
+    swig_ada_pending_exception_code = SWIG_AdaNoException;
+    swig_ada_pending_exception_message[0] = 0;
+  }
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+static void
+SWIG_AdaThrowException (SWIG_AdaExceptionCodes code, const char *msg)
+{
+  swig_ada_pending_exception_code = code;
+  strncpy (swig_ada_pending_exception_message, msg ? msg : "",
+	   sizeof (swig_ada_pending_exception_message) - 1);
+  swig_ada_pending_exception_message[sizeof
+				     (swig_ada_pending_exception_message) -
+				     1] = 0;
+}
+
+/* Contracts (%contract): a violated contract is recorded as a pending exception, and the wrapper returns. */
+#define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) { SWIG_AdaThrowException (SWIG_AdaArgumentOutOfRangeException, msg); return nullreturn; } else
+
+/* Kept so that a wrapper which uses no exception does not draw an 'unused function' warning. */
+static void     (*swig_ada_throw_exception_reference) (SWIG_AdaExceptionCodes,
+						       const char *) =
+  SWIG_AdaThrowException;
 
 #include <tensorflow/c/c_api.h>
 
@@ -153,7 +243,7 @@ typedef void    (*Deallocator_T) (void *data, size_t len, void *arg);
 
 TF_CAPI_EXPORT extern TF_Tensor *
 TF_CreateNewTensor (TF_DataType data_type,
-		    const int64_t * dims,
+		    const int64_t *dims,
 		    int num_dims,
 		    void *data,
 		    size_t len,
@@ -205,17 +295,20 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_SetStatus (void *a_arg1,
-					       int a_arg2, char *a_arg3)
+					       TF_Code * a_arg2, char *a_arg3)
   {
     TF_Status      *arg1 = (TF_Status *) 0;
     TF_Code         arg2;
     char           *arg3 = (char *) 0;
+    TF_Code        *argp2;
 
     arg1 = (TF_Status *) a_arg1;
 
-    arg2 = (TF_Code) a_arg2;
+    argp2 = (TF_Code *) a_arg2;
 
-    arg3 = a_arg3;
+    arg2 = *argp2;
+
+    arg3 = (char *) a_arg3;
 
     TF_SetStatus (arg1, arg2, (char const *) arg3);
 
@@ -230,11 +323,32 @@ extern          "C"
 
     arg1 = (TF_Status *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     TF_SetPayload (arg1, (char const *) arg2, (char const *) arg3);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_ForEachPayload (void *a_arg1,
+						    TSL_PayloadVisitor *
+						    a_arg2, void *a_arg3)
+  {
+    TF_Status      *arg1 = (TF_Status *) 0;
+    TSL_PayloadVisitor arg2;
+    void           *arg3 = (void *) 0;
+    TSL_PayloadVisitor *argp2;
+
+    arg1 = (TF_Status *) a_arg1;
+
+    argp2 = (TSL_PayloadVisitor *) a_arg2;
+
+    arg2 = *argp2;
+
+    arg3 = (void *) a_arg3;
+
+    TF_ForEachPayload ((struct TSL_Status const *) arg1, arg2, arg3);
 
   }
 
@@ -250,22 +364,24 @@ extern          "C"
 
     arg2 = (int) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     TF_SetStatusFromIOError (arg1, arg2, (char const *) arg3);
 
   }
 
-  DllExport int SWIGSTDCALL Ada_TF_GetCode (void *a_arg1)
+  DllExport TF_Code SWIGSTDCALL Ada_TF_GetCode (void *a_arg1)
   {
-    int             jresult;
+    TF_Code         jresult;
     TF_Status      *arg1 = (TF_Status *) 0;
     TF_Code         result;
 
     arg1 = (TF_Status *) a_arg1;
 
-    result = (TF_Code) TF_GetCode ((struct TF_Status const *) arg1);
-    jresult = result;
+    result = TF_GetCode ((struct TSL_Status const *) arg1);
+    {
+      jresult = result;
+    }
 
     return jresult;
 
@@ -279,7 +395,19 @@ extern          "C"
 
     arg1 = (TF_Status *) a_arg1;
 
-    result = (char *) TF_Message ((struct TF_Status const *) arg1);
+    result = (char *) TF_Message ((struct TSL_Status const *) arg1);
+    jresult = (char *) result;
+
+    return jresult;
+
+  }
+
+  DllExport size_t SWIGSTDCALL Ada_TF_TensorDefaultAlignment ()
+  {
+    size_t          jresult;
+    size_t          result;
+
+    result = TF_TensorDefaultAlignment ();
     jresult = result;
 
     return jresult;
@@ -349,7 +477,7 @@ extern          "C"
     arg1 = (TF_Tensor *) a_arg1;
 
     result = (TF_DataType) TF_TensorType ((struct TF_Tensor const *) arg1);
-    jresult = result;
+    jresult = (int) result;
 
     return jresult;
 
@@ -515,7 +643,7 @@ extern          "C"
 
     arg1 = (TF_TString *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (size_t) a_arg3;
 
@@ -533,7 +661,7 @@ extern          "C"
 
     arg1 = (TF_TString *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (size_t) a_arg3;
 
@@ -550,7 +678,7 @@ extern          "C"
     arg1 = (TF_TString *) a_arg1;
 
     result = (char *) TF_StringGetDataPointer ((TF_TString const *) arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -619,7 +747,7 @@ extern          "C"
     char           *result = 0;
 
     result = (char *) TF_Version ();
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -662,7 +790,7 @@ extern          "C"
 
     arg1 = (TF_SessionOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     TF_SetTarget (arg1, (char const *) arg2);
 
@@ -722,7 +850,7 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_GraphSetTensorShape (void *a_arg1,
-							 TF_Output a_arg2,
+							 TF_Output * a_arg2,
 							 int64_t * a_arg3,
 							 int a_arg4,
 							 void *a_arg5)
@@ -736,7 +864,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
@@ -751,7 +879,7 @@ extern          "C"
   }
 
   DllExport int SWIGSTDCALL Ada_TF_GraphGetTensorNumDims (void *a_arg1,
-							  TF_Output a_arg2,
+							  TF_Output * a_arg2,
 							  void *a_arg3)
   {
     int             jresult;
@@ -763,7 +891,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
@@ -777,7 +905,7 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_GraphGetTensorShape (void *a_arg1,
-							 TF_Output a_arg2,
+							 TF_Output * a_arg2,
 							 int64_t * a_arg3,
 							 int a_arg4,
 							 void *a_arg5)
@@ -791,7 +919,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
@@ -817,9 +945,9 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     result =
       (TF_OperationDescription *) TF_NewOperationLocked (arg1,
@@ -842,9 +970,9 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     result =
       (TF_OperationDescription *) TF_NewOperation (arg1, (char const *) arg2,
@@ -862,13 +990,14 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     TF_SetDevice (arg1, (char const *) arg2);
 
   }
 
-  DllExport void SWIGSTDCALL Ada_TF_AddInput (void *a_arg1, TF_Output a_arg2)
+  DllExport void SWIGSTDCALL Ada_TF_AddInput (void *a_arg1,
+					      TF_Output * a_arg2)
   {
     TF_OperationDescription *arg1 = (TF_OperationDescription *) 0;
     TF_Output       arg2;
@@ -876,7 +1005,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
@@ -940,7 +1069,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void *) a_arg3;
 
@@ -964,7 +1093,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void **) a_arg3;
 
@@ -987,7 +1116,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t) a_arg3;
 
@@ -1007,7 +1136,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t *) a_arg3;
 
@@ -1027,7 +1156,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (float) a_arg3;
 
@@ -1047,7 +1176,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (float *) a_arg3;
 
@@ -1068,7 +1197,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char) a_arg3;
 
@@ -1088,7 +1217,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char *) a_arg3;
 
@@ -1108,7 +1237,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_DataType) a_arg3;
 
@@ -1127,7 +1256,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_DataType *) a_arg3;
 
@@ -1148,9 +1277,9 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     TF_SetAttrPlaceholder (arg1, (char const *) arg2, (char const *) arg3);
 
@@ -1168,9 +1297,9 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     arg4 = (size_t) a_arg4;
 
@@ -1190,7 +1319,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t *) a_arg3;
 
@@ -1213,7 +1342,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t **) a_arg3;
 
@@ -1241,7 +1370,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void *) a_arg3;
 
@@ -1271,7 +1400,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void **) a_arg3;
 
@@ -1298,7 +1427,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Tensor *) a_arg3;
 
@@ -1322,7 +1451,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Tensor **) a_arg3;
 
@@ -1349,7 +1478,7 @@ extern          "C"
 
     arg1 = (TF_OperationDescription *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void *) a_arg3;
 
@@ -1409,7 +1538,7 @@ extern          "C"
     arg1 = (TF_Operation *) a_arg1;
 
     result = (char *) TF_OperationName (arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -1424,7 +1553,7 @@ extern          "C"
     arg1 = (TF_Operation *) a_arg1;
 
     result = (char *) TF_OperationOpType (arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -1439,7 +1568,7 @@ extern          "C"
     arg1 = (TF_Operation *) a_arg1;
 
     result = (char *) TF_OperationDevice (arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -1460,19 +1589,19 @@ extern          "C"
 
   }
 
-  DllExport int SWIGSTDCALL Ada_TF_OperationOutputType (TF_Output a_arg1)
+  DllExport int SWIGSTDCALL Ada_TF_OperationOutputType (TF_Output * a_arg1)
   {
     int             jresult;
     TF_Output       arg1;
     TF_DataType     result;
     TF_Output      *argp1;
 
-    argp1 = (TF_Output *) & a_arg1;
+    argp1 = (TF_Output *) a_arg1;
 
     arg1 = *argp1;
 
     result = (TF_DataType) TF_OperationOutputType (arg1);
-    jresult = result;
+    jresult = (int) result;
 
     return jresult;
 
@@ -1490,7 +1619,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Status *) a_arg3;
 
@@ -1517,19 +1646,19 @@ extern          "C"
 
   }
 
-  DllExport int SWIGSTDCALL Ada_TF_OperationInputType (TF_Input a_arg1)
+  DllExport int SWIGSTDCALL Ada_TF_OperationInputType (TF_Input * a_arg1)
   {
     int             jresult;
     TF_Input        arg1;
     TF_DataType     result;
     TF_Input       *argp1;
 
-    argp1 = (TF_Input *) & a_arg1;
+    argp1 = (TF_Input *) a_arg1;
 
     arg1 = *argp1;
 
     result = (TF_DataType) TF_OperationInputType (arg1);
-    jresult = result;
+    jresult = (int) result;
 
     return jresult;
 
@@ -1547,7 +1676,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Status *) a_arg3;
 
@@ -1559,14 +1688,14 @@ extern          "C"
 
   }
 
-  DllExport TF_Output SWIGSTDCALL Ada_TF_OperationInput (TF_Input a_arg1)
+  DllExport TF_Output SWIGSTDCALL Ada_TF_OperationInput (TF_Input * a_arg1)
   {
     TF_Output       jresult;
     TF_Input        arg1;
     TF_Output       result;
     TF_Input       *argp1;
 
-    argp1 = (TF_Input *) & a_arg1;
+    argp1 = (TF_Input *) a_arg1;
 
     arg1 = *argp1;
 
@@ -1597,7 +1726,7 @@ extern          "C"
 
   }
 
-  DllExport int SWIGSTDCALL Ada_TF_OperationOutputNumConsumers (TF_Output
+  DllExport int SWIGSTDCALL Ada_TF_OperationOutputNumConsumers (TF_Output *
 								a_arg1)
   {
     int             jresult;
@@ -1605,7 +1734,7 @@ extern          "C"
     int             result;
     TF_Output      *argp1;
 
-    argp1 = (TF_Output *) & a_arg1;
+    argp1 = (TF_Output *) a_arg1;
 
     arg1 = *argp1;
 
@@ -1616,7 +1745,8 @@ extern          "C"
 
   }
 
-  DllExport int SWIGSTDCALL Ada_TF_OperationOutputConsumers (TF_Output a_arg1,
+  DllExport int SWIGSTDCALL Ada_TF_OperationOutputConsumers (TF_Output *
+							     a_arg1,
 							     void *a_arg2,
 							     int a_arg3)
   {
@@ -1627,7 +1757,7 @@ extern          "C"
     int             result;
     TF_Output      *argp1;
 
-    argp1 = (TF_Output *) & a_arg1;
+    argp1 = (TF_Output *) a_arg1;
 
     arg1 = *argp1;
 
@@ -1733,7 +1863,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Status *) a_arg3;
 
@@ -1760,7 +1890,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void *) a_arg3;
 
@@ -1793,7 +1923,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void **) a_arg3;
 
@@ -1824,7 +1954,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t *) a_arg3;
 
@@ -1848,7 +1978,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t *) a_arg3;
 
@@ -1872,7 +2002,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (float *) a_arg3;
 
@@ -1896,7 +2026,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (float *) a_arg3;
 
@@ -1922,7 +2052,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char *) a_arg3;
 
@@ -1947,7 +2077,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char *) a_arg3;
 
@@ -1971,7 +2101,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_DataType *) a_arg3;
 
@@ -1995,7 +2125,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_DataType *) a_arg3;
 
@@ -2021,7 +2151,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t *) a_arg3;
 
@@ -2054,7 +2184,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int64_t **) a_arg3;
 
@@ -2089,7 +2219,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Buffer *) a_arg3;
 
@@ -2119,7 +2249,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Buffer **) a_arg3;
 
@@ -2144,7 +2274,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Tensor **) a_arg3;
 
@@ -2168,7 +2298,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Tensor **) a_arg3;
 
@@ -2193,7 +2323,7 @@ extern          "C"
 
     arg1 = (TF_Operation *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Buffer *) a_arg3;
 
@@ -2251,7 +2381,7 @@ extern          "C"
 
     arg2 = (int) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     arg4 = (TF_Status *) a_arg4;
 
@@ -2269,7 +2399,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     result =
       (TF_Operation *) TF_GraphOperationByName (arg1, (char const *) arg2);
@@ -2327,7 +2457,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Buffer *) a_arg3;
 
@@ -2386,7 +2516,7 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     TF_ImportGraphDefOptionsSetPrefix (arg1, (char const *) arg2);
 
@@ -2400,7 +2530,7 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     TF_ImportGraphDefOptionsSetDefaultDevice (arg1, (char const *) arg2);
 
@@ -2443,6 +2573,7 @@ extern          "C"
 									  int
 									  a_arg3,
 									  TF_Output
+									  *
 									  a_arg4)
   {
     TF_ImportGraphDefOptions *arg1 = (TF_ImportGraphDefOptions *) 0;
@@ -2453,11 +2584,11 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int) a_arg3;
 
-    argp4 = (TF_Output *) & a_arg4;
+    argp4 = (TF_Output *) a_arg4;
 
     arg4 = *argp4;
 
@@ -2477,7 +2608,7 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Operation *) a_arg3;
 
@@ -2514,7 +2645,7 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (int) a_arg3;
 
@@ -2551,7 +2682,7 @@ extern          "C"
 
     arg1 = (TF_ImportGraphDefOptions *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     TF_ImportGraphDefOptionsAddReturnOperation (arg1, (char const *) arg2);
 
@@ -2687,6 +2818,41 @@ extern          "C"
 								       *)
 								      arg3,
 								      arg4);
+    jresult = (void *) result;
+
+    return jresult;
+
+  }
+
+  DllExport void *SWIGSTDCALL
+    Ada_TF_GraphImportGraphDefWithResultsNoSerialization (void *a_arg1,
+							  void *a_arg2,
+							  void *a_arg3,
+							  void *a_arg4)
+  {
+    void           *jresult;
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Buffer      *arg2 = (TF_Buffer *) 0;
+    TF_ImportGraphDefOptions *arg3 = (TF_ImportGraphDefOptions *) 0;
+    TF_Status      *arg4 = (TF_Status *) 0;
+    TF_ImportGraphDefResults *result = 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Buffer *) a_arg2;
+
+    arg3 = (TF_ImportGraphDefOptions *) a_arg3;
+
+    arg4 = (TF_Status *) a_arg4;
+
+    result =
+      (TF_ImportGraphDefResults *)
+      TF_GraphImportGraphDefWithResultsNoSerialization (arg1,
+							(TF_Buffer const *)
+							arg2,
+							(struct
+							 TF_ImportGraphDefOptions
+							 const *) arg3, arg4);
     jresult = (void *) result;
 
     return jresult;
@@ -2925,7 +3091,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Output *) a_arg3;
 
@@ -2978,7 +3144,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char) a_arg3;
 
@@ -2998,7 +3164,7 @@ extern          "C"
 
     arg11 = (TF_FunctionOptions *) a_arg11;
 
-    arg12 = a_arg12;
+    arg12 = (char *) a_arg12;
 
     arg13 = (TF_Status *) a_arg13;
 
@@ -3074,7 +3240,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (unsigned char) a_arg3;
 
@@ -3100,7 +3266,7 @@ extern          "C"
 
     arg14 = (TF_FunctionOptions *) a_arg14;
 
-    arg15 = a_arg15;
+    arg15 = (char *) a_arg15;
 
     arg16 = (TF_Status *) a_arg16;
 
@@ -3136,7 +3302,7 @@ extern          "C"
     arg1 = (TF_Function *) a_arg1;
 
     result = (char *) TF_FunctionName (arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -3199,7 +3365,7 @@ extern          "C"
 
     arg1 = (TF_Function *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (void *) a_arg3;
 
@@ -3224,7 +3390,7 @@ extern          "C"
 
     arg1 = (TF_Function *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Buffer *) a_arg3;
 
@@ -3246,7 +3412,7 @@ extern          "C"
 
   DllExport unsigned char SWIGSTDCALL Ada_TF_TryEvaluateConstant (void
 								  *a_arg1,
-								  TF_Output
+								  TF_Output *
 								  a_arg2,
 								  void
 								  *a_arg3,
@@ -3263,7 +3429,7 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
@@ -3327,7 +3493,7 @@ extern          "C"
 
     arg2 = (TF_Buffer *) a_arg2;
 
-    arg3 = a_arg3;
+    arg3 = (char *) a_arg3;
 
     arg4 = (char **) a_arg4;
 
@@ -3506,7 +3672,7 @@ extern          "C"
 
     arg1 = (TF_Session *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (TF_Output *) a_arg3;
 
@@ -3538,7 +3704,7 @@ extern          "C"
   {
     char           *arg1 = (char *) 0;
 
-    arg1 = a_arg1;
+    arg1 = (char *) a_arg1;
 
     TF_DeletePRunHandle ((char const *) arg1);
 
@@ -3759,7 +3925,7 @@ extern          "C"
 
     arg1 = (TF_DeprecatedSession *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (char **) a_arg3;
 
@@ -3868,7 +4034,7 @@ extern          "C"
     result =
       (char *) TF_DeviceListName ((struct TF_DeviceList const *) arg1, arg2,
 				  arg3);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -3892,7 +4058,7 @@ extern          "C"
     result =
       (char *) TF_DeviceListType ((struct TF_DeviceList const *) arg1, arg2,
 				  arg3);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -3955,7 +4121,7 @@ extern          "C"
     TF_Status      *arg2 = (TF_Status *) 0;
     TF_Library     *result = 0;
 
-    arg1 = a_arg1;
+    arg1 = (char *) a_arg1;
 
     arg2 = (TF_Status *) a_arg2;
 
@@ -4044,7 +4210,7 @@ extern          "C"
 
     arg1 = (TF_ApiDefMap *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (size_t) a_arg3;
 
@@ -4068,7 +4234,7 @@ extern          "C"
 
     arg1 = (TF_ApiDefMap *) a_arg1;
 
-    arg2 = a_arg2;
+    arg2 = (char *) a_arg2;
 
     arg3 = (size_t) a_arg3;
 
@@ -4105,7 +4271,7 @@ extern          "C"
     TF_Status      *arg2 = (TF_Status *) 0;
     TF_Buffer      *result = 0;
 
-    arg1 = a_arg1;
+    arg1 = (char *) a_arg1;
 
     arg2 = (TF_Status *) a_arg2;
 
@@ -4118,8 +4284,9 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_UpdateEdge (void *a_arg1,
-						TF_Output a_arg2,
-						TF_Input a_arg3, void *a_arg4)
+						TF_Output * a_arg2,
+						TF_Input * a_arg3,
+						void *a_arg4)
   {
     TF_Graph       *arg1 = (TF_Graph *) 0;
     TF_Output       arg2;
@@ -4130,11 +4297,11 @@ extern          "C"
 
     arg1 = (TF_Graph *) a_arg1;
 
-    argp2 = (TF_Output *) & a_arg2;
+    argp2 = (TF_Output *) a_arg2;
 
     arg2 = *argp2;
 
-    argp3 = (TF_Input *) & a_arg3;
+    argp3 = (TF_Input *) a_arg3;
 
     arg3 = *argp3;
 
@@ -4214,7 +4381,7 @@ extern          "C"
     arg1 = (TF_Server *) a_arg1;
 
     result = (char *) TF_ServerTarget (arg1);
-    jresult = result;
+    jresult = (char *) result;
 
     return jresult;
 
@@ -4236,11 +4403,229 @@ extern          "C"
     char           *arg1 = (char *) 0;
     TF_Status      *arg2 = (TF_Status *) 0;
 
-    arg1 = a_arg1;
+    arg1 = (char *) a_arg1;
 
     arg2 = (TF_Status *) a_arg2;
 
     TF_RegisterFilesystemPlugin ((char const *) arg1, arg2);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_AddOperationControlInput (void *a_arg1,
+							      void *a_arg2,
+							      void *a_arg3)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+    TF_Operation   *arg3 = (TF_Operation *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    arg3 = (TF_Operation *) a_arg3;
+
+    TF_AddOperationControlInput (arg1, arg2, arg3);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_SetAttr (void *a_arg1,
+					     void *a_arg2,
+					     char *a_arg3,
+					     void *a_arg4, void *a_arg5)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+    char           *arg3 = (char *) 0;
+    TF_Buffer      *arg4 = (TF_Buffer *) 0;
+    TF_Status      *arg5 = (TF_Status *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    arg3 = (char *) a_arg3;
+
+    arg4 = (TF_Buffer *) a_arg4;
+
+    arg5 = (TF_Status *) a_arg5;
+
+    TF_SetAttr (arg1, arg2, (char const *) arg3, arg4, arg5);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_ClearAttr (void *a_arg1,
+					       void *a_arg2,
+					       char *a_arg3, void *a_arg4)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+    char           *arg3 = (char *) 0;
+    TF_Status      *arg4 = (TF_Status *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    arg3 = (char *) a_arg3;
+
+    arg4 = (TF_Status *) a_arg4;
+
+    TF_ClearAttr (arg1, arg2, (char const *) arg3, arg4);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_SetFullType (void *a_arg1,
+						 void *a_arg2, void *a_arg3)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+    TF_Buffer      *arg3 = (TF_Buffer *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    arg3 = (TF_Buffer *) a_arg3;
+
+    TF_SetFullType (arg1, arg2, (TF_Buffer const *) arg3);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_SetRequestedDevice (void *a_arg1,
+							void *a_arg2,
+							char *a_arg3)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+    char           *arg3 = (char *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    arg3 = (char *) a_arg3;
+
+    TF_SetRequestedDevice (arg1, arg2, (char const *) arg3);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_RemoveAllControlInputs (void *a_arg1,
+							    void *a_arg2)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Operation   *arg2 = (TF_Operation *) 0;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = (TF_Operation *) a_arg2;
+
+    TF_RemoveAllControlInputs (arg1, arg2);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_SetRequireShapeInferenceFns (void *a_arg1,
+								 unsigned int
+								 a_arg2)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    bool            arg2;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    arg2 = a_arg2 ? true : false;
+
+    TF_SetRequireShapeInferenceFns (arg1, arg2);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_ExtendSession (void *a_arg1, void *a_arg2)
+  {
+    TF_Session     *arg1 = (TF_Session *) 0;
+    TF_Status      *arg2 = (TF_Status *) 0;
+
+    arg1 = (TF_Session *) a_arg1;
+
+    arg2 = (TF_Status *) a_arg2;
+
+    TF_ExtendSession (arg1, arg2);
+
+  }
+
+  DllExport void *SWIGSTDCALL Ada_TF_GetHandleShapeAndType (void *a_arg1,
+							    TF_Output *
+							    a_arg2)
+  {
+    void           *jresult;
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Output       arg2;
+    TF_Buffer      *result = 0;
+    TF_Output      *argp2;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    argp2 = (TF_Output *) a_arg2;
+
+    arg2 = *argp2;
+
+    result = (TF_Buffer *) TF_GetHandleShapeAndType (arg1, arg2);
+    jresult = (void *) result;
+
+    return jresult;
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_SetHandleShapeAndType (void *a_arg1,
+							   TF_Output * a_arg2,
+							   void *a_arg3,
+							   size_t a_arg4,
+							   void *a_arg5)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Output       arg2;
+    void           *arg3 = (void *) 0;
+    size_t          arg4;
+    TF_Status      *arg5 = (TF_Status *) 0;
+    TF_Output      *argp2;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    argp2 = (TF_Output *) a_arg2;
+
+    arg2 = *argp2;
+
+    arg3 = (void *) a_arg3;
+
+    arg4 = (size_t) a_arg4;
+
+    arg5 = (TF_Status *) a_arg5;
+
+    TF_SetHandleShapeAndType (arg1, arg2, (void const *) arg3, arg4, arg5);
+
+  }
+
+  DllExport void SWIGSTDCALL Ada_TF_AddWhileInputHack (void *a_arg1,
+						       TF_Output * a_arg2,
+						       void *a_arg3,
+						       void *a_arg4)
+  {
+    TF_Graph       *arg1 = (TF_Graph *) 0;
+    TF_Output       arg2;
+    TF_Operation   *arg3 = (TF_Operation *) 0;
+    TF_Status      *arg4 = (TF_Status *) 0;
+    TF_Output      *argp2;
+
+    arg1 = (TF_Graph *) a_arg1;
+
+    argp2 = (TF_Output *) a_arg2;
+
+    arg2 = *argp2;
+
+    arg3 = (TF_Operation *) a_arg3;
+
+    arg4 = (TF_Status *) a_arg4;
+
+    TF_AddWhileInputHack (arg1, arg2, arg3, arg4);
 
   }
 
@@ -4294,4 +4679,102 @@ extern          "C"
 #endif
 #ifdef __cplusplus
 }
+#endif
+
+/* The layout which the Ada records take their classes to have. A check which fails means that a record
+   does not match its class on this machine, and that the binding must be generated again here.
+   Defining SWIG_ADA_NO_LAYOUT_CHECKS leaves the checks out. */
+
+#if    !defined (SWIG_ADA_NO_LAYOUT_CHECKS) \
+    && (   (defined (__cplusplus) && __cplusplus >= 201103L) \
+        || (!defined (__cplusplus) && defined (__STDC_VERSION__) && __STDC_VERSION__ >= 201112L))
+
+#include <stddef.h>
+
+#if defined (__cplusplus)
+#define SWIG_ADA_LAYOUT_CHECK(Condition, Message)  static_assert (Condition, Message);
+#else
+#define SWIG_ADA_LAYOUT_CHECK(Condition, Message)  _Static_assert (Condition, Message);
+#endif
+
+#if defined (__GNUC__)
+#define SWIG_ADA_OFFSET_OF(Type, Member)  __builtin_offsetof (Type, Member)
+#else
+#define SWIG_ADA_OFFSET_OF(Type, Member)  offsetof (Type, Member)
+#endif
+
+#if defined (__GNUC__) && defined (__cplusplus)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+#endif
+
+typedef TF_AllocatorAttributes swig_ada_layout_1;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_1) == 16,
+		       "swig4ada: the Ada record of 'TF_AllocatorAttributes' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_1, struct_size) ==
+		       0,
+		       "swig4ada: the member 'struct_size' of the Ada record of 'TF_AllocatorAttributes' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_1, on_host) == 8,
+		       "swig4ada: the member 'on_host' of the Ada record of 'TF_AllocatorAttributes' is not where its class has it.")
+     typedef TF_StringView swig_ada_layout_2;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_2) == 16,
+		       "swig4ada: the Ada record of 'TF_StringView' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_2, data) == 0,
+		       "swig4ada: the member 'data' of the Ada record of 'TF_StringView' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_2, len) == 8,
+		       "swig4ada: the member 'len' of the Ada record of 'TF_StringView' is not where its class has it.")
+     typedef TF_Input swig_ada_layout_3;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_3) == 16,
+		       "swig4ada: the Ada record of 'TF_Input' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_3, oper) == 0,
+		       "swig4ada: the member 'oper' of the Ada record of 'TF_Input' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_3, index) == 8,
+		       "swig4ada: the member 'index' of the Ada record of 'TF_Input' is not where its class has it.")
+     typedef TF_Output swig_ada_layout_4;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_4) == 16,
+		       "swig4ada: the Ada record of 'TF_Output' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_4, oper) == 0,
+		       "swig4ada: the member 'oper' of the Ada record of 'TF_Output' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_4, index) == 8,
+		       "swig4ada: the member 'index' of the Ada record of 'TF_Output' is not where its class has it.")
+     typedef TF_AttrMetadata swig_ada_layout_5;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_5) == 32,
+		       "swig4ada: the Ada record of 'TF_AttrMetadata' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_5, is_list) == 0,
+		       "swig4ada: the member 'is_list' of the Ada record of 'TF_AttrMetadata' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_5, list_size) == 8,
+		       "swig4ada: the member 'list_size' of the Ada record of 'TF_AttrMetadata' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_5, type) == 16,
+		       "swig4ada: the member 'type' of the Ada record of 'TF_AttrMetadata' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_5, total_size) ==
+		       24,
+		       "swig4ada: the member 'total_size' of the Ada record of 'TF_AttrMetadata' is not where its class has it.")
+     typedef TF_WhileParams swig_ada_layout_6;
+SWIG_ADA_LAYOUT_CHECK (sizeof (swig_ada_layout_6) == 72,
+		       "swig4ada: the Ada record of 'TF_WhileParams' has not the size of its class.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, ninputs) == 0,
+		       "swig4ada: the member 'ninputs' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, cond_graph) ==
+		       8,
+		       "swig4ada: the member 'cond_graph' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, cond_inputs) ==
+		       16,
+		       "swig4ada: the member 'cond_inputs' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, cond_output) ==
+		       24,
+		       "swig4ada: the member 'cond_output' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, body_graph) ==
+		       40,
+		       "swig4ada: the member 'body_graph' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, body_inputs) ==
+		       48,
+		       "swig4ada: the member 'body_inputs' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, body_outputs) ==
+		       56,
+		       "swig4ada: the member 'body_outputs' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+SWIG_ADA_LAYOUT_CHECK (SWIG_ADA_OFFSET_OF (swig_ada_layout_6, name) == 64,
+		       "swig4ada: the member 'name' of the Ada record of 'TF_WhileParams' is not where its class has it.")
+#if defined (__GNUC__) && defined (__cplusplus)
+#pragma GCC diagnostic pop
+#endif
 #endif
