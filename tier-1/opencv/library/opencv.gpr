@@ -22,7 +22,7 @@ is
    end Compiler;
 
    package Linker is
-      for Linker_Options use ("-lopencv_highgui", "-lopencv_imgcodecs", "-lopencv_imgproc", "-lopencv_core", "-lstdc++");
+      for Linker_Options use ("-lopencv_highgui", "-lopencv_videoio", "-lopencv_imgcodecs", "-lopencv_geometry", "-lopencv_imgproc", "-lopencv_core", "-lstdc++");
    end Linker;
 
 end OpenCV;

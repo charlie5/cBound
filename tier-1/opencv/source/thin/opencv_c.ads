@@ -14,6 +14,27 @@ package openCV_c is
    type Mat_array is
      array (interfaces.C.Size_t range <>) of aliased openCV_c.Mat;
 
+   -- VideoCapture
+   --
+   subtype VideoCapture is swig.incomplete_class;
+
+   type VideoCapture_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.VideoCapture;
+
+   -- VideoWriter
+   --
+   subtype VideoWriter is swig.incomplete_class;
+
+   type VideoWriter_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.VideoWriter;
+
+   -- cv_Contours
+   --
+   subtype cv_Contours is swig.opaque_structure;
+
+   type cv_Contours_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.cv_Contours;
+
    CV_8UC1_type             : constant := 0;
    CV_8UC3_type             : constant := 64;
    CV_8UC4_type             : constant := 96;
@@ -42,5 +63,8 @@ package openCV_c is
    FLIP_HORIZONTALLY        : constant := 1;
    FLIP_BOTH                : constant := -1;
    FILLED                   : constant := -1;
+   TURN_CLOCKWISE           : constant := 0;
+   TURN_HALF                : constant := 1;
+   TURN_ANTICLOCKWISE       : constant := 2;
 
 end openCV_c;

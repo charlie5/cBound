@@ -16,8 +16,18 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/geometry.hpp>     // The shape and transform functions, which OpenCV 5 moved out of 'imgproc'.
 
 #include <string.h>
+#include <vector>
+
+//  The outlines which are found in an image.
+//
+struct cv_Contours
+{
+  std::vector <std::vector <cv::Point> >   Items;
+};
 %}
 
 
@@ -41,7 +51,11 @@
 namespace cv
 {
   class Mat;
+  class VideoCapture;     // A source of frames: a camera, or a file.
+  class VideoWriter;      // A file which frames are written to.
 }
+
+struct cv_Contours;       // The outlines which are found in an image.
 
 
 //  Constants. Each is given its number here, which the wrapper checks against the library when it is compiled.
@@ -99,6 +113,12 @@ CV_CONSTANT(FLIP_BOTH,          -1,  -1)
 //  A filled shape.
 //
 CV_CONSTANT(FILLED,             -1,  cv::FILLED)
+
+//  Quarter turns.
+//
+CV_CONSTANT(TURN_CLOCKWISE,       0,  cv::ROTATE_90_CLOCKWISE)
+CV_CONSTANT(TURN_HALF,            1,  cv::ROTATE_180)
+CV_CONSTANT(TURN_ANTICLOCKWISE,   2,  cv::ROTATE_90_COUNTERCLOCKWISE)
 
 
 %inline
@@ -256,6 +276,154 @@ CV_CONSTANT(FILLED,             -1,  cv::FILLED)
   {
     cv::putText (*Self, Text, cv::Point (Column, Row), cv::FONT_HERSHEY_SIMPLEX, Scale, cv::Scalar (Blue, Green, Red), Thickness);
   }
+
+
+  //  Geometry.
+  //
+
+  //  The part of an image which is within a rectangle.
+  //
+  void  cv_crop (const cv::Mat*   From,  cv::Mat*   To,  int   Column,  int   Row,  int   Width,  int   Height)
+  {
+    (*From) (cv::Rect (Column, Row, Width, Height)).copyTo (*To);
+  }
+
+  //  Copies an image onto another, with its top left corner at the given place. It must lie within the other.
+  //
+  void  cv_paste (const cv::Mat*   From,  cv::Mat*   Onto,  int   Column,  int   Row)
+  {
+    From->copyTo ((*Onto) (cv::Rect (Column, Row, From->cols, From->rows)));
+  }
+
+  void  cv_turn (const cv::Mat*   From,  cv::Mat*   To,  int   Turn)       { cv::rotate (*From, *To, Turn); }
+
+  //  Rotates about the centre of the image, anticlockwise, by an angle in degrees. The image keeps its size.
+  //
+  void  cv_rotate (const cv::Mat*   From,  cv::Mat*   To,  double   Degrees,  double   Scale)
+  {
+    cv::Mat   the_Transform = cv::getRotationMatrix2D (cv::Point2f (From->cols / 2.0f, From->rows / 2.0f), Degrees, Scale);
+    cv::warpAffine (*From, *To, the_Transform, From->size ());
+  }
+
+  //  Maps four corners of an image to four of the result, each given as a column and a row.
+  //
+  void  cv_warp (const cv::Mat*   From,  cv::Mat*   To,
+                 const double*    from_Corners,
+                 const double*    to_Corners,
+                 int   Columns,  int   Rows)
+  {
+    cv::Point2f   the_From [4];
+    cv::Point2f   the_To   [4];
+
+    for (int i = 0;  i < 4;  i++)
+    {
+      the_From [i] = cv::Point2f ((float) from_Corners [2 * i], (float) from_Corners [2 * i + 1]);
+      the_To   [i] = cv::Point2f ((float) to_Corners   [2 * i], (float) to_Corners   [2 * i + 1]);
+    }
+
+    cv::warpPerspective (*From, *To, cv::getPerspectiveTransform (the_From, the_To), cv::Size (Columns, Rows));
+  }
+
+
+  //  Outlines.
+  //
+  //  The outlines of the shapes in an image of one channel, in which whatever is not zero is part of a shape.
+  //  They must be given to 'cv_delete_contours' when done with. An outline is counted from 0, as are its points.
+  //
+
+  cv_Contours*  cv_find_contours (const cv::Mat*   From,  int   outer_Only)
+  {
+    cv_Contours*   the_Contours = new cv_Contours;
+
+    try
+    {
+      cv::findContours (*From, the_Contours->Items, outer_Only ? cv::RETR_EXTERNAL : cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+    }
+    catch (...)
+    {
+      delete the_Contours;
+      throw;
+    }
+
+    return the_Contours;
+  }
+
+  void    cv_delete_contours   (cv_Contours*         Self)                 { delete Self; }
+
+  int     cv_contour_count     (const cv_Contours*   Self)                 { return (int) Self->Items.size (); }
+  int     cv_contour_size      (const cv_Contours*   Self,  int   Index)   { return (int) Self->Items.at (Index).size (); }
+  double  cv_contour_area      (const cv_Contours*   Self,  int   Index)   { return cv::contourArea (Self->Items.at (Index)); }
+  double  cv_contour_perimeter (const cv_Contours*   Self,  int   Index)   { return cv::arcLength   (Self->Items.at (Index), true); }
+
+  void    cv_contour_point  (const cv_Contours*   Self,  int   Index,  int   Point,  int*   Column,  int*   Row)
+  {
+    const cv::Point&   the_Point = Self->Items.at (Index).at (Point);
+
+    *Column = the_Point.x;
+    *Row    = the_Point.y;
+  }
+
+  void    cv_contour_bounds (const cv_Contours*   Self,  int   Index,  int*   Column,  int*   Row,  int*   Width,  int*   Height)
+  {
+    const cv::Rect   the_Bounds = cv::boundingRect (Self->Items.at (Index));
+
+    *Column = the_Bounds.x;
+    *Row    = the_Bounds.y;
+    *Width  = the_Bounds.width;
+    *Height = the_Bounds.height;
+  }
+
+  //  Draws one outline, or all of them if the index is -1.
+  //
+  void    cv_draw_contours (cv::Mat*   Onto,  const cv_Contours*   Self,  int   Index,
+                            double   Blue,  double   Green,  double   Red,  int   Thickness)
+  {
+    cv::drawContours (*Onto, Self->Items, Index, cv::Scalar (Blue, Green, Red), Thickness);
+  }
+
+
+  //  Video.
+  //
+  //  A source is a camera, by its number, or a file. Each must be given to 'cv_close_source' when done with.
+  //
+
+  cv::VideoCapture*  cv_open_camera (int           Number)                 { return new cv::VideoCapture (Number);   }
+  cv::VideoCapture*  cv_open_video  (const char*   Filename)               { return new cv::VideoCapture (Filename); }
+  void               cv_close_source (cv::VideoCapture*   Self)            { delete Self; }
+
+  int     cv_source_is_open (const cv::VideoCapture*   Self)               { return Self->isOpened () ? 1 : 0; }
+  int     cv_frame_width    (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_WIDTH);  }
+  int     cv_frame_height   (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_HEIGHT); }
+  int     cv_frame_count    (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_COUNT);  }
+  double  cv_frame_rate     (const cv::VideoCapture*   Self)               { return       Self->get (cv::CAP_PROP_FPS);          }
+
+  //  Takes the next frame. Returns 1, or 0 when there are no more, which leaves the image as it was.
+  //
+  int     cv_next_frame     (cv::VideoCapture*   Self,  cv::Mat*   Into)
+  {
+    cv::Mat   the_Frame;
+
+    if (!Self->read (the_Frame))
+      return 0;
+
+    the_Frame.copyTo (*Into);     // The source may use the storage of its frame again, so the image is given its own.
+    return 1;
+  }
+
+  //  A file to which frames are written, as Motion JPEG. Must be given to 'cv_close_sink' when done with, which ends the file.
+  //
+  cv::VideoWriter*  cv_create_video (const char*   Filename,  double   frame_Rate,  int   Columns,  int   Rows,  int   in_Colour)
+  {
+    return new cv::VideoWriter (Filename,
+                                cv::VideoWriter::fourcc ('M', 'J', 'P', 'G'),
+                                frame_Rate,
+                                cv::Size (Columns, Rows),
+                                in_Colour != 0);
+  }
+
+  int     cv_sink_is_open (const cv::VideoWriter*   Self)                  { return Self->isOpened () ? 1 : 0; }
+  void    cv_write_frame  (cv::VideoWriter*   Self,  const cv::Mat*   Frame)   { Self->write (*Frame); }
+  void    cv_close_sink   (cv::VideoWriter*   Self)                        { delete Self; }
 
 
   //  Windows.

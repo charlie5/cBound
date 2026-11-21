@@ -287,8 +287,18 @@ template <typename C> static C* swig_ada_new_sized (size_t n) { return new C (n)
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/geometry.hpp>     // The shape and transform functions, which OpenCV 5 moved out of 'imgproc'.
 
 #include <string.h>
+#include <vector>
+
+//  The outlines which are found in an image.
+//
+struct cv_Contours
+{
+  std::vector <std::vector <cv::Point> >   Items;
+};
 
  static_assert (0 == (int) (CV_8UC1), "A constant of the binding differs from the library: ""CV_8UC1_type"); 
  static_assert (64 == (int) (CV_8UC3), "A constant of the binding differs from the library: ""CV_8UC3_type"); 
@@ -318,6 +328,9 @@ template <typename C> static C* swig_ada_new_sized (size_t n) { return new C (n)
  static_assert (1 == (int) (1), "A constant of the binding differs from the library: ""FLIP_HORIZONTALLY"); 
  static_assert (-1 == (int) (-1), "A constant of the binding differs from the library: ""FLIP_BOTH"); 
  static_assert (-1 == (int) (cv::FILLED), "A constant of the binding differs from the library: ""FILLED"); 
+ static_assert (0 == (int) (cv::ROTATE_90_CLOCKWISE), "A constant of the binding differs from the library: ""TURN_CLOCKWISE"); 
+ static_assert (1 == (int) (cv::ROTATE_180), "A constant of the binding differs from the library: ""TURN_HALF"); 
+ static_assert (2 == (int) (cv::ROTATE_90_COUNTERCLOCKWISE), "A constant of the binding differs from the library: ""TURN_ANTICLOCKWISE"); 
 
   //  Making and destroying an image.
   //
@@ -472,6 +485,154 @@ template <typename C> static C* swig_ada_new_sized (size_t n) { return new C (n)
   {
     cv::putText (*Self, Text, cv::Point (Column, Row), cv::FONT_HERSHEY_SIMPLEX, Scale, cv::Scalar (Blue, Green, Red), Thickness);
   }
+
+
+  //  Geometry.
+  //
+
+  //  The part of an image which is within a rectangle.
+  //
+  void  cv_crop (const cv::Mat*   From,  cv::Mat*   To,  int   Column,  int   Row,  int   Width,  int   Height)
+  {
+    (*From) (cv::Rect (Column, Row, Width, Height)).copyTo (*To);
+  }
+
+  //  Copies an image onto another, with its top left corner at the given place. It must lie within the other.
+  //
+  void  cv_paste (const cv::Mat*   From,  cv::Mat*   Onto,  int   Column,  int   Row)
+  {
+    From->copyTo ((*Onto) (cv::Rect (Column, Row, From->cols, From->rows)));
+  }
+
+  void  cv_turn (const cv::Mat*   From,  cv::Mat*   To,  int   Turn)       { cv::rotate (*From, *To, Turn); }
+
+  //  Rotates about the centre of the image, anticlockwise, by an angle in degrees. The image keeps its size.
+  //
+  void  cv_rotate (const cv::Mat*   From,  cv::Mat*   To,  double   Degrees,  double   Scale)
+  {
+    cv::Mat   the_Transform = cv::getRotationMatrix2D (cv::Point2f (From->cols / 2.0f, From->rows / 2.0f), Degrees, Scale);
+    cv::warpAffine (*From, *To, the_Transform, From->size ());
+  }
+
+  //  Maps four corners of an image to four of the result, each given as a column and a row.
+  //
+  void  cv_warp (const cv::Mat*   From,  cv::Mat*   To,
+                 const double*    from_Corners,
+                 const double*    to_Corners,
+                 int   Columns,  int   Rows)
+  {
+    cv::Point2f   the_From [4];
+    cv::Point2f   the_To   [4];
+
+    for (int i = 0;  i < 4;  i++)
+    {
+      the_From [i] = cv::Point2f ((float) from_Corners [2 * i], (float) from_Corners [2 * i + 1]);
+      the_To   [i] = cv::Point2f ((float) to_Corners   [2 * i], (float) to_Corners   [2 * i + 1]);
+    }
+
+    cv::warpPerspective (*From, *To, cv::getPerspectiveTransform (the_From, the_To), cv::Size (Columns, Rows));
+  }
+
+
+  //  Outlines.
+  //
+  //  The outlines of the shapes in an image of one channel, in which whatever is not zero is part of a shape.
+  //  They must be given to 'cv_delete_contours' when done with. An outline is counted from 0, as are its points.
+  //
+
+  cv_Contours*  cv_find_contours (const cv::Mat*   From,  int   outer_Only)
+  {
+    cv_Contours*   the_Contours = new cv_Contours;
+
+    try
+    {
+      cv::findContours (*From, the_Contours->Items, outer_Only ? cv::RETR_EXTERNAL : cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+    }
+    catch (...)
+    {
+      delete the_Contours;
+      throw;
+    }
+
+    return the_Contours;
+  }
+
+  void    cv_delete_contours   (cv_Contours*         Self)                 { delete Self; }
+
+  int     cv_contour_count     (const cv_Contours*   Self)                 { return (int) Self->Items.size (); }
+  int     cv_contour_size      (const cv_Contours*   Self,  int   Index)   { return (int) Self->Items.at (Index).size (); }
+  double  cv_contour_area      (const cv_Contours*   Self,  int   Index)   { return cv::contourArea (Self->Items.at (Index)); }
+  double  cv_contour_perimeter (const cv_Contours*   Self,  int   Index)   { return cv::arcLength   (Self->Items.at (Index), true); }
+
+  void    cv_contour_point  (const cv_Contours*   Self,  int   Index,  int   Point,  int*   Column,  int*   Row)
+  {
+    const cv::Point&   the_Point = Self->Items.at (Index).at (Point);
+
+    *Column = the_Point.x;
+    *Row    = the_Point.y;
+  }
+
+  void    cv_contour_bounds (const cv_Contours*   Self,  int   Index,  int*   Column,  int*   Row,  int*   Width,  int*   Height)
+  {
+    const cv::Rect   the_Bounds = cv::boundingRect (Self->Items.at (Index));
+
+    *Column = the_Bounds.x;
+    *Row    = the_Bounds.y;
+    *Width  = the_Bounds.width;
+    *Height = the_Bounds.height;
+  }
+
+  //  Draws one outline, or all of them if the index is -1.
+  //
+  void    cv_draw_contours (cv::Mat*   Onto,  const cv_Contours*   Self,  int   Index,
+                            double   Blue,  double   Green,  double   Red,  int   Thickness)
+  {
+    cv::drawContours (*Onto, Self->Items, Index, cv::Scalar (Blue, Green, Red), Thickness);
+  }
+
+
+  //  Video.
+  //
+  //  A source is a camera, by its number, or a file. Each must be given to 'cv_close_source' when done with.
+  //
+
+  cv::VideoCapture*  cv_open_camera (int           Number)                 { return new cv::VideoCapture (Number);   }
+  cv::VideoCapture*  cv_open_video  (const char*   Filename)               { return new cv::VideoCapture (Filename); }
+  void               cv_close_source (cv::VideoCapture*   Self)            { delete Self; }
+
+  int     cv_source_is_open (const cv::VideoCapture*   Self)               { return Self->isOpened () ? 1 : 0; }
+  int     cv_frame_width    (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_WIDTH);  }
+  int     cv_frame_height   (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_HEIGHT); }
+  int     cv_frame_count    (const cv::VideoCapture*   Self)               { return (int) Self->get (cv::CAP_PROP_FRAME_COUNT);  }
+  double  cv_frame_rate     (const cv::VideoCapture*   Self)               { return       Self->get (cv::CAP_PROP_FPS);          }
+
+  //  Takes the next frame. Returns 1, or 0 when there are no more, which leaves the image as it was.
+  //
+  int     cv_next_frame     (cv::VideoCapture*   Self,  cv::Mat*   Into)
+  {
+    cv::Mat   the_Frame;
+
+    if (!Self->read (the_Frame))
+      return 0;
+
+    the_Frame.copyTo (*Into);     // The source may use the storage of its frame again, so the image is given its own.
+    return 1;
+  }
+
+  //  A file to which frames are written, as Motion JPEG. Must be given to 'cv_close_sink' when done with, which ends the file.
+  //
+  cv::VideoWriter*  cv_create_video (const char*   Filename,  double   frame_Rate,  int   Columns,  int   Rows,  int   in_Colour)
+  {
+    return new cv::VideoWriter (Filename,
+                                cv::VideoWriter::fourcc ('M', 'J', 'P', 'G'),
+                                frame_Rate,
+                                cv::Size (Columns, Rows),
+                                in_Colour != 0);
+  }
+
+  int     cv_sink_is_open (const cv::VideoWriter*   Self)                  { return Self->isOpened () ? 1 : 0; }
+  void    cv_write_frame  (cv::VideoWriter*   Self,  const cv::Mat*   Frame)   { Self->write (*Frame); }
+  void    cv_close_sink   (cv::VideoWriter*   Self)                        { delete Self; }
 
 
   //  Windows.
@@ -1949,6 +2110,1074 @@ DllExport void SWIGSTDCALL Ada_cv_draw_text (
     try
     {
       cv_draw_text(arg1,(char const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_crop (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  int a_arg4
+  ,
+  
+  int a_arg5
+  ,
+  
+  int a_arg6
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (int) a_arg4; 
+  
+  
+  
+  arg5 = (int) a_arg5; 
+  
+  
+  
+  arg6 = (int) a_arg6; 
+  
+  
+  {
+    try
+    {
+      cv_crop((cv::Mat const *)arg1,arg2,arg3,arg4,arg5,arg6);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_paste (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  int a_arg4
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (int) a_arg4; 
+  
+  
+  {
+    try
+    {
+      cv_paste((cv::Mat const *)arg1,arg2,arg3,arg4);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_turn (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  int a_arg3
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  int arg3 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  {
+    try
+    {
+      cv_turn((cv::Mat const *)arg1,arg2,arg3);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_rotate (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  double a_arg3
+  ,
+  
+  double a_arg4
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  double arg3 ;
+  double arg4 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (double) a_arg3; 
+  
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  {
+    try
+    {
+      cv_rotate((cv::Mat const *)arg1,arg2,arg3,arg4);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_warp (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  double* a_arg3
+  ,
+  
+  double* a_arg4
+  ,
+  
+  int a_arg5
+  ,
+  
+  int a_arg6
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  int arg6 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (double *) a_arg3;
+  
+  
+  
+  arg4 = (double *) a_arg4;
+  
+  
+  
+  arg5 = (int) a_arg5; 
+  
+  
+  
+  arg6 = (int) a_arg6; 
+  
+  
+  {
+    try
+    {
+      cv_warp((cv::Mat const *)arg1,arg2,(double const *)arg3,(double const *)arg4,arg5,arg6);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_find_contours (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  void * jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  cv_Contours *result = 0 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (cv_Contours *)cv_find_contours((cv::Mat const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_delete_contours (
+  void * a_arg1
+  )
+{
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_delete_contours(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_contour_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int result;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_contour_count((cv_Contours const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_contour_size (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  int jresult ;
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int arg2 ;
+  int result;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (int)cv_contour_size((cv_Contours const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_contour_area (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  double jresult ;
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int arg2 ;
+  double result;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (double)cv_contour_area((cv_Contours const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_contour_perimeter (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  double jresult ;
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int arg2 ;
+  double result;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (double)cv_contour_perimeter((cv_Contours const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_contour_point (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  int* a_arg4
+  ,
+  
+  int* a_arg5
+  )
+{
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (int *) a_arg4;
+  
+  
+  
+  arg5 = (int *) a_arg5;
+  
+  
+  {
+    try
+    {
+      cv_contour_point((cv_Contours const *)arg1,arg2,arg3,arg4,arg5);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_contour_bounds (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  int* a_arg3
+  ,
+  
+  int* a_arg4
+  ,
+  
+  int* a_arg5
+  ,
+  
+  int* a_arg6
+  )
+{
+  cv_Contours *arg1 = (cv_Contours *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  int *arg6 = (int *) 0 ;
+  
+  arg1 = (cv_Contours *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (int *) a_arg3;
+  
+  
+  
+  arg4 = (int *) a_arg4;
+  
+  
+  
+  arg5 = (int *) a_arg5;
+  
+  
+  
+  arg6 = (int *) a_arg6;
+  
+  
+  {
+    try
+    {
+      cv_contour_bounds((cv_Contours const *)arg1,arg2,arg3,arg4,arg5,arg6);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_draw_contours (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  double a_arg4
+  ,
+  
+  double a_arg5
+  ,
+  
+  double a_arg6
+  ,
+  
+  int a_arg7
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv_Contours *arg2 = (cv_Contours *) 0 ;
+  int arg3 ;
+  double arg4 ;
+  double arg5 ;
+  double arg6 ;
+  int arg7 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv_Contours *)a_arg2; 
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  
+  arg5 = (double) a_arg5; 
+  
+  
+  
+  arg6 = (double) a_arg6; 
+  
+  
+  
+  arg7 = (int) a_arg7; 
+  
+  
+  {
+    try
+    {
+      cv_draw_contours(arg1,(cv_Contours const *)arg2,arg3,arg4,arg5,arg6,arg7);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_open_camera (
+  int a_arg1
+  )
+{
+  void * jresult ;
+  int arg1 ;
+  cv::VideoCapture *result = 0 ;
+  
+  
+  arg1 = (int) a_arg1; 
+  
+  
+  {
+    try
+    {
+      result = (cv::VideoCapture *)cv_open_camera(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_open_video (
+  char * a_arg1
+  )
+{
+  void * jresult ;
+  char *arg1 = (char *) 0 ;
+  cv::VideoCapture *result = 0 ;
+  
+  arg1 = (char *) a_arg1; 
+  
+  {
+    try
+    {
+      result = (cv::VideoCapture *)cv_open_video((char const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_close_source (
+  void * a_arg1
+  )
+{
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_close_source(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_source_is_open (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_source_is_open((cv::VideoCapture const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_frame_width (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_frame_width((cv::VideoCapture const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_frame_height (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_frame_height((cv::VideoCapture const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_frame_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_frame_count((cv::VideoCapture const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_frame_rate (
+  void * a_arg1
+  )
+{
+  double jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  double result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (double)cv_frame_rate((cv::VideoCapture const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_next_frame (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  )
+{
+  int jresult ;
+  cv::VideoCapture *arg1 = (cv::VideoCapture *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoCapture *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  {
+    try
+    {
+      result = (int)cv_next_frame(arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_create_video (
+  char * a_arg1
+  ,
+  
+  double a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  int a_arg4
+  ,
+  
+  int a_arg5
+  )
+{
+  void * jresult ;
+  char *arg1 = (char *) 0 ;
+  double arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  cv::VideoWriter *result = 0 ;
+  
+  arg1 = (char *) a_arg1; 
+  
+  
+  arg2 = (double) a_arg2; 
+  
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (int) a_arg4; 
+  
+  
+  
+  arg5 = (int) a_arg5; 
+  
+  
+  {
+    try
+    {
+      result = (cv::VideoWriter *)cv_create_video((char const *)arg1,arg2,arg3,arg4,arg5);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_sink_is_open (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::VideoWriter *arg1 = (cv::VideoWriter *) 0 ;
+  int result;
+  
+  arg1 = (cv::VideoWriter *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_sink_is_open((cv::VideoWriter const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_write_frame (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  )
+{
+  cv::VideoWriter *arg1 = (cv::VideoWriter *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  
+  arg1 = (cv::VideoWriter *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  {
+    try
+    {
+      cv_write_frame(arg1,(cv::Mat const *)arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_close_sink (
+  void * a_arg1
+  )
+{
+  cv::VideoWriter *arg1 = (cv::VideoWriter *) 0 ;
+  
+  arg1 = (cv::VideoWriter *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_close_sink(arg1);
     }
     catch (const cv::Exception&   the_Error)
     {

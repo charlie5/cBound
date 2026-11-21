@@ -155,6 +155,125 @@ package openCV_c.Binding is
       Blue : in Interfaces.C.double; Green : in Interfaces.C.double;
       Red  : in Interfaces.C.double; Thickness : in Interfaces.C.int);
 
+   procedure cv_crop
+     (From   : in openCV_c.Pointers.Mat_Pointer;
+      To     : in openCV_c.Pointers.Mat_Pointer; Column : in Interfaces.C.int;
+      Row    : in Interfaces.C.int; Width : in Interfaces.C.int;
+      Height : in Interfaces.C.int);
+
+   procedure cv_paste
+     (From : in openCV_c.Pointers.Mat_Pointer;
+      Onto : in openCV_c.Pointers.Mat_Pointer; Column : in Interfaces.C.int;
+      Row  : in Interfaces.C.int);
+
+   procedure cv_turn
+     (From : in openCV_c.Pointers.Mat_Pointer;
+      To   : in openCV_c.Pointers.Mat_Pointer; Turn : in Interfaces.C.int);
+
+   procedure cv_rotate
+     (From  : in openCV_c.Pointers.Mat_Pointer;
+      To : in openCV_c.Pointers.Mat_Pointer; Degrees : in Interfaces.C.double;
+      Scale : in Interfaces.C.double);
+
+   procedure cv_warp
+     (From         : in openCV_c.Pointers.Mat_Pointer;
+      To           : in openCV_c.Pointers.Mat_Pointer;
+      from_Corners : in swig.pointers.double_Pointer;
+      to_Corners   : in swig.pointers.double_Pointer;
+      Columns      : in Interfaces.C.int; Rows : in Interfaces.C.int);
+
+   function cv_find_contours
+     (From       : in openCV_c.Pointers.Mat_Pointer;
+      outer_Only : in Interfaces.C.int)
+      return openCV_c.Pointers.cv_Contours_Pointer;
+
+   procedure cv_delete_contours
+     (Self : in openCV_c.Pointers.cv_Contours_Pointer);
+
+   function cv_contour_count
+     (Self : in openCV_c.Pointers.cv_Contours_Pointer) return Interfaces.C.int;
+
+   function cv_contour_size
+     (Self  : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index : in Interfaces.C.int) return Interfaces.C.int;
+
+   function cv_contour_area
+     (Self  : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index : in Interfaces.C.int) return Interfaces.C.double;
+
+   function cv_contour_perimeter
+     (Self  : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index : in Interfaces.C.int) return Interfaces.C.double;
+
+   procedure cv_contour_point
+     (Self   : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index  : in Interfaces.C.int; Point : in Interfaces.C.int;
+      Column : in swig.pointers.int_Pointer;
+      Row    : in swig.pointers.int_Pointer);
+
+   procedure cv_contour_bounds
+     (Self   : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index  : in Interfaces.C.int; Column : in swig.pointers.int_Pointer;
+      Row : in swig.pointers.int_Pointer; Width : in swig.pointers.int_Pointer;
+      Height : in swig.pointers.int_Pointer);
+
+   procedure cv_draw_contours
+     (Onto      : in openCV_c.Pointers.Mat_Pointer;
+      Self      : in openCV_c.Pointers.cv_Contours_Pointer;
+      Index     : in Interfaces.C.int; Blue : in Interfaces.C.double;
+      Green     : in Interfaces.C.double; Red : in Interfaces.C.double;
+      Thickness : in Interfaces.C.int);
+
+   function cv_open_camera
+     (Number : in Interfaces.C.int)
+      return openCV_c.Pointers.VideoCapture_Pointer;
+
+   function cv_open_video
+     (Filename : in Interfaces.C.Strings.chars_ptr)
+      return openCV_c.Pointers.VideoCapture_Pointer;
+
+   procedure cv_close_source
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer);
+
+   function cv_source_is_open
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer)
+      return Interfaces.C.int;
+
+   function cv_frame_width
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer)
+      return Interfaces.C.int;
+
+   function cv_frame_height
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer)
+      return Interfaces.C.int;
+
+   function cv_frame_count
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer)
+      return Interfaces.C.int;
+
+   function cv_frame_rate
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer)
+      return Interfaces.C.double;
+
+   function cv_next_frame
+     (Self : in openCV_c.Pointers.VideoCapture_Pointer;
+      Into : in openCV_c.Pointers.Mat_Pointer) return Interfaces.C.int;
+
+   function cv_create_video
+     (Filename   : in Interfaces.C.Strings.chars_ptr;
+      frame_Rate : in Interfaces.C.double; Columns : in Interfaces.C.int;
+      Rows       : in Interfaces.C.int; in_Colour : in Interfaces.C.int)
+      return openCV_c.Pointers.VideoWriter_Pointer;
+
+   function cv_sink_is_open
+     (Self : in openCV_c.Pointers.VideoWriter_Pointer) return Interfaces.C.int;
+
+   procedure cv_write_frame
+     (Self  : in openCV_c.Pointers.VideoWriter_Pointer;
+      Frame : in openCV_c.Pointers.Mat_Pointer);
+
+   procedure cv_close_sink (Self : in openCV_c.Pointers.VideoWriter_Pointer);
+
    procedure cv_show
      (Window : in Interfaces.C.Strings.chars_ptr;
       Self   : in openCV_c.Pointers.Mat_Pointer);
@@ -203,6 +322,33 @@ private
    pragma Import (C, cv_draw_rectangle, "Ada_cv_draw_rectangle");
    pragma Import (C, cv_draw_circle, "Ada_cv_draw_circle");
    pragma Import (C, cv_draw_text, "Ada_cv_draw_text");
+   pragma Import (C, cv_crop, "Ada_cv_crop");
+   pragma Import (C, cv_paste, "Ada_cv_paste");
+   pragma Import (C, cv_turn, "Ada_cv_turn");
+   pragma Import (C, cv_rotate, "Ada_cv_rotate");
+   pragma Import (C, cv_warp, "Ada_cv_warp");
+   pragma Import (C, cv_find_contours, "Ada_cv_find_contours");
+   pragma Import (C, cv_delete_contours, "Ada_cv_delete_contours");
+   pragma Import (C, cv_contour_count, "Ada_cv_contour_count");
+   pragma Import (C, cv_contour_size, "Ada_cv_contour_size");
+   pragma Import (C, cv_contour_area, "Ada_cv_contour_area");
+   pragma Import (C, cv_contour_perimeter, "Ada_cv_contour_perimeter");
+   pragma Import (C, cv_contour_point, "Ada_cv_contour_point");
+   pragma Import (C, cv_contour_bounds, "Ada_cv_contour_bounds");
+   pragma Import (C, cv_draw_contours, "Ada_cv_draw_contours");
+   pragma Import (C, cv_open_camera, "Ada_cv_open_camera");
+   pragma Import (C, cv_open_video, "Ada_cv_open_video");
+   pragma Import (C, cv_close_source, "Ada_cv_close_source");
+   pragma Import (C, cv_source_is_open, "Ada_cv_source_is_open");
+   pragma Import (C, cv_frame_width, "Ada_cv_frame_width");
+   pragma Import (C, cv_frame_height, "Ada_cv_frame_height");
+   pragma Import (C, cv_frame_count, "Ada_cv_frame_count");
+   pragma Import (C, cv_frame_rate, "Ada_cv_frame_rate");
+   pragma Import (C, cv_next_frame, "Ada_cv_next_frame");
+   pragma Import (C, cv_create_video, "Ada_cv_create_video");
+   pragma Import (C, cv_sink_is_open, "Ada_cv_sink_is_open");
+   pragma Import (C, cv_write_frame, "Ada_cv_write_frame");
+   pragma Import (C, cv_close_sink, "Ada_cv_close_sink");
    pragma Import (C, cv_show, "Ada_cv_show");
    pragma Import (C, cv_close, "Ada_cv_close");
    pragma Import (C, cv_close_all, "Ada_cv_close_all");

@@ -16,4 +16,37 @@ package openCV_c.pointer_Pointers is
 
    subtype Mat_Pointer_Pointer is C_Mat_Pointer_Pointers.Pointer;
 
+   -- VideoCapture_Pointer_Pointer
+   --
+   package C_VideoCapture_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.VideoCapture_Pointer,
+      Element_Array      => openCV_c.Pointers.VideoCapture_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype VideoCapture_Pointer_Pointer is
+     C_VideoCapture_Pointer_Pointers.Pointer;
+
+   -- VideoWriter_Pointer_Pointer
+   --
+   package C_VideoWriter_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.VideoWriter_Pointer,
+      Element_Array      => openCV_c.Pointers.VideoWriter_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype VideoWriter_Pointer_Pointer is
+     C_VideoWriter_Pointer_Pointers.Pointer;
+
+   -- cv_Contours_Pointer_Pointer
+   --
+   package C_cv_Contours_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.cv_Contours_Pointer,
+      Element_Array      => openCV_c.Pointers.cv_Contours_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype cv_Contours_Pointer_Pointer is
+     C_cv_Contours_Pointer_Pointers.Pointer;
+
 end openCV_c.pointer_Pointers;

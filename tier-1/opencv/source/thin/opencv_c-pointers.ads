@@ -22,4 +22,52 @@ package openCV_c.Pointers is
      array
        (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers.Mat_Pointer;
 
+   -- VideoCapture_Pointer
+   --
+   package C_VideoCapture_Pointers is new interfaces.c.Pointers
+     (Index => interfaces.c.size_t, Element => openCV_c.VideoCapture,
+      element_Array      => openCV_c.VideoCapture_Array,
+      default_Terminator => system.null_Address);
+
+   subtype VideoCapture_Pointer is C_VideoCapture_Pointers.Pointer;
+
+   -- VideoCapture_Pointer_Array
+   --
+   type VideoCapture_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .VideoCapture_Pointer;
+
+   -- VideoWriter_Pointer
+   --
+   package C_VideoWriter_Pointers is new interfaces.c.Pointers
+     (Index => interfaces.c.size_t, Element => openCV_c.VideoWriter,
+      element_Array      => openCV_c.VideoWriter_Array,
+      default_Terminator => system.null_Address);
+
+   subtype VideoWriter_Pointer is C_VideoWriter_Pointers.Pointer;
+
+   -- VideoWriter_Pointer_Array
+   --
+   type VideoWriter_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .VideoWriter_Pointer;
+
+   -- cv_Contours_Pointer
+   --
+   package C_cv_Contours_Pointers is new interfaces.c.Pointers
+     (Index => interfaces.c.size_t, Element => openCV_c.cv_Contours,
+      element_Array      => openCV_c.cv_Contours_Array,
+      default_Terminator => system.null_Address);
+
+   subtype cv_Contours_Pointer is C_cv_Contours_Pointers.Pointer;
+
+   -- cv_Contours_Pointer_Array
+   --
+   type cv_Contours_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .cv_Contours_Pointer;
+
 end openCV_c.Pointers;
