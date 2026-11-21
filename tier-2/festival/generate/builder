@@ -11,7 +11,7 @@ echo
 echo Generating the binding.
 echo
 
-swig_gnat  -gnat -c++  -cpperraswarn   -I/usr/include  -I/usr/include/linux  festival.i 
+swig4ada  -ada -c++  -cpperraswarn   -I/usr/include  -I/usr/include/linux  festival.i 
 
 rm portable_new_line_Token.tmp
 
@@ -21,7 +21,7 @@ echo
 echo Pretty printing.
 echo
 
-gnatpp  -rnb  -I/usr/local/include -I../../../tier-1/speech_tools/source/thin  *.ads   -cargs -gnat05
+gnatpp  -rnb  -I../../../tier-0/swig/source -I../../../tier-1/speech_tools/source/thin  *.ads
 indent  -sob  -di16                  *.cxx
 
 gcc -c *.cxx
