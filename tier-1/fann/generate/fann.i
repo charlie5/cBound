@@ -6,7 +6,6 @@
 
 %{
 #include <floatfann.h>
-#include <parallel_fann.h>
 #include <fann.h>
 %}
 
