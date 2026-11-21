@@ -35,6 +35,34 @@ package openCV_c is
    type cv_Contours_array is
      array (interfaces.C.Size_t range <>) of aliased openCV_c.cv_Contours;
 
+   -- cv_Features
+   --
+   subtype cv_Features is swig.opaque_structure;
+
+   type cv_Features_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.cv_Features;
+
+   -- cv_Matches
+   --
+   subtype cv_Matches is swig.opaque_structure;
+
+   type cv_Matches_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.cv_Matches;
+
+   -- cv_Camera
+   --
+   subtype cv_Camera is swig.opaque_structure;
+
+   type cv_Camera_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.cv_Camera;
+
+   -- Net
+   --
+   subtype Net is swig.incomplete_class;
+
+   type Net_array is
+     array (interfaces.C.Size_t range <>) of aliased openCV_c.Net;
+
    CV_8UC1_type             : constant := 0;
    CV_8UC3_type             : constant := 64;
    CV_8UC4_type             : constant := 96;

@@ -70,4 +70,67 @@ package openCV_c.Pointers is
        (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
        .cv_Contours_Pointer;
 
+   -- cv_Features_Pointer
+   --
+   package C_cv_Features_Pointers is new interfaces.c.Pointers
+     (Index => interfaces.c.size_t, Element => openCV_c.cv_Features,
+      element_Array      => openCV_c.cv_Features_Array,
+      default_Terminator => system.null_Address);
+
+   subtype cv_Features_Pointer is C_cv_Features_Pointers.Pointer;
+
+   -- cv_Features_Pointer_Array
+   --
+   type cv_Features_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .cv_Features_Pointer;
+
+   -- cv_Matches_Pointer
+   --
+   package C_cv_Matches_Pointers is new interfaces.c.Pointers
+     (Index => interfaces.c.size_t, Element => openCV_c.cv_Matches,
+      element_Array      => openCV_c.cv_Matches_Array,
+      default_Terminator => system.null_Address);
+
+   subtype cv_Matches_Pointer is C_cv_Matches_Pointers.Pointer;
+
+   -- cv_Matches_Pointer_Array
+   --
+   type cv_Matches_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .cv_Matches_Pointer;
+
+   -- cv_Camera_Pointer
+   --
+   package C_cv_Camera_Pointers is new interfaces.c.Pointers
+     (Index              => interfaces.c.size_t, Element => openCV_c.cv_Camera,
+      element_Array      => openCV_c.cv_Camera_Array,
+      default_Terminator => system.null_Address);
+
+   subtype cv_Camera_Pointer is C_cv_Camera_Pointers.Pointer;
+
+   -- cv_Camera_Pointer_Array
+   --
+   type cv_Camera_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers
+       .cv_Camera_Pointer;
+
+   -- Net_Pointer
+   --
+   package C_Net_Pointers is new interfaces.c.Pointers
+     (Index              => interfaces.c.size_t, Element => openCV_c.Net,
+      element_Array      => openCV_c.Net_Array,
+      default_Terminator => system.null_Address);
+
+   subtype Net_Pointer is C_Net_Pointers.Pointer;
+
+   -- Net_Pointer_Array
+   --
+   type Net_Pointer_Array is
+     array
+       (Interfaces.C.size_t range <>) of aliased openCV_c.Pointers.Net_Pointer;
+
 end openCV_c.Pointers;

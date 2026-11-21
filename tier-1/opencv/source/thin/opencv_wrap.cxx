@@ -284,11 +284,16 @@ template <typename C> static C* swig_ada_new_sized (size_t n) { return new C (n)
 
 
 #include <opencv2/core.hpp>
+#include <opencv2/core/ocl.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/geometry.hpp>     // The shape and transform functions, which OpenCV 5 moved out of 'imgproc'.
+#include <opencv2/features.hpp>
+#include <opencv2/objdetect.hpp>
+#include <opencv2/calib.hpp>
+#include <opencv2/dnn.hpp>
 
 #include <string.h>
 #include <vector>
@@ -298,6 +303,32 @@ template <typename C> static C* swig_ada_new_sized (size_t n) { return new C (n)
 struct cv_Contours
 {
   std::vector <std::vector <cv::Point> >   Items;
+};
+
+//  The features which are found in an image: places which can be told from those around them, each with a description.
+//
+struct cv_Features
+{
+  std::vector <cv::KeyPoint>   Points;
+  cv::Mat                      Descriptions;
+};
+
+//  The features of one image which are like those of another.
+//
+struct cv_Matches
+{
+  std::vector <cv::DMatch>   Items;
+};
+
+//  A camera: the views of known points from which it is measured, and its measures.
+//
+struct cv_Camera
+{
+  std::vector <std::vector <cv::Point3f> >   Objects;
+  std::vector <std::vector <cv::Point2f> >   Images;
+
+  cv::Mat   Matrix     = cv::Mat::eye   (3, 3, CV_64F);
+  cv::Mat   Distortion = cv::Mat::zeros (1, 5, CV_64F);
 };
 
  static_assert (0 == (int) (CV_8UC1), "A constant of the binding differs from the library: ""CV_8UC1_type"); 
@@ -591,6 +622,288 @@ struct cv_Contours
   }
 
 
+  //  Features.
+  //
+  //  The features of an image must be given to 'cv_delete_features' when done with, and matches to 'cv_delete_matches'.
+  //  A feature is counted from 0, as is a match.
+  //
+
+  //  The strongest features of an image, with their descriptions (by the ORB method).
+  //
+  cv_Features*  cv_find_features (const cv::Mat*   From,  int   Most)
+  {
+    cv_Features*   the_Features = new cv_Features;
+
+    try
+    {
+      cv::ORB::create (Most)->detectAndCompute (*From, cv::noArray (), the_Features->Points, the_Features->Descriptions);
+    }
+    catch (...)
+    {
+      delete the_Features;
+      throw;
+    }
+
+    return the_Features;
+  }
+
+  //  The strongest corners of an image of one channel. They have no descriptions, so cannot be matched.
+  //
+  cv_Features*  cv_find_corners (const cv::Mat*   From,  int   Most,  double   Quality,  double   least_Distance)
+  {
+    cv_Features*               the_Features = new cv_Features;
+    std::vector <cv::Point2f>  the_Corners;
+
+    try
+    {
+      cv::goodFeaturesToTrack (*From, the_Corners, Most, Quality, least_Distance);
+
+      for (size_t i = 0;  i < the_Corners.size ();  i++)
+        the_Features->Points.push_back (cv::KeyPoint (the_Corners [i], 1.0f));
+    }
+    catch (...)
+    {
+      delete the_Features;
+      throw;
+    }
+
+    return the_Features;
+  }
+
+  void  cv_delete_features (cv_Features*         Self)                     { delete Self; }
+  int   cv_feature_count   (const cv_Features*   Self)                     { return (int) Self->Points.size (); }
+
+  void  cv_feature (const cv_Features*   Self,  int   Index,  double*   Column,  double*   Row,  double*   Size,  double*   Angle,  double*   Strength)
+  {
+    const cv::KeyPoint&   the_Point = Self->Points.at (Index);
+
+    *Column   = the_Point.pt.x;
+    *Row      = the_Point.pt.y;
+    *Size     = the_Point.size;
+    *Angle    = the_Point.angle;
+    *Strength = the_Point.response;
+  }
+
+  void  cv_draw_features (const cv::Mat*   From,  const cv_Features*   Self,  cv::Mat*   To,  double   Blue,  double   Green,  double   Red)
+  {
+    cv::drawKeypoints (*From, Self->Points, *To, cv::Scalar (Blue, Green, Red));
+  }
+
+  //  Pairs each feature of the left with the feature of the right which is most like it, where each is the other's best.
+  //
+  cv_Matches*  cv_match_features (const cv_Features*   Left,  const cv_Features*   Right)
+  {
+    cv_Matches*   the_Matches = new cv_Matches;
+
+    try
+    {
+      if (!Left->Descriptions.empty () && !Right->Descriptions.empty ())
+        cv::BFMatcher (cv::NORM_HAMMING, true).match (Left->Descriptions, Right->Descriptions, the_Matches->Items);
+    }
+    catch (...)
+    {
+      delete the_Matches;
+      throw;
+    }
+
+    return the_Matches;
+  }
+
+  void  cv_delete_matches (cv_Matches*         Self)                       { delete Self; }
+  int   cv_match_count    (const cv_Matches*   Self)                       { return (int) Self->Items.size (); }
+
+  //  The features which are paired, and how far apart their descriptions are (the less, the more alike).
+  //
+  void  cv_match (const cv_Matches*   Self,  int   Index,  int*   Left,  int*   Right,  double*   Distance)
+  {
+    const cv::DMatch&   the_Match = Self->Items.at (Index);
+
+    *Left     = the_Match.queryIdx;
+    *Right    = the_Match.trainIdx;
+    *Distance = the_Match.distance;
+  }
+
+
+  //  Neural networks.
+  //
+  //  A network is read from the file of a model (ONNX, and others), and must be given to 'cv_delete_network' when done with.
+  //
+
+  cv::dnn::Net*  cv_read_network (const char*   Model,  const char*   Configuration)
+  {
+    return new cv::dnn::Net (cv::dnn::readNet (Model, Configuration));
+  }
+
+  void  cv_delete_network   (cv::dnn::Net*         Self)                   { delete Self; }
+  int   cv_network_is_empty (const cv::dnn::Net*   Self)                   { return Self->empty () ? 1 : 0; }
+
+  //  Gives the network an image: resized, less a mean for each channel, and then scaled.
+  //
+  void  cv_set_network_input (cv::dnn::Net*   Self,  const cv::Mat*   Image,
+                              double   Scale,  int   Columns,  int   Rows,
+                              double   mean_Blue,  double   mean_Green,  double   mean_Red,
+                              int      swap_Red_and_Blue)
+  {
+    Self->setInput (cv::dnn::blobFromImage (*Image, Scale, cv::Size (Columns, Rows),
+                                            cv::Scalar (mean_Blue, mean_Green, mean_Red),
+                                            swap_Red_and_Blue != 0,
+                                            false));
+  }
+
+  //  Runs the network, and gives its result, which is an array of real numbers of several dimensions.
+  //
+  void  cv_run_network (cv::dnn::Net*   Self,  cv::Mat*   Result)          { Self->forward ().copyTo (*Result); }
+
+  //  The dimensions of such an array, and its numbers, counted from 0, with the last dimension changing first.
+  //
+  int     cv_dimensions (const cv::Mat*   Self)                            { return Self->dims; }
+  int     cv_dimension  (const cv::Mat*   Self,  int   Index)              { CV_Assert (Index >= 0 && Index < Self->dims);  return Self->size [Index]; }
+  int     cv_number_count (const cv::Mat*   Self)                          { return (int) Self->total (); }
+
+  double  cv_number     (const cv::Mat*   Self,  int   Index)
+  {
+    CV_Assert (Self->depth () == CV_32F && Self->isContinuous () && Index >= 0 && (size_t) Index < Self->total ());
+    return ((const float*) Self->data) [Index];
+  }
+
+  //  Of boxes which overlap, keeps the one with the best score. Each box is a column, a row, a width and a height.
+  //  Returns how many are kept, whose numbers (from 0) are put into 'Kept', which must have room for 'Count'.
+  //
+  int  cv_keep_best_boxes (const double*   Boxes,  const double*   Scores,  int   Count,
+                           double   least_Score,  double   most_Overlap,
+                           int*     Kept)
+  {
+    std::vector <cv::Rect2d>   the_Boxes;
+    std::vector <float>        the_Scores;
+    std::vector <int>          the_Kept;
+
+    for (int i = 0;  i < Count;  i++)
+    {
+      the_Boxes .push_back (cv::Rect2d (Boxes [4 * i], Boxes [4 * i + 1], Boxes [4 * i + 2], Boxes [4 * i + 3]));
+      the_Scores.push_back ((float) Scores [i]);
+    }
+
+    cv::dnn::NMSBoxes (the_Boxes, the_Scores, (float) least_Score, (float) most_Overlap, the_Kept);
+
+    for (size_t i = 0;  i < the_Kept.size ();  i++)
+      Kept [i] = the_Kept [i];
+
+    return (int) the_Kept.size ();
+  }
+
+
+  //  Cameras.
+  //
+  //  A camera is measured from several views of points whose places are known (the corners of a chessboard, commonly).
+  //  It must be given to 'cv_delete_camera' when done with.
+  //
+
+  cv_Camera*  cv_new_camera    ()                                          { return new cv_Camera; }
+  void        cv_delete_camera (cv_Camera*   Self)                         { delete Self; }
+
+  //  Adds a view: the places of the points (an x, y and z for each), and where the camera saw them (a column and a row for each).
+  //
+  void  cv_add_view (cv_Camera*   Self,  const double*   Objects,  const double*   Images,  int   Count)
+  {
+    std::vector <cv::Point3f>   the_Objects;
+    std::vector <cv::Point2f>   the_Images;
+
+    for (int i = 0;  i < Count;  i++)
+    {
+      the_Objects.push_back (cv::Point3f ((float) Objects [3 * i], (float) Objects [3 * i + 1], (float) Objects [3 * i + 2]));
+      the_Images .push_back (cv::Point2f ((float) Images  [2 * i], (float) Images  [2 * i + 1]));
+    }
+
+    Self->Objects.push_back (the_Objects);
+    Self->Images .push_back (the_Images);
+  }
+
+  int     cv_view_count (const cv_Camera*   Self)                          { return (int) Self->Objects.size (); }
+
+  //  Measures the camera from its views, for images of the given size. Returns the error which remains, in elements.
+  //
+  double  cv_calibrate (cv_Camera*   Self,  int   Columns,  int   Rows)
+  {
+    std::vector <cv::Mat>   the_Rotations, the_Translations;
+
+    return cv::calibrateCamera (Self->Objects, Self->Images, cv::Size (Columns, Rows),
+                                Self->Matrix, Self->Distortion,
+                                the_Rotations, the_Translations);
+  }
+
+  //  The focal lengths along the columns and the rows, and the centre, all in elements.
+  //
+  double  cv_focal_length_across (const cv_Camera*   Self)                 { return Self->Matrix.at <double> (0, 0); }
+  double  cv_focal_length_down   (const cv_Camera*   Self)                 { return Self->Matrix.at <double> (1, 1); }
+  double  cv_centre_column       (const cv_Camera*   Self)                 { return Self->Matrix.at <double> (0, 2); }
+  double  cv_centre_row          (const cv_Camera*   Self)                 { return Self->Matrix.at <double> (1, 2); }
+
+  //  One of the five measures of the distortion of its lens, counted from 0.
+  //
+  double  cv_distortion (const cv_Camera*   Self,  int   Index)
+  {
+    CV_Assert (Index >= 0 && (size_t) Index < Self->Distortion.total ());
+    return Self->Distortion.ptr <double> () [Index];
+  }
+
+  //  An image as it would be with no distortion of the lens.
+  //
+  void    cv_undistort (const cv_Camera*   Self,  const cv::Mat*   From,  cv::Mat*   To)
+  {
+    cv::undistort (*From, *To, Self->Matrix, Self->Distortion);
+  }
+
+  //  Where a camera, with no distortion, sees points: for a camera which is turned (by a rotation vector)
+  //  and then moved. 'Images' must have room for a column and a row for each point.
+  //
+  void    cv_project (double   focal_Length_across,  double   focal_Length_down,  double   centre_Column,  double   centre_Row,
+                      const double*   Rotation,
+                      const double*   Translation,
+                      const double*   Objects,  int   Count,
+                      double*         Images)
+  {
+    std::vector <cv::Point3d>   the_Objects;
+    std::vector <cv::Point2d>   the_Images;
+
+    for (int i = 0;  i < Count;  i++)
+      the_Objects.push_back (cv::Point3d (Objects [3 * i], Objects [3 * i + 1], Objects [3 * i + 2]));
+
+    cv::Mat   the_Matrix = (cv::Mat_ <double> (3, 3) << focal_Length_across, 0, centre_Column,
+                                                        0, focal_Length_down, centre_Row,
+                                                        0, 0, 1);
+    cv::projectPoints (the_Objects,
+                       cv::Vec3d (Rotation    [0], Rotation    [1], Rotation    [2]),
+                       cv::Vec3d (Translation [0], Translation [1], Translation [2]),
+                       the_Matrix, cv::noArray (),
+                       the_Images);
+
+    for (int i = 0;  i < Count;  i++)
+    {
+      Images [2 * i]     = the_Images [i].x;
+      Images [2 * i + 1] = the_Images [i].y;
+    }
+  }
+
+  //  Finds the inner corners of a chessboard, of which there are 'Columns' along each row and 'Rows' down each column.
+  //  Returns 1 if all are found, and puts a column and a row for each into 'Corners', which must have room for them.
+  //
+  int     cv_find_chessboard (const cv::Mat*   From,  int   Columns,  int   Rows,  double*   Corners)
+  {
+    std::vector <cv::Point2f>   the_Corners;
+
+    if (!cv::findChessboardCorners (*From, cv::Size (Columns, Rows), the_Corners))
+      return 0;
+
+    for (size_t i = 0;  i < the_Corners.size ();  i++)
+    {
+      Corners [2 * i]     = the_Corners [i].x;
+      Corners [2 * i + 1] = the_Corners [i].y;
+    }
+
+    return 1;
+  }
+
+
   //  Video.
   //
   //  A source is a camera, by its number, or a file. Each must be given to 'cv_close_source' when done with.
@@ -650,6 +963,11 @@ struct cv_Contours
   //  The version of the library.
   //
   const char*  cv_version ()                                               { return CV_VERSION; }
+
+  //  Whether the library may use OpenCL, where it has it, to do its work on a graphics card. Some operations start
+  //  OpenCL when they are first used, which can hang where its drivers are not usable (within a container, say).
+  //
+  void         cv_use_opencl (int   Use)                                   { cv::ocl::setUseOpenCL (Use != 0); }
 
 #ifdef __cplusplus 
 extern "C" {
@@ -2772,6 +3090,1356 @@ DllExport void SWIGSTDCALL Ada_cv_draw_contours (
 
 
 
+DllExport void * SWIGSTDCALL Ada_cv_find_features (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  void * jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  cv_Features *result = 0 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (cv_Features *)cv_find_features((cv::Mat const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_find_corners (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  double a_arg3
+  ,
+  
+  double a_arg4
+  )
+{
+  void * jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  double arg3 ;
+  double arg4 ;
+  cv_Features *result = 0 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (double) a_arg3; 
+  
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  {
+    try
+    {
+      result = (cv_Features *)cv_find_corners((cv::Mat const *)arg1,arg2,arg3,arg4);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_delete_features (
+  void * a_arg1
+  )
+{
+  cv_Features *arg1 = (cv_Features *) 0 ;
+  
+  arg1 = (cv_Features *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_delete_features(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_feature_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv_Features *arg1 = (cv_Features *) 0 ;
+  int result;
+  
+  arg1 = (cv_Features *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_feature_count((cv_Features const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_feature (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  double* a_arg3
+  ,
+  
+  double* a_arg4
+  ,
+  
+  double* a_arg5
+  ,
+  
+  double* a_arg6
+  ,
+  
+  double* a_arg7
+  )
+{
+  cv_Features *arg1 = (cv_Features *) 0 ;
+  int arg2 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  
+  arg1 = (cv_Features *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (double *) a_arg3;
+  
+  
+  
+  arg4 = (double *) a_arg4;
+  
+  
+  
+  arg5 = (double *) a_arg5;
+  
+  
+  
+  arg6 = (double *) a_arg6;
+  
+  
+  
+  arg7 = (double *) a_arg7;
+  
+  
+  {
+    try
+    {
+      cv_feature((cv_Features const *)arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_draw_features (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  void * a_arg3
+  ,
+  
+  double a_arg4
+  ,
+  
+  double a_arg5
+  ,
+  
+  double a_arg6
+  )
+{
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  cv_Features *arg2 = (cv_Features *) 0 ;
+  cv::Mat *arg3 = (cv::Mat *) 0 ;
+  double arg4 ;
+  double arg5 ;
+  double arg6 ;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  arg2 = (cv_Features *)a_arg2; 
+  
+  arg3 = (cv::Mat *)a_arg3; 
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  
+  arg5 = (double) a_arg5; 
+  
+  
+  
+  arg6 = (double) a_arg6; 
+  
+  
+  {
+    try
+    {
+      cv_draw_features((cv::Mat const *)arg1,(cv_Features const *)arg2,arg3,arg4,arg5,arg6);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_match_features (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  )
+{
+  void * jresult ;
+  cv_Features *arg1 = (cv_Features *) 0 ;
+  cv_Features *arg2 = (cv_Features *) 0 ;
+  cv_Matches *result = 0 ;
+  
+  arg1 = (cv_Features *)a_arg1; 
+  
+  arg2 = (cv_Features *)a_arg2; 
+  
+  {
+    try
+    {
+      result = (cv_Matches *)cv_match_features((cv_Features const *)arg1,(cv_Features const *)arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_delete_matches (
+  void * a_arg1
+  )
+{
+  cv_Matches *arg1 = (cv_Matches *) 0 ;
+  
+  arg1 = (cv_Matches *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_delete_matches(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_match_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv_Matches *arg1 = (cv_Matches *) 0 ;
+  int result;
+  
+  arg1 = (cv_Matches *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_match_count((cv_Matches const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_match (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  int* a_arg3
+  ,
+  
+  int* a_arg4
+  ,
+  
+  double* a_arg5
+  )
+{
+  cv_Matches *arg1 = (cv_Matches *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  
+  arg1 = (cv_Matches *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (int *) a_arg3;
+  
+  
+  
+  arg4 = (int *) a_arg4;
+  
+  
+  
+  arg5 = (double *) a_arg5;
+  
+  
+  {
+    try
+    {
+      cv_match((cv_Matches const *)arg1,arg2,arg3,arg4,arg5);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_read_network (
+  char * a_arg1
+  ,
+  
+  char * a_arg2
+  )
+{
+  void * jresult ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  cv::dnn::Net *result = 0 ;
+  
+  arg1 = (char *) a_arg1; 
+  
+  arg2 = (char *) a_arg2; 
+  
+  {
+    try
+    {
+      result = (cv::dnn::Net *)cv_read_network((char const *)arg1,(char const *)arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_delete_network (
+  void * a_arg1
+  )
+{
+  cv::dnn::Net *arg1 = (cv::dnn::Net *) 0 ;
+  
+  arg1 = (cv::dnn::Net *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_delete_network(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_network_is_empty (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::dnn::Net *arg1 = (cv::dnn::Net *) 0 ;
+  int result;
+  
+  arg1 = (cv::dnn::Net *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_network_is_empty((cv::dnn::Net const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_set_network_input (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  double a_arg3
+  ,
+  
+  int a_arg4
+  ,
+  
+  int a_arg5
+  ,
+  
+  double a_arg6
+  ,
+  
+  double a_arg7
+  ,
+  
+  double a_arg8
+  ,
+  
+  int a_arg9
+  )
+{
+  cv::dnn::Net *arg1 = (cv::dnn::Net *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  double arg3 ;
+  int arg4 ;
+  int arg5 ;
+  double arg6 ;
+  double arg7 ;
+  double arg8 ;
+  int arg9 ;
+  
+  arg1 = (cv::dnn::Net *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  
+  arg3 = (double) a_arg3; 
+  
+  
+  
+  arg4 = (int) a_arg4; 
+  
+  
+  
+  arg5 = (int) a_arg5; 
+  
+  
+  
+  arg6 = (double) a_arg6; 
+  
+  
+  
+  arg7 = (double) a_arg7; 
+  
+  
+  
+  arg8 = (double) a_arg8; 
+  
+  
+  
+  arg9 = (int) a_arg9; 
+  
+  
+  {
+    try
+    {
+      cv_set_network_input(arg1,(cv::Mat const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_run_network (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  )
+{
+  cv::dnn::Net *arg1 = (cv::dnn::Net *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  
+  arg1 = (cv::dnn::Net *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  {
+    try
+    {
+      cv_run_network(arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_dimensions (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int result;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_dimensions((cv::Mat const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_dimension (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  int jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  int result;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (int)cv_dimension((cv::Mat const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_number_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int result;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_number_count((cv::Mat const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_number (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  double jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  double result;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (double)cv_number((cv::Mat const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_keep_best_boxes (
+  double* a_arg1
+  ,
+  
+  double* a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  double a_arg4
+  ,
+  
+  double a_arg5
+  ,
+  
+  int* a_arg6
+  )
+{
+  int jresult ;
+  double *arg1 = (double *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double arg4 ;
+  double arg5 ;
+  int *arg6 = (int *) 0 ;
+  int result;
+  
+  
+  arg1 = (double *) a_arg1;
+  
+  
+  
+  arg2 = (double *) a_arg2;
+  
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  
+  arg5 = (double) a_arg5; 
+  
+  
+  
+  arg6 = (int *) a_arg6;
+  
+  
+  {
+    try
+    {
+      result = (int)cv_keep_best_boxes((double const *)arg1,(double const *)arg2,arg3,arg4,arg5,arg6);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void * SWIGSTDCALL Ada_cv_new_camera (
+  )
+{
+  void * jresult ;
+  cv_Camera *result = 0 ;
+  
+  {
+    try
+    {
+      result = (cv_Camera *)cv_new_camera();
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = (void *) result;
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_delete_camera (
+  void * a_arg1
+  )
+{
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      cv_delete_camera(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_add_view (
+  void * a_arg1
+  ,
+  
+  double* a_arg2
+  ,
+  
+  double* a_arg3
+  ,
+  
+  int a_arg4
+  )
+{
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  int arg4 ;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  
+  arg2 = (double *) a_arg2;
+  
+  
+  
+  arg3 = (double *) a_arg3;
+  
+  
+  
+  arg4 = (int) a_arg4; 
+  
+  
+  {
+    try
+    {
+      cv_add_view(arg1,(double const *)arg2,(double const *)arg3,arg4);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_view_count (
+  void * a_arg1
+  )
+{
+  int jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  int result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (int)cv_view_count((cv_Camera const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_calibrate (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  int a_arg3
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  {
+    try
+    {
+      result = (double)cv_calibrate(arg1,arg2,arg3);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_focal_length_across (
+  void * a_arg1
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (double)cv_focal_length_across((cv_Camera const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_focal_length_down (
+  void * a_arg1
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (double)cv_focal_length_down((cv_Camera const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_centre_column (
+  void * a_arg1
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (double)cv_centre_column((cv_Camera const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_centre_row (
+  void * a_arg1
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  {
+    try
+    {
+      result = (double)cv_centre_row((cv_Camera const *)arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport double SWIGSTDCALL Ada_cv_distortion (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  )
+{
+  double jresult ;
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  int arg2 ;
+  double result;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  {
+    try
+    {
+      result = (double)cv_distortion((cv_Camera const *)arg1,arg2);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_undistort (
+  void * a_arg1
+  ,
+  
+  void * a_arg2
+  ,
+  
+  void * a_arg3
+  )
+{
+  cv_Camera *arg1 = (cv_Camera *) 0 ;
+  cv::Mat *arg2 = (cv::Mat *) 0 ;
+  cv::Mat *arg3 = (cv::Mat *) 0 ;
+  
+  arg1 = (cv_Camera *)a_arg1; 
+  
+  arg2 = (cv::Mat *)a_arg2; 
+  
+  arg3 = (cv::Mat *)a_arg3; 
+  
+  {
+    try
+    {
+      cv_undistort((cv_Camera const *)arg1,(cv::Mat const *)arg2,arg3);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_project (
+  double a_arg1
+  ,
+  
+  double a_arg2
+  ,
+  
+  double a_arg3
+  ,
+  
+  double a_arg4
+  ,
+  
+  double* a_arg5
+  ,
+  
+  double* a_arg6
+  ,
+  
+  double* a_arg7
+  ,
+  
+  int a_arg8
+  ,
+  
+  double* a_arg9
+  )
+{
+  double arg1 ;
+  double arg2 ;
+  double arg3 ;
+  double arg4 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  int arg8 ;
+  double *arg9 = (double *) 0 ;
+  
+  
+  arg1 = (double) a_arg1; 
+  
+  
+  
+  arg2 = (double) a_arg2; 
+  
+  
+  
+  arg3 = (double) a_arg3; 
+  
+  
+  
+  arg4 = (double) a_arg4; 
+  
+  
+  
+  arg5 = (double *) a_arg5;
+  
+  
+  
+  arg6 = (double *) a_arg6;
+  
+  
+  
+  arg7 = (double *) a_arg7;
+  
+  
+  
+  arg8 = (int) a_arg8; 
+  
+  
+  
+  arg9 = (double *) a_arg9;
+  
+  
+  {
+    try
+    {
+      cv_project(arg1,arg2,arg3,arg4,(double const *)arg5,(double const *)arg6,(double const *)arg7,arg8,arg9);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
+  
+}
+
+
+
+DllExport int SWIGSTDCALL Ada_cv_find_chessboard (
+  void * a_arg1
+  ,
+  
+  int a_arg2
+  ,
+  
+  int a_arg3
+  ,
+  
+  double* a_arg4
+  )
+{
+  int jresult ;
+  cv::Mat *arg1 = (cv::Mat *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int result;
+  
+  arg1 = (cv::Mat *)a_arg1; 
+  
+  
+  arg2 = (int) a_arg2; 
+  
+  
+  
+  arg3 = (int) a_arg3; 
+  
+  
+  
+  arg4 = (double *) a_arg4;
+  
+  
+  {
+    try
+    {
+      result = (int)cv_find_chessboard((cv::Mat const *)arg1,arg2,arg3,arg4);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  jresult = result; 
+  
+  
+  
+  return jresult;
+  
+}
+
+
+
 DllExport void * SWIGSTDCALL Ada_cv_open_camera (
   int a_arg1
   )
@@ -3316,6 +4984,32 @@ DllExport char * SWIGSTDCALL Ada_cv_version (
   
   
   return jresult;
+  
+}
+
+
+
+DllExport void SWIGSTDCALL Ada_cv_use_opencl (
+  int a_arg1
+  )
+{
+  int arg1 ;
+  
+  
+  arg1 = (int) a_arg1; 
+  
+  
+  {
+    try
+    {
+      cv_use_opencl(arg1);
+    }
+    catch (const cv::Exception&   the_Error)
+    {
+      SWIG_AdaThrowException (SWIG_AdaException, the_Error.what ());
+    }
+  }
+  
   
 }
 

@@ -224,6 +224,153 @@ package openCV_c.Binding is
       Green     : in Interfaces.C.double; Red : in Interfaces.C.double;
       Thickness : in Interfaces.C.int);
 
+   function cv_find_features
+     (From : in openCV_c.Pointers.Mat_Pointer; Most : in Interfaces.C.int)
+      return openCV_c.Pointers.cv_Features_Pointer;
+
+   function cv_find_corners
+     (From : in openCV_c.Pointers.Mat_Pointer; Most : in Interfaces.C.int;
+      Quality        : in Interfaces.C.double;
+      least_Distance : in Interfaces.C.double)
+      return openCV_c.Pointers.cv_Features_Pointer;
+
+   procedure cv_delete_features
+     (Self : in openCV_c.Pointers.cv_Features_Pointer);
+
+   function cv_feature_count
+     (Self : in openCV_c.Pointers.cv_Features_Pointer) return Interfaces.C.int;
+
+   procedure cv_feature
+     (Self     : in openCV_c.Pointers.cv_Features_Pointer;
+      Index    : in Interfaces.C.int; Column : in swig.pointers.double_Pointer;
+      Row      : in swig.pointers.double_Pointer;
+      Size     : in swig.pointers.double_Pointer;
+      Angle    : in swig.pointers.double_Pointer;
+      Strength : in swig.pointers.double_Pointer);
+
+   procedure cv_draw_features
+     (From  : in openCV_c.Pointers.Mat_Pointer;
+      Self  : in openCV_c.Pointers.cv_Features_Pointer;
+      To    : in openCV_c.Pointers.Mat_Pointer; Blue : in Interfaces.C.double;
+      Green : in Interfaces.C.double; Red : in Interfaces.C.double);
+
+   function cv_match_features
+     (Left  : in openCV_c.Pointers.cv_Features_Pointer;
+      Right : in openCV_c.Pointers.cv_Features_Pointer)
+      return openCV_c.Pointers.cv_Matches_Pointer;
+
+   procedure cv_delete_matches
+     (Self : in openCV_c.Pointers.cv_Matches_Pointer);
+
+   function cv_match_count
+     (Self : in openCV_c.Pointers.cv_Matches_Pointer) return Interfaces.C.int;
+
+   procedure cv_match
+     (Self     : in openCV_c.Pointers.cv_Matches_Pointer;
+      Index    : in Interfaces.C.int; Left : in swig.pointers.int_Pointer;
+      Right    : in swig.pointers.int_Pointer;
+      Distance : in swig.pointers.double_Pointer);
+
+   function cv_read_network
+     (Model         : in Interfaces.C.Strings.chars_ptr;
+      Configuration : in Interfaces.C.Strings.chars_ptr)
+      return openCV_c.Pointers.Net_Pointer;
+
+   procedure cv_delete_network (Self : in openCV_c.Pointers.Net_Pointer);
+
+   function cv_network_is_empty
+     (Self : in openCV_c.Pointers.Net_Pointer) return Interfaces.C.int;
+
+   procedure cv_set_network_input
+     (Self              : in openCV_c.Pointers.Net_Pointer;
+      Image : in openCV_c.Pointers.Mat_Pointer; Scale : in Interfaces.C.double;
+      Columns           : in Interfaces.C.int; Rows : in Interfaces.C.int;
+      mean_Blue : in Interfaces.C.double; mean_Green : in Interfaces.C.double;
+      mean_Red          : in Interfaces.C.double;
+      swap_Red_and_Blue : in Interfaces.C.int);
+
+   procedure cv_run_network
+     (Self   : in openCV_c.Pointers.Net_Pointer;
+      Result : in openCV_c.Pointers.Mat_Pointer);
+
+   function cv_dimensions
+     (Self : in openCV_c.Pointers.Mat_Pointer) return Interfaces.C.int;
+
+   function cv_dimension
+     (Self : in openCV_c.Pointers.Mat_Pointer; Index : in Interfaces.C.int)
+      return Interfaces.C.int;
+
+   function cv_number_count
+     (Self : in openCV_c.Pointers.Mat_Pointer) return Interfaces.C.int;
+
+   function cv_number
+     (Self : in openCV_c.Pointers.Mat_Pointer; Index : in Interfaces.C.int)
+      return Interfaces.C.double;
+
+   function cv_keep_best_boxes
+     (Boxes        : in swig.pointers.double_Pointer;
+      Scores : in swig.pointers.double_Pointer; Count : in Interfaces.C.int;
+      least_Score  : in Interfaces.C.double;
+      most_Overlap : in Interfaces.C.double;
+      Kept         : in swig.pointers.int_Pointer) return Interfaces.C.int;
+
+   function cv_new_camera return openCV_c.Pointers.cv_Camera_Pointer;
+
+   procedure cv_delete_camera (Self : in openCV_c.Pointers.cv_Camera_Pointer);
+
+   procedure cv_add_view
+     (Self    : in openCV_c.Pointers.cv_Camera_Pointer;
+      Objects : in swig.pointers.double_Pointer;
+      Images  : in swig.pointers.double_Pointer; Count : in Interfaces.C.int);
+
+   function cv_view_count
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer) return Interfaces.C.int;
+
+   function cv_calibrate
+     (Self    : in openCV_c.Pointers.cv_Camera_Pointer;
+      Columns : in Interfaces.C.int; Rows : in Interfaces.C.int)
+      return Interfaces.C.double;
+
+   function cv_focal_length_across
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer)
+      return Interfaces.C.double;
+
+   function cv_focal_length_down
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer)
+      return Interfaces.C.double;
+
+   function cv_centre_column
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer)
+      return Interfaces.C.double;
+
+   function cv_centre_row
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer)
+      return Interfaces.C.double;
+
+   function cv_distortion
+     (Self  : in openCV_c.Pointers.cv_Camera_Pointer;
+      Index : in Interfaces.C.int) return Interfaces.C.double;
+
+   procedure cv_undistort
+     (Self : in openCV_c.Pointers.cv_Camera_Pointer;
+      From : in openCV_c.Pointers.Mat_Pointer;
+      To   : in openCV_c.Pointers.Mat_Pointer);
+
+   procedure cv_project
+     (focal_Length_across : in Interfaces.C.double;
+      focal_Length_down   : in Interfaces.C.double;
+      centre_Column       : in Interfaces.C.double;
+      centre_Row          : in Interfaces.C.double;
+      Rotation            : in swig.pointers.double_Pointer;
+      Translation         : in swig.pointers.double_Pointer;
+      Objects : in swig.pointers.double_Pointer; Count : in Interfaces.C.int;
+      Images              : in swig.pointers.double_Pointer);
+
+   function cv_find_chessboard
+     (From : in openCV_c.Pointers.Mat_Pointer; Columns : in Interfaces.C.int;
+      Rows : in Interfaces.C.int; Corners : in swig.pointers.double_Pointer)
+      return Interfaces.C.int;
+
    function cv_open_camera
      (Number : in Interfaces.C.int)
       return openCV_c.Pointers.VideoCapture_Pointer;
@@ -287,6 +434,8 @@ package openCV_c.Binding is
 
    function cv_version return Interfaces.C.Strings.chars_ptr;
 
+   procedure cv_use_opencl (the_Use : in Interfaces.C.int);
+
 private
 
    pragma Import (C, cv_new_image, "Ada_cv_new_image");
@@ -336,6 +485,39 @@ private
    pragma Import (C, cv_contour_point, "Ada_cv_contour_point");
    pragma Import (C, cv_contour_bounds, "Ada_cv_contour_bounds");
    pragma Import (C, cv_draw_contours, "Ada_cv_draw_contours");
+   pragma Import (C, cv_find_features, "Ada_cv_find_features");
+   pragma Import (C, cv_find_corners, "Ada_cv_find_corners");
+   pragma Import (C, cv_delete_features, "Ada_cv_delete_features");
+   pragma Import (C, cv_feature_count, "Ada_cv_feature_count");
+   pragma Import (C, cv_feature, "Ada_cv_feature");
+   pragma Import (C, cv_draw_features, "Ada_cv_draw_features");
+   pragma Import (C, cv_match_features, "Ada_cv_match_features");
+   pragma Import (C, cv_delete_matches, "Ada_cv_delete_matches");
+   pragma Import (C, cv_match_count, "Ada_cv_match_count");
+   pragma Import (C, cv_match, "Ada_cv_match");
+   pragma Import (C, cv_read_network, "Ada_cv_read_network");
+   pragma Import (C, cv_delete_network, "Ada_cv_delete_network");
+   pragma Import (C, cv_network_is_empty, "Ada_cv_network_is_empty");
+   pragma Import (C, cv_set_network_input, "Ada_cv_set_network_input");
+   pragma Import (C, cv_run_network, "Ada_cv_run_network");
+   pragma Import (C, cv_dimensions, "Ada_cv_dimensions");
+   pragma Import (C, cv_dimension, "Ada_cv_dimension");
+   pragma Import (C, cv_number_count, "Ada_cv_number_count");
+   pragma Import (C, cv_number, "Ada_cv_number");
+   pragma Import (C, cv_keep_best_boxes, "Ada_cv_keep_best_boxes");
+   pragma Import (C, cv_new_camera, "Ada_cv_new_camera");
+   pragma Import (C, cv_delete_camera, "Ada_cv_delete_camera");
+   pragma Import (C, cv_add_view, "Ada_cv_add_view");
+   pragma Import (C, cv_view_count, "Ada_cv_view_count");
+   pragma Import (C, cv_calibrate, "Ada_cv_calibrate");
+   pragma Import (C, cv_focal_length_across, "Ada_cv_focal_length_across");
+   pragma Import (C, cv_focal_length_down, "Ada_cv_focal_length_down");
+   pragma Import (C, cv_centre_column, "Ada_cv_centre_column");
+   pragma Import (C, cv_centre_row, "Ada_cv_centre_row");
+   pragma Import (C, cv_distortion, "Ada_cv_distortion");
+   pragma Import (C, cv_undistort, "Ada_cv_undistort");
+   pragma Import (C, cv_project, "Ada_cv_project");
+   pragma Import (C, cv_find_chessboard, "Ada_cv_find_chessboard");
    pragma Import (C, cv_open_camera, "Ada_cv_open_camera");
    pragma Import (C, cv_open_video, "Ada_cv_open_video");
    pragma Import (C, cv_close_source, "Ada_cv_close_source");
@@ -354,5 +536,6 @@ private
    pragma Import (C, cv_close_all, "Ada_cv_close_all");
    pragma Import (C, cv_wait_for_key, "Ada_cv_wait_for_key");
    pragma Import (C, cv_version, "Ada_cv_version");
+   pragma Import (C, cv_use_opencl, "Ada_cv_use_opencl");
 
 end openCV_c.Binding;

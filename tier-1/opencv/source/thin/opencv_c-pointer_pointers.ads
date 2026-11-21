@@ -49,4 +49,44 @@ package openCV_c.pointer_Pointers is
    subtype cv_Contours_Pointer_Pointer is
      C_cv_Contours_Pointer_Pointers.Pointer;
 
+   -- cv_Features_Pointer_Pointer
+   --
+   package C_cv_Features_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.cv_Features_Pointer,
+      Element_Array      => openCV_c.Pointers.cv_Features_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype cv_Features_Pointer_Pointer is
+     C_cv_Features_Pointer_Pointers.Pointer;
+
+   -- cv_Matches_Pointer_Pointer
+   --
+   package C_cv_Matches_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.cv_Matches_Pointer,
+      Element_Array      => openCV_c.Pointers.cv_Matches_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype cv_Matches_Pointer_Pointer is C_cv_Matches_Pointer_Pointers.Pointer;
+
+   -- cv_Camera_Pointer_Pointer
+   --
+   package C_cv_Camera_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index              => Interfaces.C.size_t,
+      Element            => openCV_c.Pointers.cv_Camera_Pointer,
+      Element_Array      => openCV_c.Pointers.cv_Camera_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype cv_Camera_Pointer_Pointer is C_cv_Camera_Pointer_Pointers.Pointer;
+
+   -- Net_Pointer_Pointer
+   --
+   package C_Net_Pointer_Pointers is new Interfaces.C.Pointers
+     (Index => Interfaces.C.size_t, Element => openCV_c.Pointers.Net_Pointer,
+      Element_Array      => openCV_c.Pointers.Net_Pointer_Array,
+      Default_Terminator => null);
+
+   subtype Net_Pointer_Pointer is C_Net_Pointer_Pointers.Pointer;
+
 end openCV_c.pointer_Pointers;
