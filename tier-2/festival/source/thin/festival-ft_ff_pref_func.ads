@@ -13,8 +13,8 @@ package festival.FT_ff_pref_func is
    type Item is
      access
 function
-       (arg_2_1 : in speech_tools_c.Pointers.EST_Item_Pointer;
-        arg_2_2 : in speech_tools_c.Pointers.EST_String_Pointer)
+       (arg_1 : in speech_tools_c.Pointers.EST_Item_Pointer;
+        arg_2 : in speech_tools_c.Pointers.EST_String_Pointer)
         return speech_tools_c.EST_Val;
    pragma Convention (C, Item);
 

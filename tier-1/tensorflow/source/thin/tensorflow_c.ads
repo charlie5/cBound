@@ -215,7 +215,7 @@ package TensorFlow_C is
    --
    type Deallocator_T is
      access
-procedure (arg_3_1 : in swig.void_ptr; arg_3_2 : in Interfaces.C.size_t; arg_3_3 : in swig.void_ptr);
+procedure (arg_1 : in swig.void_ptr; arg_2 : in Interfaces.C.size_t; arg_3 : in swig.void_ptr);
    pragma Convention (C, Deallocator_T);
 
    -- Deallocator_T_Array

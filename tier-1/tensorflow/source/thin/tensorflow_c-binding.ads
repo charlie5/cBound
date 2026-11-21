@@ -602,19 +602,19 @@ package TensorFlow_C.Binding is
       run_metadata  : in TensorFlow_C.Pointers.TF_Buffer_Pointer; arg_1 : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_SessionPRunSetup
-     (arg_2_1      : in TensorFlow_C.Pointers.TF_Session_Pointer; inputs : in TensorFlow_C.TF_Output.Pointer;
+     (arg_1        : in TensorFlow_C.Pointers.TF_Session_Pointer; inputs : in TensorFlow_C.TF_Output.Pointer;
       ninputs      : in Interfaces.C.int; outputs : in TensorFlow_C.TF_Output.Pointer; noutputs : in Interfaces.C.int;
       target_opers : in TensorFlow_C.pointer_Pointers.TF_Operation_Pointer_Pointer; ntargets : in Interfaces.C.int;
-      handle       : in swig.pointers.chars_ptr_Pointer; arg_2_2 : in TensorFlow_C.Pointers.TF_Status_Pointer);
+      handle       : in swig.pointers.chars_ptr_Pointer; arg_9 : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_SessionPRun
-     (arg_2_1       : in TensorFlow_C.Pointers.TF_Session_Pointer; handle : in Interfaces.C.Strings.chars_ptr;
+     (arg_1         : in TensorFlow_C.Pointers.TF_Session_Pointer; handle : in Interfaces.C.Strings.chars_ptr;
       inputs        : in TensorFlow_C.TF_Output.Pointer;
       input_values  : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; ninputs : in Interfaces.C.int;
       outputs       : in TensorFlow_C.TF_Output.Pointer;
       output_values : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; noutputs : in Interfaces.C.int;
       target_opers  : in TensorFlow_C.pointer_Pointers.TF_Operation_Pointer_Pointer; ntargets : in Interfaces.C.int;
-      arg_2_2       : in TensorFlow_C.Pointers.TF_Status_Pointer);
+      arg_11        : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_DeletePRunHandle (handle : in Interfaces.C.Strings.chars_ptr);
 
@@ -635,32 +635,32 @@ package TensorFlow_C.Binding is
       ncontainers : in Interfaces.C.int; status : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_ExtendGraph
-     (arg_2_1   : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; proto : in swig.void_ptr;
-      proto_len : in Interfaces.C.size_t; arg_2_2 : in TensorFlow_C.Pointers.TF_Status_Pointer);
+     (arg_1     : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; proto : in swig.void_ptr;
+      proto_len : in Interfaces.C.size_t; arg_4 : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_Run
-     (arg_2_1           : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer;
+     (arg_1             : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer;
       run_options       : in TensorFlow_C.Pointers.TF_Buffer_Pointer; input_names : in swig.pointers.chars_ptr_Pointer;
       inputs            : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; ninputs : in Interfaces.C.int;
       output_names      : in swig.pointers.chars_ptr_Pointer;
       outputs           : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; noutputs : in Interfaces.C.int;
       target_oper_names : in swig.pointers.chars_ptr_Pointer; ntargets : in Interfaces.C.int;
-      run_metadata : in TensorFlow_C.Pointers.TF_Buffer_Pointer; arg_2_2 : in TensorFlow_C.Pointers.TF_Status_Pointer);
+      run_metadata : in TensorFlow_C.Pointers.TF_Buffer_Pointer; arg_12 : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_PRunSetup
-     (arg_2_1 : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; input_names : in swig.pointers.chars_ptr_Pointer;
+     (arg_1 : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; input_names : in swig.pointers.chars_ptr_Pointer;
       ninputs : in Interfaces.C.int; output_names : in swig.pointers.chars_ptr_Pointer; noutputs : in Interfaces.C.int;
       target_oper_names : in swig.pointers.chars_ptr_Pointer; ntargets : in Interfaces.C.int;
-      handle            : in swig.pointers.chars_ptr_Pointer; arg_2_2 : in TensorFlow_C.Pointers.TF_Status_Pointer);
+      handle            : in swig.pointers.chars_ptr_Pointer; arg_9 : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    procedure TF_PRun
-     (arg_2_1 : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; handle : in Interfaces.C.Strings.chars_ptr;
+     (arg_1 : in TensorFlow_C.Pointers.TF_DeprecatedSession_Pointer; handle : in Interfaces.C.Strings.chars_ptr;
       input_names       : in swig.pointers.chars_ptr_Pointer;
       inputs            : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; ninputs : in Interfaces.C.int;
       output_names      : in swig.pointers.chars_ptr_Pointer;
       outputs           : in TensorFlow_C.pointer_Pointers.TF_Tensor_Pointer_Pointer; noutputs : in Interfaces.C.int;
       target_oper_names : in swig.pointers.chars_ptr_Pointer; ntargets : in Interfaces.C.int;
-      arg_2_2           : in TensorFlow_C.Pointers.TF_Status_Pointer);
+      arg_11            : in TensorFlow_C.Pointers.TF_Status_Pointer);
 
    function TF_SessionListDevices
      (session : in TensorFlow_C.Pointers.TF_Session_Pointer; status : in TensorFlow_C.Pointers.TF_Status_Pointer)

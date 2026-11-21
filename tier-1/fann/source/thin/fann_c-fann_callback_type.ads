@@ -14,10 +14,10 @@ package fann_c.fann_callback_type is
    type Item is
      access
 function
-       (arg_6_1 :    access fann_c.fann.Item;
-        arg_6_2 : in fann_c.fann_train_data.Pointer;
-        arg_6_3 : in Interfaces.C.unsigned; arg_6_4 : in Interfaces.C.unsigned;
-        arg_6_5 : in Interfaces.C.C_float; arg_6_6 : in Interfaces.C.unsigned)
+       (arg_1 :    access fann_c.fann.Item;
+        arg_2 : in fann_c.fann_train_data.Pointer;
+        arg_3 : in Interfaces.C.unsigned; arg_4 : in Interfaces.C.unsigned;
+        arg_5 : in Interfaces.C.C_float; arg_6 : in Interfaces.C.unsigned)
         return Interfaces.C.int;
    pragma Convention (C, Item);
 

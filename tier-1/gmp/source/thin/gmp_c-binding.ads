@@ -21,292 +21,276 @@ use Interfaces.C;
 package gmp_c.Binding is
 
    procedure randinit
-     (arg_3_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randalg_t);
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item; arg_2 : in gmp_c.gmp_randalg_t);
 
    procedure randinit_default (arg_1 : in gmp_c.gmp_randstate_ptr.Item);
 
    procedure randinit_lc_2exp
-     (arg_4_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_4_2 : in gmp_c.mpz_srcptr.Item;
-      arg_4_3 : in Interfaces.C.unsigned_long; arg_4_4 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in gmp_c.mpz_srcptr.Item; arg_3 : in Interfaces.C.unsigned_long;
+      arg_4 : in gmp_c.mp_bitcnt_t);
 
    function randinit_lc_2exp_size
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in gmp_c.mp_bitcnt_t) return Interfaces.C.int;
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
+      return Interfaces.C.int;
 
    procedure randinit_mt (arg_1 : in gmp_c.gmp_randstate_ptr.Item);
 
    procedure randinit_set
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in gmp_c.gmp_randstate_srcptr.Item);
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in gmp_c.gmp_randstate_srcptr.Item);
 
    procedure randseed
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure randseed_ui
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long);
 
    procedure randclear (arg_1 : in gmp_c.gmp_randstate_ptr.Item);
 
    function urandomb_ui
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    function urandomm_ui
-     (arg_2_1 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    function asprintf
-     (arg_3_1 : in swig.pointers.chars_ptr_Pointer;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in swig.pointers.chars_ptr_Pointer;
+      arg_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function printf
-     (arg_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function snprintf
-     (arg_4_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_4_2 : in Interfaces.C.size_t;
-      arg_4_3 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in Interfaces.C.size_t;
+      arg_3 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function sprintf
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function scanf
-     (arg_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function sscanf
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in Interfaces.C.Strings.chars_ptr) return Interfaces.C.int;
 
    function realloc
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t)
       return swig.void_ptr;
 
    procedure add
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure add_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure addmul
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure addmul_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure z_and
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure array_init
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_size_t);
 
    procedure bin_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure bin_uiui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure cdiv_q
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure cdiv_q_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function cdiv_q_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    procedure cdiv_qr
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item; arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    function cdiv_qr_ui
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item;
-      arg_4_4 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure cdiv_r
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure cdiv_r_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function cdiv_r_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    function cdiv_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure clear (arg_1 : in gmp_c.mpz_ptr.Item);
 
-   procedure a_a_gmpz_clears (arg_2 : in gmp_c.mpz_ptr.Item);
+   procedure a_a_gmpz_clears (arg_1 : in gmp_c.mpz_ptr.Item);
 
    procedure clrbit
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    function cmp
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function cmp_d
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int;
 
    function a_a_gmpz_cmp_si
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.long)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.long)
       return Interfaces.C.int;
 
    function a_a_gmpz_cmp_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
+      return Interfaces.C.int;
 
    function cmpabs
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function cmpabs_d
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int;
 
    function cmpabs_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
+      return Interfaces.C.int;
 
    procedure com
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure combit
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    function congruent_p
-     (arg_3_1 : in gmp_c.mpz_srcptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
 
    function congruent_2exp_p
-     (arg_3_1 : in gmp_c.mpz_srcptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) return Interfaces.C.int;
 
    function congruent_ui_p
-     (arg_3_1 : in gmp_c.mpz_srcptr.Item;
-      arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
 
    procedure divexact
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure divexact_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    function divisible_p
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function divisible_ui_p
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
+      return Interfaces.C.int;
 
    function divisible_2exp_p
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return Interfaces.C.int;
 
    procedure dump (arg_1 : in gmp_c.mpz_srcptr.Item);
 
    function z_export
-     (arg_7_1 : in swig.void_ptr; arg_7_2 : in swig.pointers.size_t_Pointer;
-      arg_7_3 : in Interfaces.C.int; arg_7_4 : in Interfaces.C.size_t;
-      arg_7_5 : in Interfaces.C.int; arg_7_6 : in Interfaces.C.size_t;
-      arg_7_7 : in gmp_c.mpz_srcptr.Item) return swig.void_ptr;
+     (arg_1 : in swig.void_ptr; arg_2 : in swig.pointers.size_t_Pointer;
+      arg_3 : in Interfaces.C.int; arg_4 : in Interfaces.C.size_t;
+      arg_5 : in Interfaces.C.int; arg_6 : in Interfaces.C.size_t;
+      arg_7 : in gmp_c.mpz_srcptr.Item) return swig.void_ptr;
 
    procedure fac_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure a_a_gmpz_2fac_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure a_a_gmpz_mfac_uiui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure a_a_gmpz_primorial_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure fdiv_q
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure fdiv_q_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function fdiv_q_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    procedure fdiv_qr
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item; arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    function fdiv_qr_ui
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item;
-      arg_4_4 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure fdiv_r
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure fdiv_r_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function fdiv_r_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    function fdiv_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure fib_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure fib2_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_ptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    function fits_sint_p
      (arg_1 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
@@ -318,484 +302,465 @@ package gmp_c.Binding is
      (arg_1 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
 
    procedure gcd
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    function gcd_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    procedure gcdext
-     (arg_5_1 : in gmp_c.mpz_ptr.Item; arg_5_2 : in gmp_c.mpz_ptr.Item;
-      arg_5_3 : in gmp_c.mpz_ptr.Item; arg_5_4 : in gmp_c.mpz_srcptr.Item;
-      arg_5_5 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_ptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item;
+      arg_5 : in gmp_c.mpz_srcptr.Item);
 
    function get_d
      (arg_1 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.double;
 
    function get_d_2exp
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.double;
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpz_srcptr.Item)
+      return Interfaces.C.double;
 
    function get_si (arg_1 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.long;
 
    function get_str
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpz_srcptr.Item)
-      return Interfaces.C.Strings.chars_ptr;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.Strings.chars_ptr;
 
    function hamdist
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return gmp_c.mp_bitcnt_t;
 
    procedure import
-     (arg_7_1 : in gmp_c.mpz_ptr.Item; arg_7_2 : in Interfaces.C.size_t;
-      arg_7_3 : in Interfaces.C.int; arg_7_4 : in Interfaces.C.size_t;
-      arg_7_5 : in Interfaces.C.int; arg_7_6 : in Interfaces.C.size_t;
-      arg_7_7 : in swig.void_ptr);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.size_t;
+      arg_3 : in Interfaces.C.int; arg_4 : in Interfaces.C.size_t;
+      arg_5 : in Interfaces.C.int; arg_6 : in Interfaces.C.size_t;
+      arg_7 : in swig.void_ptr);
 
    procedure init (arg_1 : in gmp_c.mpz_ptr.Item);
 
    procedure init2
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
-   procedure a_a_gmpz_inits (arg_2 : in gmp_c.mpz_ptr.Item);
+   procedure a_a_gmpz_inits (arg_1 : in gmp_c.mpz_ptr.Item);
 
    procedure init_set
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure init_set_d
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double);
 
    procedure init_set_si
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long);
 
    function init_set_str
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    procedure init_set_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    function invert
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
 
    procedure ior
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    function jacobi
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function kronecker_si
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.long)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.long)
       return Interfaces.C.int;
 
    function kronecker_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
+      return Interfaces.C.int;
 
    function si_kronecker
-     (arg_2_1 : in Interfaces.C.long; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in Interfaces.C.long; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function ui_kronecker
-     (arg_2_1 : in Interfaces.C.unsigned_long;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
+     (arg_1 : in Interfaces.C.unsigned_long; arg_2 : in gmp_c.mpz_srcptr.Item)
+      return Interfaces.C.int;
 
    procedure lcm
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure lcm_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure lucnum_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure lucnum2_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_ptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    function millerrabin
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.int)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.int)
       return Interfaces.C.int;
 
    procedure the_mod
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    procedure mul_si
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.long);
 
    procedure mul_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure nextprime
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    function a_a_gmpz_prevprime
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function perfect_power_p
      (arg_1 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.int;
 
    procedure pow_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure powm
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_srcptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item; arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    procedure a_a_gmpz_powm_sec
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_srcptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item; arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    procedure powm_ui
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_srcptr.Item;
-      arg_4_3 : in Interfaces.C.unsigned_long;
-      arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    function probab_prime_p
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.int)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.int)
       return Interfaces.C.int;
 
    procedure random
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    procedure random2
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    procedure realloc2
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    function remove
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) return gmp_c.mp_bitcnt_t;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) return gmp_c.mp_bitcnt_t;
 
    function root
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
 
    procedure rootrem
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item;
-      arg_4_4 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in Interfaces.C.unsigned_long);
 
    procedure rrandomb
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function scan0
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return gmp_c.mp_bitcnt_t;
 
    function scan1
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return gmp_c.mp_bitcnt_t;
 
    procedure set
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double);
 
    procedure set_f
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure set_si
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long);
 
    function set_str
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    procedure set_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure setbit
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    function sizeinbase
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.int)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.int)
       return Interfaces.C.size_t;
 
    procedure sqrt
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure sqrtrem
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_ptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure sub_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure ui_sub
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure submul
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure submul_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_ptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item);
 
    function tdiv_ui
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure tdiv_q
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure tdiv_q_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function tdiv_q_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    procedure tdiv_qr
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item; arg_4_4 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in gmp_c.mpz_srcptr.Item);
 
    function tdiv_qr_ui
-     (arg_4_1 : in gmp_c.mpz_ptr.Item; arg_4_2 : in gmp_c.mpz_ptr.Item;
-      arg_4_3 : in gmp_c.mpz_srcptr.Item;
-      arg_4_4 : in Interfaces.C.unsigned_long)
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item; arg_4 : in Interfaces.C.unsigned_long)
       return Interfaces.C.unsigned_long;
 
    procedure tdiv_r
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure tdiv_r_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function tdiv_r_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long)
-      return Interfaces.C.unsigned_long;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.unsigned_long;
 
    function tstbit
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return Interfaces.C.int;
 
    procedure ui_pow_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure urandomb
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    procedure urandomm
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure z_xor
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    procedure add
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    procedure canonicalize (arg_1 : in gmp_c.mpq_ptr.Item);
 
    procedure clear (arg_1 : in gmp_c.mpq_ptr.Item);
 
-   procedure a_a_gmpq_clears (arg_2 : in gmp_c.mpq_ptr.Item);
+   procedure a_a_gmpq_clears (arg_1 : in gmp_c.mpq_ptr.Item);
 
    function cmp
-     (arg_2_1 : in gmp_c.mpq_srcptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item)
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item)
       return Interfaces.C.int;
 
    function a_a_gmpq_cmp_si
-     (arg_3_1 : in gmp_c.mpq_srcptr.Item; arg_3_2 : in Interfaces.C.long;
-      arg_3_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in Interfaces.C.long;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
 
    function a_a_gmpq_cmp_ui
-     (arg_3_1 : in gmp_c.mpq_srcptr.Item;
-      arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
 
    function a_a_gmpq_cmp_z
-     (arg_2_1 : in gmp_c.mpq_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    procedure div
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    procedure div_2exp
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function equal
-     (arg_2_1 : in gmp_c.mpq_srcptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item)
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item)
       return Interfaces.C.int;
 
    procedure get_num
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    procedure get_den
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    function get_d
      (arg_1 : in gmp_c.mpq_srcptr.Item) return Interfaces.C.double;
 
    function get_str
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpq_srcptr.Item)
-      return Interfaces.C.Strings.chars_ptr;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpq_srcptr.Item) return Interfaces.C.Strings.chars_ptr;
 
    procedure init (arg_1 : in gmp_c.mpq_ptr.Item);
 
-   procedure a_a_gmpq_inits (arg_2 : in gmp_c.mpq_ptr.Item);
+   procedure a_a_gmpq_inits (arg_1 : in gmp_c.mpq_ptr.Item);
 
    procedure inv
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    procedure set
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.double);
 
    procedure set_den
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure set_f
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure set_num
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure set_si
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    function set_str
-     (arg_3_1 : in gmp_c.mpq_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    procedure set_ui
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure set_z
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_ptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_ptr.Item);
 
    procedure the_abs
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure add
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure add_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure ceil
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure clear (arg_1 : in gmp_c.mpf_ptr.Item);
 
-   procedure a_a_gmpf_clears (arg_2 : in gmp_c.mpf_ptr.Item);
+   procedure a_a_gmpf_clears (arg_1 : in gmp_c.mpf_ptr.Item);
 
    function cmp
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.int;
 
    function a_a_gmpf_cmp_z
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    function cmp_d
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int;
 
    function cmp_si
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in Interfaces.C.long)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in Interfaces.C.long)
       return Interfaces.C.int;
 
    function cmp_ui
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in Interfaces.C.unsigned_long)
+      return Interfaces.C.int;
 
    procedure div
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure div_2exp
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    procedure div_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure dump (arg_1 : in gmp_c.mpf_srcptr.Item);
 
    function eq
-     (arg_3_1 : in gmp_c.mpf_srcptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) return Interfaces.C.int;
 
    function fits_sint_p
      (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.int;
@@ -816,14 +781,14 @@ package gmp_c.Binding is
      (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.int;
 
    procedure floor
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    function get_d
      (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.double;
 
    function get_d_2exp
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.double;
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpf_srcptr.Item)
+      return Interfaces.C.double;
 
    function get_default_prec return gmp_c.mp_bitcnt_t;
 
@@ -833,10 +798,9 @@ package gmp_c.Binding is
    function get_si (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.long;
 
    function get_str
-     (arg_5_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_5_2 : in gmp_c.Pointers.mp_exp_t_Pointer;
-      arg_5_3 : in Interfaces.C.int; arg_5_4 : in Interfaces.C.size_t;
-      arg_5_5 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in gmp_c.Pointers.mp_exp_t_Pointer; arg_3 : in Interfaces.C.int;
+      arg_4 : in Interfaces.C.size_t; arg_5 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.Strings.chars_ptr;
 
    function get_ui
@@ -845,348 +809,340 @@ package gmp_c.Binding is
    procedure init (arg_1 : in gmp_c.mpf_ptr.Item);
 
    procedure init2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
-   procedure a_a_gmpf_inits (arg_2 : in gmp_c.mpf_ptr.Item);
+   procedure a_a_gmpf_inits (arg_1 : in gmp_c.mpf_ptr.Item);
 
    procedure init_set
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure init_set_d
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double);
 
    procedure init_set_si
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long);
 
    function init_set_str
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    procedure init_set_ui
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    function integer_p
      (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.int;
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    procedure mul_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure neg
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure pow_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure random2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_exp_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_exp_t);
 
    procedure reldiff
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure set
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double);
 
    procedure set_default_prec (arg_1 : in gmp_c.mp_bitcnt_t);
 
    procedure set_prec
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    procedure set_prec_raw
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    procedure set_q
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    procedure set_si
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long);
 
    function set_str
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    procedure set_ui
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure set_z
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    function size (arg_1 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.size_t;
 
    procedure sqrt
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure sqrt_ui
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure sub_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_ptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_ptr.Item);
 
    procedure trunc
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    procedure ui_div
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure ui_sub
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    procedure urandomb
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    function a_a_gmpn_add_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_addmul_1
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    procedure a_a_gmpn_divexact_1
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in gmp_c.mp_limb_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t);
 
    function a_a_gmpn_divexact_by3c
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_divrem
-     (arg_6_1 : in gmp_c.mp_ptr.Item; arg_6_2 : in gmp_c.mp_size_t;
-      arg_6_3 : in gmp_c.mp_ptr.Item; arg_6_4 : in gmp_c.mp_size_t;
-      arg_6_5 : in gmp_c.mp_srcptr.Item; arg_6_6 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_ptr.Item; arg_4 : in gmp_c.mp_size_t;
+      arg_5 : in gmp_c.mp_srcptr.Item; arg_6 : in gmp_c.mp_size_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_divrem_1
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_size_t;
-      arg_5_3 : in gmp_c.mp_srcptr.Item; arg_5_4 : in gmp_c.mp_size_t;
-      arg_5_5 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t;
+      arg_5 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_divrem_2
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_size_t;
-      arg_5_3 : in gmp_c.mp_ptr.Item; arg_5_4 : in gmp_c.mp_size_t;
-      arg_5_5 : in gmp_c.mp_srcptr.Item) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_ptr.Item; arg_4 : in gmp_c.mp_size_t;
+      arg_5 : in gmp_c.mp_srcptr.Item) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_div_qr_2
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_ptr.Item;
-      arg_5_3 : in gmp_c.mp_srcptr.Item; arg_5_4 : in gmp_c.mp_size_t;
-      arg_5_5 : in gmp_c.mp_srcptr.Item) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_ptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t;
+      arg_5 : in gmp_c.mp_srcptr.Item) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_gcd
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_ptr.Item;
-      arg_5_3 : in gmp_c.mp_size_t; arg_5_4 : in gmp_c.mp_ptr.Item;
-      arg_5_5 : in gmp_c.mp_size_t) return gmp_c.mp_size_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_ptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_ptr.Item;
+      arg_5 : in gmp_c.mp_size_t) return gmp_c.mp_size_t;
 
    function a_a_gmpn_gcd_11
-     (arg_2_1 : in gmp_c.mp_limb_t; arg_2_2 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_limb_t; arg_2 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_gcd_1
-     (arg_3_1 : in gmp_c.mp_srcptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_gcdext_1
-     (arg_4_1 : in gmp_c.Pointers.mp_limb_signed_t_Pointer;
-      arg_4_2 : in gmp_c.Pointers.mp_limb_signed_t_Pointer;
-      arg_4_3 : in gmp_c.mp_limb_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.Pointers.mp_limb_signed_t_Pointer;
+      arg_2 : in gmp_c.Pointers.mp_limb_signed_t_Pointer;
+      arg_3 : in gmp_c.mp_limb_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_gcdext
-     (arg_7_1 : in gmp_c.mp_ptr.Item; arg_7_2 : in gmp_c.mp_ptr.Item;
-      arg_7_3 : in gmp_c.Pointers.mp_size_t_Pointer;
-      arg_7_4 : in gmp_c.mp_ptr.Item; arg_7_5 : in gmp_c.mp_size_t;
-      arg_7_6 : in gmp_c.mp_ptr.Item; arg_7_7 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_ptr.Item;
+      arg_3 : in gmp_c.Pointers.mp_size_t_Pointer;
+      arg_4 : in gmp_c.mp_ptr.Item; arg_5 : in gmp_c.mp_size_t;
+      arg_6 : in gmp_c.mp_ptr.Item; arg_7 : in gmp_c.mp_size_t)
       return gmp_c.mp_size_t;
 
    function a_a_gmpn_get_str
-     (arg_4_1 : in swig.pointers.unsigned_char_Pointer;
-      arg_4_2 : in Interfaces.C.int; arg_4_3 : in gmp_c.mp_ptr.Item;
-      arg_4_4 : in gmp_c.mp_size_t) return Interfaces.C.size_t;
+     (arg_1 : in swig.pointers.unsigned_char_Pointer;
+      arg_2 : in Interfaces.C.int; arg_3 : in gmp_c.mp_ptr.Item;
+      arg_4 : in gmp_c.mp_size_t) return Interfaces.C.size_t;
 
    function a_a_gmpn_hamdist
-     (arg_3_1 : in gmp_c.mp_srcptr.Item; arg_3_2 : in gmp_c.mp_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_size_t) return gmp_c.mp_bitcnt_t;
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t) return gmp_c.mp_bitcnt_t;
 
    function a_a_gmpn_lshift
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in Interfaces.C.unsigned)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in Interfaces.C.unsigned)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_mod_1
-     (arg_3_1 : in gmp_c.mp_srcptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_limb_t) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_mul
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_srcptr.Item;
-      arg_5_3 : in gmp_c.mp_size_t; arg_5_4 : in gmp_c.mp_srcptr.Item;
-      arg_5_5 : in gmp_c.mp_size_t) return gmp_c.mp_limb_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_srcptr.Item;
+      arg_5 : in gmp_c.mp_size_t) return gmp_c.mp_limb_t;
 
    function a_a_gmpn_mul_1
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    procedure a_a_gmpn_mul_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_sqr
-     (arg_3_1 : in gmp_c.mp_ptr.Item; arg_3_2 : in gmp_c.mp_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_com
-     (arg_3_1 : in gmp_c.mp_ptr.Item; arg_3_2 : in gmp_c.mp_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t);
 
    function a_a_gmpn_perfect_square_p
-     (arg_2_1 : in gmp_c.mp_srcptr.Item; arg_2_2 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t)
       return Interfaces.C.int;
 
    function a_a_gmpn_perfect_power_p
-     (arg_2_1 : in gmp_c.mp_srcptr.Item; arg_2_2 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t)
       return Interfaces.C.int;
 
    function a_a_gmpn_popcount
-     (arg_2_1 : in gmp_c.mp_srcptr.Item; arg_2_2 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t)
       return gmp_c.mp_bitcnt_t;
 
    function a_a_gmpn_pow_1
-     (arg_5_1 : in gmp_c.mp_ptr.Item; arg_5_2 : in gmp_c.mp_srcptr.Item;
-      arg_5_3 : in gmp_c.mp_size_t; arg_5_4 : in gmp_c.mp_limb_t;
-      arg_5_5 : in gmp_c.mp_ptr.Item) return gmp_c.mp_size_t;
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t;
+      arg_5 : in gmp_c.mp_ptr.Item) return gmp_c.mp_size_t;
 
    function a_a_gmpn_preinv_mod_1
-     (arg_4_1 : in gmp_c.mp_srcptr.Item; arg_4_2 : in gmp_c.mp_size_t;
-      arg_4_3 : in gmp_c.mp_limb_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_limb_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    procedure a_a_gmpn_random
-     (arg_2_1 : in gmp_c.mp_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_random2
-     (arg_2_1 : in gmp_c.mp_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    function a_a_gmpn_rshift
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in Interfaces.C.unsigned)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in Interfaces.C.unsigned)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_scan0
-     (arg_2_1 : in gmp_c.mp_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return gmp_c.mp_bitcnt_t;
 
    function a_a_gmpn_scan1
-     (arg_2_1 : in gmp_c.mp_srcptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t)
+     (arg_1 : in gmp_c.mp_srcptr.Item; arg_2 : in gmp_c.mp_bitcnt_t)
       return gmp_c.mp_bitcnt_t;
 
    function a_a_gmpn_set_str
-     (arg_4_1 : in gmp_c.mp_ptr.Item;
-      arg_4_2 : in swig.pointers.unsigned_char_Pointer;
-      arg_4_3 : in Interfaces.C.size_t; arg_4_4 : in Interfaces.C.int)
+     (arg_1 : in gmp_c.mp_ptr.Item;
+      arg_2 : in swig.pointers.unsigned_char_Pointer;
+      arg_3 : in Interfaces.C.size_t; arg_4 : in Interfaces.C.int)
       return gmp_c.mp_size_t;
 
    function a_a_gmpn_sqrtrem
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_ptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_ptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t)
       return gmp_c.mp_size_t;
 
    function a_a_gmpn_sub_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t)
       return gmp_c.mp_limb_t;
 
    function a_a_gmpn_submul_1
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_size_t; arg_4_4 : in gmp_c.mp_limb_t)
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_limb_t)
       return gmp_c.mp_limb_t;
 
    procedure a_a_gmpn_tdiv_qr
-     (arg_7_1 : in gmp_c.mp_ptr.Item; arg_7_2 : in gmp_c.mp_ptr.Item;
-      arg_7_3 : in gmp_c.mp_size_t; arg_7_4 : in gmp_c.mp_srcptr.Item;
-      arg_7_5 : in gmp_c.mp_size_t; arg_7_6 : in gmp_c.mp_srcptr.Item;
-      arg_7_7 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_ptr.Item;
+      arg_3 : in gmp_c.mp_size_t; arg_4 : in gmp_c.mp_srcptr.Item;
+      arg_5 : in gmp_c.mp_size_t; arg_6 : in gmp_c.mp_srcptr.Item;
+      arg_7 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_and_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_andn_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_nand_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_ior_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_iorn_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_nior_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_xor_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_xnor_n
-     (arg_4_1 : in gmp_c.mp_ptr.Item; arg_4_2 : in gmp_c.mp_srcptr.Item;
-      arg_4_3 : in gmp_c.mp_srcptr.Item; arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_srcptr.Item; arg_4 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_copyi
-     (arg_3_1 : in gmp_c.mp_ptr.Item; arg_3_2 : in gmp_c.mp_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_copyd
-     (arg_3_1 : in gmp_c.mp_ptr.Item; arg_3_2 : in gmp_c.mp_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_srcptr.Item;
+      arg_3 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_zero
-     (arg_2_1 : in gmp_c.mp_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    procedure a_a_gmpn_cnd_swap
-     (arg_4_1 : in gmp_c.mp_limb_t;
-      arg_4_2 : in gmp_c.Pointers.mp_limb_t_Pointer;
-      arg_4_3 : in gmp_c.Pointers.mp_limb_t_Pointer;
-      arg_4_4 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mp_limb_t; arg_2 : in gmp_c.Pointers.mp_limb_t_Pointer;
+      arg_3 : in gmp_c.Pointers.mp_limb_t_Pointer; arg_4 : in gmp_c.mp_size_t);
 
    procedure the_abs
      (a_a_gmp_w : in gmp_c.mpz_ptr.Item; a_a_gmp_u : in gmp_c.mpz_srcptr.Item);
@@ -1283,25 +1239,25 @@ private
    pragma Import (C, realloc, "Ada_realloc");
 
    procedure add_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, add_v1, "Ada_add__SWIG_0");
 
    procedure add
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) renames
      add_v1;
 
    procedure add_ui_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, add_ui_v1, "Ada_add_ui__SWIG_0");
 
    procedure add_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      add_ui_v1;
 
    pragma Import (C, addmul, "Ada_addmul");
@@ -1330,24 +1286,24 @@ private
    pragma Import (C, clrbit, "Ada_clrbit");
 
    function cmp_v1
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int;
 
    pragma Import (C, cmp_v1, "Ada_cmp__SWIG_0");
 
    function cmp
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.int renames
      cmp_v1;
 
    function cmp_d_v1
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int;
 
    pragma Import (C, cmp_d_v1, "Ada_cmp_d__SWIG_0");
 
    function cmp_d
-     (arg_2_1 : in gmp_c.mpz_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpz_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int renames
      cmp_d_v1;
 
@@ -1431,14 +1387,14 @@ private
      get_d_v1;
 
    function get_d_2exp_v1
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.double;
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpz_srcptr.Item)
+      return Interfaces.C.double;
 
    pragma Import (C, get_d_2exp_v1, "Ada_get_d_2exp__SWIG_0");
 
    function get_d_2exp
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.double renames
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpz_srcptr.Item)
+      return Interfaces.C.double renames
      get_d_2exp_v1;
 
    function get_si_v1
@@ -1451,15 +1407,14 @@ private
      get_si_v1;
 
    function get_str_v1
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpz_srcptr.Item)
-      return Interfaces.C.Strings.chars_ptr;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpz_srcptr.Item) return Interfaces.C.Strings.chars_ptr;
 
    pragma Import (C, get_str_v1, "Ada_get_str__SWIG_0");
 
    function get_str
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpz_srcptr.Item)
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpz_srcptr.Item)
       return Interfaces.C.Strings.chars_ptr renames
      get_str_v1;
 
@@ -1473,67 +1428,62 @@ private
    procedure init (arg_1 : in gmp_c.mpz_ptr.Item) renames init_v1;
 
    procedure init2_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, init2_v1, "Ada_init2__SWIG_0");
 
    procedure init2
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t) renames
      init2_v1;
 
    pragma Import (C, a_a_gmpz_inits, "Ada___gmpz_inits");
 
    procedure init_set_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, init_set_v1, "Ada_init_set__SWIG_0");
 
    procedure init_set
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item) renames
      init_set_v1;
 
    procedure init_set_d_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double);
 
    pragma Import (C, init_set_d_v1, "Ada_init_set_d__SWIG_0");
 
    procedure init_set_d
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.double) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double) renames
      init_set_d_v1;
 
    procedure init_set_si_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long);
 
    pragma Import (C, init_set_si_v1, "Ada_init_set_si__SWIG_0");
 
    procedure init_set_si
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long) renames
      init_set_si_v1;
 
    function init_set_str_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    pragma Import (C, init_set_str_v1, "Ada_init_set_str__SWIG_0");
 
    function init_set_str
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int renames
      init_set_str_v1;
 
    procedure init_set_ui_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, init_set_ui_v1, "Ada_init_set_ui__SWIG_0");
 
    procedure init_set_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) renames
      init_set_ui_v1;
 
    pragma Import (C, invert, "Ada_invert");
@@ -1551,38 +1501,38 @@ private
    pragma Import (C, the_mod, "Ada_mod");
 
    procedure mul_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, mul_v1, "Ada_mul__SWIG_0");
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) renames
      mul_v1;
 
    procedure mul_2exp_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, mul_2exp_v1, "Ada_mul_2exp__SWIG_0");
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      mul_2exp_v1;
 
    pragma Import (C, mul_si, "Ada_mul_si");
 
    procedure mul_ui_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, mul_ui_v1, "Ada_mul_ui__SWIG_0");
 
    procedure mul_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      mul_ui_v1;
 
    pragma Import (C, nextprime, "Ada_nextprime");
@@ -1590,14 +1540,14 @@ private
    pragma Import (C, perfect_power_p, "Ada_perfect_power_p");
 
    procedure pow_ui_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, pow_ui_v1, "Ada_pow_ui__SWIG_0");
 
    procedure pow_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      pow_ui_v1;
 
    pragma Import (C, powm, "Ada_powm");
@@ -1607,12 +1557,12 @@ private
    pragma Import (C, random, "Ada_random");
 
    procedure random2_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_size_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t);
 
    pragma Import (C, random2_v1, "Ada_random2__SWIG_0");
 
    procedure random2
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mp_size_t) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mp_size_t) renames
      random2_v1;
 
    pragma Import (C, realloc2, "Ada_realloc2");
@@ -1624,126 +1574,119 @@ private
    pragma Import (C, scan1, "Ada_scan1");
 
    procedure set_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, set_v1, "Ada_set__SWIG_0");
 
    procedure set
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item) renames
      set_v1;
 
    procedure set_d_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double);
 
    pragma Import (C, set_d_v1, "Ada_set_d__SWIG_0");
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.double) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.double) renames
      set_d_v1;
 
    procedure set_f_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, set_f_v1, "Ada_set_f__SWIG_0");
 
    procedure set_f
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      set_f_v1;
 
    procedure set_si_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long);
 
    pragma Import (C, set_si_v1, "Ada_set_si__SWIG_0");
 
    procedure set_si
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in Interfaces.C.long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.long) renames
      set_si_v1;
 
    function set_str_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    pragma Import (C, set_str_v1, "Ada_set_str__SWIG_0");
 
    function set_str
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int renames
      set_str_v1;
 
    procedure set_ui_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, set_ui_v1, "Ada_set_ui__SWIG_0");
 
    procedure set_ui
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) renames
      set_ui_v1;
 
    pragma Import (C, setbit, "Ada_setbit");
    pragma Import (C, sizeinbase, "Ada_sizeinbase");
 
    procedure sqrt_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, sqrt_v1, "Ada_sqrt__SWIG_0");
 
    procedure sqrt
-     (arg_2_1 : in gmp_c.mpz_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item) renames
      sqrt_v1;
 
    pragma Import (C, sqrtrem, "Ada_sqrtrem");
 
    procedure sub_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, sub_v1, "Ada_sub__SWIG_0");
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in gmp_c.mpz_srcptr.Item) renames
      sub_v1;
 
    procedure sub_ui_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, sub_ui_v1, "Ada_sub_ui__SWIG_0");
 
    procedure sub_ui
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in gmp_c.mpz_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      sub_ui_v1;
 
    procedure ui_sub_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, ui_sub_v1, "Ada_ui_sub__SWIG_0");
 
    procedure ui_sub
-     (arg_3_1 : in gmp_c.mpz_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpz_srcptr.Item) renames
      ui_sub_v1;
 
    pragma Import (C, submul, "Ada_submul");
    pragma Import (C, submul_ui, "Ada_submul_ui");
 
    procedure swap_v1
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_ptr.Item);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item);
 
    pragma Import (C, swap_v1, "Ada_swap__SWIG_0");
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpz_ptr.Item; arg_2_2 : in gmp_c.mpz_ptr.Item) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.mpz_ptr.Item) renames
      swap_v1;
 
    pragma Import (C, tdiv_ui, "Ada_tdiv_ui");
@@ -1759,30 +1702,28 @@ private
    pragma Import (C, ui_pow_ui, "Ada_ui_pow_ui");
 
    procedure urandomb_v1
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, urandomb_v1, "Ada_urandomb__SWIG_0");
 
    procedure urandomb
-     (arg_3_1 : in gmp_c.mpz_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpz_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      urandomb_v1;
 
    pragma Import (C, urandomm, "Ada_urandomm");
    pragma Import (C, z_xor, "Ada_z_xor");
 
    procedure add_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, add_v2, "Ada_add__SWIG_1");
 
    procedure add
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item) renames
      add_v2;
 
    pragma Import (C, canonicalize, "Ada_canonicalize");
@@ -1796,13 +1737,13 @@ private
    pragma Import (C, a_a_gmpq_clears, "Ada___gmpq_clears");
 
    function cmp_v2
-     (arg_2_1 : in gmp_c.mpq_srcptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item)
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item)
       return Interfaces.C.int;
 
    pragma Import (C, cmp_v2, "Ada_cmp__SWIG_1");
 
    function cmp
-     (arg_2_1 : in gmp_c.mpq_srcptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item)
+     (arg_1 : in gmp_c.mpq_srcptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item)
       return Interfaces.C.int renames
      cmp_v2;
 
@@ -1811,25 +1752,25 @@ private
    pragma Import (C, a_a_gmpq_cmp_z, "Ada___gmpq_cmp_z");
 
    procedure div_v1
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, div_v1, "Ada_div__SWIG_0");
 
    procedure div
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item) renames
      div_v1;
 
    procedure div_2exp_v1
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, div_2exp_v1, "Ada_div_2exp__SWIG_0");
 
    procedure div_2exp
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      div_2exp_v1;
 
    pragma Import (C, equal, "Ada_equal");
@@ -1846,15 +1787,14 @@ private
      get_d_v2;
 
    function get_str_v2
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpq_srcptr.Item)
-      return Interfaces.C.Strings.chars_ptr;
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpq_srcptr.Item) return Interfaces.C.Strings.chars_ptr;
 
    pragma Import (C, get_str_v2, "Ada_get_str__SWIG_1");
 
    function get_str
-     (arg_3_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_2 : in Interfaces.C.int; arg_3_3 : in gmp_c.mpq_srcptr.Item)
+     (arg_1 : in Interfaces.C.Strings.chars_ptr; arg_2 : in Interfaces.C.int;
+      arg_3 : in gmp_c.mpq_srcptr.Item)
       return Interfaces.C.Strings.chars_ptr renames
      get_str_v2;
 
@@ -1868,156 +1808,149 @@ private
    pragma Import (C, inv, "Ada_inv");
 
    procedure mul_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, mul_v2, "Ada_mul__SWIG_1");
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item) renames
      mul_v2;
 
    procedure mul_2exp_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, mul_2exp_v2, "Ada_mul_2exp__SWIG_1");
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      mul_2exp_v2;
 
    procedure set_v2
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, set_v2, "Ada_set__SWIG_1");
 
    procedure set
-     (arg_2_1 : in gmp_c.mpq_ptr.Item;
-      arg_2_2 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item) renames
      set_v2;
 
    procedure set_d_v2
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.double);
 
    pragma Import (C, set_d_v2, "Ada_set_d__SWIG_1");
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpq_ptr.Item;
-      arg_2_2 : in Interfaces.C.double) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.double) renames
      set_d_v2;
 
    pragma Import (C, set_den, "Ada_set_den");
 
    procedure set_f_v2
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, set_f_v2, "Ada_set_f__SWIG_1");
 
    procedure set_f
-     (arg_2_1 : in gmp_c.mpq_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      set_f_v2;
 
    pragma Import (C, set_num, "Ada_set_num");
 
    procedure set_si_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, set_si_v2, "Ada_set_si__SWIG_1");
 
    procedure set_si
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.long;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.long;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      set_si_v2;
 
    function set_str_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    pragma Import (C, set_str_v2, "Ada_set_str__SWIG_1");
 
    function set_str
-     (arg_3_1 : in gmp_c.mpq_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int renames
      set_str_v2;
 
    procedure set_ui_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, set_ui_v2, "Ada_set_ui__SWIG_1");
 
    procedure set_ui
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      set_ui_v2;
 
    procedure set_z_v1
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, set_z_v1, "Ada_set_z__SWIG_0");
 
    procedure set_z
-     (arg_2_1 : in gmp_c.mpq_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item) renames
      set_z_v1;
 
    procedure sub_v2
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, sub_v2, "Ada_sub__SWIG_1");
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpq_ptr.Item; arg_3_2 : in gmp_c.mpq_srcptr.Item;
-      arg_3_3 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item;
+      arg_3 : in gmp_c.mpq_srcptr.Item) renames
      sub_v2;
 
    procedure swap_v2
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_ptr.Item);
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_ptr.Item);
 
    pragma Import (C, swap_v2, "Ada_swap__SWIG_1");
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpq_ptr.Item; arg_2_2 : in gmp_c.mpq_ptr.Item) renames
+     (arg_1 : in gmp_c.mpq_ptr.Item; arg_2 : in gmp_c.mpq_ptr.Item) renames
      swap_v2;
 
    procedure the_abs_v1
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, the_abs_v1, "Ada_abs__SWIG_0");
 
    procedure the_abs
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      the_abs_v1;
 
    procedure add_v3
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, add_v3, "Ada_add__SWIG_2");
 
    procedure add
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item) renames
      add_v3;
 
    procedure add_ui_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, add_ui_v2, "Ada_add_ui__SWIG_1");
 
    procedure add_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      add_ui_v2;
 
    pragma Import (C, ceil, "Ada_ceil");
@@ -2031,26 +1964,26 @@ private
    pragma Import (C, a_a_gmpf_clears, "Ada___gmpf_clears");
 
    function cmp_v3
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.int;
 
    pragma Import (C, cmp_v3, "Ada_cmp__SWIG_2");
 
    function cmp
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.int renames
      cmp_v3;
 
    pragma Import (C, a_a_gmpf_cmp_z, "Ada___gmpf_cmp_z");
 
    function cmp_d_v2
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int;
 
    pragma Import (C, cmp_d_v2, "Ada_cmp_d__SWIG_1");
 
    function cmp_d
-     (arg_2_1 : in gmp_c.mpf_srcptr.Item; arg_2_2 : in Interfaces.C.double)
+     (arg_1 : in gmp_c.mpf_srcptr.Item; arg_2 : in Interfaces.C.double)
       return Interfaces.C.int renames
      cmp_d_v2;
 
@@ -2058,25 +1991,25 @@ private
    pragma Import (C, cmp_ui, "Ada_cmp_ui");
 
    procedure div_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, div_v2, "Ada_div__SWIG_1");
 
    procedure div
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item) renames
      div_v2;
 
    procedure div_2exp_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, div_2exp_v2, "Ada_div_2exp__SWIG_1");
 
    procedure div_2exp
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      div_2exp_v2;
 
    pragma Import (C, div_ui, "Ada_div_ui");
@@ -2155,14 +2088,14 @@ private
      get_d_v3;
 
    function get_d_2exp_v2
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.double;
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpf_srcptr.Item)
+      return Interfaces.C.double;
 
    pragma Import (C, get_d_2exp_v2, "Ada_get_d_2exp__SWIG_1");
 
    function get_d_2exp
-     (arg_2_1 : in swig.pointers.long_Pointer;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) return Interfaces.C.double renames
+     (arg_1 : in swig.pointers.long_Pointer; arg_2 : in gmp_c.mpf_srcptr.Item)
+      return Interfaces.C.double renames
      get_d_2exp_v2;
 
    pragma Import (C, get_default_prec, "Ada_get_default_prec");
@@ -2178,19 +2111,17 @@ private
      get_si_v2;
 
    function get_str_v3
-     (arg_5_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_5_2 : in gmp_c.Pointers.mp_exp_t_Pointer;
-      arg_5_3 : in Interfaces.C.int; arg_5_4 : in Interfaces.C.size_t;
-      arg_5_5 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in gmp_c.Pointers.mp_exp_t_Pointer; arg_3 : in Interfaces.C.int;
+      arg_4 : in Interfaces.C.size_t; arg_5 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.Strings.chars_ptr;
 
    pragma Import (C, get_str_v3, "Ada_get_str__SWIG_2");
 
    function get_str
-     (arg_5_1 : in Interfaces.C.Strings.chars_ptr;
-      arg_5_2 : in gmp_c.Pointers.mp_exp_t_Pointer;
-      arg_5_3 : in Interfaces.C.int; arg_5_4 : in Interfaces.C.size_t;
-      arg_5_5 : in gmp_c.mpf_srcptr.Item)
+     (arg_1 : in Interfaces.C.Strings.chars_ptr;
+      arg_2 : in gmp_c.Pointers.mp_exp_t_Pointer; arg_3 : in Interfaces.C.int;
+      arg_4 : in Interfaces.C.size_t; arg_5 : in gmp_c.mpf_srcptr.Item)
       return Interfaces.C.Strings.chars_ptr renames
      get_str_v3;
 
@@ -2211,156 +2142,148 @@ private
    procedure init (arg_1 : in gmp_c.mpf_ptr.Item) renames init_v3;
 
    procedure init2_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, init2_v2, "Ada_init2__SWIG_1");
 
    procedure init2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_bitcnt_t) renames
      init2_v2;
 
    pragma Import (C, a_a_gmpf_inits, "Ada___gmpf_inits");
 
    procedure init_set_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, init_set_v2, "Ada_init_set__SWIG_1");
 
    procedure init_set
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      init_set_v2;
 
    procedure init_set_d_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double);
 
    pragma Import (C, init_set_d_v2, "Ada_init_set_d__SWIG_1");
 
    procedure init_set_d
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.double) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double) renames
      init_set_d_v2;
 
    procedure init_set_si_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long);
 
    pragma Import (C, init_set_si_v2, "Ada_init_set_si__SWIG_1");
 
    procedure init_set_si
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long) renames
      init_set_si_v2;
 
    function init_set_str_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    pragma Import (C, init_set_str_v2, "Ada_init_set_str__SWIG_1");
 
    function init_set_str
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int renames
      init_set_str_v2;
 
    procedure init_set_ui_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, init_set_ui_v2, "Ada_init_set_ui__SWIG_1");
 
    procedure init_set_ui
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) renames
      init_set_ui_v2;
 
    pragma Import (C, integer_p, "Ada_integer_p");
 
    procedure mul_v3
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, mul_v3, "Ada_mul__SWIG_2");
 
    procedure mul
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item) renames
      mul_v3;
 
    procedure mul_2exp_v3
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, mul_2exp_v3, "Ada_mul_2exp__SWIG_2");
 
    procedure mul_2exp
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      mul_2exp_v3;
 
    procedure mul_ui_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, mul_ui_v2, "Ada_mul_ui__SWIG_1");
 
    procedure mul_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      mul_ui_v2;
 
    procedure neg_v1
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, neg_v1, "Ada_neg__SWIG_0");
 
    procedure neg
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      neg_v1;
 
    procedure pow_ui_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, pow_ui_v2, "Ada_pow_ui__SWIG_1");
 
    procedure pow_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      pow_ui_v2;
 
    procedure random2_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_exp_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_exp_t);
 
    pragma Import (C, random2_v2, "Ada_random2__SWIG_1");
 
    procedure random2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mp_size_t;
-      arg_3_3 : in gmp_c.mp_exp_t) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mp_size_t;
+      arg_3 : in gmp_c.mp_exp_t) renames
      random2_v2;
 
    pragma Import (C, reldiff, "Ada_reldiff");
 
    procedure set_v3
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, set_v3, "Ada_set__SWIG_2");
 
    procedure set
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      set_v3;
 
    procedure set_d_v3
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.double);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double);
 
    pragma Import (C, set_d_v3, "Ada_set_d__SWIG_2");
 
    procedure set_d
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.double) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.double) renames
      set_d_v3;
 
    pragma Import (C, set_default_prec, "Ada_set_default_prec");
@@ -2368,56 +2291,51 @@ private
    pragma Import (C, set_prec_raw, "Ada_set_prec_raw");
 
    procedure set_q_v1
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpq_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item);
 
    pragma Import (C, set_q_v1, "Ada_set_q__SWIG_0");
 
    procedure set_q
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpq_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpq_srcptr.Item) renames
      set_q_v1;
 
    procedure set_si_v3
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long);
 
    pragma Import (C, set_si_v3, "Ada_set_si__SWIG_2");
 
    procedure set_si
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in Interfaces.C.long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.long) renames
      set_si_v3;
 
    function set_str_v3
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int;
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int;
 
    pragma Import (C, set_str_v3, "Ada_set_str__SWIG_2");
 
    function set_str
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in Interfaces.C.Strings.chars_ptr;
-      arg_3_3 : in Interfaces.C.int) return Interfaces.C.int renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.Strings.chars_ptr;
+      arg_3 : in Interfaces.C.int) return Interfaces.C.int renames
      set_str_v3;
 
    procedure set_ui_v3
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, set_ui_v3, "Ada_set_ui__SWIG_2");
 
    procedure set_ui
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item;
+      arg_2 : in Interfaces.C.unsigned_long) renames
      set_ui_v3;
 
    procedure set_z_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpz_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item);
 
    pragma Import (C, set_z_v2, "Ada_set_z__SWIG_1");
 
    procedure set_z
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpz_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpz_srcptr.Item) renames
      set_z_v2;
 
    function size_v1
@@ -2430,73 +2348,70 @@ private
      size_v1;
 
    procedure sqrt_v2
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, sqrt_v2, "Ada_sqrt__SWIG_1");
 
    procedure sqrt
-     (arg_2_1 : in gmp_c.mpf_ptr.Item;
-      arg_2_2 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item) renames
      sqrt_v2;
 
    pragma Import (C, sqrt_ui, "Ada_sqrt_ui");
 
    procedure sub_v3
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, sub_v3, "Ada_sub__SWIG_2");
 
    procedure sub
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in gmp_c.mpf_srcptr.Item) renames
      sub_v3;
 
    procedure sub_ui_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long);
 
    pragma Import (C, sub_ui_v2, "Ada_sub_ui__SWIG_1");
 
    procedure sub_ui
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in gmp_c.mpf_srcptr.Item;
-      arg_3_3 : in Interfaces.C.unsigned_long) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_srcptr.Item;
+      arg_3 : in Interfaces.C.unsigned_long) renames
      sub_ui_v2;
 
    procedure swap_v3
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_ptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_ptr.Item);
 
    pragma Import (C, swap_v3, "Ada_swap__SWIG_2");
 
    procedure swap
-     (arg_2_1 : in gmp_c.mpf_ptr.Item; arg_2_2 : in gmp_c.mpf_ptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.mpf_ptr.Item) renames
      swap_v3;
 
    pragma Import (C, trunc, "Ada_trunc");
    pragma Import (C, ui_div, "Ada_ui_div");
 
    procedure ui_sub_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpf_srcptr.Item);
 
    pragma Import (C, ui_sub_v2, "Ada_ui_sub__SWIG_1");
 
    procedure ui_sub
-     (arg_3_1 : in gmp_c.mpf_ptr.Item; arg_3_2 : in Interfaces.C.unsigned_long;
-      arg_3_3 : in gmp_c.mpf_srcptr.Item) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in Interfaces.C.unsigned_long;
+      arg_3 : in gmp_c.mpf_srcptr.Item) renames
      ui_sub_v2;
 
    procedure urandomb_v2
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t);
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t);
 
    pragma Import (C, urandomb_v2, "Ada_urandomb__SWIG_1");
 
    procedure urandomb
-     (arg_3_1 : in gmp_c.mpf_ptr.Item;
-      arg_3_2 : in gmp_c.gmp_randstate_ptr.Item;
-      arg_3_3 : in gmp_c.mp_bitcnt_t) renames
+     (arg_1 : in gmp_c.mpf_ptr.Item; arg_2 : in gmp_c.gmp_randstate_ptr.Item;
+      arg_3 : in gmp_c.mp_bitcnt_t) renames
      urandomb_v2;
 
    pragma Import (C, a_a_gmpn_add_n, "Ada___gmpn_add_n");

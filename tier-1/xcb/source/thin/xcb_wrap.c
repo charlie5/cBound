@@ -320,6 +320,18 @@ typedef struct swig_type_info
   ((void)(type), *(ptr) = (void *)(obj), 0)
 #define SWIG_NewPointerObj(ptr, type, flags) ((void)(type), (void *)(ptr))
 
+/* What a function which returns a class gives when it has failed, and left an
+   exception pending: bytes of zero, as an object of the class may not be one
+   which can be made. (Such a class is one which is copied bit by bit.) */
+#ifdef __cplusplus
+template<typename T> static T &
+swig_ada_no_result ()
+{
+  static char storage[sizeof (T)];
+  return *reinterpret_cast<T *> (storage);
+}
+#endif
+
 /* A container of a given size. Its elements are made by their default
    constructor, which the element type may not have: the container is then
    empty, and a pending exception says why. (Without this, the wrapper of a

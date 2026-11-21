@@ -13,10 +13,10 @@ package fann_c.user_function is
    type Item is
      access
 procedure
-       (arg_5_1 : in Interfaces.C.unsigned; arg_5_2 : in Interfaces.C.unsigned;
-        arg_5_3 : in Interfaces.C.unsigned;
-        arg_5_4 : in fann_c.Pointers.fann_type_Pointer;
-        arg_5_5 : in fann_c.Pointers.fann_type_Pointer);
+       (arg_1 : in Interfaces.C.unsigned; arg_2 : in Interfaces.C.unsigned;
+        arg_3 : in Interfaces.C.unsigned;
+        arg_4 : in fann_c.Pointers.fann_type_Pointer;
+        arg_5 : in fann_c.Pointers.fann_type_Pointer);
    pragma Convention (C, Item);
 
    -- Item_Array
