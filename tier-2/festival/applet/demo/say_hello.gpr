@@ -12,7 +12,7 @@ is
 
    package Linker
    is
-      for Default_Switches ("ada") use ("-lncurses", "-lasound", "-lFestival", "-lestbase", "-leststring", "-lestools");
+      for Default_Switches ("ada") use ("-lncurses", "-lasound", "-lFestival", "-lestbase", "-leststring", "-lestools", "-lgomp");
    end Linker;
 
    package Builder 
