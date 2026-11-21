@@ -15,6 +15,10 @@ struct TF_Buffer;
 typedef bool      TF_Bool;
 %rename TF_BOOL   TF_BOOLEAN;
 
+// The macros which the headers below use. (Each includes this file, but SWIG does not follow an '#include'.)
+//
+%include <tensorflow/tensorflow/c/c_api_macros.h>
+
 %include <tensorflow/tensorflow/c/tf_attrtype.h>
 %include <tensorflow/tensorflow/c/tf_datatype.h>
 %include <tensorflow/tensorflow/c/tf_status.h>
