@@ -51,7 +51,13 @@
 
 /// Declarations from <locale.h>
 //
+// glibc names six members of 'struct lconv' differently unless this is defined, as it is where the wrapper is compiled.
+// (It is defined for this header alone: with it, SWIG cannot parse <math.h>.)
+//
+%ignore __USE_ISOC99;
+#define __USE_ISOC99 1
 %include <locale.h>
+#undef  __USE_ISOC99
 
 %inline
 %{
