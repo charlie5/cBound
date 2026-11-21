@@ -8,7 +8,7 @@ rm *.ads
 echo
 echo generating the binding ...
 echo
-swig_gnat  -gnat  -c++  -I/usr/include   gmp.i
+swig4ada  -ada  -c++  -I/usr/include   gmp.i
 
 
 set -e
@@ -16,7 +16,7 @@ set -e
 echo
 echo pretty printing ...
 echo
-gnatpp  -rnb  -I/usr/local/include  *.ads
+gnatpp  -rnb  -I../../../tier-0/swig/source  *.ads
 indent  -sob  -di16                  *.cxx
 
 gcc -c *.cxx
