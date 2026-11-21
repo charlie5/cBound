@@ -34,6 +34,9 @@ which must be deleted by hand, and a string is a `chars_ptr`.
 | `openCV.Images`    | An image, with its elements, files, operations, geometry, drawing and windows.                |
 | `openCV.Contours`  | The outlines of the shapes in an image, and their measures.                                   |
 | `openCV.Videos`    | A source of frames, which is a camera or a file, and a sink which frames are written to.      |
+| `openCV.Features`  | The features of an image, found again in another image; and its corners.                      |
+| `openCV.Networks`  | A neural network, read from the file of a model and run upon an image; the best of some boxes. |
+| `openCV.Cameras`   | The measuring of a camera from views of known points; the corners of a chessboard.            |
 
 An image is a value: assigning one copies it, and it frees its storage when it is done with. Operations return images,
 so they may be joined:
@@ -56,6 +59,26 @@ so they may be joined:
 An element is found by its row and its column, each counted from 0, with row 0 at the top. A colour is a record of
 red, green and blue. An error which the library reports raises `openCV.Error`, with the message of the library.
 
+Features are found, and paired with those of another image, so:
+
+    the_First  : constant openCV.Features.Set     := openCV.Features.find (First);
+    the_Second : constant openCV.Features.Set     := openCV.Features.find (Second);
+    the_Pairs  : constant openCV.Features.Matches := openCV.Features.matched (the_First, the_Second);
+
+A network gives numbers, in several dimensions, whose meaning depends on the network:
+
+    the_Network : openCV.Networks.Network := openCV.Networks.load ("model.onnx");
+    the_Result  : constant openCV.Networks.Result := the_Network.run (Picture,  Width => 224,  Height => 224);
+
+
+## OpenCL
+
+OpenCV starts OpenCL, to do its work on a graphics card, when certain operations are first used (the finding of
+features is one). Where the OpenCL drivers of the machine are installed but cannot be used, that does not fail: it
+hangs. `openCV.use_OpenCL (False)`, called beforehand, avoids it, as does setting `OPENCV_OPENCL_RUNTIME=disabled`
+in the environment. The demos turn it off.
+
+
 `thin (the_Image)` gives the image of the thin binding, for an operation which the thick binding lacks.
 
 
@@ -69,6 +92,9 @@ Each checks its own results, and exits with a failure status if one is wrong.
 | `images`    | Drawing, conversion, blurring, thresholds, geometry, files and errors. `./images show` shows the picture in a window. |
 | `contours`  | Finding the shapes in a picture, and measuring them.                                               |
 | `video`     | Writing a video and reading it back. `./video camera` also takes a frame from a camera.            |
+| `features`  | Finding the features of a picture, and finding them again in a copy which has been moved.          |
+| `networks`  | Running a network (a very small one, which the demo writes for itself) and picking the best boxes. |
+| `cameras`   | Measuring a camera from views which are worked out, and finding the corners of a chessboard.       |
 
 To build and run one:
 
