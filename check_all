@@ -60,6 +60,9 @@ opencv        run      tier-1/opencv/applet/demo/simple/simple.gpr         simpl
 opencv        run      tier-1/opencv/applet/demo/images/images.gpr         images
 opencv        run      tier-1/opencv/applet/demo/contours/contours.gpr     contours
 opencv        run      tier-1/opencv/applet/demo/video/video.gpr           video
+opencv        run      tier-1/opencv/applet/demo/features/features.gpr     features
+opencv        run      tier-1/opencv/applet/demo/networks/networks.gpr     networks
+opencv        run      tier-1/opencv/applet/demo/cameras/cameras.gpr       cameras
 "
 
 
