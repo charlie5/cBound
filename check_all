@@ -13,10 +13,7 @@ CBOUND=$(cd "$(dirname "$0")" && pwd)
 
 for Each in "$CBOUND"/tier-*/*/library
 do
-   case $Each in
-      *-prior/library | *-old/library)  ;;                                   # An earlier form of a binding, kept beside it.
-      *)                                GPR_PROJECT_PATH=$Each:$GPR_PROJECT_PATH ;;
-   esac
+   GPR_PROJECT_PATH=$Each:$GPR_PROJECT_PATH
 done
 
 export GPR_PROJECT_PATH
