@@ -32,14 +32,12 @@ b__*.ad[sb]
 
 tier-1/clib/generate/*.ads
 
-tensorflow-old
 
 
 ## Binaries
 #
 say_hello
 cbound-prior
-gmp-prior
 
 
 portable_new_line_Token.tmp
