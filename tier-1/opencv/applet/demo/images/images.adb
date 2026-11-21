@@ -99,6 +99,33 @@ begin
    check (Picture.flipped (Horizontally).Element (60, 159 - 115) = Red,           "and flipped");
    check (Picture.Edges (50.0, 150.0).non_zero_Count > 100,                       "and its edges are found");
 
+   --  Geometry. (The white square is at row 30, column 20, and is 50 wide and high. The disc is centred on row 60, column 115.)
+   --
+   declare
+      the_Square : constant Image := Picture.cropped (Row => 30,  Column => 20,  Width => 50,  Height => 50);
+      Turned     : constant Image := Picture.turned (Clockwise);
+      Rotated    : constant Image := Picture.rotated (Degrees => 180.0);
+      Pasted     :          Image := to_Image (Width => 100,  Height => 100);
+
+      Stretched  : constant Image := Picture.warped (From   => ((30, 20), (30, 69), (79, 69), (79, 20)),      -- The corners of the square,
+                                                     To     => (( 0,  0), ( 0, 99), (99, 99), (99,  0)),      -- to those of the result.
+                                                     Width  => 100,
+                                                     Height => 100);
+   begin
+      check (the_Square.Width = 50 and the_Square.Height = 50,             "a part of a picture is cut out");
+      check (the_Square.Element (25, 25) = White,                          "which holds what was there");
+
+      check (Turned.Width = 120 and Turned.Height = 160,                   "a quarter turn exchanges the width and the height");
+      check (Turned.Element (115, 119 - 60) = Red,                         "and moves the disc with it");
+
+      check (Rotated.Width = 160 and Rotated.Element (119 - 60, 159 - 115) = Red,   "a picture is rotated about its centre");
+
+      Pasted.paste (the_Square,  Row => 10,  Column => 40);
+      check (Pasted.Element (20, 50) = White and Pasted.Element (5, 5) = Black,     "a picture is pasted onto another");
+
+      check (Stretched.Element (50, 50) = White and Stretched.Element (2, 97) = White,   "a part of a picture is stretched to fill another");
+   end;
+
    --  To a file, and back.
    --
    Picture.write (the_File);

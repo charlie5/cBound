@@ -122,6 +122,47 @@ is
                        Right : in Image;   right_Weight : in Long_Float) return Image;
 
 
+   ------------
+   --- Geometry
+   --
+
+   type Point is
+      record
+         Row,
+         Column : Integer := 0;
+      end record;
+
+   type Points  is array (Positive range <>) of Point;
+   type Corners is array (1 .. 4)            of Point;
+
+   function cropped (Self : in Image;   Row, Column   : in Natural;
+                                        Width, Height : in Positive) return Image;
+   --
+   -- The part of the image within a rectangle, whose top left corner is given.
+
+   procedure paste  (Self : in out Image;   the_Image   : in Image;
+                                            Row, Column : in Natural);
+   --
+   -- Copies an image onto this one, with its top left corner at the given place. It must lie within this one.
+
+   type Turn is (Clockwise, Half, Anticlockwise);
+
+   function turned  (Self : in Image;   By : in Turn) return Image;
+   --
+   -- A quarter turn either way exchanges the width and the height.
+
+   function rotated (Self : in Image;   Degrees : in Long_Float;
+                                        Scale   : in Long_Float := 1.0) return Image;
+   --
+   -- Rotated anticlockwise about its centre. The image keeps its size, so its corners are lost.
+
+   function warped  (Self : in Image;   From, To      : in Corners;
+                                        Width, Height : in Positive) return Image;
+   --
+   -- An image of the given size, in which each of four places of this image is moved to one of four others,
+   -- and the rest is stretched to suit: the view of a flat thing from another angle.
+
+
    -----------
    --- Drawing
    --

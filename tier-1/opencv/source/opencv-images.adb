@@ -1,4 +1,5 @@
 with
+     openCV.Errors,
      openCV_c.Binding,
 
      interfaces.C.Strings;
@@ -20,29 +21,8 @@ is
    --- Utility
    --
 
-   --  An error which OpenCV reports is left pending by the thin binding, in its wrapper file, from where it is taken here.
-   --
-   function  pending_Error      return int         with Import, Convention => C, External_Name => "swig_ada_pending_exception";
-   function  pending_Message    return chars_ptr   with Import, Convention => C, External_Name => "swig_ada_pending_exception_text";
-   procedure clear_the_Error                       with Import, Convention => C, External_Name => "swig_ada_clear_pending_exception";
-
-
    procedure check
-   --
-   --  Raises 'Error' if the last call of the library reported one.
-   --
-   is
-   begin
-      if pending_Error /= 0
-      then
-         declare
-            the_Message : constant String := Value (pending_Message);
-         begin
-            clear_the_Error;
-            raise Error with the_Message;
-         end;
-      end if;
-   end check;
+   renames Errors.check;
 
 
 
@@ -539,6 +519,107 @@ is
          check;
       end return;
    end blended;
+
+
+
+   ------------
+   --- Geometry
+   --
+
+   function cropped (Self : in Image;   Row, Column   : in Natural;
+                                        Width, Height : in Positive) return Image
+   is
+   begin
+      require (Self);
+
+      return Result : Image := new_Image
+      do
+         cv_crop (Self.Thin, Result.Thin, int (Column), int (Row), int (Width), int (Height));
+         check;
+      end return;
+   end cropped;
+
+
+
+   procedure paste (Self : in out Image;   the_Image   : in Image;
+                                           Row, Column : in Natural)
+   is
+   begin
+      require (Self);
+      require (the_Image);
+
+      cv_paste (the_Image.Thin, Self.Thin, int (Column), int (Row));
+      check;
+   end paste;
+
+
+
+   function turned (Self : in Image;   By : in Turn) return Image
+   is
+   begin
+      require (Self);
+
+      return Result : Image := new_Image
+      do
+         cv_turn (Self.Thin, Result.Thin,
+                  (case By is
+                      when Clockwise     => TURN_CLOCKWISE,
+                      when Half          => TURN_HALF,
+                      when Anticlockwise => TURN_ANTICLOCKWISE));
+         check;
+      end return;
+   end turned;
+
+
+
+   function rotated (Self : in Image;   Degrees : in Long_Float;
+                                        Scale   : in Long_Float := 1.0) return Image
+   is
+   begin
+      require (Self);
+
+      return Result : Image := new_Image
+      do
+         cv_rotate (Self.Thin, Result.Thin, double (Degrees), double (Scale));
+         check;
+      end return;
+   end rotated;
+
+
+
+   function warped (Self : in Image;   From, To      : in Corners;
+                                       Width, Height : in Positive) return Image
+   is
+      type Pairs is array (0 .. 7) of aliased double;     -- A column and a row for each corner, as the library takes them.
+
+      function to_Pairs (the_Corners : in Corners) return Pairs
+      is
+         Result : Pairs;
+      begin
+         for i in the_Corners'Range
+         loop
+            Result (2 * (i - 1))     := double (the_Corners (i).Column);
+            Result (2 * (i - 1) + 1) := double (the_Corners (i).Row);
+         end loop;
+
+         return Result;
+      end to_Pairs;
+
+      the_From : aliased Pairs := to_Pairs (From);
+      the_To   : aliased Pairs := to_Pairs (To);
+   begin
+      require (Self);
+
+      return Result : Image := new_Image
+      do
+         cv_warp (Self.Thin, Result.Thin,
+                  the_From (0)'unchecked_Access,
+                  the_To   (0)'unchecked_Access,
+                  int (Width),
+                  int (Height));
+         check;
+      end return;
+   end warped;
 
 
 
