@@ -5,6 +5,9 @@
  * Do not make changes to this file unless you know what you are doing - modify
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
+
+#define SWIG_VERSION 0x040501
+#define SWIGADA
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -662,7 +665,7 @@ extern          "C"
 
     result = ffeature (arg1, (EST_String const &) *arg2);
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -743,7 +746,7 @@ extern          "C"
 
     result = wagon_predict (arg1, SWIG_STD_MOVE (*(&arg2)));
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -765,7 +768,7 @@ extern          "C"
 
     result = wagon_pd (arg1, SWIG_STD_MOVE (*(&arg2)));
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -787,7 +790,7 @@ extern          "C"
 
     result = lr_predict (arg1, SWIG_STD_MOVE (*(&arg2)));
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -887,7 +890,7 @@ extern          "C"
       lisp_wfst_transduce (SWIG_STD_MOVE (*(&arg1)),
 			   SWIG_STD_MOVE (*(&arg2)));
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -910,7 +913,7 @@ extern          "C"
 
     result = map_pos (SWIG_STD_MOVE (*(&arg1)), (EST_String const &) *arg2);
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -936,7 +939,7 @@ extern          "C"
 
     result = map_pos (SWIG_STD_MOVE (*(&arg1)), SWIG_STD_MOVE (*(&arg2)));
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -962,7 +965,7 @@ extern          "C"
 
     result = utt_iform (*arg1);
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
@@ -1001,7 +1004,7 @@ extern          "C"
 
     result = ft_get_param ((EST_String const &) *arg1);
 
-    jresult = *(&result);	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value.
+    jresult = SWIG_STD_MOVE (*(&result));	// Both may be held in a 'SwigValueWrapper', which cannot be assigned to another, and whose address is that of its value. Moved, as the type may not be one which can be copied.
 
     return jresult;
 
