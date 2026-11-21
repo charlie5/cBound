@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_pointer_mapping_reply_t is
@@ -15,7 +16,7 @@ package xcb.xcb_get_pointer_mapping_reply_t is
       map_len       : aliased Interfaces.Unsigned_8;
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
-      pad0          : aliased swig.int8_t_Array (0 .. 23);
+      pad0          : aliased swig.uint8_t_Array (0 .. 23);
    end record;
 
    -- Item_Array

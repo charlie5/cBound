@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_create_new_context_request_t is
@@ -20,7 +21,7 @@ package xcb.xcb_glx_create_new_context_request_t is
       render_type  : aliased Interfaces.Unsigned_32;
       share_list   : aliased xcb.xcb_glx_context_t;
       is_direct    : aliased Interfaces.Unsigned_8;
-      pad0         : aliased swig.int8_t_Array (0 .. 2);
+      pad0         : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array

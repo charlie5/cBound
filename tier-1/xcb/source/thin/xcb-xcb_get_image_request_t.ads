@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_image_request_t is
@@ -25,7 +26,8 @@ package xcb.xcb_get_image_request_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_get_image_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_get_image_request_t
        .Item;
 
    -- Pointer
@@ -42,7 +44,8 @@ package xcb.xcb_get_image_request_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_get_image_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_get_image_request_t
        .Pointer;
 
    -- Pointer_Pointer

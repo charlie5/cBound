@@ -2,6 +2,7 @@
 --
 with Interfaces.C;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_best_size_cookie_t is

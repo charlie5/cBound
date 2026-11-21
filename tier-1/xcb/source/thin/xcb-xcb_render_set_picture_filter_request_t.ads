@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_set_picture_filter_request_t is
@@ -16,7 +17,7 @@ package xcb.xcb_render_set_picture_filter_request_t is
       length       : aliased Interfaces.Unsigned_16;
       picture      : aliased xcb.xcb_render_picture_t;
       filter_len   : aliased Interfaces.Unsigned_16;
-      pad0         : aliased swig.int8_t_Array (0 .. 1);
+      pad0         : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
@@ -50,9 +51,9 @@ package xcb.xcb_render_set_picture_filter_request_t is
    -- Pointer_Pointer
    --
    package C_Pointer_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_render_set_picture_filter_request_t.Pointer,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element => xcb.xcb_render_set_picture_filter_request_t.Pointer,
+      Element_Array      =>
         xcb.xcb_render_set_picture_filter_request_t.Pointer_Array,
       Default_Terminator => null);
 

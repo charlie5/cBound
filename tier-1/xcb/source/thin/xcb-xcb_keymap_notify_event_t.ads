@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_keymap_notify_event_t is
@@ -12,14 +13,15 @@ package xcb.xcb_keymap_notify_event_t is
 
    type Item is record
       response_type : aliased Interfaces.Unsigned_8;
-      keys          : aliased swig.int8_t_Array (0 .. 30);
+      keys          : aliased swig.uint8_t_Array (0 .. 30);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_keymap_notify_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_keymap_notify_event_t
        .Item;
 
    -- Pointer
@@ -36,7 +38,8 @@ package xcb.xcb_keymap_notify_event_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_keymap_notify_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_keymap_notify_event_t
        .Pointer;
 
    -- Pointer_Pointer

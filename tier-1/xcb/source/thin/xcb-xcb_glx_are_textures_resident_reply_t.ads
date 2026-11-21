@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_are_textures_resident_reply_t is
@@ -16,7 +17,7 @@ package xcb.xcb_glx_are_textures_resident_reply_t is
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
       ret_val       : aliased xcb.xcb_glx_bool32_t;
-      pad1          : aliased swig.int8_t_Array (0 .. 19);
+      pad1          : aliased swig.uint8_t_Array (0 .. 19);
    end record;
 
    -- Item_Array

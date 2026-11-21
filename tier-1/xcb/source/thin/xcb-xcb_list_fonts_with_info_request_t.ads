@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_list_fonts_with_info_request_t is

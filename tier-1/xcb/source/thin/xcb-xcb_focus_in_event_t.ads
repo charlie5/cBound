@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_focus_in_event_t is
@@ -16,7 +17,7 @@ package xcb.xcb_focus_in_event_t is
       sequence      : aliased Interfaces.Unsigned_16;
       event         : aliased xcb.xcb_window_t;
       mode          : aliased Interfaces.Unsigned_8;
-      pad0          : aliased swig.int8_t_Array (0 .. 2);
+      pad0          : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array
@@ -39,7 +40,8 @@ package xcb.xcb_focus_in_event_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_focus_in_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_focus_in_event_t
        .Pointer;
 
    -- Pointer_Pointer

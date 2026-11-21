@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_recolor_cursor_request_t is

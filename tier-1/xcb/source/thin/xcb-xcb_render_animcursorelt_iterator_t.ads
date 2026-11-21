@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_render_animcursorelt_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_animcursorelt_iterator_t is

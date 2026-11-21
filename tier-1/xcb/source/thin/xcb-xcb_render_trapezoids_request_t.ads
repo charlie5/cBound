@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_trapezoids_request_t is
@@ -15,7 +16,7 @@ package xcb.xcb_render_trapezoids_request_t is
       minor_opcode : aliased Interfaces.Unsigned_8;
       length       : aliased Interfaces.Unsigned_16;
       op           : aliased Interfaces.Unsigned_8;
-      pad0         : aliased swig.int8_t_Array (0 .. 2);
+      pad0         : aliased swig.uint8_t_Array (0 .. 2);
       src          : aliased xcb.xcb_render_picture_t;
       dst          : aliased xcb.xcb_render_picture_t;
       mask_format  : aliased xcb.xcb_render_pictformat_t;

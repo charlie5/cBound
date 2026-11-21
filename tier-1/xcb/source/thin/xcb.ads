@@ -4,6 +4,7 @@ with Interfaces;
 with Interfaces.C;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 
 package xcb is
 
@@ -12,14 +13,14 @@ package xcb is
    subtype xcb_connection_t is swig.opaque_structure;
 
    type xcb_connection_t_array is
-     array (Interfaces.C.size_t range <>) of aliased xcb.xcb_connection_t;
+     array (interfaces.C.Size_t range <>) of aliased xcb.xcb_connection_t;
 
    -- xcb_special_event_t
    --
    subtype xcb_special_event_t is swig.opaque_structure;
 
    type xcb_special_event_t_array is
-     array (Interfaces.C.size_t range <>) of aliased xcb.xcb_special_event_t;
+     array (interfaces.C.Size_t range <>) of aliased xcb.xcb_special_event_t;
 
    -- xcb_window_t
    --
@@ -1863,7 +1864,7 @@ package xcb is
    subtype iovec is swig.opaque_structure;
 
    type iovec_array is
-     array (Interfaces.C.size_t range <>) of aliased xcb.iovec;
+     array (interfaces.C.Size_t range <>) of aliased xcb.iovec;
 
    -- xcb_send_request_flags_t
    --
@@ -1947,7 +1948,8 @@ package xcb is
 
    type xcb_render_util_composite_text_stream_t_array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb
+       (interfaces.C
+          .Size_t range <>) of aliased xcb
        .xcb_render_util_composite_text_stream_t;
 
    -- xcb_glx_pixmap_t
@@ -2117,7 +2119,7 @@ package xcb is
    subtype Display is swig.opaque_structure;
 
    type Display_array is
-     array (Interfaces.C.size_t range <>) of aliased xcb.Display;
+     array (interfaces.C.Size_t range <>) of aliased xcb.Display;
 
    -- XEventQueueOwner
    --

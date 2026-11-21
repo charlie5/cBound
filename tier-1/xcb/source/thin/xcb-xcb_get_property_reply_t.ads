@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_property_reply_t is
@@ -18,14 +19,15 @@ package xcb.xcb_get_property_reply_t is
       the_type      : aliased xcb.xcb_atom_t;
       bytes_after   : aliased Interfaces.Unsigned_32;
       value_len     : aliased Interfaces.Unsigned_32;
-      pad0          : aliased swig.int8_t_Array (0 .. 11);
+      pad0          : aliased swig.uint8_t_Array (0 .. 11);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_get_property_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_get_property_reply_t
        .Item;
 
    -- Pointer
@@ -42,7 +44,8 @@ package xcb.xcb_get_property_reply_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_get_property_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_get_property_reply_t
        .Pointer;
 
    -- Pointer_Pointer

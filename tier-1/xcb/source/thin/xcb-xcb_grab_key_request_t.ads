@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_grab_key_request_t is
@@ -19,14 +20,15 @@ package xcb.xcb_grab_key_request_t is
       key           : aliased xcb.xcb_keycode_t;
       pointer_mode  : aliased Interfaces.Unsigned_8;
       keyboard_mode : aliased Interfaces.Unsigned_8;
-      pad0          : aliased swig.int8_t_Array (0 .. 2);
+      pad0          : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_grab_key_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_grab_key_request_t
        .Item;
 
    -- Pointer
@@ -43,7 +45,8 @@ package xcb.xcb_grab_key_request_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_grab_key_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_grab_key_request_t
        .Pointer;
 
    -- Pointer_Pointer

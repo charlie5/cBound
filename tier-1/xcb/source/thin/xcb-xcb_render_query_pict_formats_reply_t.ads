@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_query_pict_formats_reply_t is
@@ -20,7 +21,7 @@ package xcb.xcb_render_query_pict_formats_reply_t is
       num_depths    : aliased Interfaces.Unsigned_32;
       num_visuals   : aliased Interfaces.Unsigned_32;
       num_subpixel  : aliased Interfaces.Unsigned_32;
-      pad1          : aliased swig.int8_t_Array (0 .. 3);
+      pad1          : aliased swig.uint8_t_Array (0 .. 3);
    end record;
 
    -- Item_Array

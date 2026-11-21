@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_render_triangle_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_triangle_iterator_t is

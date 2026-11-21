@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_get_convolution_parameteriv_reply_t is
@@ -15,10 +16,10 @@ package xcb.xcb_glx_get_convolution_parameteriv_reply_t is
       pad0          : aliased Interfaces.Unsigned_8;
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
-      pad1          : aliased swig.int8_t_Array (0 .. 3);
+      pad1          : aliased swig.uint8_t_Array (0 .. 3);
       n             : aliased Interfaces.Unsigned_32;
       datum         : aliased Interfaces.Integer_32;
-      pad2          : aliased swig.int8_t_Array (0 .. 11);
+      pad2          : aliased swig.uint8_t_Array (0 .. 11);
    end record;
 
    -- Item_Array
@@ -33,9 +34,9 @@ package xcb.xcb_glx_get_convolution_parameteriv_reply_t is
    -- Pointer
    --
    package C_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_glx_get_convolution_parameteriv_reply_t.Item,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element => xcb.xcb_glx_get_convolution_parameteriv_reply_t.Item,
+      Element_Array      =>
         xcb.xcb_glx_get_convolution_parameteriv_reply_t.Item_Array,
       Default_Terminator => (others => <>));
 
@@ -53,9 +54,9 @@ package xcb.xcb_glx_get_convolution_parameteriv_reply_t is
    -- Pointer_Pointer
    --
    package C_Pointer_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_glx_get_convolution_parameteriv_reply_t.Pointer,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element => xcb.xcb_glx_get_convolution_parameteriv_reply_t.Pointer,
+      Element_Array      =>
         xcb.xcb_glx_get_convolution_parameteriv_reply_t.Pointer_Array,
       Default_Terminator => null);
 

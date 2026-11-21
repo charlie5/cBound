@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_colormap_notify_event_t is
@@ -18,7 +19,7 @@ package xcb.xcb_colormap_notify_event_t is
       colormap      : aliased xcb.xcb_colormap_t;
       a_new         : aliased Interfaces.Unsigned_8;
       state         : aliased Interfaces.Unsigned_8;
-      pad1          : aliased swig.int8_t_Array (0 .. 1);
+      pad1          : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array

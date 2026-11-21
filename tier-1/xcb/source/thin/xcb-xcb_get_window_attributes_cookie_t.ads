@@ -2,6 +2,7 @@
 --
 with Interfaces.C;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_window_attributes_cookie_t is

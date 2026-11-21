@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_pointer_control_reply_t is
@@ -18,7 +19,7 @@ package xcb.xcb_get_pointer_control_reply_t is
       acceleration_numerator   : aliased Interfaces.Unsigned_16;
       acceleration_denominator : aliased Interfaces.Unsigned_16;
       threshold                : aliased Interfaces.Unsigned_16;
-      pad1                     : aliased swig.int8_t_Array (0 .. 17);
+      pad1                     : aliased swig.uint8_t_Array (0 .. 17);
    end record;
 
    -- Item_Array

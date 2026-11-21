@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_grab_keyboard_request_t is
@@ -18,7 +19,7 @@ package xcb.xcb_grab_keyboard_request_t is
       time          : aliased xcb.xcb_timestamp_t;
       pointer_mode  : aliased Interfaces.Unsigned_8;
       keyboard_mode : aliased Interfaces.Unsigned_8;
-      pad0          : aliased swig.int8_t_Array (0 .. 1);
+      pad0          : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array

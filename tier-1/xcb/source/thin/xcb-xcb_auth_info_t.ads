@@ -3,6 +3,7 @@
 with Interfaces.C;
 with Interfaces.C.Strings;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_auth_info_t is

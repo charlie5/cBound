@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_get_visual_configs_reply_t is
@@ -17,7 +18,7 @@ package xcb.xcb_glx_get_visual_configs_reply_t is
       length         : aliased Interfaces.Unsigned_32;
       num_visuals    : aliased Interfaces.Unsigned_32;
       num_properties : aliased Interfaces.Unsigned_32;
-      pad1           : aliased swig.int8_t_Array (0 .. 15);
+      pad1           : aliased swig.uint8_t_Array (0 .. 15);
    end record;
 
    -- Item_Array

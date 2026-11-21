@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_reparent_notify_event_t is
@@ -20,7 +21,7 @@ package xcb.xcb_reparent_notify_event_t is
       x                 : aliased Interfaces.Integer_16;
       y                 : aliased Interfaces.Integer_16;
       override_redirect : aliased Interfaces.Unsigned_8;
-      pad1              : aliased swig.int8_t_Array (0 .. 2);
+      pad1              : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array

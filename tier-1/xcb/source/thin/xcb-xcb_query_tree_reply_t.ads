@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_tree_reply_t is
@@ -18,14 +19,15 @@ package xcb.xcb_query_tree_reply_t is
       root          : aliased xcb.xcb_window_t;
       parent        : aliased xcb.xcb_window_t;
       children_len  : aliased Interfaces.Unsigned_16;
-      pad1          : aliased swig.int8_t_Array (0 .. 13);
+      pad1          : aliased swig.uint8_t_Array (0 .. 13);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_tree_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_tree_reply_t
        .Item;
 
    -- Pointer
@@ -42,7 +44,8 @@ package xcb.xcb_query_tree_reply_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_tree_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_tree_reply_t
        .Pointer;
 
    -- Pointer_Pointer

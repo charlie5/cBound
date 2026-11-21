@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_change_window_attributes_value_list_t is
@@ -39,9 +40,9 @@ package xcb.xcb_change_window_attributes_value_list_t is
    -- Pointer
    --
    package C_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_change_window_attributes_value_list_t.Item,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element            => xcb.xcb_change_window_attributes_value_list_t.Item,
+      Element_Array      =>
         xcb.xcb_change_window_attributes_value_list_t.Item_Array,
       Default_Terminator => (others => <>));
 
@@ -59,9 +60,9 @@ package xcb.xcb_change_window_attributes_value_list_t is
    -- Pointer_Pointer
    --
    package C_Pointer_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_change_window_attributes_value_list_t.Pointer,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element => xcb.xcb_change_window_attributes_value_list_t.Pointer,
+      Element_Array      =>
         xcb.xcb_change_window_attributes_value_list_t.Pointer_Array,
       Default_Terminator => null);
 

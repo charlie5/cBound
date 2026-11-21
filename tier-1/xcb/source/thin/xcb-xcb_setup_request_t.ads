@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_setup_request_t is
@@ -17,7 +18,7 @@ package xcb.xcb_setup_request_t is
       protocol_minor_version          : aliased Interfaces.Unsigned_16;
       authorization_protocol_name_len : aliased Interfaces.Unsigned_16;
       authorization_protocol_data_len : aliased Interfaces.Unsigned_16;
-      pad1                            : aliased swig.int8_t_Array (0 .. 1);
+      pad1                            : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
@@ -40,7 +41,8 @@ package xcb.xcb_setup_request_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_setup_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_setup_request_t
        .Pointer;
 
    -- Pointer_Pointer

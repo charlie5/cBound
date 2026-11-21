@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_render_linefix_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_linefix_iterator_t is

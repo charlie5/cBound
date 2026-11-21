@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_alloc_color_planes_reply_t is
@@ -16,11 +17,11 @@ package xcb.xcb_alloc_color_planes_reply_t is
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
       pixels_len    : aliased Interfaces.Unsigned_16;
-      pad1          : aliased swig.int8_t_Array (0 .. 1);
+      pad1          : aliased swig.uint8_t_Array (0 .. 1);
       red_mask      : aliased Interfaces.Unsigned_32;
       green_mask    : aliased Interfaces.Unsigned_32;
       blue_mask     : aliased Interfaces.Unsigned_32;
-      pad2          : aliased swig.int8_t_Array (0 .. 7);
+      pad2          : aliased swig.uint8_t_Array (0 .. 7);
    end record;
 
    -- Item_Array

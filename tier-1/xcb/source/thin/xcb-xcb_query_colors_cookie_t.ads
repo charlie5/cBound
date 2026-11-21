@@ -2,6 +2,7 @@
 --
 with Interfaces.C;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_colors_cookie_t is
@@ -17,7 +18,8 @@ package xcb.xcb_query_colors_cookie_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_colors_cookie_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_colors_cookie_t
        .Item;
 
    -- Pointer
@@ -34,7 +36,8 @@ package xcb.xcb_query_colors_cookie_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_colors_cookie_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_colors_cookie_t
        .Pointer;
 
    -- Pointer_Pointer

@@ -2,6 +2,7 @@
 --
 with xcb.xcb_render_spanfix_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_trap_t is

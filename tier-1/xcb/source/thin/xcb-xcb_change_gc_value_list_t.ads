@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_change_gc_value_list_t is
@@ -39,7 +40,8 @@ package xcb.xcb_change_gc_value_list_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_change_gc_value_list_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_change_gc_value_list_t
        .Item;
 
    -- Pointer
@@ -56,7 +58,8 @@ package xcb.xcb_change_gc_value_list_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_change_gc_value_list_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_change_gc_value_list_t
        .Pointer;
 
    -- Pointer_Pointer

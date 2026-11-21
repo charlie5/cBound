@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_put_image_request_t is
@@ -22,14 +23,15 @@ package xcb.xcb_put_image_request_t is
       dst_y        : aliased Interfaces.Integer_16;
       left_pad     : aliased Interfaces.Unsigned_8;
       depth        : aliased Interfaces.Unsigned_8;
-      pad0         : aliased swig.int8_t_Array (0 .. 1);
+      pad0         : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_put_image_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_put_image_request_t
        .Item;
 
    -- Pointer
@@ -46,7 +48,8 @@ package xcb.xcb_put_image_request_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_put_image_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_put_image_request_t
        .Pointer;
 
    -- Pointer_Pointer

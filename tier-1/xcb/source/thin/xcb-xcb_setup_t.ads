@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_setup_t is
@@ -30,7 +31,7 @@ package xcb.xcb_setup_t is
       bitmap_format_scanline_pad  : aliased Interfaces.Unsigned_8;
       min_keycode                 : aliased xcb.xcb_keycode_t;
       max_keycode                 : aliased xcb.xcb_keycode_t;
-      pad1                        : aliased swig.int8_t_Array (0 .. 3);
+      pad1                        : aliased swig.uint8_t_Array (0 .. 3);
    end record;
 
    -- Item_Array

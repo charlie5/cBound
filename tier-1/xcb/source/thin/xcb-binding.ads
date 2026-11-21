@@ -415,6 +415,7 @@ with xcb.xcb_xc_misc_get_xid_list_reply_t;
 with xcb.xcb_xc_misc_get_xid_range_cookie_t;
 with xcb.xcb_xc_misc_get_xid_range_reply_t;
 with Interfaces.C;
+use Interfaces.C;
 
 package xcb.Binding is
 
@@ -2214,7 +2215,7 @@ package xcb.Binding is
       gc          : in xcb.xcb_gcontext_t;
       dash_offset : in Interfaces.Unsigned_16;
       dashes_len  : in Interfaces.Unsigned_16;
-      dashes      : in swig.pointers.int8_t_Pointer)
+      dashes      : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_set_dashes
@@ -2222,12 +2223,12 @@ package xcb.Binding is
       gc          : in xcb.xcb_gcontext_t;
       dash_offset : in Interfaces.Unsigned_16;
       dashes_len  : in Interfaces.Unsigned_16;
-      dashes      : in swig.pointers.int8_t_Pointer)
+      dashes      : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_set_dashes_dashes
      (R : in xcb.xcb_set_dashes_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_set_dashes_dashes_length
      (R : in xcb.xcb_set_dashes_request_t.Pointer)
@@ -2653,7 +2654,7 @@ package xcb.Binding is
       left_pad : in Interfaces.Unsigned_8;
       depth    : in Interfaces.Unsigned_8;
       data_len : in Interfaces.Unsigned_32;
-      data     : in swig.pointers.int8_t_Pointer)
+      data     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_put_image
@@ -2668,12 +2669,12 @@ package xcb.Binding is
       left_pad : in Interfaces.Unsigned_8;
       depth    : in Interfaces.Unsigned_8;
       data_len : in Interfaces.Unsigned_32;
-      data     : in swig.pointers.int8_t_Pointer)
+      data     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_put_image_data
      (R : in xcb.xcb_put_image_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_put_image_data_length
      (R : in xcb.xcb_put_image_request_t.Pointer)
@@ -2711,7 +2712,7 @@ package xcb.Binding is
 
    function xcb_get_image_data
      (R : in xcb.xcb_get_image_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_get_image_data_length
      (R : in xcb.xcb_get_image_reply_t.Pointer)
@@ -2739,7 +2740,7 @@ package xcb.Binding is
       x         : in Interfaces.Integer_16;
       y         : in Interfaces.Integer_16;
       items_len : in Interfaces.Unsigned_32;
-      items     : in swig.pointers.int8_t_Pointer)
+      items     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_poly_text_8
@@ -2749,12 +2750,12 @@ package xcb.Binding is
       x         : in Interfaces.Integer_16;
       y         : in Interfaces.Integer_16;
       items_len : in Interfaces.Unsigned_32;
-      items     : in swig.pointers.int8_t_Pointer)
+      items     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_poly_text_8_items
      (R : in xcb.xcb_poly_text_8_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_poly_text_8_items_length
      (R : in xcb.xcb_poly_text_8_request_t.Pointer)
@@ -2776,7 +2777,7 @@ package xcb.Binding is
       x         : in Interfaces.Integer_16;
       y         : in Interfaces.Integer_16;
       items_len : in Interfaces.Unsigned_32;
-      items     : in swig.pointers.int8_t_Pointer)
+      items     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_poly_text_16
@@ -2786,12 +2787,12 @@ package xcb.Binding is
       x         : in Interfaces.Integer_16;
       y         : in Interfaces.Integer_16;
       items_len : in Interfaces.Unsigned_32;
-      items     : in swig.pointers.int8_t_Pointer)
+      items     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_poly_text_16_items
      (R : in xcb.xcb_poly_text_16_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_poly_text_16_items_length
      (R : in xcb.xcb_poly_text_16_request_t.Pointer)
@@ -3644,7 +3645,7 @@ package xcb.Binding is
       mode        : in Interfaces.Unsigned_8;
       family      : in Interfaces.Unsigned_8;
       address_len : in Interfaces.Unsigned_16;
-      address     : in swig.pointers.int8_t_Pointer)
+      address     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_change_hosts
@@ -3652,12 +3653,12 @@ package xcb.Binding is
       mode        : in Interfaces.Unsigned_8;
       family      : in Interfaces.Unsigned_8;
       address_len : in Interfaces.Unsigned_16;
-      address     : in swig.pointers.int8_t_Pointer)
+      address     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_change_hosts_address
      (R : in xcb.xcb_change_hosts_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_change_hosts_address_length
      (R : in xcb.xcb_change_hosts_request_t.Pointer)
@@ -3673,7 +3674,7 @@ package xcb.Binding is
 
    function xcb_host_address
      (R : in xcb.xcb_host_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_host_address_length
      (R : in xcb.xcb_host_t.Pointer)
@@ -3794,13 +3795,13 @@ package xcb.Binding is
    function xcb_set_pointer_mapping
      (c       : in xcb.Pointers.xcb_connection_t_Pointer;
       map_len : in Interfaces.Unsigned_8;
-      map     : in swig.pointers.int8_t_Pointer)
+      map     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_set_pointer_mapping_cookie_t.Item;
 
    function xcb_set_pointer_mapping_unchecked
      (c       : in xcb.Pointers.xcb_connection_t_Pointer;
       map_len : in Interfaces.Unsigned_8;
-      map     : in swig.pointers.int8_t_Pointer)
+      map     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_set_pointer_mapping_cookie_t.Item;
 
    function xcb_set_pointer_mapping_reply
@@ -3823,7 +3824,7 @@ package xcb.Binding is
 
    function xcb_get_pointer_mapping_map
      (R : in xcb.xcb_get_pointer_mapping_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_get_pointer_mapping_map_length
      (R : in xcb.xcb_get_pointer_mapping_reply_t.Pointer)
@@ -4561,7 +4562,7 @@ package xcb.Binding is
       glyphids   : in swig.pointers.uint32_t_Pointer;
       glyphs     : in xcb.xcb_render_glyphinfo_t.Pointer;
       data_len   : in Interfaces.Unsigned_32;
-      data       : in swig.pointers.int8_t_Pointer)
+      data       : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_add_glyphs
@@ -4571,7 +4572,7 @@ package xcb.Binding is
       glyphids   : in swig.pointers.uint32_t_Pointer;
       glyphs     : in xcb.xcb_render_glyphinfo_t.Pointer;
       data_len   : in Interfaces.Unsigned_32;
-      data       : in swig.pointers.int8_t_Pointer)
+      data       : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_add_glyphs_glyphids
@@ -4600,7 +4601,7 @@ package xcb.Binding is
 
    function xcb_render_add_glyphs_data
      (R : in xcb.xcb_render_add_glyphs_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_render_add_glyphs_data_length
      (R : in xcb.xcb_render_add_glyphs_request_t.Pointer)
@@ -4656,7 +4657,7 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_8
@@ -4669,12 +4670,12 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_8_glyphcmds
      (R : in xcb.xcb_render_composite_glyphs_8_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_render_composite_glyphs_8_glyphcmds_length
      (R : in xcb.xcb_render_composite_glyphs_8_request_t.Pointer)
@@ -4699,7 +4700,7 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_16
@@ -4712,12 +4713,12 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_16_glyphcmds
      (R : in xcb.xcb_render_composite_glyphs_16_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_render_composite_glyphs_16_glyphcmds_length
      (R : in xcb.xcb_render_composite_glyphs_16_request_t.Pointer)
@@ -4742,7 +4743,7 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_32
@@ -4755,12 +4756,12 @@ package xcb.Binding is
       src_x         : in Interfaces.Integer_16;
       src_y         : in Interfaces.Integer_16;
       glyphcmds_len : in Interfaces.Unsigned_32;
-      glyphcmds     : in swig.pointers.int8_t_Pointer)
+      glyphcmds     : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_render_composite_glyphs_32_glyphcmds
      (R : in xcb.xcb_render_composite_glyphs_32_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_render_composite_glyphs_32_glyphcmds_length
      (R : in xcb.xcb_render_composite_glyphs_32_request_t.Pointer)
@@ -5254,7 +5255,7 @@ package xcb.Binding is
       return Interfaces.C.int;
 
    function xcb_sumof
-     (list : in swig.pointers.int8_t_Pointer;
+     (list : in swig.pointers.uint8_t_Pointer;
       len  : in Interfaces.C.int)
       return Interfaces.C.int;
 
@@ -5298,7 +5299,7 @@ package xcb.Binding is
       dx     : in Interfaces.Integer_16;
       dy     : in Interfaces.Integer_16;
       count  : in Interfaces.Unsigned_32;
-      glyphs : in swig.pointers.int8_t_Pointer);
+      glyphs : in swig.pointers.uint8_t_Pointer);
 
    procedure xcb_render_util_glyphs_16
      (stream : in xcb.Pointers.xcb_render_util_composite_text_stream_t_Pointer;
@@ -5487,19 +5488,19 @@ package xcb.Binding is
      (c           : in xcb.Pointers.xcb_connection_t_Pointer;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_render
      (c           : in xcb.Pointers.xcb_connection_t_Pointer;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_render_data
      (R : in xcb.xcb_glx_render_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_render_data_length
      (R : in xcb.xcb_glx_render_request_t.Pointer)
@@ -5519,7 +5520,7 @@ package xcb.Binding is
       request_num   : in Interfaces.Unsigned_16;
       request_total : in Interfaces.Unsigned_16;
       data_len      : in Interfaces.Unsigned_32;
-      data          : in swig.pointers.int8_t_Pointer)
+      data          : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_render_large
@@ -5528,12 +5529,12 @@ package xcb.Binding is
       request_num   : in Interfaces.Unsigned_16;
       request_total : in Interfaces.Unsigned_16;
       data_len      : in Interfaces.Unsigned_32;
-      data          : in swig.pointers.int8_t_Pointer)
+      data          : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_render_large_data
      (R : in xcb.xcb_glx_render_large_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_render_large_data_length
      (R : in xcb.xcb_glx_render_large_request_t.Pointer)
@@ -5759,7 +5760,7 @@ package xcb.Binding is
       vendor_code : in Interfaces.Unsigned_32;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_vendor_private
@@ -5767,12 +5768,12 @@ package xcb.Binding is
       vendor_code : in Interfaces.Unsigned_32;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_void_cookie_t.Item;
 
    function xcb_glx_vendor_private_data
      (R : in xcb.xcb_glx_vendor_private_request_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_vendor_private_data_length
      (R : in xcb.xcb_glx_vendor_private_request_t.Pointer)
@@ -5792,7 +5793,7 @@ package xcb.Binding is
       vendor_code : in Interfaces.Unsigned_32;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_glx_vendor_private_with_reply_cookie_t.Item;
 
    function xcb_glx_vendor_private_with_reply_unchecked
@@ -5800,12 +5801,12 @@ package xcb.Binding is
       vendor_code : in Interfaces.Unsigned_32;
       context_tag : in xcb.xcb_glx_context_tag_t;
       data_len    : in Interfaces.Unsigned_32;
-      data        : in swig.pointers.int8_t_Pointer)
+      data        : in swig.pointers.uint8_t_Pointer)
       return xcb.xcb_glx_vendor_private_with_reply_cookie_t.Item;
 
    function xcb_glx_vendor_private_with_reply_data_2
      (R : in xcb.xcb_glx_vendor_private_with_reply_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_vendor_private_with_reply_data_2_length
      (R : in xcb.xcb_glx_vendor_private_with_reply_reply_t.Pointer)
@@ -6565,7 +6566,7 @@ package xcb.Binding is
 
    function xcb_glx_read_pixels_data
      (R : in xcb.xcb_glx_read_pixels_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_read_pixels_data_length
      (R : in xcb.xcb_glx_read_pixels_reply_t.Pointer)
@@ -6599,7 +6600,7 @@ package xcb.Binding is
 
    function xcb_glx_get_booleanv_data
      (R : in xcb.xcb_glx_get_booleanv_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_booleanv_data_length
      (R : in xcb.xcb_glx_get_booleanv_reply_t.Pointer)
@@ -7139,7 +7140,7 @@ package xcb.Binding is
 
    function xcb_glx_get_polygon_stipple_data
      (R : in xcb.xcb_glx_get_polygon_stipple_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_polygon_stipple_data_length
      (R : in xcb.xcb_glx_get_polygon_stipple_reply_t.Pointer)
@@ -7395,7 +7396,7 @@ package xcb.Binding is
 
    function xcb_glx_get_tex_image_data
      (R : in xcb.xcb_glx_get_tex_image_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_tex_image_data_length
      (R : in xcb.xcb_glx_get_tex_image_reply_t.Pointer)
@@ -7625,7 +7626,7 @@ package xcb.Binding is
 
    function xcb_glx_are_textures_resident_data
      (R : in xcb.xcb_glx_are_textures_resident_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_are_textures_resident_data_length
      (R : in xcb.xcb_glx_are_textures_resident_reply_t.Pointer)
@@ -7747,7 +7748,7 @@ package xcb.Binding is
 
    function xcb_glx_get_color_table_data
      (R : in xcb.xcb_glx_get_color_table_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_color_table_data_length
      (R : in xcb.xcb_glx_get_color_table_reply_t.Pointer)
@@ -7859,7 +7860,7 @@ package xcb.Binding is
 
    function xcb_glx_get_convolution_filter_data
      (R : in xcb.xcb_glx_get_convolution_filter_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_convolution_filter_data_length
      (R : in xcb.xcb_glx_get_convolution_filter_reply_t.Pointer)
@@ -7971,7 +7972,7 @@ package xcb.Binding is
 
    function xcb_glx_get_separable_filter_rows_and_cols
      (R : in xcb.xcb_glx_get_separable_filter_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_separable_filter_rows_and_cols_length
      (R : in xcb.xcb_glx_get_separable_filter_reply_t.Pointer)
@@ -8013,7 +8014,7 @@ package xcb.Binding is
 
    function xcb_glx_get_histogram_data
      (R : in xcb.xcb_glx_get_histogram_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_histogram_data_length
      (R : in xcb.xcb_glx_get_histogram_reply_t.Pointer)
@@ -8127,7 +8128,7 @@ package xcb.Binding is
 
    function xcb_glx_get_minmax_data
      (R : in xcb.xcb_glx_get_minmax_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_minmax_data_length
      (R : in xcb.xcb_glx_get_minmax_reply_t.Pointer)
@@ -8235,7 +8236,7 @@ package xcb.Binding is
 
    function xcb_glx_get_compressed_tex_image_arb_data
      (R : in xcb.xcb_glx_get_compressed_tex_image_arb_reply_t.Pointer)
-      return swig.pointers.int8_t_Pointer;
+      return swig.pointers.uint8_t_Pointer;
 
    function xcb_glx_get_compressed_tex_image_arb_data_length
      (R : in xcb.xcb_glx_get_compressed_tex_image_arb_reply_t.Pointer)
@@ -8463,3264 +8464,3598 @@ private
    pragma Import (C, xcb_render_id, "xcb_render_id");
    pragma Import (C, xcb_xc_misc_id, "xcb_xc_misc_id");
    pragma Import (C, xcb_glx_id, "xcb_glx_id");
-   pragma Import (C, xcb_flush, "xcb_flush");
+   pragma Import (C, xcb_flush, "Ada_xcb_flush");
    pragma Import
-     (C, xcb_get_maximum_request_length, "xcb_get_maximum_request_length");
+     (C, xcb_get_maximum_request_length, "Ada_xcb_get_maximum_request_length");
    pragma Import
      (C,
       xcb_prefetch_maximum_request_length,
-      "xcb_prefetch_maximum_request_length");
-   pragma Import (C, xcb_wait_for_event, "xcb_wait_for_event");
-   pragma Import (C, xcb_poll_for_event, "xcb_poll_for_event");
-   pragma Import (C, xcb_poll_for_queued_event, "xcb_poll_for_queued_event");
-   pragma Import (C, xcb_poll_for_special_event, "xcb_poll_for_special_event");
-   pragma Import (C, xcb_wait_for_special_event, "xcb_wait_for_special_event");
+      "Ada_xcb_prefetch_maximum_request_length");
+   pragma Import (C, xcb_wait_for_event, "Ada_xcb_wait_for_event");
+   pragma Import (C, xcb_poll_for_event, "Ada_xcb_poll_for_event");
    pragma Import
-     (C, xcb_register_for_special_xge, "xcb_register_for_special_xge");
+     (C, xcb_poll_for_queued_event, "Ada_xcb_poll_for_queued_event");
    pragma Import
-     (C, xcb_unregister_for_special_event, "xcb_unregister_for_special_event");
-   pragma Import (C, xcb_request_check, "xcb_request_check");
-   pragma Import (C, xcb_discard_reply, "xcb_discard_reply");
-   pragma Import (C, xcb_discard_reply64, "xcb_discard_reply64");
-   pragma Import (C, xcb_get_extension_data, "xcb_get_extension_data");
+     (C, xcb_poll_for_special_event, "Ada_xcb_poll_for_special_event");
    pragma Import
-     (C, xcb_prefetch_extension_data, "xcb_prefetch_extension_data");
-   pragma Import (C, xcb_get_setup, "xcb_get_setup");
-   pragma Import (C, xcb_get_file_descriptor, "xcb_get_file_descriptor");
-   pragma Import (C, xcb_connection_has_error, "xcb_connection_has_error");
-   pragma Import (C, xcb_connect_to_fd, "xcb_connect_to_fd");
-   pragma Import (C, xcb_disconnect, "xcb_disconnect");
-   pragma Import (C, xcb_parse_display, "xcb_parse_display");
-   pragma Import (C, xcb_connect, "xcb_connect");
+     (C, xcb_wait_for_special_event, "Ada_xcb_wait_for_special_event");
+   pragma Import
+     (C, xcb_register_for_special_xge, "Ada_xcb_register_for_special_xge");
+   pragma Import
+     (C,
+      xcb_unregister_for_special_event,
+      "Ada_xcb_unregister_for_special_event");
+   pragma Import (C, xcb_request_check, "Ada_xcb_request_check");
+   pragma Import (C, xcb_discard_reply, "Ada_xcb_discard_reply");
+   pragma Import (C, xcb_discard_reply64, "Ada_xcb_discard_reply64");
+   pragma Import (C, xcb_get_extension_data, "Ada_xcb_get_extension_data");
+   pragma Import
+     (C, xcb_prefetch_extension_data, "Ada_xcb_prefetch_extension_data");
+   pragma Import (C, xcb_get_setup, "Ada_xcb_get_setup");
+   pragma Import (C, xcb_get_file_descriptor, "Ada_xcb_get_file_descriptor");
+   pragma Import (C, xcb_connection_has_error, "Ada_xcb_connection_has_error");
+   pragma Import (C, xcb_connect_to_fd, "Ada_xcb_connect_to_fd");
+   pragma Import (C, xcb_disconnect, "Ada_xcb_disconnect");
+   pragma Import (C, xcb_parse_display, "Ada_xcb_parse_display");
+   pragma Import (C, xcb_connect, "Ada_xcb_connect");
    pragma Import
      (C,
       xcb_connect_to_display_with_auth_info,
-      "xcb_connect_to_display_with_auth_info");
-   pragma Import (C, xcb_generate_id, "xcb_generate_id");
-   pragma Import (C, xcb_total_read, "xcb_total_read");
-   pragma Import (C, xcb_total_written, "xcb_total_written");
-   pragma Import (C, xcb_char2b_next, "xcb_char2b_next");
-   pragma Import (C, xcb_char2b_end, "xcb_char2b_end");
-   pragma Import (C, xcb_window_next, "xcb_window_next");
-   pragma Import (C, xcb_window_end, "xcb_window_end");
-   pragma Import (C, xcb_pixmap_next, "xcb_pixmap_next");
-   pragma Import (C, xcb_pixmap_end, "xcb_pixmap_end");
-   pragma Import (C, xcb_cursor_next, "xcb_cursor_next");
-   pragma Import (C, xcb_cursor_end, "xcb_cursor_end");
-   pragma Import (C, xcb_font_next, "xcb_font_next");
-   pragma Import (C, xcb_font_end, "xcb_font_end");
-   pragma Import (C, xcb_gcontext_next, "xcb_gcontext_next");
-   pragma Import (C, xcb_gcontext_end, "xcb_gcontext_end");
-   pragma Import (C, xcb_colormap_next, "xcb_colormap_next");
-   pragma Import (C, xcb_colormap_end, "xcb_colormap_end");
-   pragma Import (C, xcb_atom_next, "xcb_atom_next");
-   pragma Import (C, xcb_atom_end, "xcb_atom_end");
-   pragma Import (C, xcb_drawable_next, "xcb_drawable_next");
-   pragma Import (C, xcb_drawable_end, "xcb_drawable_end");
-   pragma Import (C, xcb_fontable_next, "xcb_fontable_next");
-   pragma Import (C, xcb_fontable_end, "xcb_fontable_end");
-   pragma Import (C, xcb_bool32_next, "xcb_bool32_next");
-   pragma Import (C, xcb_bool32_end, "xcb_bool32_end");
-   pragma Import (C, xcb_visualid_next, "xcb_visualid_next");
-   pragma Import (C, xcb_visualid_end, "xcb_visualid_end");
-   pragma Import (C, xcb_timestamp_next, "xcb_timestamp_next");
-   pragma Import (C, xcb_timestamp_end, "xcb_timestamp_end");
-   pragma Import (C, xcb_keysym_next, "xcb_keysym_next");
-   pragma Import (C, xcb_keysym_end, "xcb_keysym_end");
-   pragma Import (C, xcb_keycode_next, "xcb_keycode_next");
-   pragma Import (C, xcb_keycode_end, "xcb_keycode_end");
-   pragma Import (C, xcb_keycode32_next, "xcb_keycode32_next");
-   pragma Import (C, xcb_keycode32_end, "xcb_keycode32_end");
-   pragma Import (C, xcb_button_next, "xcb_button_next");
-   pragma Import (C, xcb_button_end, "xcb_button_end");
-   pragma Import (C, xcb_point_next, "xcb_point_next");
-   pragma Import (C, xcb_point_end, "xcb_point_end");
-   pragma Import (C, xcb_rectangle_next, "xcb_rectangle_next");
-   pragma Import (C, xcb_rectangle_end, "xcb_rectangle_end");
-   pragma Import (C, xcb_arc_next, "xcb_arc_next");
-   pragma Import (C, xcb_arc_end, "xcb_arc_end");
-   pragma Import (C, xcb_format_next, "xcb_format_next");
-   pragma Import (C, xcb_format_end, "xcb_format_end");
-   pragma Import (C, xcb_visualtype_next, "xcb_visualtype_next");
-   pragma Import (C, xcb_visualtype_end, "xcb_visualtype_end");
-   pragma Import (C, xcb_depth_sizeof, "xcb_depth_sizeof");
-   pragma Import (C, xcb_depth_visuals, "xcb_depth_visuals");
-   pragma Import (C, xcb_depth_visuals_length, "xcb_depth_visuals_length");
-   pragma Import (C, xcb_depth_visuals_iterator, "xcb_depth_visuals_iterator");
-   pragma Import (C, xcb_depth_next, "xcb_depth_next");
-   pragma Import (C, xcb_depth_end, "xcb_depth_end");
-   pragma Import (C, xcb_screen_sizeof, "xcb_screen_sizeof");
+      "Ada_xcb_connect_to_display_with_auth_info");
+   pragma Import (C, xcb_generate_id, "Ada_xcb_generate_id");
+   pragma Import (C, xcb_total_read, "Ada_xcb_total_read");
+   pragma Import (C, xcb_total_written, "Ada_xcb_total_written");
+   pragma Import (C, xcb_char2b_next, "Ada_xcb_char2b_next");
+   pragma Import (C, xcb_char2b_end, "Ada_xcb_char2b_end");
+   pragma Import (C, xcb_window_next, "Ada_xcb_window_next");
+   pragma Import (C, xcb_window_end, "Ada_xcb_window_end");
+   pragma Import (C, xcb_pixmap_next, "Ada_xcb_pixmap_next");
+   pragma Import (C, xcb_pixmap_end, "Ada_xcb_pixmap_end");
+   pragma Import (C, xcb_cursor_next, "Ada_xcb_cursor_next");
+   pragma Import (C, xcb_cursor_end, "Ada_xcb_cursor_end");
+   pragma Import (C, xcb_font_next, "Ada_xcb_font_next");
+   pragma Import (C, xcb_font_end, "Ada_xcb_font_end");
+   pragma Import (C, xcb_gcontext_next, "Ada_xcb_gcontext_next");
+   pragma Import (C, xcb_gcontext_end, "Ada_xcb_gcontext_end");
+   pragma Import (C, xcb_colormap_next, "Ada_xcb_colormap_next");
+   pragma Import (C, xcb_colormap_end, "Ada_xcb_colormap_end");
+   pragma Import (C, xcb_atom_next, "Ada_xcb_atom_next");
+   pragma Import (C, xcb_atom_end, "Ada_xcb_atom_end");
+   pragma Import (C, xcb_drawable_next, "Ada_xcb_drawable_next");
+   pragma Import (C, xcb_drawable_end, "Ada_xcb_drawable_end");
+   pragma Import (C, xcb_fontable_next, "Ada_xcb_fontable_next");
+   pragma Import (C, xcb_fontable_end, "Ada_xcb_fontable_end");
+   pragma Import (C, xcb_bool32_next, "Ada_xcb_bool32_next");
+   pragma Import (C, xcb_bool32_end, "Ada_xcb_bool32_end");
+   pragma Import (C, xcb_visualid_next, "Ada_xcb_visualid_next");
+   pragma Import (C, xcb_visualid_end, "Ada_xcb_visualid_end");
+   pragma Import (C, xcb_timestamp_next, "Ada_xcb_timestamp_next");
+   pragma Import (C, xcb_timestamp_end, "Ada_xcb_timestamp_end");
+   pragma Import (C, xcb_keysym_next, "Ada_xcb_keysym_next");
+   pragma Import (C, xcb_keysym_end, "Ada_xcb_keysym_end");
+   pragma Import (C, xcb_keycode_next, "Ada_xcb_keycode_next");
+   pragma Import (C, xcb_keycode_end, "Ada_xcb_keycode_end");
+   pragma Import (C, xcb_keycode32_next, "Ada_xcb_keycode32_next");
+   pragma Import (C, xcb_keycode32_end, "Ada_xcb_keycode32_end");
+   pragma Import (C, xcb_button_next, "Ada_xcb_button_next");
+   pragma Import (C, xcb_button_end, "Ada_xcb_button_end");
+   pragma Import (C, xcb_point_next, "Ada_xcb_point_next");
+   pragma Import (C, xcb_point_end, "Ada_xcb_point_end");
+   pragma Import (C, xcb_rectangle_next, "Ada_xcb_rectangle_next");
+   pragma Import (C, xcb_rectangle_end, "Ada_xcb_rectangle_end");
+   pragma Import (C, xcb_arc_next, "Ada_xcb_arc_next");
+   pragma Import (C, xcb_arc_end, "Ada_xcb_arc_end");
+   pragma Import (C, xcb_format_next, "Ada_xcb_format_next");
+   pragma Import (C, xcb_format_end, "Ada_xcb_format_end");
+   pragma Import (C, xcb_visualtype_next, "Ada_xcb_visualtype_next");
+   pragma Import (C, xcb_visualtype_end, "Ada_xcb_visualtype_end");
+   pragma Import (C, xcb_depth_sizeof, "Ada_xcb_depth_sizeof");
+   pragma Import (C, xcb_depth_visuals, "Ada_xcb_depth_visuals");
+   pragma Import (C, xcb_depth_visuals_length, "Ada_xcb_depth_visuals_length");
    pragma Import
-     (C, xcb_screen_allowed_depths_length, "xcb_screen_allowed_depths_length");
+     (C, xcb_depth_visuals_iterator, "Ada_xcb_depth_visuals_iterator");
+   pragma Import (C, xcb_depth_next, "Ada_xcb_depth_next");
+   pragma Import (C, xcb_depth_end, "Ada_xcb_depth_end");
+   pragma Import (C, xcb_screen_sizeof, "Ada_xcb_screen_sizeof");
+   pragma Import
+     (C,
+      xcb_screen_allowed_depths_length,
+      "Ada_xcb_screen_allowed_depths_length");
    pragma Import
      (C,
       xcb_screen_allowed_depths_iterator,
-      "xcb_screen_allowed_depths_iterator");
-   pragma Import (C, xcb_screen_next, "xcb_screen_next");
-   pragma Import (C, xcb_screen_end, "xcb_screen_end");
-   pragma Import (C, xcb_setup_request_sizeof, "xcb_setup_request_sizeof");
+      "Ada_xcb_screen_allowed_depths_iterator");
+   pragma Import (C, xcb_screen_next, "Ada_xcb_screen_next");
+   pragma Import (C, xcb_screen_end, "Ada_xcb_screen_end");
+   pragma Import (C, xcb_setup_request_sizeof, "Ada_xcb_setup_request_sizeof");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_name,
-      "xcb_setup_request_authorization_protocol_name");
+      "Ada_xcb_setup_request_authorization_protocol_name");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_name_length,
-      "xcb_setup_request_authorization_protocol_name_length");
+      "Ada_xcb_setup_request_authorization_protocol_name_length");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_name_end,
-      "xcb_setup_request_authorization_protocol_name_end");
+      "Ada_xcb_setup_request_authorization_protocol_name_end");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_data,
-      "xcb_setup_request_authorization_protocol_data");
+      "Ada_xcb_setup_request_authorization_protocol_data");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_data_length,
-      "xcb_setup_request_authorization_protocol_data_length");
+      "Ada_xcb_setup_request_authorization_protocol_data_length");
    pragma Import
      (C,
       xcb_setup_request_authorization_protocol_data_end,
-      "xcb_setup_request_authorization_protocol_data_end");
-   pragma Import (C, xcb_setup_request_next, "xcb_setup_request_next");
-   pragma Import (C, xcb_setup_request_end, "xcb_setup_request_end");
-   pragma Import (C, xcb_setup_failed_sizeof, "xcb_setup_failed_sizeof");
-   pragma Import (C, xcb_setup_failed_reason, "xcb_setup_failed_reason");
+      "Ada_xcb_setup_request_authorization_protocol_data_end");
+   pragma Import (C, xcb_setup_request_next, "Ada_xcb_setup_request_next");
+   pragma Import (C, xcb_setup_request_end, "Ada_xcb_setup_request_end");
+   pragma Import (C, xcb_setup_failed_sizeof, "Ada_xcb_setup_failed_sizeof");
+   pragma Import (C, xcb_setup_failed_reason, "Ada_xcb_setup_failed_reason");
    pragma Import
-     (C, xcb_setup_failed_reason_length, "xcb_setup_failed_reason_length");
+     (C, xcb_setup_failed_reason_length, "Ada_xcb_setup_failed_reason_length");
    pragma Import
-     (C, xcb_setup_failed_reason_end, "xcb_setup_failed_reason_end");
-   pragma Import (C, xcb_setup_failed_next, "xcb_setup_failed_next");
-   pragma Import (C, xcb_setup_failed_end, "xcb_setup_failed_end");
+     (C, xcb_setup_failed_reason_end, "Ada_xcb_setup_failed_reason_end");
+   pragma Import (C, xcb_setup_failed_next, "Ada_xcb_setup_failed_next");
+   pragma Import (C, xcb_setup_failed_end, "Ada_xcb_setup_failed_end");
    pragma Import
-     (C, xcb_setup_authenticate_sizeof, "xcb_setup_authenticate_sizeof");
+     (C, xcb_setup_authenticate_sizeof, "Ada_xcb_setup_authenticate_sizeof");
    pragma Import
-     (C, xcb_setup_authenticate_reason, "xcb_setup_authenticate_reason");
+     (C, xcb_setup_authenticate_reason, "Ada_xcb_setup_authenticate_reason");
    pragma Import
      (C,
       xcb_setup_authenticate_reason_length,
-      "xcb_setup_authenticate_reason_length");
+      "Ada_xcb_setup_authenticate_reason_length");
    pragma Import
      (C,
       xcb_setup_authenticate_reason_end,
-      "xcb_setup_authenticate_reason_end");
+      "Ada_xcb_setup_authenticate_reason_end");
    pragma Import
-     (C, xcb_setup_authenticate_next, "xcb_setup_authenticate_next");
-   pragma Import (C, xcb_setup_authenticate_end, "xcb_setup_authenticate_end");
-   pragma Import (C, xcb_setup_sizeof, "xcb_setup_sizeof");
-   pragma Import (C, xcb_setup_vendor, "xcb_setup_vendor");
-   pragma Import (C, xcb_setup_vendor_length, "xcb_setup_vendor_length");
-   pragma Import (C, xcb_setup_vendor_end, "xcb_setup_vendor_end");
-   pragma Import (C, xcb_setup_pixmap_formats, "xcb_setup_pixmap_formats");
+     (C, xcb_setup_authenticate_next, "Ada_xcb_setup_authenticate_next");
    pragma Import
-     (C, xcb_setup_pixmap_formats_length, "xcb_setup_pixmap_formats_length");
+     (C, xcb_setup_authenticate_end, "Ada_xcb_setup_authenticate_end");
+   pragma Import (C, xcb_setup_sizeof, "Ada_xcb_setup_sizeof");
+   pragma Import (C, xcb_setup_vendor, "Ada_xcb_setup_vendor");
+   pragma Import (C, xcb_setup_vendor_length, "Ada_xcb_setup_vendor_length");
+   pragma Import (C, xcb_setup_vendor_end, "Ada_xcb_setup_vendor_end");
+   pragma Import (C, xcb_setup_pixmap_formats, "Ada_xcb_setup_pixmap_formats");
+   pragma Import
+     (C,
+      xcb_setup_pixmap_formats_length,
+      "Ada_xcb_setup_pixmap_formats_length");
    pragma Import
      (C,
       xcb_setup_pixmap_formats_iterator,
-      "xcb_setup_pixmap_formats_iterator");
-   pragma Import (C, xcb_setup_roots_length, "xcb_setup_roots_length");
-   pragma Import (C, xcb_setup_roots_iterator, "xcb_setup_roots_iterator");
-   pragma Import (C, xcb_setup_next, "xcb_setup_next");
-   pragma Import (C, xcb_setup_end, "xcb_setup_end");
+      "Ada_xcb_setup_pixmap_formats_iterator");
+   pragma Import (C, xcb_setup_roots_length, "Ada_xcb_setup_roots_length");
+   pragma Import (C, xcb_setup_roots_iterator, "Ada_xcb_setup_roots_iterator");
+   pragma Import (C, xcb_setup_next, "Ada_xcb_setup_next");
+   pragma Import (C, xcb_setup_end, "Ada_xcb_setup_end");
    pragma Import
-     (C, xcb_client_message_data_next, "xcb_client_message_data_next");
+     (C, xcb_client_message_data_next, "Ada_xcb_client_message_data_next");
    pragma Import
-     (C, xcb_client_message_data_end, "xcb_client_message_data_end");
+     (C, xcb_client_message_data_end, "Ada_xcb_client_message_data_end");
    pragma Import
      (C,
       xcb_create_window_value_list_serialize,
-      "xcb_create_window_value_list_serialize");
+      "Ada_xcb_create_window_value_list_serialize");
    pragma Import
      (C,
       xcb_create_window_value_list_unpack,
-      "xcb_create_window_value_list_unpack");
+      "Ada_xcb_create_window_value_list_unpack");
    pragma Import
      (C,
       xcb_create_window_value_list_sizeof,
-      "xcb_create_window_value_list_sizeof");
-   pragma Import (C, xcb_create_window_sizeof, "xcb_create_window_sizeof");
-   pragma Import (C, xcb_create_window_checked, "xcb_create_window_checked");
-   pragma Import (C, xcb_create_window, "xcb_create_window");
+      "Ada_xcb_create_window_value_list_sizeof");
+   pragma Import (C, xcb_create_window_sizeof, "Ada_xcb_create_window_sizeof");
    pragma Import
-     (C, xcb_create_window_aux_checked, "xcb_create_window_aux_checked");
-   pragma Import (C, xcb_create_window_aux, "xcb_create_window_aux");
+     (C, xcb_create_window_checked, "Ada_xcb_create_window_checked");
+   pragma Import (C, xcb_create_window, "Ada_xcb_create_window");
    pragma Import
-     (C, xcb_create_window_value_list, "xcb_create_window_value_list");
+     (C, xcb_create_window_aux_checked, "Ada_xcb_create_window_aux_checked");
+   pragma Import (C, xcb_create_window_aux, "Ada_xcb_create_window_aux");
+   pragma Import
+     (C, xcb_create_window_value_list, "Ada_xcb_create_window_value_list");
    pragma Import
      (C,
       xcb_change_window_attributes_value_list_serialize,
-      "xcb_change_window_attributes_value_list_serialize");
+      "Ada_xcb_change_window_attributes_value_list_serialize");
    pragma Import
      (C,
       xcb_change_window_attributes_value_list_unpack,
-      "xcb_change_window_attributes_value_list_unpack");
+      "Ada_xcb_change_window_attributes_value_list_unpack");
    pragma Import
      (C,
       xcb_change_window_attributes_value_list_sizeof,
-      "xcb_change_window_attributes_value_list_sizeof");
+      "Ada_xcb_change_window_attributes_value_list_sizeof");
    pragma Import
      (C,
       xcb_change_window_attributes_sizeof,
-      "xcb_change_window_attributes_sizeof");
+      "Ada_xcb_change_window_attributes_sizeof");
    pragma Import
      (C,
       xcb_change_window_attributes_checked,
-      "xcb_change_window_attributes_checked");
+      "Ada_xcb_change_window_attributes_checked");
    pragma Import
-     (C, xcb_change_window_attributes, "xcb_change_window_attributes");
+     (C, xcb_change_window_attributes, "Ada_xcb_change_window_attributes");
    pragma Import
      (C,
       xcb_change_window_attributes_aux_checked,
-      "xcb_change_window_attributes_aux_checked");
+      "Ada_xcb_change_window_attributes_aux_checked");
    pragma Import
-     (C, xcb_change_window_attributes_aux, "xcb_change_window_attributes_aux");
+     (C,
+      xcb_change_window_attributes_aux,
+      "Ada_xcb_change_window_attributes_aux");
    pragma Import
      (C,
       xcb_change_window_attributes_value_list,
-      "xcb_change_window_attributes_value_list");
-   pragma Import (C, xcb_get_window_attributes, "xcb_get_window_attributes");
+      "Ada_xcb_change_window_attributes_value_list");
+   pragma Import
+     (C, xcb_get_window_attributes, "Ada_xcb_get_window_attributes");
    pragma Import
      (C,
       xcb_get_window_attributes_unchecked,
-      "xcb_get_window_attributes_unchecked");
+      "Ada_xcb_get_window_attributes_unchecked");
    pragma Import
-     (C, xcb_get_window_attributes_reply, "xcb_get_window_attributes_reply");
-   pragma Import (C, xcb_destroy_window_checked, "xcb_destroy_window_checked");
-   pragma Import (C, xcb_destroy_window, "xcb_destroy_window");
+     (C,
+      xcb_get_window_attributes_reply,
+      "Ada_xcb_get_window_attributes_reply");
    pragma Import
-     (C, xcb_destroy_subwindows_checked, "xcb_destroy_subwindows_checked");
-   pragma Import (C, xcb_destroy_subwindows, "xcb_destroy_subwindows");
+     (C, xcb_destroy_window_checked, "Ada_xcb_destroy_window_checked");
+   pragma Import (C, xcb_destroy_window, "Ada_xcb_destroy_window");
    pragma Import
-     (C, xcb_change_save_set_checked, "xcb_change_save_set_checked");
-   pragma Import (C, xcb_change_save_set, "xcb_change_save_set");
+     (C, xcb_destroy_subwindows_checked, "Ada_xcb_destroy_subwindows_checked");
+   pragma Import (C, xcb_destroy_subwindows, "Ada_xcb_destroy_subwindows");
    pragma Import
-     (C, xcb_reparent_window_checked, "xcb_reparent_window_checked");
-   pragma Import (C, xcb_reparent_window, "xcb_reparent_window");
-   pragma Import (C, xcb_map_window_checked, "xcb_map_window_checked");
-   pragma Import (C, xcb_map_window, "xcb_map_window");
-   pragma Import (C, xcb_map_subwindows_checked, "xcb_map_subwindows_checked");
-   pragma Import (C, xcb_map_subwindows, "xcb_map_subwindows");
-   pragma Import (C, xcb_unmap_window_checked, "xcb_unmap_window_checked");
-   pragma Import (C, xcb_unmap_window, "xcb_unmap_window");
+     (C, xcb_change_save_set_checked, "Ada_xcb_change_save_set_checked");
+   pragma Import (C, xcb_change_save_set, "Ada_xcb_change_save_set");
    pragma Import
-     (C, xcb_unmap_subwindows_checked, "xcb_unmap_subwindows_checked");
-   pragma Import (C, xcb_unmap_subwindows, "xcb_unmap_subwindows");
+     (C, xcb_reparent_window_checked, "Ada_xcb_reparent_window_checked");
+   pragma Import (C, xcb_reparent_window, "Ada_xcb_reparent_window");
+   pragma Import (C, xcb_map_window_checked, "Ada_xcb_map_window_checked");
+   pragma Import (C, xcb_map_window, "Ada_xcb_map_window");
+   pragma Import
+     (C, xcb_map_subwindows_checked, "Ada_xcb_map_subwindows_checked");
+   pragma Import (C, xcb_map_subwindows, "Ada_xcb_map_subwindows");
+   pragma Import (C, xcb_unmap_window_checked, "Ada_xcb_unmap_window_checked");
+   pragma Import (C, xcb_unmap_window, "Ada_xcb_unmap_window");
+   pragma Import
+     (C, xcb_unmap_subwindows_checked, "Ada_xcb_unmap_subwindows_checked");
+   pragma Import (C, xcb_unmap_subwindows, "Ada_xcb_unmap_subwindows");
    pragma Import
      (C,
       xcb_configure_window_value_list_serialize,
-      "xcb_configure_window_value_list_serialize");
+      "Ada_xcb_configure_window_value_list_serialize");
    pragma Import
      (C,
       xcb_configure_window_value_list_unpack,
-      "xcb_configure_window_value_list_unpack");
+      "Ada_xcb_configure_window_value_list_unpack");
    pragma Import
      (C,
       xcb_configure_window_value_list_sizeof,
-      "xcb_configure_window_value_list_sizeof");
+      "Ada_xcb_configure_window_value_list_sizeof");
    pragma Import
-     (C, xcb_configure_window_sizeof, "xcb_configure_window_sizeof");
+     (C, xcb_configure_window_sizeof, "Ada_xcb_configure_window_sizeof");
    pragma Import
-     (C, xcb_configure_window_checked, "xcb_configure_window_checked");
-   pragma Import (C, xcb_configure_window, "xcb_configure_window");
+     (C, xcb_configure_window_checked, "Ada_xcb_configure_window_checked");
+   pragma Import (C, xcb_configure_window, "Ada_xcb_configure_window");
    pragma Import
-     (C, xcb_configure_window_aux_checked, "xcb_configure_window_aux_checked");
-   pragma Import (C, xcb_configure_window_aux, "xcb_configure_window_aux");
+     (C,
+      xcb_configure_window_aux_checked,
+      "Ada_xcb_configure_window_aux_checked");
+   pragma Import (C, xcb_configure_window_aux, "Ada_xcb_configure_window_aux");
    pragma Import
-     (C, xcb_configure_window_value_list, "xcb_configure_window_value_list");
+     (C,
+      xcb_configure_window_value_list,
+      "Ada_xcb_configure_window_value_list");
    pragma Import
-     (C, xcb_circulate_window_checked, "xcb_circulate_window_checked");
-   pragma Import (C, xcb_circulate_window, "xcb_circulate_window");
-   pragma Import (C, xcb_get_geometry, "xcb_get_geometry");
-   pragma Import (C, xcb_get_geometry_unchecked, "xcb_get_geometry_unchecked");
-   pragma Import (C, xcb_get_geometry_reply, "xcb_get_geometry_reply");
-   pragma Import (C, xcb_query_tree_sizeof, "xcb_query_tree_sizeof");
-   pragma Import (C, xcb_query_tree, "xcb_query_tree");
-   pragma Import (C, xcb_query_tree_unchecked, "xcb_query_tree_unchecked");
-   pragma Import (C, xcb_query_tree_children, "xcb_query_tree_children");
+     (C, xcb_circulate_window_checked, "Ada_xcb_circulate_window_checked");
+   pragma Import (C, xcb_circulate_window, "Ada_xcb_circulate_window");
+   pragma Import (C, xcb_get_geometry, "Ada_xcb_get_geometry");
    pragma Import
-     (C, xcb_query_tree_children_length, "xcb_query_tree_children_length");
+     (C, xcb_get_geometry_unchecked, "Ada_xcb_get_geometry_unchecked");
+   pragma Import (C, xcb_get_geometry_reply, "Ada_xcb_get_geometry_reply");
+   pragma Import (C, xcb_query_tree_sizeof, "Ada_xcb_query_tree_sizeof");
+   pragma Import (C, xcb_query_tree, "Ada_xcb_query_tree");
+   pragma Import (C, xcb_query_tree_unchecked, "Ada_xcb_query_tree_unchecked");
+   pragma Import (C, xcb_query_tree_children, "Ada_xcb_query_tree_children");
    pragma Import
-     (C, xcb_query_tree_children_end, "xcb_query_tree_children_end");
-   pragma Import (C, xcb_query_tree_reply, "xcb_query_tree_reply");
-   pragma Import (C, xcb_intern_atom_sizeof, "xcb_intern_atom_sizeof");
-   pragma Import (C, xcb_intern_atom, "xcb_intern_atom");
-   pragma Import (C, xcb_intern_atom_unchecked, "xcb_intern_atom_unchecked");
-   pragma Import (C, xcb_intern_atom_reply, "xcb_intern_atom_reply");
-   pragma Import (C, xcb_get_atom_name_sizeof, "xcb_get_atom_name_sizeof");
-   pragma Import (C, xcb_get_atom_name, "xcb_get_atom_name");
+     (C, xcb_query_tree_children_length, "Ada_xcb_query_tree_children_length");
    pragma Import
-     (C, xcb_get_atom_name_unchecked, "xcb_get_atom_name_unchecked");
-   pragma Import (C, xcb_get_atom_name_name, "xcb_get_atom_name_name");
+     (C, xcb_query_tree_children_end, "Ada_xcb_query_tree_children_end");
+   pragma Import (C, xcb_query_tree_reply, "Ada_xcb_query_tree_reply");
+   pragma Import (C, xcb_intern_atom_sizeof, "Ada_xcb_intern_atom_sizeof");
+   pragma Import (C, xcb_intern_atom, "Ada_xcb_intern_atom");
    pragma Import
-     (C, xcb_get_atom_name_name_length, "xcb_get_atom_name_name_length");
-   pragma Import (C, xcb_get_atom_name_name_end, "xcb_get_atom_name_name_end");
-   pragma Import (C, xcb_get_atom_name_reply, "xcb_get_atom_name_reply");
-   pragma Import (C, xcb_change_property_sizeof, "xcb_change_property_sizeof");
+     (C, xcb_intern_atom_unchecked, "Ada_xcb_intern_atom_unchecked");
+   pragma Import (C, xcb_intern_atom_reply, "Ada_xcb_intern_atom_reply");
+   pragma Import (C, xcb_get_atom_name_sizeof, "Ada_xcb_get_atom_name_sizeof");
+   pragma Import (C, xcb_get_atom_name, "Ada_xcb_get_atom_name");
    pragma Import
-     (C, xcb_change_property_checked, "xcb_change_property_checked");
-   pragma Import (C, xcb_change_property, "xcb_change_property");
-   pragma Import (C, xcb_change_property_data, "xcb_change_property_data");
+     (C, xcb_get_atom_name_unchecked, "Ada_xcb_get_atom_name_unchecked");
+   pragma Import (C, xcb_get_atom_name_name, "Ada_xcb_get_atom_name_name");
    pragma Import
-     (C, xcb_change_property_data_length, "xcb_change_property_data_length");
+     (C, xcb_get_atom_name_name_length, "Ada_xcb_get_atom_name_name_length");
    pragma Import
-     (C, xcb_change_property_data_end, "xcb_change_property_data_end");
+     (C, xcb_get_atom_name_name_end, "Ada_xcb_get_atom_name_name_end");
+   pragma Import (C, xcb_get_atom_name_reply, "Ada_xcb_get_atom_name_reply");
    pragma Import
-     (C, xcb_delete_property_checked, "xcb_delete_property_checked");
-   pragma Import (C, xcb_delete_property, "xcb_delete_property");
-   pragma Import (C, xcb_get_property_sizeof, "xcb_get_property_sizeof");
-   pragma Import (C, xcb_get_property, "xcb_get_property");
-   pragma Import (C, xcb_get_property_unchecked, "xcb_get_property_unchecked");
-   pragma Import (C, xcb_get_property_value, "xcb_get_property_value");
+     (C, xcb_change_property_sizeof, "Ada_xcb_change_property_sizeof");
    pragma Import
-     (C, xcb_get_property_value_length, "xcb_get_property_value_length");
-   pragma Import (C, xcb_get_property_value_end, "xcb_get_property_value_end");
-   pragma Import (C, xcb_get_property_reply, "xcb_get_property_reply");
-   pragma Import (C, xcb_list_properties_sizeof, "xcb_list_properties_sizeof");
-   pragma Import (C, xcb_list_properties, "xcb_list_properties");
+     (C, xcb_change_property_checked, "Ada_xcb_change_property_checked");
+   pragma Import (C, xcb_change_property, "Ada_xcb_change_property");
+   pragma Import (C, xcb_change_property_data, "Ada_xcb_change_property_data");
    pragma Import
-     (C, xcb_list_properties_unchecked, "xcb_list_properties_unchecked");
-   pragma Import (C, xcb_list_properties_atoms, "xcb_list_properties_atoms");
+     (C,
+      xcb_change_property_data_length,
+      "Ada_xcb_change_property_data_length");
    pragma Import
-     (C, xcb_list_properties_atoms_length, "xcb_list_properties_atoms_length");
+     (C, xcb_change_property_data_end, "Ada_xcb_change_property_data_end");
    pragma Import
-     (C, xcb_list_properties_atoms_end, "xcb_list_properties_atoms_end");
-   pragma Import (C, xcb_list_properties_reply, "xcb_list_properties_reply");
+     (C, xcb_delete_property_checked, "Ada_xcb_delete_property_checked");
+   pragma Import (C, xcb_delete_property, "Ada_xcb_delete_property");
+   pragma Import (C, xcb_get_property_sizeof, "Ada_xcb_get_property_sizeof");
+   pragma Import (C, xcb_get_property, "Ada_xcb_get_property");
    pragma Import
-     (C, xcb_set_selection_owner_checked, "xcb_set_selection_owner_checked");
-   pragma Import (C, xcb_set_selection_owner, "xcb_set_selection_owner");
-   pragma Import (C, xcb_get_selection_owner, "xcb_get_selection_owner");
+     (C, xcb_get_property_unchecked, "Ada_xcb_get_property_unchecked");
+   pragma Import (C, xcb_get_property_value, "Ada_xcb_get_property_value");
+   pragma Import
+     (C, xcb_get_property_value_length, "Ada_xcb_get_property_value_length");
+   pragma Import
+     (C, xcb_get_property_value_end, "Ada_xcb_get_property_value_end");
+   pragma Import (C, xcb_get_property_reply, "Ada_xcb_get_property_reply");
+   pragma Import
+     (C, xcb_list_properties_sizeof, "Ada_xcb_list_properties_sizeof");
+   pragma Import (C, xcb_list_properties, "Ada_xcb_list_properties");
+   pragma Import
+     (C, xcb_list_properties_unchecked, "Ada_xcb_list_properties_unchecked");
+   pragma Import
+     (C, xcb_list_properties_atoms, "Ada_xcb_list_properties_atoms");
+   pragma Import
+     (C,
+      xcb_list_properties_atoms_length,
+      "Ada_xcb_list_properties_atoms_length");
+   pragma Import
+     (C, xcb_list_properties_atoms_end, "Ada_xcb_list_properties_atoms_end");
+   pragma Import
+     (C, xcb_list_properties_reply, "Ada_xcb_list_properties_reply");
+   pragma Import
+     (C,
+      xcb_set_selection_owner_checked,
+      "Ada_xcb_set_selection_owner_checked");
+   pragma Import (C, xcb_set_selection_owner, "Ada_xcb_set_selection_owner");
+   pragma Import (C, xcb_get_selection_owner, "Ada_xcb_get_selection_owner");
    pragma Import
      (C,
       xcb_get_selection_owner_unchecked,
-      "xcb_get_selection_owner_unchecked");
+      "Ada_xcb_get_selection_owner_unchecked");
    pragma Import
-     (C, xcb_get_selection_owner_reply, "xcb_get_selection_owner_reply");
+     (C, xcb_get_selection_owner_reply, "Ada_xcb_get_selection_owner_reply");
    pragma Import
-     (C, xcb_convert_selection_checked, "xcb_convert_selection_checked");
-   pragma Import (C, xcb_convert_selection, "xcb_convert_selection");
-   pragma Import (C, xcb_send_event_checked, "xcb_send_event_checked");
-   pragma Import (C, xcb_send_event, "xcb_send_event");
-   pragma Import (C, xcb_grab_pointer, "xcb_grab_pointer");
-   pragma Import (C, xcb_grab_pointer_unchecked, "xcb_grab_pointer_unchecked");
-   pragma Import (C, xcb_grab_pointer_reply, "xcb_grab_pointer_reply");
-   pragma Import (C, xcb_ungrab_pointer_checked, "xcb_ungrab_pointer_checked");
-   pragma Import (C, xcb_ungrab_pointer, "xcb_ungrab_pointer");
-   pragma Import (C, xcb_grab_button_checked, "xcb_grab_button_checked");
-   pragma Import (C, xcb_grab_button, "xcb_grab_button");
-   pragma Import (C, xcb_ungrab_button_checked, "xcb_ungrab_button_checked");
-   pragma Import (C, xcb_ungrab_button, "xcb_ungrab_button");
+     (C, xcb_convert_selection_checked, "Ada_xcb_convert_selection_checked");
+   pragma Import (C, xcb_convert_selection, "Ada_xcb_convert_selection");
+   pragma Import (C, xcb_send_event_checked, "Ada_xcb_send_event_checked");
+   pragma Import (C, xcb_send_event, "Ada_xcb_send_event");
+   pragma Import (C, xcb_grab_pointer, "Ada_xcb_grab_pointer");
+   pragma Import
+     (C, xcb_grab_pointer_unchecked, "Ada_xcb_grab_pointer_unchecked");
+   pragma Import (C, xcb_grab_pointer_reply, "Ada_xcb_grab_pointer_reply");
+   pragma Import
+     (C, xcb_ungrab_pointer_checked, "Ada_xcb_ungrab_pointer_checked");
+   pragma Import (C, xcb_ungrab_pointer, "Ada_xcb_ungrab_pointer");
+   pragma Import (C, xcb_grab_button_checked, "Ada_xcb_grab_button_checked");
+   pragma Import (C, xcb_grab_button, "Ada_xcb_grab_button");
+   pragma Import
+     (C, xcb_ungrab_button_checked, "Ada_xcb_ungrab_button_checked");
+   pragma Import (C, xcb_ungrab_button, "Ada_xcb_ungrab_button");
    pragma Import
      (C,
       xcb_change_active_pointer_grab_checked,
-      "xcb_change_active_pointer_grab_checked");
+      "Ada_xcb_change_active_pointer_grab_checked");
    pragma Import
-     (C, xcb_change_active_pointer_grab, "xcb_change_active_pointer_grab");
-   pragma Import (C, xcb_grab_keyboard, "xcb_grab_keyboard");
+     (C, xcb_change_active_pointer_grab, "Ada_xcb_change_active_pointer_grab");
+   pragma Import (C, xcb_grab_keyboard, "Ada_xcb_grab_keyboard");
    pragma Import
-     (C, xcb_grab_keyboard_unchecked, "xcb_grab_keyboard_unchecked");
-   pragma Import (C, xcb_grab_keyboard_reply, "xcb_grab_keyboard_reply");
+     (C, xcb_grab_keyboard_unchecked, "Ada_xcb_grab_keyboard_unchecked");
+   pragma Import (C, xcb_grab_keyboard_reply, "Ada_xcb_grab_keyboard_reply");
    pragma Import
-     (C, xcb_ungrab_keyboard_checked, "xcb_ungrab_keyboard_checked");
-   pragma Import (C, xcb_ungrab_keyboard, "xcb_ungrab_keyboard");
-   pragma Import (C, xcb_grab_key_checked, "xcb_grab_key_checked");
-   pragma Import (C, xcb_grab_key, "xcb_grab_key");
-   pragma Import (C, xcb_ungrab_key_checked, "xcb_ungrab_key_checked");
-   pragma Import (C, xcb_ungrab_key, "xcb_ungrab_key");
-   pragma Import (C, xcb_allow_events_checked, "xcb_allow_events_checked");
-   pragma Import (C, xcb_allow_events, "xcb_allow_events");
-   pragma Import (C, xcb_grab_server_checked, "xcb_grab_server_checked");
-   pragma Import (C, xcb_grab_server, "xcb_grab_server");
-   pragma Import (C, xcb_ungrab_server_checked, "xcb_ungrab_server_checked");
-   pragma Import (C, xcb_ungrab_server, "xcb_ungrab_server");
-   pragma Import (C, xcb_query_pointer, "xcb_query_pointer");
+     (C, xcb_ungrab_keyboard_checked, "Ada_xcb_ungrab_keyboard_checked");
+   pragma Import (C, xcb_ungrab_keyboard, "Ada_xcb_ungrab_keyboard");
+   pragma Import (C, xcb_grab_key_checked, "Ada_xcb_grab_key_checked");
+   pragma Import (C, xcb_grab_key, "Ada_xcb_grab_key");
+   pragma Import (C, xcb_ungrab_key_checked, "Ada_xcb_ungrab_key_checked");
+   pragma Import (C, xcb_ungrab_key, "Ada_xcb_ungrab_key");
+   pragma Import (C, xcb_allow_events_checked, "Ada_xcb_allow_events_checked");
+   pragma Import (C, xcb_allow_events, "Ada_xcb_allow_events");
+   pragma Import (C, xcb_grab_server_checked, "Ada_xcb_grab_server_checked");
+   pragma Import (C, xcb_grab_server, "Ada_xcb_grab_server");
    pragma Import
-     (C, xcb_query_pointer_unchecked, "xcb_query_pointer_unchecked");
-   pragma Import (C, xcb_query_pointer_reply, "xcb_query_pointer_reply");
-   pragma Import (C, xcb_timecoord_next, "xcb_timecoord_next");
-   pragma Import (C, xcb_timecoord_end, "xcb_timecoord_end");
+     (C, xcb_ungrab_server_checked, "Ada_xcb_ungrab_server_checked");
+   pragma Import (C, xcb_ungrab_server, "Ada_xcb_ungrab_server");
+   pragma Import (C, xcb_query_pointer, "Ada_xcb_query_pointer");
    pragma Import
-     (C, xcb_get_motion_events_sizeof, "xcb_get_motion_events_sizeof");
-   pragma Import (C, xcb_get_motion_events, "xcb_get_motion_events");
+     (C, xcb_query_pointer_unchecked, "Ada_xcb_query_pointer_unchecked");
+   pragma Import (C, xcb_query_pointer_reply, "Ada_xcb_query_pointer_reply");
+   pragma Import (C, xcb_timecoord_next, "Ada_xcb_timecoord_next");
+   pragma Import (C, xcb_timecoord_end, "Ada_xcb_timecoord_end");
    pragma Import
-     (C, xcb_get_motion_events_unchecked, "xcb_get_motion_events_unchecked");
+     (C, xcb_get_motion_events_sizeof, "Ada_xcb_get_motion_events_sizeof");
+   pragma Import (C, xcb_get_motion_events, "Ada_xcb_get_motion_events");
    pragma Import
-     (C, xcb_get_motion_events_events, "xcb_get_motion_events_events");
+     (C,
+      xcb_get_motion_events_unchecked,
+      "Ada_xcb_get_motion_events_unchecked");
+   pragma Import
+     (C, xcb_get_motion_events_events, "Ada_xcb_get_motion_events_events");
    pragma Import
      (C,
       xcb_get_motion_events_events_length,
-      "xcb_get_motion_events_events_length");
+      "Ada_xcb_get_motion_events_events_length");
    pragma Import
      (C,
       xcb_get_motion_events_events_iterator,
-      "xcb_get_motion_events_events_iterator");
+      "Ada_xcb_get_motion_events_events_iterator");
    pragma Import
-     (C, xcb_get_motion_events_reply, "xcb_get_motion_events_reply");
-   pragma Import (C, xcb_translate_coordinates, "xcb_translate_coordinates");
+     (C, xcb_get_motion_events_reply, "Ada_xcb_get_motion_events_reply");
+   pragma Import
+     (C, xcb_translate_coordinates, "Ada_xcb_translate_coordinates");
    pragma Import
      (C,
       xcb_translate_coordinates_unchecked,
-      "xcb_translate_coordinates_unchecked");
+      "Ada_xcb_translate_coordinates_unchecked");
    pragma Import
-     (C, xcb_translate_coordinates_reply, "xcb_translate_coordinates_reply");
-   pragma Import (C, xcb_warp_pointer_checked, "xcb_warp_pointer_checked");
-   pragma Import (C, xcb_warp_pointer, "xcb_warp_pointer");
+     (C,
+      xcb_translate_coordinates_reply,
+      "Ada_xcb_translate_coordinates_reply");
+   pragma Import (C, xcb_warp_pointer_checked, "Ada_xcb_warp_pointer_checked");
+   pragma Import (C, xcb_warp_pointer, "Ada_xcb_warp_pointer");
    pragma Import
-     (C, xcb_set_input_focus_checked, "xcb_set_input_focus_checked");
-   pragma Import (C, xcb_set_input_focus, "xcb_set_input_focus");
-   pragma Import (C, xcb_get_input_focus, "xcb_get_input_focus");
+     (C, xcb_set_input_focus_checked, "Ada_xcb_set_input_focus_checked");
+   pragma Import (C, xcb_set_input_focus, "Ada_xcb_set_input_focus");
+   pragma Import (C, xcb_get_input_focus, "Ada_xcb_get_input_focus");
    pragma Import
-     (C, xcb_get_input_focus_unchecked, "xcb_get_input_focus_unchecked");
-   pragma Import (C, xcb_get_input_focus_reply, "xcb_get_input_focus_reply");
-   pragma Import (C, xcb_query_keymap, "xcb_query_keymap");
-   pragma Import (C, xcb_query_keymap_unchecked, "xcb_query_keymap_unchecked");
-   pragma Import (C, xcb_query_keymap_reply, "xcb_query_keymap_reply");
-   pragma Import (C, xcb_open_font_sizeof, "xcb_open_font_sizeof");
-   pragma Import (C, xcb_open_font_checked, "xcb_open_font_checked");
-   pragma Import (C, xcb_open_font, "xcb_open_font");
-   pragma Import (C, xcb_open_font_name, "xcb_open_font_name");
-   pragma Import (C, xcb_open_font_name_length, "xcb_open_font_name_length");
-   pragma Import (C, xcb_open_font_name_end, "xcb_open_font_name_end");
-   pragma Import (C, xcb_close_font_checked, "xcb_close_font_checked");
-   pragma Import (C, xcb_close_font, "xcb_close_font");
-   pragma Import (C, xcb_fontprop_next, "xcb_fontprop_next");
-   pragma Import (C, xcb_fontprop_end, "xcb_fontprop_end");
-   pragma Import (C, xcb_charinfo_next, "xcb_charinfo_next");
-   pragma Import (C, xcb_charinfo_end, "xcb_charinfo_end");
-   pragma Import (C, xcb_query_font_sizeof, "xcb_query_font_sizeof");
-   pragma Import (C, xcb_query_font, "xcb_query_font");
-   pragma Import (C, xcb_query_font_unchecked, "xcb_query_font_unchecked");
-   pragma Import (C, xcb_query_font_properties, "xcb_query_font_properties");
+     (C, xcb_get_input_focus_unchecked, "Ada_xcb_get_input_focus_unchecked");
    pragma Import
-     (C, xcb_query_font_properties_length, "xcb_query_font_properties_length");
+     (C, xcb_get_input_focus_reply, "Ada_xcb_get_input_focus_reply");
+   pragma Import (C, xcb_query_keymap, "Ada_xcb_query_keymap");
+   pragma Import
+     (C, xcb_query_keymap_unchecked, "Ada_xcb_query_keymap_unchecked");
+   pragma Import (C, xcb_query_keymap_reply, "Ada_xcb_query_keymap_reply");
+   pragma Import (C, xcb_open_font_sizeof, "Ada_xcb_open_font_sizeof");
+   pragma Import (C, xcb_open_font_checked, "Ada_xcb_open_font_checked");
+   pragma Import (C, xcb_open_font, "Ada_xcb_open_font");
+   pragma Import (C, xcb_open_font_name, "Ada_xcb_open_font_name");
+   pragma Import
+     (C, xcb_open_font_name_length, "Ada_xcb_open_font_name_length");
+   pragma Import (C, xcb_open_font_name_end, "Ada_xcb_open_font_name_end");
+   pragma Import (C, xcb_close_font_checked, "Ada_xcb_close_font_checked");
+   pragma Import (C, xcb_close_font, "Ada_xcb_close_font");
+   pragma Import (C, xcb_fontprop_next, "Ada_xcb_fontprop_next");
+   pragma Import (C, xcb_fontprop_end, "Ada_xcb_fontprop_end");
+   pragma Import (C, xcb_charinfo_next, "Ada_xcb_charinfo_next");
+   pragma Import (C, xcb_charinfo_end, "Ada_xcb_charinfo_end");
+   pragma Import (C, xcb_query_font_sizeof, "Ada_xcb_query_font_sizeof");
+   pragma Import (C, xcb_query_font, "Ada_xcb_query_font");
+   pragma Import (C, xcb_query_font_unchecked, "Ada_xcb_query_font_unchecked");
+   pragma Import
+     (C, xcb_query_font_properties, "Ada_xcb_query_font_properties");
+   pragma Import
+     (C,
+      xcb_query_font_properties_length,
+      "Ada_xcb_query_font_properties_length");
    pragma Import
      (C,
       xcb_query_font_properties_iterator,
-      "xcb_query_font_properties_iterator");
-   pragma Import (C, xcb_query_font_char_infos, "xcb_query_font_char_infos");
+      "Ada_xcb_query_font_properties_iterator");
    pragma Import
-     (C, xcb_query_font_char_infos_length, "xcb_query_font_char_infos_length");
+     (C, xcb_query_font_char_infos, "Ada_xcb_query_font_char_infos");
+   pragma Import
+     (C,
+      xcb_query_font_char_infos_length,
+      "Ada_xcb_query_font_char_infos_length");
    pragma Import
      (C,
       xcb_query_font_char_infos_iterator,
-      "xcb_query_font_char_infos_iterator");
-   pragma Import (C, xcb_query_font_reply, "xcb_query_font_reply");
+      "Ada_xcb_query_font_char_infos_iterator");
+   pragma Import (C, xcb_query_font_reply, "Ada_xcb_query_font_reply");
    pragma Import
-     (C, xcb_query_text_extents_sizeof, "xcb_query_text_extents_sizeof");
-   pragma Import (C, xcb_query_text_extents, "xcb_query_text_extents");
+     (C, xcb_query_text_extents_sizeof, "Ada_xcb_query_text_extents_sizeof");
+   pragma Import (C, xcb_query_text_extents, "Ada_xcb_query_text_extents");
    pragma Import
-     (C, xcb_query_text_extents_unchecked, "xcb_query_text_extents_unchecked");
+     (C,
+      xcb_query_text_extents_unchecked,
+      "Ada_xcb_query_text_extents_unchecked");
    pragma Import
-     (C, xcb_query_text_extents_reply, "xcb_query_text_extents_reply");
-   pragma Import (C, xcb_str_sizeof, "xcb_str_sizeof");
-   pragma Import (C, xcb_str_name, "xcb_str_name");
-   pragma Import (C, xcb_str_name_length, "xcb_str_name_length");
-   pragma Import (C, xcb_str_name_end, "xcb_str_name_end");
-   pragma Import (C, xcb_str_next, "xcb_str_next");
-   pragma Import (C, xcb_str_end, "xcb_str_end");
-   pragma Import (C, xcb_list_fonts_sizeof, "xcb_list_fonts_sizeof");
-   pragma Import (C, xcb_list_fonts, "xcb_list_fonts");
-   pragma Import (C, xcb_list_fonts_unchecked, "xcb_list_fonts_unchecked");
+     (C, xcb_query_text_extents_reply, "Ada_xcb_query_text_extents_reply");
+   pragma Import (C, xcb_str_sizeof, "Ada_xcb_str_sizeof");
+   pragma Import (C, xcb_str_name, "Ada_xcb_str_name");
+   pragma Import (C, xcb_str_name_length, "Ada_xcb_str_name_length");
+   pragma Import (C, xcb_str_name_end, "Ada_xcb_str_name_end");
+   pragma Import (C, xcb_str_next, "Ada_xcb_str_next");
+   pragma Import (C, xcb_str_end, "Ada_xcb_str_end");
+   pragma Import (C, xcb_list_fonts_sizeof, "Ada_xcb_list_fonts_sizeof");
+   pragma Import (C, xcb_list_fonts, "Ada_xcb_list_fonts");
+   pragma Import (C, xcb_list_fonts_unchecked, "Ada_xcb_list_fonts_unchecked");
    pragma Import
-     (C, xcb_list_fonts_names_length, "xcb_list_fonts_names_length");
+     (C, xcb_list_fonts_names_length, "Ada_xcb_list_fonts_names_length");
    pragma Import
-     (C, xcb_list_fonts_names_iterator, "xcb_list_fonts_names_iterator");
-   pragma Import (C, xcb_list_fonts_reply, "xcb_list_fonts_reply");
+     (C, xcb_list_fonts_names_iterator, "Ada_xcb_list_fonts_names_iterator");
+   pragma Import (C, xcb_list_fonts_reply, "Ada_xcb_list_fonts_reply");
    pragma Import
-     (C, xcb_list_fonts_with_info_sizeof, "xcb_list_fonts_with_info_sizeof");
-   pragma Import (C, xcb_list_fonts_with_info, "xcb_list_fonts_with_info");
+     (C,
+      xcb_list_fonts_with_info_sizeof,
+      "Ada_xcb_list_fonts_with_info_sizeof");
+   pragma Import (C, xcb_list_fonts_with_info, "Ada_xcb_list_fonts_with_info");
    pragma Import
      (C,
       xcb_list_fonts_with_info_unchecked,
-      "xcb_list_fonts_with_info_unchecked");
+      "Ada_xcb_list_fonts_with_info_unchecked");
    pragma Import
      (C,
       xcb_list_fonts_with_info_properties,
-      "xcb_list_fonts_with_info_properties");
+      "Ada_xcb_list_fonts_with_info_properties");
    pragma Import
      (C,
       xcb_list_fonts_with_info_properties_length,
-      "xcb_list_fonts_with_info_properties_length");
+      "Ada_xcb_list_fonts_with_info_properties_length");
    pragma Import
      (C,
       xcb_list_fonts_with_info_properties_iterator,
-      "xcb_list_fonts_with_info_properties_iterator");
+      "Ada_xcb_list_fonts_with_info_properties_iterator");
    pragma Import
-     (C, xcb_list_fonts_with_info_name, "xcb_list_fonts_with_info_name");
+     (C, xcb_list_fonts_with_info_name, "Ada_xcb_list_fonts_with_info_name");
    pragma Import
      (C,
       xcb_list_fonts_with_info_name_length,
-      "xcb_list_fonts_with_info_name_length");
+      "Ada_xcb_list_fonts_with_info_name_length");
    pragma Import
      (C,
       xcb_list_fonts_with_info_name_end,
-      "xcb_list_fonts_with_info_name_end");
+      "Ada_xcb_list_fonts_with_info_name_end");
    pragma Import
-     (C, xcb_list_fonts_with_info_reply, "xcb_list_fonts_with_info_reply");
-   pragma Import (C, xcb_set_font_path_sizeof, "xcb_set_font_path_sizeof");
-   pragma Import (C, xcb_set_font_path_checked, "xcb_set_font_path_checked");
-   pragma Import (C, xcb_set_font_path, "xcb_set_font_path");
+     (C, xcb_list_fonts_with_info_reply, "Ada_xcb_list_fonts_with_info_reply");
+   pragma Import (C, xcb_set_font_path_sizeof, "Ada_xcb_set_font_path_sizeof");
    pragma Import
-     (C, xcb_set_font_path_font_length, "xcb_set_font_path_font_length");
+     (C, xcb_set_font_path_checked, "Ada_xcb_set_font_path_checked");
+   pragma Import (C, xcb_set_font_path, "Ada_xcb_set_font_path");
    pragma Import
-     (C, xcb_set_font_path_font_iterator, "xcb_set_font_path_font_iterator");
-   pragma Import (C, xcb_get_font_path_sizeof, "xcb_get_font_path_sizeof");
-   pragma Import (C, xcb_get_font_path, "xcb_get_font_path");
+     (C, xcb_set_font_path_font_length, "Ada_xcb_set_font_path_font_length");
    pragma Import
-     (C, xcb_get_font_path_unchecked, "xcb_get_font_path_unchecked");
+     (C,
+      xcb_set_font_path_font_iterator,
+      "Ada_xcb_set_font_path_font_iterator");
+   pragma Import (C, xcb_get_font_path_sizeof, "Ada_xcb_get_font_path_sizeof");
+   pragma Import (C, xcb_get_font_path, "Ada_xcb_get_font_path");
    pragma Import
-     (C, xcb_get_font_path_path_length, "xcb_get_font_path_path_length");
+     (C, xcb_get_font_path_unchecked, "Ada_xcb_get_font_path_unchecked");
    pragma Import
-     (C, xcb_get_font_path_path_iterator, "xcb_get_font_path_path_iterator");
-   pragma Import (C, xcb_get_font_path_reply, "xcb_get_font_path_reply");
-   pragma Import (C, xcb_create_pixmap_checked, "xcb_create_pixmap_checked");
-   pragma Import (C, xcb_create_pixmap, "xcb_create_pixmap");
-   pragma Import (C, xcb_free_pixmap_checked, "xcb_free_pixmap_checked");
-   pragma Import (C, xcb_free_pixmap, "xcb_free_pixmap");
+     (C, xcb_get_font_path_path_length, "Ada_xcb_get_font_path_path_length");
+   pragma Import
+     (C,
+      xcb_get_font_path_path_iterator,
+      "Ada_xcb_get_font_path_path_iterator");
+   pragma Import (C, xcb_get_font_path_reply, "Ada_xcb_get_font_path_reply");
+   pragma Import
+     (C, xcb_create_pixmap_checked, "Ada_xcb_create_pixmap_checked");
+   pragma Import (C, xcb_create_pixmap, "Ada_xcb_create_pixmap");
+   pragma Import (C, xcb_free_pixmap_checked, "Ada_xcb_free_pixmap_checked");
+   pragma Import (C, xcb_free_pixmap, "Ada_xcb_free_pixmap");
    pragma Import
      (C,
       xcb_create_gc_value_list_serialize,
-      "xcb_create_gc_value_list_serialize");
+      "Ada_xcb_create_gc_value_list_serialize");
    pragma Import
-     (C, xcb_create_gc_value_list_unpack, "xcb_create_gc_value_list_unpack");
+     (C,
+      xcb_create_gc_value_list_unpack,
+      "Ada_xcb_create_gc_value_list_unpack");
    pragma Import
-     (C, xcb_create_gc_value_list_sizeof, "xcb_create_gc_value_list_sizeof");
-   pragma Import (C, xcb_create_gc_sizeof, "xcb_create_gc_sizeof");
-   pragma Import (C, xcb_create_gc_checked, "xcb_create_gc_checked");
-   pragma Import (C, xcb_create_gc, "xcb_create_gc");
-   pragma Import (C, xcb_create_gc_aux_checked, "xcb_create_gc_aux_checked");
-   pragma Import (C, xcb_create_gc_aux, "xcb_create_gc_aux");
-   pragma Import (C, xcb_create_gc_value_list, "xcb_create_gc_value_list");
+     (C,
+      xcb_create_gc_value_list_sizeof,
+      "Ada_xcb_create_gc_value_list_sizeof");
+   pragma Import (C, xcb_create_gc_sizeof, "Ada_xcb_create_gc_sizeof");
+   pragma Import (C, xcb_create_gc_checked, "Ada_xcb_create_gc_checked");
+   pragma Import (C, xcb_create_gc, "Ada_xcb_create_gc");
+   pragma Import
+     (C, xcb_create_gc_aux_checked, "Ada_xcb_create_gc_aux_checked");
+   pragma Import (C, xcb_create_gc_aux, "Ada_xcb_create_gc_aux");
+   pragma Import (C, xcb_create_gc_value_list, "Ada_xcb_create_gc_value_list");
    pragma Import
      (C,
       xcb_change_gc_value_list_serialize,
-      "xcb_change_gc_value_list_serialize");
+      "Ada_xcb_change_gc_value_list_serialize");
    pragma Import
-     (C, xcb_change_gc_value_list_unpack, "xcb_change_gc_value_list_unpack");
+     (C,
+      xcb_change_gc_value_list_unpack,
+      "Ada_xcb_change_gc_value_list_unpack");
    pragma Import
-     (C, xcb_change_gc_value_list_sizeof, "xcb_change_gc_value_list_sizeof");
-   pragma Import (C, xcb_change_gc_sizeof, "xcb_change_gc_sizeof");
-   pragma Import (C, xcb_change_gc_checked, "xcb_change_gc_checked");
-   pragma Import (C, xcb_change_gc, "xcb_change_gc");
-   pragma Import (C, xcb_change_gc_aux_checked, "xcb_change_gc_aux_checked");
-   pragma Import (C, xcb_change_gc_aux, "xcb_change_gc_aux");
-   pragma Import (C, xcb_change_gc_value_list, "xcb_change_gc_value_list");
-   pragma Import (C, xcb_copy_gc_checked, "xcb_copy_gc_checked");
-   pragma Import (C, xcb_copy_gc, "xcb_copy_gc");
-   pragma Import (C, xcb_set_dashes_sizeof, "xcb_set_dashes_sizeof");
-   pragma Import (C, xcb_set_dashes_checked, "xcb_set_dashes_checked");
-   pragma Import (C, xcb_set_dashes, "xcb_set_dashes");
-   pragma Import (C, xcb_set_dashes_dashes, "xcb_set_dashes_dashes");
+     (C,
+      xcb_change_gc_value_list_sizeof,
+      "Ada_xcb_change_gc_value_list_sizeof");
+   pragma Import (C, xcb_change_gc_sizeof, "Ada_xcb_change_gc_sizeof");
+   pragma Import (C, xcb_change_gc_checked, "Ada_xcb_change_gc_checked");
+   pragma Import (C, xcb_change_gc, "Ada_xcb_change_gc");
    pragma Import
-     (C, xcb_set_dashes_dashes_length, "xcb_set_dashes_dashes_length");
-   pragma Import (C, xcb_set_dashes_dashes_end, "xcb_set_dashes_dashes_end");
+     (C, xcb_change_gc_aux_checked, "Ada_xcb_change_gc_aux_checked");
+   pragma Import (C, xcb_change_gc_aux, "Ada_xcb_change_gc_aux");
+   pragma Import (C, xcb_change_gc_value_list, "Ada_xcb_change_gc_value_list");
+   pragma Import (C, xcb_copy_gc_checked, "Ada_xcb_copy_gc_checked");
+   pragma Import (C, xcb_copy_gc, "Ada_xcb_copy_gc");
+   pragma Import (C, xcb_set_dashes_sizeof, "Ada_xcb_set_dashes_sizeof");
+   pragma Import (C, xcb_set_dashes_checked, "Ada_xcb_set_dashes_checked");
+   pragma Import (C, xcb_set_dashes, "Ada_xcb_set_dashes");
+   pragma Import (C, xcb_set_dashes_dashes, "Ada_xcb_set_dashes_dashes");
    pragma Import
-     (C, xcb_set_clip_rectangles_sizeof, "xcb_set_clip_rectangles_sizeof");
+     (C, xcb_set_dashes_dashes_length, "Ada_xcb_set_dashes_dashes_length");
    pragma Import
-     (C, xcb_set_clip_rectangles_checked, "xcb_set_clip_rectangles_checked");
-   pragma Import (C, xcb_set_clip_rectangles, "xcb_set_clip_rectangles");
+     (C, xcb_set_dashes_dashes_end, "Ada_xcb_set_dashes_dashes_end");
+   pragma Import
+     (C, xcb_set_clip_rectangles_sizeof, "Ada_xcb_set_clip_rectangles_sizeof");
+   pragma Import
+     (C,
+      xcb_set_clip_rectangles_checked,
+      "Ada_xcb_set_clip_rectangles_checked");
+   pragma Import (C, xcb_set_clip_rectangles, "Ada_xcb_set_clip_rectangles");
    pragma Import
      (C,
       xcb_set_clip_rectangles_rectangles,
-      "xcb_set_clip_rectangles_rectangles");
+      "Ada_xcb_set_clip_rectangles_rectangles");
    pragma Import
      (C,
       xcb_set_clip_rectangles_rectangles_length,
-      "xcb_set_clip_rectangles_rectangles_length");
+      "Ada_xcb_set_clip_rectangles_rectangles_length");
    pragma Import
      (C,
       xcb_set_clip_rectangles_rectangles_iterator,
-      "xcb_set_clip_rectangles_rectangles_iterator");
-   pragma Import (C, xcb_free_gc_checked, "xcb_free_gc_checked");
-   pragma Import (C, xcb_free_gc, "xcb_free_gc");
-   pragma Import (C, xcb_clear_area_checked, "xcb_clear_area_checked");
-   pragma Import (C, xcb_clear_area, "xcb_clear_area");
-   pragma Import (C, xcb_copy_area_checked, "xcb_copy_area_checked");
-   pragma Import (C, xcb_copy_area, "xcb_copy_area");
-   pragma Import (C, xcb_copy_plane_checked, "xcb_copy_plane_checked");
-   pragma Import (C, xcb_copy_plane, "xcb_copy_plane");
-   pragma Import (C, xcb_poly_point_sizeof, "xcb_poly_point_sizeof");
-   pragma Import (C, xcb_poly_point_checked, "xcb_poly_point_checked");
-   pragma Import (C, xcb_poly_point, "xcb_poly_point");
-   pragma Import (C, xcb_poly_point_points, "xcb_poly_point_points");
+      "Ada_xcb_set_clip_rectangles_rectangles_iterator");
+   pragma Import (C, xcb_free_gc_checked, "Ada_xcb_free_gc_checked");
+   pragma Import (C, xcb_free_gc, "Ada_xcb_free_gc");
+   pragma Import (C, xcb_clear_area_checked, "Ada_xcb_clear_area_checked");
+   pragma Import (C, xcb_clear_area, "Ada_xcb_clear_area");
+   pragma Import (C, xcb_copy_area_checked, "Ada_xcb_copy_area_checked");
+   pragma Import (C, xcb_copy_area, "Ada_xcb_copy_area");
+   pragma Import (C, xcb_copy_plane_checked, "Ada_xcb_copy_plane_checked");
+   pragma Import (C, xcb_copy_plane, "Ada_xcb_copy_plane");
+   pragma Import (C, xcb_poly_point_sizeof, "Ada_xcb_poly_point_sizeof");
+   pragma Import (C, xcb_poly_point_checked, "Ada_xcb_poly_point_checked");
+   pragma Import (C, xcb_poly_point, "Ada_xcb_poly_point");
+   pragma Import (C, xcb_poly_point_points, "Ada_xcb_poly_point_points");
    pragma Import
-     (C, xcb_poly_point_points_length, "xcb_poly_point_points_length");
+     (C, xcb_poly_point_points_length, "Ada_xcb_poly_point_points_length");
    pragma Import
-     (C, xcb_poly_point_points_iterator, "xcb_poly_point_points_iterator");
-   pragma Import (C, xcb_poly_line_sizeof, "xcb_poly_line_sizeof");
-   pragma Import (C, xcb_poly_line_checked, "xcb_poly_line_checked");
-   pragma Import (C, xcb_poly_line, "xcb_poly_line");
-   pragma Import (C, xcb_poly_line_points, "xcb_poly_line_points");
+     (C, xcb_poly_point_points_iterator, "Ada_xcb_poly_point_points_iterator");
+   pragma Import (C, xcb_poly_line_sizeof, "Ada_xcb_poly_line_sizeof");
+   pragma Import (C, xcb_poly_line_checked, "Ada_xcb_poly_line_checked");
+   pragma Import (C, xcb_poly_line, "Ada_xcb_poly_line");
+   pragma Import (C, xcb_poly_line_points, "Ada_xcb_poly_line_points");
    pragma Import
-     (C, xcb_poly_line_points_length, "xcb_poly_line_points_length");
+     (C, xcb_poly_line_points_length, "Ada_xcb_poly_line_points_length");
    pragma Import
-     (C, xcb_poly_line_points_iterator, "xcb_poly_line_points_iterator");
-   pragma Import (C, xcb_segment_next, "xcb_segment_next");
-   pragma Import (C, xcb_segment_end, "xcb_segment_end");
-   pragma Import (C, xcb_poly_segment_sizeof, "xcb_poly_segment_sizeof");
-   pragma Import (C, xcb_poly_segment_checked, "xcb_poly_segment_checked");
-   pragma Import (C, xcb_poly_segment, "xcb_poly_segment");
-   pragma Import (C, xcb_poly_segment_segments, "xcb_poly_segment_segments");
+     (C, xcb_poly_line_points_iterator, "Ada_xcb_poly_line_points_iterator");
+   pragma Import (C, xcb_segment_next, "Ada_xcb_segment_next");
+   pragma Import (C, xcb_segment_end, "Ada_xcb_segment_end");
+   pragma Import (C, xcb_poly_segment_sizeof, "Ada_xcb_poly_segment_sizeof");
+   pragma Import (C, xcb_poly_segment_checked, "Ada_xcb_poly_segment_checked");
+   pragma Import (C, xcb_poly_segment, "Ada_xcb_poly_segment");
    pragma Import
-     (C, xcb_poly_segment_segments_length, "xcb_poly_segment_segments_length");
+     (C, xcb_poly_segment_segments, "Ada_xcb_poly_segment_segments");
+   pragma Import
+     (C,
+      xcb_poly_segment_segments_length,
+      "Ada_xcb_poly_segment_segments_length");
    pragma Import
      (C,
       xcb_poly_segment_segments_iterator,
-      "xcb_poly_segment_segments_iterator");
-   pragma Import (C, xcb_poly_rectangle_sizeof, "xcb_poly_rectangle_sizeof");
-   pragma Import (C, xcb_poly_rectangle_checked, "xcb_poly_rectangle_checked");
-   pragma Import (C, xcb_poly_rectangle, "xcb_poly_rectangle");
+      "Ada_xcb_poly_segment_segments_iterator");
    pragma Import
-     (C, xcb_poly_rectangle_rectangles, "xcb_poly_rectangle_rectangles");
+     (C, xcb_poly_rectangle_sizeof, "Ada_xcb_poly_rectangle_sizeof");
+   pragma Import
+     (C, xcb_poly_rectangle_checked, "Ada_xcb_poly_rectangle_checked");
+   pragma Import (C, xcb_poly_rectangle, "Ada_xcb_poly_rectangle");
+   pragma Import
+     (C, xcb_poly_rectangle_rectangles, "Ada_xcb_poly_rectangle_rectangles");
    pragma Import
      (C,
       xcb_poly_rectangle_rectangles_length,
-      "xcb_poly_rectangle_rectangles_length");
+      "Ada_xcb_poly_rectangle_rectangles_length");
    pragma Import
      (C,
       xcb_poly_rectangle_rectangles_iterator,
-      "xcb_poly_rectangle_rectangles_iterator");
-   pragma Import (C, xcb_poly_arc_sizeof, "xcb_poly_arc_sizeof");
-   pragma Import (C, xcb_poly_arc_checked, "xcb_poly_arc_checked");
-   pragma Import (C, xcb_poly_arc, "xcb_poly_arc");
-   pragma Import (C, xcb_poly_arc_arcs, "xcb_poly_arc_arcs");
-   pragma Import (C, xcb_poly_arc_arcs_length, "xcb_poly_arc_arcs_length");
-   pragma Import (C, xcb_poly_arc_arcs_iterator, "xcb_poly_arc_arcs_iterator");
-   pragma Import (C, xcb_fill_poly_sizeof, "xcb_fill_poly_sizeof");
-   pragma Import (C, xcb_fill_poly_checked, "xcb_fill_poly_checked");
-   pragma Import (C, xcb_fill_poly, "xcb_fill_poly");
-   pragma Import (C, xcb_fill_poly_points, "xcb_fill_poly_points");
+      "Ada_xcb_poly_rectangle_rectangles_iterator");
+   pragma Import (C, xcb_poly_arc_sizeof, "Ada_xcb_poly_arc_sizeof");
+   pragma Import (C, xcb_poly_arc_checked, "Ada_xcb_poly_arc_checked");
+   pragma Import (C, xcb_poly_arc, "Ada_xcb_poly_arc");
+   pragma Import (C, xcb_poly_arc_arcs, "Ada_xcb_poly_arc_arcs");
+   pragma Import (C, xcb_poly_arc_arcs_length, "Ada_xcb_poly_arc_arcs_length");
    pragma Import
-     (C, xcb_fill_poly_points_length, "xcb_fill_poly_points_length");
+     (C, xcb_poly_arc_arcs_iterator, "Ada_xcb_poly_arc_arcs_iterator");
+   pragma Import (C, xcb_fill_poly_sizeof, "Ada_xcb_fill_poly_sizeof");
+   pragma Import (C, xcb_fill_poly_checked, "Ada_xcb_fill_poly_checked");
+   pragma Import (C, xcb_fill_poly, "Ada_xcb_fill_poly");
+   pragma Import (C, xcb_fill_poly_points, "Ada_xcb_fill_poly_points");
    pragma Import
-     (C, xcb_fill_poly_points_iterator, "xcb_fill_poly_points_iterator");
+     (C, xcb_fill_poly_points_length, "Ada_xcb_fill_poly_points_length");
    pragma Import
-     (C, xcb_poly_fill_rectangle_sizeof, "xcb_poly_fill_rectangle_sizeof");
+     (C, xcb_fill_poly_points_iterator, "Ada_xcb_fill_poly_points_iterator");
    pragma Import
-     (C, xcb_poly_fill_rectangle_checked, "xcb_poly_fill_rectangle_checked");
-   pragma Import (C, xcb_poly_fill_rectangle, "xcb_poly_fill_rectangle");
+     (C, xcb_poly_fill_rectangle_sizeof, "Ada_xcb_poly_fill_rectangle_sizeof");
+   pragma Import
+     (C,
+      xcb_poly_fill_rectangle_checked,
+      "Ada_xcb_poly_fill_rectangle_checked");
+   pragma Import (C, xcb_poly_fill_rectangle, "Ada_xcb_poly_fill_rectangle");
    pragma Import
      (C,
       xcb_poly_fill_rectangle_rectangles,
-      "xcb_poly_fill_rectangle_rectangles");
+      "Ada_xcb_poly_fill_rectangle_rectangles");
    pragma Import
      (C,
       xcb_poly_fill_rectangle_rectangles_length,
-      "xcb_poly_fill_rectangle_rectangles_length");
+      "Ada_xcb_poly_fill_rectangle_rectangles_length");
    pragma Import
      (C,
       xcb_poly_fill_rectangle_rectangles_iterator,
-      "xcb_poly_fill_rectangle_rectangles_iterator");
-   pragma Import (C, xcb_poly_fill_arc_sizeof, "xcb_poly_fill_arc_sizeof");
-   pragma Import (C, xcb_poly_fill_arc_checked, "xcb_poly_fill_arc_checked");
-   pragma Import (C, xcb_poly_fill_arc, "xcb_poly_fill_arc");
-   pragma Import (C, xcb_poly_fill_arc_arcs, "xcb_poly_fill_arc_arcs");
+      "Ada_xcb_poly_fill_rectangle_rectangles_iterator");
+   pragma Import (C, xcb_poly_fill_arc_sizeof, "Ada_xcb_poly_fill_arc_sizeof");
    pragma Import
-     (C, xcb_poly_fill_arc_arcs_length, "xcb_poly_fill_arc_arcs_length");
+     (C, xcb_poly_fill_arc_checked, "Ada_xcb_poly_fill_arc_checked");
+   pragma Import (C, xcb_poly_fill_arc, "Ada_xcb_poly_fill_arc");
+   pragma Import (C, xcb_poly_fill_arc_arcs, "Ada_xcb_poly_fill_arc_arcs");
    pragma Import
-     (C, xcb_poly_fill_arc_arcs_iterator, "xcb_poly_fill_arc_arcs_iterator");
-   pragma Import (C, xcb_put_image_sizeof, "xcb_put_image_sizeof");
-   pragma Import (C, xcb_put_image_checked, "xcb_put_image_checked");
-   pragma Import (C, xcb_put_image, "xcb_put_image");
-   pragma Import (C, xcb_put_image_data, "xcb_put_image_data");
-   pragma Import (C, xcb_put_image_data_length, "xcb_put_image_data_length");
-   pragma Import (C, xcb_put_image_data_end, "xcb_put_image_data_end");
-   pragma Import (C, xcb_get_image_sizeof, "xcb_get_image_sizeof");
-   pragma Import (C, xcb_get_image, "xcb_get_image");
-   pragma Import (C, xcb_get_image_unchecked, "xcb_get_image_unchecked");
-   pragma Import (C, xcb_get_image_data, "xcb_get_image_data");
-   pragma Import (C, xcb_get_image_data_length, "xcb_get_image_data_length");
-   pragma Import (C, xcb_get_image_data_end, "xcb_get_image_data_end");
-   pragma Import (C, xcb_get_image_reply, "xcb_get_image_reply");
-   pragma Import (C, xcb_poly_text_8_sizeof, "xcb_poly_text_8_sizeof");
-   pragma Import (C, xcb_poly_text_8_checked, "xcb_poly_text_8_checked");
-   pragma Import (C, xcb_poly_text_8, "xcb_poly_text_8");
-   pragma Import (C, xcb_poly_text_8_items, "xcb_poly_text_8_items");
+     (C, xcb_poly_fill_arc_arcs_length, "Ada_xcb_poly_fill_arc_arcs_length");
    pragma Import
-     (C, xcb_poly_text_8_items_length, "xcb_poly_text_8_items_length");
-   pragma Import (C, xcb_poly_text_8_items_end, "xcb_poly_text_8_items_end");
-   pragma Import (C, xcb_poly_text_16_sizeof, "xcb_poly_text_16_sizeof");
-   pragma Import (C, xcb_poly_text_16_checked, "xcb_poly_text_16_checked");
-   pragma Import (C, xcb_poly_text_16, "xcb_poly_text_16");
-   pragma Import (C, xcb_poly_text_16_items, "xcb_poly_text_16_items");
+     (C,
+      xcb_poly_fill_arc_arcs_iterator,
+      "Ada_xcb_poly_fill_arc_arcs_iterator");
+   pragma Import (C, xcb_put_image_sizeof, "Ada_xcb_put_image_sizeof");
+   pragma Import (C, xcb_put_image_checked, "Ada_xcb_put_image_checked");
+   pragma Import (C, xcb_put_image, "Ada_xcb_put_image");
+   pragma Import (C, xcb_put_image_data, "Ada_xcb_put_image_data");
    pragma Import
-     (C, xcb_poly_text_16_items_length, "xcb_poly_text_16_items_length");
-   pragma Import (C, xcb_poly_text_16_items_end, "xcb_poly_text_16_items_end");
-   pragma Import (C, xcb_image_text_8_sizeof, "xcb_image_text_8_sizeof");
-   pragma Import (C, xcb_image_text_8_checked, "xcb_image_text_8_checked");
-   pragma Import (C, xcb_image_text_8, "xcb_image_text_8");
-   pragma Import (C, xcb_image_text_8_string, "xcb_image_text_8_string");
+     (C, xcb_put_image_data_length, "Ada_xcb_put_image_data_length");
+   pragma Import (C, xcb_put_image_data_end, "Ada_xcb_put_image_data_end");
+   pragma Import (C, xcb_get_image_sizeof, "Ada_xcb_get_image_sizeof");
+   pragma Import (C, xcb_get_image, "Ada_xcb_get_image");
+   pragma Import (C, xcb_get_image_unchecked, "Ada_xcb_get_image_unchecked");
+   pragma Import (C, xcb_get_image_data, "Ada_xcb_get_image_data");
    pragma Import
-     (C, xcb_image_text_8_string_length, "xcb_image_text_8_string_length");
+     (C, xcb_get_image_data_length, "Ada_xcb_get_image_data_length");
+   pragma Import (C, xcb_get_image_data_end, "Ada_xcb_get_image_data_end");
+   pragma Import (C, xcb_get_image_reply, "Ada_xcb_get_image_reply");
+   pragma Import (C, xcb_poly_text_8_sizeof, "Ada_xcb_poly_text_8_sizeof");
+   pragma Import (C, xcb_poly_text_8_checked, "Ada_xcb_poly_text_8_checked");
+   pragma Import (C, xcb_poly_text_8, "Ada_xcb_poly_text_8");
+   pragma Import (C, xcb_poly_text_8_items, "Ada_xcb_poly_text_8_items");
    pragma Import
-     (C, xcb_image_text_8_string_end, "xcb_image_text_8_string_end");
-   pragma Import (C, xcb_image_text_16_sizeof, "xcb_image_text_16_sizeof");
-   pragma Import (C, xcb_image_text_16_checked, "xcb_image_text_16_checked");
-   pragma Import (C, xcb_image_text_16, "xcb_image_text_16");
-   pragma Import (C, xcb_image_text_16_string, "xcb_image_text_16_string");
+     (C, xcb_poly_text_8_items_length, "Ada_xcb_poly_text_8_items_length");
    pragma Import
-     (C, xcb_image_text_16_string_length, "xcb_image_text_16_string_length");
+     (C, xcb_poly_text_8_items_end, "Ada_xcb_poly_text_8_items_end");
+   pragma Import (C, xcb_poly_text_16_sizeof, "Ada_xcb_poly_text_16_sizeof");
+   pragma Import (C, xcb_poly_text_16_checked, "Ada_xcb_poly_text_16_checked");
+   pragma Import (C, xcb_poly_text_16, "Ada_xcb_poly_text_16");
+   pragma Import (C, xcb_poly_text_16_items, "Ada_xcb_poly_text_16_items");
+   pragma Import
+     (C, xcb_poly_text_16_items_length, "Ada_xcb_poly_text_16_items_length");
+   pragma Import
+     (C, xcb_poly_text_16_items_end, "Ada_xcb_poly_text_16_items_end");
+   pragma Import (C, xcb_image_text_8_sizeof, "Ada_xcb_image_text_8_sizeof");
+   pragma Import (C, xcb_image_text_8_checked, "Ada_xcb_image_text_8_checked");
+   pragma Import (C, xcb_image_text_8, "Ada_xcb_image_text_8");
+   pragma Import (C, xcb_image_text_8_string, "Ada_xcb_image_text_8_string");
+   pragma Import
+     (C, xcb_image_text_8_string_length, "Ada_xcb_image_text_8_string_length");
+   pragma Import
+     (C, xcb_image_text_8_string_end, "Ada_xcb_image_text_8_string_end");
+   pragma Import (C, xcb_image_text_16_sizeof, "Ada_xcb_image_text_16_sizeof");
+   pragma Import
+     (C, xcb_image_text_16_checked, "Ada_xcb_image_text_16_checked");
+   pragma Import (C, xcb_image_text_16, "Ada_xcb_image_text_16");
+   pragma Import (C, xcb_image_text_16_string, "Ada_xcb_image_text_16_string");
+   pragma Import
+     (C,
+      xcb_image_text_16_string_length,
+      "Ada_xcb_image_text_16_string_length");
    pragma Import
      (C,
       xcb_image_text_16_string_iterator,
-      "xcb_image_text_16_string_iterator");
+      "Ada_xcb_image_text_16_string_iterator");
    pragma Import
-     (C, xcb_create_colormap_checked, "xcb_create_colormap_checked");
-   pragma Import (C, xcb_create_colormap, "xcb_create_colormap");
-   pragma Import (C, xcb_free_colormap_checked, "xcb_free_colormap_checked");
-   pragma Import (C, xcb_free_colormap, "xcb_free_colormap");
+     (C, xcb_create_colormap_checked, "Ada_xcb_create_colormap_checked");
+   pragma Import (C, xcb_create_colormap, "Ada_xcb_create_colormap");
+   pragma Import
+     (C, xcb_free_colormap_checked, "Ada_xcb_free_colormap_checked");
+   pragma Import (C, xcb_free_colormap, "Ada_xcb_free_colormap");
    pragma Import
      (C,
       xcb_copy_colormap_and_free_checked,
-      "xcb_copy_colormap_and_free_checked");
-   pragma Import (C, xcb_copy_colormap_and_free, "xcb_copy_colormap_and_free");
+      "Ada_xcb_copy_colormap_and_free_checked");
    pragma Import
-     (C, xcb_install_colormap_checked, "xcb_install_colormap_checked");
-   pragma Import (C, xcb_install_colormap, "xcb_install_colormap");
+     (C, xcb_copy_colormap_and_free, "Ada_xcb_copy_colormap_and_free");
    pragma Import
-     (C, xcb_uninstall_colormap_checked, "xcb_uninstall_colormap_checked");
-   pragma Import (C, xcb_uninstall_colormap, "xcb_uninstall_colormap");
+     (C, xcb_install_colormap_checked, "Ada_xcb_install_colormap_checked");
+   pragma Import (C, xcb_install_colormap, "Ada_xcb_install_colormap");
+   pragma Import
+     (C, xcb_uninstall_colormap_checked, "Ada_xcb_uninstall_colormap_checked");
+   pragma Import (C, xcb_uninstall_colormap, "Ada_xcb_uninstall_colormap");
    pragma Import
      (C,
       xcb_list_installed_colormaps_sizeof,
-      "xcb_list_installed_colormaps_sizeof");
+      "Ada_xcb_list_installed_colormaps_sizeof");
    pragma Import
-     (C, xcb_list_installed_colormaps, "xcb_list_installed_colormaps");
+     (C, xcb_list_installed_colormaps, "Ada_xcb_list_installed_colormaps");
    pragma Import
      (C,
       xcb_list_installed_colormaps_unchecked,
-      "xcb_list_installed_colormaps_unchecked");
+      "Ada_xcb_list_installed_colormaps_unchecked");
    pragma Import
      (C,
       xcb_list_installed_colormaps_cmaps,
-      "xcb_list_installed_colormaps_cmaps");
+      "Ada_xcb_list_installed_colormaps_cmaps");
    pragma Import
      (C,
       xcb_list_installed_colormaps_cmaps_length,
-      "xcb_list_installed_colormaps_cmaps_length");
+      "Ada_xcb_list_installed_colormaps_cmaps_length");
    pragma Import
      (C,
       xcb_list_installed_colormaps_cmaps_end,
-      "xcb_list_installed_colormaps_cmaps_end");
+      "Ada_xcb_list_installed_colormaps_cmaps_end");
    pragma Import
      (C,
       xcb_list_installed_colormaps_reply,
-      "xcb_list_installed_colormaps_reply");
-   pragma Import (C, xcb_alloc_color, "xcb_alloc_color");
-   pragma Import (C, xcb_alloc_color_unchecked, "xcb_alloc_color_unchecked");
-   pragma Import (C, xcb_alloc_color_reply, "xcb_alloc_color_reply");
+      "Ada_xcb_list_installed_colormaps_reply");
+   pragma Import (C, xcb_alloc_color, "Ada_xcb_alloc_color");
    pragma Import
-     (C, xcb_alloc_named_color_sizeof, "xcb_alloc_named_color_sizeof");
-   pragma Import (C, xcb_alloc_named_color, "xcb_alloc_named_color");
+     (C, xcb_alloc_color_unchecked, "Ada_xcb_alloc_color_unchecked");
+   pragma Import (C, xcb_alloc_color_reply, "Ada_xcb_alloc_color_reply");
    pragma Import
-     (C, xcb_alloc_named_color_unchecked, "xcb_alloc_named_color_unchecked");
+     (C, xcb_alloc_named_color_sizeof, "Ada_xcb_alloc_named_color_sizeof");
+   pragma Import (C, xcb_alloc_named_color, "Ada_xcb_alloc_named_color");
    pragma Import
-     (C, xcb_alloc_named_color_reply, "xcb_alloc_named_color_reply");
+     (C,
+      xcb_alloc_named_color_unchecked,
+      "Ada_xcb_alloc_named_color_unchecked");
    pragma Import
-     (C, xcb_alloc_color_cells_sizeof, "xcb_alloc_color_cells_sizeof");
-   pragma Import (C, xcb_alloc_color_cells, "xcb_alloc_color_cells");
+     (C, xcb_alloc_named_color_reply, "Ada_xcb_alloc_named_color_reply");
    pragma Import
-     (C, xcb_alloc_color_cells_unchecked, "xcb_alloc_color_cells_unchecked");
+     (C, xcb_alloc_color_cells_sizeof, "Ada_xcb_alloc_color_cells_sizeof");
+   pragma Import (C, xcb_alloc_color_cells, "Ada_xcb_alloc_color_cells");
    pragma Import
-     (C, xcb_alloc_color_cells_pixels, "xcb_alloc_color_cells_pixels");
+     (C,
+      xcb_alloc_color_cells_unchecked,
+      "Ada_xcb_alloc_color_cells_unchecked");
+   pragma Import
+     (C, xcb_alloc_color_cells_pixels, "Ada_xcb_alloc_color_cells_pixels");
    pragma Import
      (C,
       xcb_alloc_color_cells_pixels_length,
-      "xcb_alloc_color_cells_pixels_length");
+      "Ada_xcb_alloc_color_cells_pixels_length");
    pragma Import
-     (C, xcb_alloc_color_cells_pixels_end, "xcb_alloc_color_cells_pixels_end");
+     (C,
+      xcb_alloc_color_cells_pixels_end,
+      "Ada_xcb_alloc_color_cells_pixels_end");
    pragma Import
-     (C, xcb_alloc_color_cells_masks, "xcb_alloc_color_cells_masks");
+     (C, xcb_alloc_color_cells_masks, "Ada_xcb_alloc_color_cells_masks");
    pragma Import
      (C,
       xcb_alloc_color_cells_masks_length,
-      "xcb_alloc_color_cells_masks_length");
+      "Ada_xcb_alloc_color_cells_masks_length");
    pragma Import
-     (C, xcb_alloc_color_cells_masks_end, "xcb_alloc_color_cells_masks_end");
+     (C,
+      xcb_alloc_color_cells_masks_end,
+      "Ada_xcb_alloc_color_cells_masks_end");
    pragma Import
-     (C, xcb_alloc_color_cells_reply, "xcb_alloc_color_cells_reply");
+     (C, xcb_alloc_color_cells_reply, "Ada_xcb_alloc_color_cells_reply");
    pragma Import
-     (C, xcb_alloc_color_planes_sizeof, "xcb_alloc_color_planes_sizeof");
-   pragma Import (C, xcb_alloc_color_planes, "xcb_alloc_color_planes");
+     (C, xcb_alloc_color_planes_sizeof, "Ada_xcb_alloc_color_planes_sizeof");
+   pragma Import (C, xcb_alloc_color_planes, "Ada_xcb_alloc_color_planes");
    pragma Import
-     (C, xcb_alloc_color_planes_unchecked, "xcb_alloc_color_planes_unchecked");
+     (C,
+      xcb_alloc_color_planes_unchecked,
+      "Ada_xcb_alloc_color_planes_unchecked");
    pragma Import
-     (C, xcb_alloc_color_planes_pixels, "xcb_alloc_color_planes_pixels");
+     (C, xcb_alloc_color_planes_pixels, "Ada_xcb_alloc_color_planes_pixels");
    pragma Import
      (C,
       xcb_alloc_color_planes_pixels_length,
-      "xcb_alloc_color_planes_pixels_length");
+      "Ada_xcb_alloc_color_planes_pixels_length");
    pragma Import
      (C,
       xcb_alloc_color_planes_pixels_end,
-      "xcb_alloc_color_planes_pixels_end");
+      "Ada_xcb_alloc_color_planes_pixels_end");
    pragma Import
-     (C, xcb_alloc_color_planes_reply, "xcb_alloc_color_planes_reply");
-   pragma Import (C, xcb_free_colors_sizeof, "xcb_free_colors_sizeof");
-   pragma Import (C, xcb_free_colors_checked, "xcb_free_colors_checked");
-   pragma Import (C, xcb_free_colors, "xcb_free_colors");
-   pragma Import (C, xcb_free_colors_pixels, "xcb_free_colors_pixels");
+     (C, xcb_alloc_color_planes_reply, "Ada_xcb_alloc_color_planes_reply");
+   pragma Import (C, xcb_free_colors_sizeof, "Ada_xcb_free_colors_sizeof");
+   pragma Import (C, xcb_free_colors_checked, "Ada_xcb_free_colors_checked");
+   pragma Import (C, xcb_free_colors, "Ada_xcb_free_colors");
+   pragma Import (C, xcb_free_colors_pixels, "Ada_xcb_free_colors_pixels");
    pragma Import
-     (C, xcb_free_colors_pixels_length, "xcb_free_colors_pixels_length");
-   pragma Import (C, xcb_free_colors_pixels_end, "xcb_free_colors_pixels_end");
-   pragma Import (C, xcb_coloritem_next, "xcb_coloritem_next");
-   pragma Import (C, xcb_coloritem_end, "xcb_coloritem_end");
-   pragma Import (C, xcb_store_colors_sizeof, "xcb_store_colors_sizeof");
-   pragma Import (C, xcb_store_colors_checked, "xcb_store_colors_checked");
-   pragma Import (C, xcb_store_colors, "xcb_store_colors");
-   pragma Import (C, xcb_store_colors_items, "xcb_store_colors_items");
+     (C, xcb_free_colors_pixels_length, "Ada_xcb_free_colors_pixels_length");
    pragma Import
-     (C, xcb_store_colors_items_length, "xcb_store_colors_items_length");
+     (C, xcb_free_colors_pixels_end, "Ada_xcb_free_colors_pixels_end");
+   pragma Import (C, xcb_coloritem_next, "Ada_xcb_coloritem_next");
+   pragma Import (C, xcb_coloritem_end, "Ada_xcb_coloritem_end");
+   pragma Import (C, xcb_store_colors_sizeof, "Ada_xcb_store_colors_sizeof");
+   pragma Import (C, xcb_store_colors_checked, "Ada_xcb_store_colors_checked");
+   pragma Import (C, xcb_store_colors, "Ada_xcb_store_colors");
+   pragma Import (C, xcb_store_colors_items, "Ada_xcb_store_colors_items");
    pragma Import
-     (C, xcb_store_colors_items_iterator, "xcb_store_colors_items_iterator");
+     (C, xcb_store_colors_items_length, "Ada_xcb_store_colors_items_length");
    pragma Import
-     (C, xcb_store_named_color_sizeof, "xcb_store_named_color_sizeof");
+     (C,
+      xcb_store_colors_items_iterator,
+      "Ada_xcb_store_colors_items_iterator");
    pragma Import
-     (C, xcb_store_named_color_checked, "xcb_store_named_color_checked");
-   pragma Import (C, xcb_store_named_color, "xcb_store_named_color");
-   pragma Import (C, xcb_store_named_color_name, "xcb_store_named_color_name");
+     (C, xcb_store_named_color_sizeof, "Ada_xcb_store_named_color_sizeof");
+   pragma Import
+     (C, xcb_store_named_color_checked, "Ada_xcb_store_named_color_checked");
+   pragma Import (C, xcb_store_named_color, "Ada_xcb_store_named_color");
+   pragma Import
+     (C, xcb_store_named_color_name, "Ada_xcb_store_named_color_name");
    pragma Import
      (C,
       xcb_store_named_color_name_length,
-      "xcb_store_named_color_name_length");
+      "Ada_xcb_store_named_color_name_length");
    pragma Import
-     (C, xcb_store_named_color_name_end, "xcb_store_named_color_name_end");
-   pragma Import (C, xcb_rgb_next, "xcb_rgb_next");
-   pragma Import (C, xcb_rgb_end, "xcb_rgb_end");
-   pragma Import (C, xcb_query_colors_sizeof, "xcb_query_colors_sizeof");
-   pragma Import (C, xcb_query_colors, "xcb_query_colors");
-   pragma Import (C, xcb_query_colors_unchecked, "xcb_query_colors_unchecked");
-   pragma Import (C, xcb_query_colors_colors, "xcb_query_colors_colors");
+     (C, xcb_store_named_color_name_end, "Ada_xcb_store_named_color_name_end");
+   pragma Import (C, xcb_rgb_next, "Ada_xcb_rgb_next");
+   pragma Import (C, xcb_rgb_end, "Ada_xcb_rgb_end");
+   pragma Import (C, xcb_query_colors_sizeof, "Ada_xcb_query_colors_sizeof");
+   pragma Import (C, xcb_query_colors, "Ada_xcb_query_colors");
    pragma Import
-     (C, xcb_query_colors_colors_length, "xcb_query_colors_colors_length");
+     (C, xcb_query_colors_unchecked, "Ada_xcb_query_colors_unchecked");
+   pragma Import (C, xcb_query_colors_colors, "Ada_xcb_query_colors_colors");
    pragma Import
-     (C, xcb_query_colors_colors_iterator, "xcb_query_colors_colors_iterator");
-   pragma Import (C, xcb_query_colors_reply, "xcb_query_colors_reply");
-   pragma Import (C, xcb_lookup_color_sizeof, "xcb_lookup_color_sizeof");
-   pragma Import (C, xcb_lookup_color, "xcb_lookup_color");
-   pragma Import (C, xcb_lookup_color_unchecked, "xcb_lookup_color_unchecked");
-   pragma Import (C, xcb_lookup_color_reply, "xcb_lookup_color_reply");
-   pragma Import (C, xcb_create_cursor_checked, "xcb_create_cursor_checked");
-   pragma Import (C, xcb_create_cursor, "xcb_create_cursor");
+     (C, xcb_query_colors_colors_length, "Ada_xcb_query_colors_colors_length");
    pragma Import
-     (C, xcb_create_glyph_cursor_checked, "xcb_create_glyph_cursor_checked");
-   pragma Import (C, xcb_create_glyph_cursor, "xcb_create_glyph_cursor");
-   pragma Import (C, xcb_free_cursor_checked, "xcb_free_cursor_checked");
-   pragma Import (C, xcb_free_cursor, "xcb_free_cursor");
-   pragma Import (C, xcb_recolor_cursor_checked, "xcb_recolor_cursor_checked");
-   pragma Import (C, xcb_recolor_cursor, "xcb_recolor_cursor");
-   pragma Import (C, xcb_query_best_size, "xcb_query_best_size");
+     (C,
+      xcb_query_colors_colors_iterator,
+      "Ada_xcb_query_colors_colors_iterator");
+   pragma Import (C, xcb_query_colors_reply, "Ada_xcb_query_colors_reply");
+   pragma Import (C, xcb_lookup_color_sizeof, "Ada_xcb_lookup_color_sizeof");
+   pragma Import (C, xcb_lookup_color, "Ada_xcb_lookup_color");
    pragma Import
-     (C, xcb_query_best_size_unchecked, "xcb_query_best_size_unchecked");
-   pragma Import (C, xcb_query_best_size_reply, "xcb_query_best_size_reply");
-   pragma Import (C, xcb_query_extension_sizeof, "xcb_query_extension_sizeof");
-   pragma Import (C, xcb_query_extension, "xcb_query_extension");
+     (C, xcb_lookup_color_unchecked, "Ada_xcb_lookup_color_unchecked");
+   pragma Import (C, xcb_lookup_color_reply, "Ada_xcb_lookup_color_reply");
    pragma Import
-     (C, xcb_query_extension_unchecked, "xcb_query_extension_unchecked");
-   pragma Import (C, xcb_query_extension_reply, "xcb_query_extension_reply");
-   pragma Import (C, xcb_list_extensions_sizeof, "xcb_list_extensions_sizeof");
-   pragma Import (C, xcb_list_extensions, "xcb_list_extensions");
+     (C, xcb_create_cursor_checked, "Ada_xcb_create_cursor_checked");
+   pragma Import (C, xcb_create_cursor, "Ada_xcb_create_cursor");
    pragma Import
-     (C, xcb_list_extensions_unchecked, "xcb_list_extensions_unchecked");
+     (C,
+      xcb_create_glyph_cursor_checked,
+      "Ada_xcb_create_glyph_cursor_checked");
+   pragma Import (C, xcb_create_glyph_cursor, "Ada_xcb_create_glyph_cursor");
+   pragma Import (C, xcb_free_cursor_checked, "Ada_xcb_free_cursor_checked");
+   pragma Import (C, xcb_free_cursor, "Ada_xcb_free_cursor");
    pragma Import
-     (C, xcb_list_extensions_names_length, "xcb_list_extensions_names_length");
+     (C, xcb_recolor_cursor_checked, "Ada_xcb_recolor_cursor_checked");
+   pragma Import (C, xcb_recolor_cursor, "Ada_xcb_recolor_cursor");
+   pragma Import (C, xcb_query_best_size, "Ada_xcb_query_best_size");
+   pragma Import
+     (C, xcb_query_best_size_unchecked, "Ada_xcb_query_best_size_unchecked");
+   pragma Import
+     (C, xcb_query_best_size_reply, "Ada_xcb_query_best_size_reply");
+   pragma Import
+     (C, xcb_query_extension_sizeof, "Ada_xcb_query_extension_sizeof");
+   pragma Import (C, xcb_query_extension, "Ada_xcb_query_extension");
+   pragma Import
+     (C, xcb_query_extension_unchecked, "Ada_xcb_query_extension_unchecked");
+   pragma Import
+     (C, xcb_query_extension_reply, "Ada_xcb_query_extension_reply");
+   pragma Import
+     (C, xcb_list_extensions_sizeof, "Ada_xcb_list_extensions_sizeof");
+   pragma Import (C, xcb_list_extensions, "Ada_xcb_list_extensions");
+   pragma Import
+     (C, xcb_list_extensions_unchecked, "Ada_xcb_list_extensions_unchecked");
+   pragma Import
+     (C,
+      xcb_list_extensions_names_length,
+      "Ada_xcb_list_extensions_names_length");
    pragma Import
      (C,
       xcb_list_extensions_names_iterator,
-      "xcb_list_extensions_names_iterator");
-   pragma Import (C, xcb_list_extensions_reply, "xcb_list_extensions_reply");
+      "Ada_xcb_list_extensions_names_iterator");
+   pragma Import
+     (C, xcb_list_extensions_reply, "Ada_xcb_list_extensions_reply");
    pragma Import
      (C,
       xcb_change_keyboard_mapping_sizeof,
-      "xcb_change_keyboard_mapping_sizeof");
+      "Ada_xcb_change_keyboard_mapping_sizeof");
    pragma Import
      (C,
       xcb_change_keyboard_mapping_checked,
-      "xcb_change_keyboard_mapping_checked");
+      "Ada_xcb_change_keyboard_mapping_checked");
    pragma Import
-     (C, xcb_change_keyboard_mapping, "xcb_change_keyboard_mapping");
+     (C, xcb_change_keyboard_mapping, "Ada_xcb_change_keyboard_mapping");
    pragma Import
      (C,
       xcb_change_keyboard_mapping_keysyms,
-      "xcb_change_keyboard_mapping_keysyms");
+      "Ada_xcb_change_keyboard_mapping_keysyms");
    pragma Import
      (C,
       xcb_change_keyboard_mapping_keysyms_length,
-      "xcb_change_keyboard_mapping_keysyms_length");
+      "Ada_xcb_change_keyboard_mapping_keysyms_length");
    pragma Import
      (C,
       xcb_change_keyboard_mapping_keysyms_end,
-      "xcb_change_keyboard_mapping_keysyms_end");
+      "Ada_xcb_change_keyboard_mapping_keysyms_end");
    pragma Import
-     (C, xcb_get_keyboard_mapping_sizeof, "xcb_get_keyboard_mapping_sizeof");
-   pragma Import (C, xcb_get_keyboard_mapping, "xcb_get_keyboard_mapping");
+     (C,
+      xcb_get_keyboard_mapping_sizeof,
+      "Ada_xcb_get_keyboard_mapping_sizeof");
+   pragma Import (C, xcb_get_keyboard_mapping, "Ada_xcb_get_keyboard_mapping");
    pragma Import
      (C,
       xcb_get_keyboard_mapping_unchecked,
-      "xcb_get_keyboard_mapping_unchecked");
+      "Ada_xcb_get_keyboard_mapping_unchecked");
    pragma Import
-     (C, xcb_get_keyboard_mapping_keysyms, "xcb_get_keyboard_mapping_keysyms");
+     (C,
+      xcb_get_keyboard_mapping_keysyms,
+      "Ada_xcb_get_keyboard_mapping_keysyms");
    pragma Import
      (C,
       xcb_get_keyboard_mapping_keysyms_length,
-      "xcb_get_keyboard_mapping_keysyms_length");
+      "Ada_xcb_get_keyboard_mapping_keysyms_length");
    pragma Import
      (C,
       xcb_get_keyboard_mapping_keysyms_end,
-      "xcb_get_keyboard_mapping_keysyms_end");
+      "Ada_xcb_get_keyboard_mapping_keysyms_end");
    pragma Import
-     (C, xcb_get_keyboard_mapping_reply, "xcb_get_keyboard_mapping_reply");
+     (C, xcb_get_keyboard_mapping_reply, "Ada_xcb_get_keyboard_mapping_reply");
    pragma Import
      (C,
       xcb_change_keyboard_control_value_list_serialize,
-      "xcb_change_keyboard_control_value_list_serialize");
+      "Ada_xcb_change_keyboard_control_value_list_serialize");
    pragma Import
      (C,
       xcb_change_keyboard_control_value_list_unpack,
-      "xcb_change_keyboard_control_value_list_unpack");
+      "Ada_xcb_change_keyboard_control_value_list_unpack");
    pragma Import
      (C,
       xcb_change_keyboard_control_value_list_sizeof,
-      "xcb_change_keyboard_control_value_list_sizeof");
+      "Ada_xcb_change_keyboard_control_value_list_sizeof");
    pragma Import
      (C,
       xcb_change_keyboard_control_sizeof,
-      "xcb_change_keyboard_control_sizeof");
+      "Ada_xcb_change_keyboard_control_sizeof");
    pragma Import
      (C,
       xcb_change_keyboard_control_checked,
-      "xcb_change_keyboard_control_checked");
+      "Ada_xcb_change_keyboard_control_checked");
    pragma Import
-     (C, xcb_change_keyboard_control, "xcb_change_keyboard_control");
+     (C, xcb_change_keyboard_control, "Ada_xcb_change_keyboard_control");
    pragma Import
      (C,
       xcb_change_keyboard_control_aux_checked,
-      "xcb_change_keyboard_control_aux_checked");
+      "Ada_xcb_change_keyboard_control_aux_checked");
    pragma Import
-     (C, xcb_change_keyboard_control_aux, "xcb_change_keyboard_control_aux");
+     (C,
+      xcb_change_keyboard_control_aux,
+      "Ada_xcb_change_keyboard_control_aux");
    pragma Import
      (C,
       xcb_change_keyboard_control_value_list,
-      "xcb_change_keyboard_control_value_list");
-   pragma Import (C, xcb_get_keyboard_control, "xcb_get_keyboard_control");
+      "Ada_xcb_change_keyboard_control_value_list");
+   pragma Import (C, xcb_get_keyboard_control, "Ada_xcb_get_keyboard_control");
    pragma Import
      (C,
       xcb_get_keyboard_control_unchecked,
-      "xcb_get_keyboard_control_unchecked");
+      "Ada_xcb_get_keyboard_control_unchecked");
    pragma Import
-     (C, xcb_get_keyboard_control_reply, "xcb_get_keyboard_control_reply");
-   pragma Import (C, xcb_bell_checked, "xcb_bell_checked");
-   pragma Import (C, xcb_bell, "xcb_bell");
+     (C, xcb_get_keyboard_control_reply, "Ada_xcb_get_keyboard_control_reply");
+   pragma Import (C, xcb_bell_checked, "Ada_xcb_bell_checked");
+   pragma Import (C, xcb_bell, "Ada_xcb_bell");
    pragma Import
      (C,
       xcb_change_pointer_control_checked,
-      "xcb_change_pointer_control_checked");
-   pragma Import (C, xcb_change_pointer_control, "xcb_change_pointer_control");
-   pragma Import (C, xcb_get_pointer_control, "xcb_get_pointer_control");
+      "Ada_xcb_change_pointer_control_checked");
+   pragma Import
+     (C, xcb_change_pointer_control, "Ada_xcb_change_pointer_control");
+   pragma Import (C, xcb_get_pointer_control, "Ada_xcb_get_pointer_control");
    pragma Import
      (C,
       xcb_get_pointer_control_unchecked,
-      "xcb_get_pointer_control_unchecked");
+      "Ada_xcb_get_pointer_control_unchecked");
    pragma Import
-     (C, xcb_get_pointer_control_reply, "xcb_get_pointer_control_reply");
+     (C, xcb_get_pointer_control_reply, "Ada_xcb_get_pointer_control_reply");
    pragma Import
-     (C, xcb_set_screen_saver_checked, "xcb_set_screen_saver_checked");
-   pragma Import (C, xcb_set_screen_saver, "xcb_set_screen_saver");
-   pragma Import (C, xcb_get_screen_saver, "xcb_get_screen_saver");
+     (C, xcb_set_screen_saver_checked, "Ada_xcb_set_screen_saver_checked");
+   pragma Import (C, xcb_set_screen_saver, "Ada_xcb_set_screen_saver");
+   pragma Import (C, xcb_get_screen_saver, "Ada_xcb_get_screen_saver");
    pragma Import
-     (C, xcb_get_screen_saver_unchecked, "xcb_get_screen_saver_unchecked");
-   pragma Import (C, xcb_get_screen_saver_reply, "xcb_get_screen_saver_reply");
-   pragma Import (C, xcb_change_hosts_sizeof, "xcb_change_hosts_sizeof");
-   pragma Import (C, xcb_change_hosts_checked, "xcb_change_hosts_checked");
-   pragma Import (C, xcb_change_hosts, "xcb_change_hosts");
-   pragma Import (C, xcb_change_hosts_address, "xcb_change_hosts_address");
+     (C, xcb_get_screen_saver_unchecked, "Ada_xcb_get_screen_saver_unchecked");
    pragma Import
-     (C, xcb_change_hosts_address_length, "xcb_change_hosts_address_length");
+     (C, xcb_get_screen_saver_reply, "Ada_xcb_get_screen_saver_reply");
+   pragma Import (C, xcb_change_hosts_sizeof, "Ada_xcb_change_hosts_sizeof");
+   pragma Import (C, xcb_change_hosts_checked, "Ada_xcb_change_hosts_checked");
+   pragma Import (C, xcb_change_hosts, "Ada_xcb_change_hosts");
+   pragma Import (C, xcb_change_hosts_address, "Ada_xcb_change_hosts_address");
    pragma Import
-     (C, xcb_change_hosts_address_end, "xcb_change_hosts_address_end");
-   pragma Import (C, xcb_host_sizeof, "xcb_host_sizeof");
-   pragma Import (C, xcb_host_address, "xcb_host_address");
-   pragma Import (C, xcb_host_address_length, "xcb_host_address_length");
-   pragma Import (C, xcb_host_address_end, "xcb_host_address_end");
-   pragma Import (C, xcb_host_next, "xcb_host_next");
-   pragma Import (C, xcb_host_end, "xcb_host_end");
-   pragma Import (C, xcb_list_hosts_sizeof, "xcb_list_hosts_sizeof");
-   pragma Import (C, xcb_list_hosts, "xcb_list_hosts");
-   pragma Import (C, xcb_list_hosts_unchecked, "xcb_list_hosts_unchecked");
+     (C,
+      xcb_change_hosts_address_length,
+      "Ada_xcb_change_hosts_address_length");
    pragma Import
-     (C, xcb_list_hosts_hosts_length, "xcb_list_hosts_hosts_length");
+     (C, xcb_change_hosts_address_end, "Ada_xcb_change_hosts_address_end");
+   pragma Import (C, xcb_host_sizeof, "Ada_xcb_host_sizeof");
+   pragma Import (C, xcb_host_address, "Ada_xcb_host_address");
+   pragma Import (C, xcb_host_address_length, "Ada_xcb_host_address_length");
+   pragma Import (C, xcb_host_address_end, "Ada_xcb_host_address_end");
+   pragma Import (C, xcb_host_next, "Ada_xcb_host_next");
+   pragma Import (C, xcb_host_end, "Ada_xcb_host_end");
+   pragma Import (C, xcb_list_hosts_sizeof, "Ada_xcb_list_hosts_sizeof");
+   pragma Import (C, xcb_list_hosts, "Ada_xcb_list_hosts");
+   pragma Import (C, xcb_list_hosts_unchecked, "Ada_xcb_list_hosts_unchecked");
    pragma Import
-     (C, xcb_list_hosts_hosts_iterator, "xcb_list_hosts_hosts_iterator");
-   pragma Import (C, xcb_list_hosts_reply, "xcb_list_hosts_reply");
+     (C, xcb_list_hosts_hosts_length, "Ada_xcb_list_hosts_hosts_length");
    pragma Import
-     (C, xcb_set_access_control_checked, "xcb_set_access_control_checked");
-   pragma Import (C, xcb_set_access_control, "xcb_set_access_control");
+     (C, xcb_list_hosts_hosts_iterator, "Ada_xcb_list_hosts_hosts_iterator");
+   pragma Import (C, xcb_list_hosts_reply, "Ada_xcb_list_hosts_reply");
    pragma Import
-     (C, xcb_set_close_down_mode_checked, "xcb_set_close_down_mode_checked");
-   pragma Import (C, xcb_set_close_down_mode, "xcb_set_close_down_mode");
-   pragma Import (C, xcb_kill_client_checked, "xcb_kill_client_checked");
-   pragma Import (C, xcb_kill_client, "xcb_kill_client");
+     (C, xcb_set_access_control_checked, "Ada_xcb_set_access_control_checked");
+   pragma Import (C, xcb_set_access_control, "Ada_xcb_set_access_control");
    pragma Import
-     (C, xcb_rotate_properties_sizeof, "xcb_rotate_properties_sizeof");
+     (C,
+      xcb_set_close_down_mode_checked,
+      "Ada_xcb_set_close_down_mode_checked");
+   pragma Import (C, xcb_set_close_down_mode, "Ada_xcb_set_close_down_mode");
+   pragma Import (C, xcb_kill_client_checked, "Ada_xcb_kill_client_checked");
+   pragma Import (C, xcb_kill_client, "Ada_xcb_kill_client");
    pragma Import
-     (C, xcb_rotate_properties_checked, "xcb_rotate_properties_checked");
-   pragma Import (C, xcb_rotate_properties, "xcb_rotate_properties");
+     (C, xcb_rotate_properties_sizeof, "Ada_xcb_rotate_properties_sizeof");
    pragma Import
-     (C, xcb_rotate_properties_atoms, "xcb_rotate_properties_atoms");
+     (C, xcb_rotate_properties_checked, "Ada_xcb_rotate_properties_checked");
+   pragma Import (C, xcb_rotate_properties, "Ada_xcb_rotate_properties");
+   pragma Import
+     (C, xcb_rotate_properties_atoms, "Ada_xcb_rotate_properties_atoms");
    pragma Import
      (C,
       xcb_rotate_properties_atoms_length,
-      "xcb_rotate_properties_atoms_length");
+      "Ada_xcb_rotate_properties_atoms_length");
    pragma Import
-     (C, xcb_rotate_properties_atoms_end, "xcb_rotate_properties_atoms_end");
+     (C,
+      xcb_rotate_properties_atoms_end,
+      "Ada_xcb_rotate_properties_atoms_end");
    pragma Import
-     (C, xcb_force_screen_saver_checked, "xcb_force_screen_saver_checked");
-   pragma Import (C, xcb_force_screen_saver, "xcb_force_screen_saver");
+     (C, xcb_force_screen_saver_checked, "Ada_xcb_force_screen_saver_checked");
+   pragma Import (C, xcb_force_screen_saver, "Ada_xcb_force_screen_saver");
    pragma Import
-     (C, xcb_set_pointer_mapping_sizeof, "xcb_set_pointer_mapping_sizeof");
-   pragma Import (C, xcb_set_pointer_mapping, "xcb_set_pointer_mapping");
+     (C, xcb_set_pointer_mapping_sizeof, "Ada_xcb_set_pointer_mapping_sizeof");
+   pragma Import (C, xcb_set_pointer_mapping, "Ada_xcb_set_pointer_mapping");
    pragma Import
      (C,
       xcb_set_pointer_mapping_unchecked,
-      "xcb_set_pointer_mapping_unchecked");
+      "Ada_xcb_set_pointer_mapping_unchecked");
    pragma Import
-     (C, xcb_set_pointer_mapping_reply, "xcb_set_pointer_mapping_reply");
+     (C, xcb_set_pointer_mapping_reply, "Ada_xcb_set_pointer_mapping_reply");
    pragma Import
-     (C, xcb_get_pointer_mapping_sizeof, "xcb_get_pointer_mapping_sizeof");
-   pragma Import (C, xcb_get_pointer_mapping, "xcb_get_pointer_mapping");
+     (C, xcb_get_pointer_mapping_sizeof, "Ada_xcb_get_pointer_mapping_sizeof");
+   pragma Import (C, xcb_get_pointer_mapping, "Ada_xcb_get_pointer_mapping");
    pragma Import
      (C,
       xcb_get_pointer_mapping_unchecked,
-      "xcb_get_pointer_mapping_unchecked");
+      "Ada_xcb_get_pointer_mapping_unchecked");
    pragma Import
-     (C, xcb_get_pointer_mapping_map, "xcb_get_pointer_mapping_map");
+     (C, xcb_get_pointer_mapping_map, "Ada_xcb_get_pointer_mapping_map");
    pragma Import
      (C,
       xcb_get_pointer_mapping_map_length,
-      "xcb_get_pointer_mapping_map_length");
+      "Ada_xcb_get_pointer_mapping_map_length");
    pragma Import
-     (C, xcb_get_pointer_mapping_map_end, "xcb_get_pointer_mapping_map_end");
+     (C,
+      xcb_get_pointer_mapping_map_end,
+      "Ada_xcb_get_pointer_mapping_map_end");
    pragma Import
-     (C, xcb_get_pointer_mapping_reply, "xcb_get_pointer_mapping_reply");
+     (C, xcb_get_pointer_mapping_reply, "Ada_xcb_get_pointer_mapping_reply");
    pragma Import
-     (C, xcb_set_modifier_mapping_sizeof, "xcb_set_modifier_mapping_sizeof");
-   pragma Import (C, xcb_set_modifier_mapping, "xcb_set_modifier_mapping");
+     (C,
+      xcb_set_modifier_mapping_sizeof,
+      "Ada_xcb_set_modifier_mapping_sizeof");
+   pragma Import (C, xcb_set_modifier_mapping, "Ada_xcb_set_modifier_mapping");
    pragma Import
      (C,
       xcb_set_modifier_mapping_unchecked,
-      "xcb_set_modifier_mapping_unchecked");
+      "Ada_xcb_set_modifier_mapping_unchecked");
    pragma Import
-     (C, xcb_set_modifier_mapping_reply, "xcb_set_modifier_mapping_reply");
+     (C, xcb_set_modifier_mapping_reply, "Ada_xcb_set_modifier_mapping_reply");
    pragma Import
-     (C, xcb_get_modifier_mapping_sizeof, "xcb_get_modifier_mapping_sizeof");
-   pragma Import (C, xcb_get_modifier_mapping, "xcb_get_modifier_mapping");
+     (C,
+      xcb_get_modifier_mapping_sizeof,
+      "Ada_xcb_get_modifier_mapping_sizeof");
+   pragma Import (C, xcb_get_modifier_mapping, "Ada_xcb_get_modifier_mapping");
    pragma Import
      (C,
       xcb_get_modifier_mapping_unchecked,
-      "xcb_get_modifier_mapping_unchecked");
+      "Ada_xcb_get_modifier_mapping_unchecked");
    pragma Import
      (C,
       xcb_get_modifier_mapping_keycodes,
-      "xcb_get_modifier_mapping_keycodes");
+      "Ada_xcb_get_modifier_mapping_keycodes");
    pragma Import
      (C,
       xcb_get_modifier_mapping_keycodes_length,
-      "xcb_get_modifier_mapping_keycodes_length");
+      "Ada_xcb_get_modifier_mapping_keycodes_length");
    pragma Import
      (C,
       xcb_get_modifier_mapping_keycodes_end,
-      "xcb_get_modifier_mapping_keycodes_end");
+      "Ada_xcb_get_modifier_mapping_keycodes_end");
    pragma Import
-     (C, xcb_get_modifier_mapping_reply, "xcb_get_modifier_mapping_reply");
-   pragma Import (C, xcb_no_operation_checked, "xcb_no_operation_checked");
-   pragma Import (C, xcb_no_operation, "xcb_no_operation");
-   pragma Import (C, xcb_big_requests_enable, "xcb_big_requests_enable");
+     (C, xcb_get_modifier_mapping_reply, "Ada_xcb_get_modifier_mapping_reply");
+   pragma Import (C, xcb_no_operation_checked, "Ada_xcb_no_operation_checked");
+   pragma Import (C, xcb_no_operation, "Ada_xcb_no_operation");
+   pragma Import (C, xcb_big_requests_enable, "Ada_xcb_big_requests_enable");
    pragma Import
      (C,
       xcb_big_requests_enable_unchecked,
-      "xcb_big_requests_enable_unchecked");
+      "Ada_xcb_big_requests_enable_unchecked");
    pragma Import
-     (C, xcb_big_requests_enable_reply, "xcb_big_requests_enable_reply");
-   pragma Import (C, xcb_render_glyph_next, "xcb_render_glyph_next");
-   pragma Import (C, xcb_render_glyph_end, "xcb_render_glyph_end");
-   pragma Import (C, xcb_render_glyphset_next, "xcb_render_glyphset_next");
-   pragma Import (C, xcb_render_glyphset_end, "xcb_render_glyphset_end");
-   pragma Import (C, xcb_render_picture_next, "xcb_render_picture_next");
-   pragma Import (C, xcb_render_picture_end, "xcb_render_picture_end");
-   pragma Import (C, xcb_render_pictformat_next, "xcb_render_pictformat_next");
-   pragma Import (C, xcb_render_pictformat_end, "xcb_render_pictformat_end");
-   pragma Import (C, xcb_render_fixed_next, "xcb_render_fixed_next");
-   pragma Import (C, xcb_render_fixed_end, "xcb_render_fixed_end");
+     (C, xcb_big_requests_enable_reply, "Ada_xcb_big_requests_enable_reply");
+   pragma Import (C, xcb_render_glyph_next, "Ada_xcb_render_glyph_next");
+   pragma Import (C, xcb_render_glyph_end, "Ada_xcb_render_glyph_end");
+   pragma Import (C, xcb_render_glyphset_next, "Ada_xcb_render_glyphset_next");
+   pragma Import (C, xcb_render_glyphset_end, "Ada_xcb_render_glyphset_end");
+   pragma Import (C, xcb_render_picture_next, "Ada_xcb_render_picture_next");
+   pragma Import (C, xcb_render_picture_end, "Ada_xcb_render_picture_end");
    pragma Import
-     (C, xcb_render_directformat_next, "xcb_render_directformat_next");
+     (C, xcb_render_pictformat_next, "Ada_xcb_render_pictformat_next");
    pragma Import
-     (C, xcb_render_directformat_end, "xcb_render_directformat_end");
+     (C, xcb_render_pictformat_end, "Ada_xcb_render_pictformat_end");
+   pragma Import (C, xcb_render_fixed_next, "Ada_xcb_render_fixed_next");
+   pragma Import (C, xcb_render_fixed_end, "Ada_xcb_render_fixed_end");
    pragma Import
-     (C, xcb_render_pictforminfo_next, "xcb_render_pictforminfo_next");
+     (C, xcb_render_directformat_next, "Ada_xcb_render_directformat_next");
    pragma Import
-     (C, xcb_render_pictforminfo_end, "xcb_render_pictforminfo_end");
-   pragma Import (C, xcb_render_pictvisual_next, "xcb_render_pictvisual_next");
-   pragma Import (C, xcb_render_pictvisual_end, "xcb_render_pictvisual_end");
+     (C, xcb_render_directformat_end, "Ada_xcb_render_directformat_end");
    pragma Import
-     (C, xcb_render_pictdepth_sizeof, "xcb_render_pictdepth_sizeof");
+     (C, xcb_render_pictforminfo_next, "Ada_xcb_render_pictforminfo_next");
    pragma Import
-     (C, xcb_render_pictdepth_visuals, "xcb_render_pictdepth_visuals");
+     (C, xcb_render_pictforminfo_end, "Ada_xcb_render_pictforminfo_end");
+   pragma Import
+     (C, xcb_render_pictvisual_next, "Ada_xcb_render_pictvisual_next");
+   pragma Import
+     (C, xcb_render_pictvisual_end, "Ada_xcb_render_pictvisual_end");
+   pragma Import
+     (C, xcb_render_pictdepth_sizeof, "Ada_xcb_render_pictdepth_sizeof");
+   pragma Import
+     (C, xcb_render_pictdepth_visuals, "Ada_xcb_render_pictdepth_visuals");
    pragma Import
      (C,
       xcb_render_pictdepth_visuals_length,
-      "xcb_render_pictdepth_visuals_length");
+      "Ada_xcb_render_pictdepth_visuals_length");
    pragma Import
      (C,
       xcb_render_pictdepth_visuals_iterator,
-      "xcb_render_pictdepth_visuals_iterator");
-   pragma Import (C, xcb_render_pictdepth_next, "xcb_render_pictdepth_next");
-   pragma Import (C, xcb_render_pictdepth_end, "xcb_render_pictdepth_end");
+      "Ada_xcb_render_pictdepth_visuals_iterator");
    pragma Import
-     (C, xcb_render_pictscreen_sizeof, "xcb_render_pictscreen_sizeof");
+     (C, xcb_render_pictdepth_next, "Ada_xcb_render_pictdepth_next");
+   pragma Import (C, xcb_render_pictdepth_end, "Ada_xcb_render_pictdepth_end");
+   pragma Import
+     (C, xcb_render_pictscreen_sizeof, "Ada_xcb_render_pictscreen_sizeof");
    pragma Import
      (C,
       xcb_render_pictscreen_depths_length,
-      "xcb_render_pictscreen_depths_length");
+      "Ada_xcb_render_pictscreen_depths_length");
    pragma Import
      (C,
       xcb_render_pictscreen_depths_iterator,
-      "xcb_render_pictscreen_depths_iterator");
-   pragma Import (C, xcb_render_pictscreen_next, "xcb_render_pictscreen_next");
-   pragma Import (C, xcb_render_pictscreen_end, "xcb_render_pictscreen_end");
-   pragma Import (C, xcb_render_indexvalue_next, "xcb_render_indexvalue_next");
-   pragma Import (C, xcb_render_indexvalue_end, "xcb_render_indexvalue_end");
-   pragma Import (C, xcb_render_color_next, "xcb_render_color_next");
-   pragma Import (C, xcb_render_color_end, "xcb_render_color_end");
-   pragma Import (C, xcb_render_pointfix_next, "xcb_render_pointfix_next");
-   pragma Import (C, xcb_render_pointfix_end, "xcb_render_pointfix_end");
-   pragma Import (C, xcb_render_linefix_next, "xcb_render_linefix_next");
-   pragma Import (C, xcb_render_linefix_end, "xcb_render_linefix_end");
-   pragma Import (C, xcb_render_triangle_next, "xcb_render_triangle_next");
-   pragma Import (C, xcb_render_triangle_end, "xcb_render_triangle_end");
-   pragma Import (C, xcb_render_trapezoid_next, "xcb_render_trapezoid_next");
-   pragma Import (C, xcb_render_trapezoid_end, "xcb_render_trapezoid_end");
-   pragma Import (C, xcb_render_glyphinfo_next, "xcb_render_glyphinfo_next");
-   pragma Import (C, xcb_render_glyphinfo_end, "xcb_render_glyphinfo_end");
-   pragma Import (C, xcb_render_query_version, "xcb_render_query_version");
+      "Ada_xcb_render_pictscreen_depths_iterator");
+   pragma Import
+     (C, xcb_render_pictscreen_next, "Ada_xcb_render_pictscreen_next");
+   pragma Import
+     (C, xcb_render_pictscreen_end, "Ada_xcb_render_pictscreen_end");
+   pragma Import
+     (C, xcb_render_indexvalue_next, "Ada_xcb_render_indexvalue_next");
+   pragma Import
+     (C, xcb_render_indexvalue_end, "Ada_xcb_render_indexvalue_end");
+   pragma Import (C, xcb_render_color_next, "Ada_xcb_render_color_next");
+   pragma Import (C, xcb_render_color_end, "Ada_xcb_render_color_end");
+   pragma Import (C, xcb_render_pointfix_next, "Ada_xcb_render_pointfix_next");
+   pragma Import (C, xcb_render_pointfix_end, "Ada_xcb_render_pointfix_end");
+   pragma Import (C, xcb_render_linefix_next, "Ada_xcb_render_linefix_next");
+   pragma Import (C, xcb_render_linefix_end, "Ada_xcb_render_linefix_end");
+   pragma Import (C, xcb_render_triangle_next, "Ada_xcb_render_triangle_next");
+   pragma Import (C, xcb_render_triangle_end, "Ada_xcb_render_triangle_end");
+   pragma Import
+     (C, xcb_render_trapezoid_next, "Ada_xcb_render_trapezoid_next");
+   pragma Import (C, xcb_render_trapezoid_end, "Ada_xcb_render_trapezoid_end");
+   pragma Import
+     (C, xcb_render_glyphinfo_next, "Ada_xcb_render_glyphinfo_next");
+   pragma Import (C, xcb_render_glyphinfo_end, "Ada_xcb_render_glyphinfo_end");
+   pragma Import (C, xcb_render_query_version, "Ada_xcb_render_query_version");
    pragma Import
      (C,
       xcb_render_query_version_unchecked,
-      "xcb_render_query_version_unchecked");
+      "Ada_xcb_render_query_version_unchecked");
    pragma Import
-     (C, xcb_render_query_version_reply, "xcb_render_query_version_reply");
+     (C, xcb_render_query_version_reply, "Ada_xcb_render_query_version_reply");
    pragma Import
      (C,
       xcb_render_query_pict_formats_sizeof,
-      "xcb_render_query_pict_formats_sizeof");
+      "Ada_xcb_render_query_pict_formats_sizeof");
    pragma Import
-     (C, xcb_render_query_pict_formats, "xcb_render_query_pict_formats");
+     (C, xcb_render_query_pict_formats, "Ada_xcb_render_query_pict_formats");
    pragma Import
      (C,
       xcb_render_query_pict_formats_unchecked,
-      "xcb_render_query_pict_formats_unchecked");
+      "Ada_xcb_render_query_pict_formats_unchecked");
    pragma Import
      (C,
       xcb_render_query_pict_formats_formats,
-      "xcb_render_query_pict_formats_formats");
+      "Ada_xcb_render_query_pict_formats_formats");
    pragma Import
      (C,
       xcb_render_query_pict_formats_formats_length,
-      "xcb_render_query_pict_formats_formats_length");
+      "Ada_xcb_render_query_pict_formats_formats_length");
    pragma Import
      (C,
       xcb_render_query_pict_formats_formats_iterator,
-      "xcb_render_query_pict_formats_formats_iterator");
+      "Ada_xcb_render_query_pict_formats_formats_iterator");
    pragma Import
      (C,
       xcb_render_query_pict_formats_screens_length,
-      "xcb_render_query_pict_formats_screens_length");
+      "Ada_xcb_render_query_pict_formats_screens_length");
    pragma Import
      (C,
       xcb_render_query_pict_formats_screens_iterator,
-      "xcb_render_query_pict_formats_screens_iterator");
+      "Ada_xcb_render_query_pict_formats_screens_iterator");
    pragma Import
      (C,
       xcb_render_query_pict_formats_subpixels,
-      "xcb_render_query_pict_formats_subpixels");
+      "Ada_xcb_render_query_pict_formats_subpixels");
    pragma Import
      (C,
       xcb_render_query_pict_formats_subpixels_length,
-      "xcb_render_query_pict_formats_subpixels_length");
+      "Ada_xcb_render_query_pict_formats_subpixels_length");
    pragma Import
      (C,
       xcb_render_query_pict_formats_subpixels_end,
-      "xcb_render_query_pict_formats_subpixels_end");
+      "Ada_xcb_render_query_pict_formats_subpixels_end");
    pragma Import
      (C,
       xcb_render_query_pict_formats_reply,
-      "xcb_render_query_pict_formats_reply");
+      "Ada_xcb_render_query_pict_formats_reply");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_sizeof,
-      "xcb_render_query_pict_index_values_sizeof");
+      "Ada_xcb_render_query_pict_index_values_sizeof");
    pragma Import
      (C,
       xcb_render_query_pict_index_values,
-      "xcb_render_query_pict_index_values");
+      "Ada_xcb_render_query_pict_index_values");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_unchecked,
-      "xcb_render_query_pict_index_values_unchecked");
+      "Ada_xcb_render_query_pict_index_values_unchecked");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_values,
-      "xcb_render_query_pict_index_values_values");
+      "Ada_xcb_render_query_pict_index_values_values");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_values_length,
-      "xcb_render_query_pict_index_values_values_length");
+      "Ada_xcb_render_query_pict_index_values_values_length");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_values_iterator,
-      "xcb_render_query_pict_index_values_values_iterator");
+      "Ada_xcb_render_query_pict_index_values_values_iterator");
    pragma Import
      (C,
       xcb_render_query_pict_index_values_reply,
-      "xcb_render_query_pict_index_values_reply");
+      "Ada_xcb_render_query_pict_index_values_reply");
    pragma Import
      (C,
       xcb_render_create_picture_value_list_serialize,
-      "xcb_render_create_picture_value_list_serialize");
+      "Ada_xcb_render_create_picture_value_list_serialize");
    pragma Import
      (C,
       xcb_render_create_picture_value_list_unpack,
-      "xcb_render_create_picture_value_list_unpack");
+      "Ada_xcb_render_create_picture_value_list_unpack");
    pragma Import
      (C,
       xcb_render_create_picture_value_list_sizeof,
-      "xcb_render_create_picture_value_list_sizeof");
+      "Ada_xcb_render_create_picture_value_list_sizeof");
    pragma Import
-     (C, xcb_render_create_picture_sizeof, "xcb_render_create_picture_sizeof");
+     (C,
+      xcb_render_create_picture_sizeof,
+      "Ada_xcb_render_create_picture_sizeof");
    pragma Import
      (C,
       xcb_render_create_picture_checked,
-      "xcb_render_create_picture_checked");
-   pragma Import (C, xcb_render_create_picture, "xcb_render_create_picture");
+      "Ada_xcb_render_create_picture_checked");
+   pragma Import
+     (C, xcb_render_create_picture, "Ada_xcb_render_create_picture");
    pragma Import
      (C,
       xcb_render_create_picture_aux_checked,
-      "xcb_render_create_picture_aux_checked");
+      "Ada_xcb_render_create_picture_aux_checked");
    pragma Import
-     (C, xcb_render_create_picture_aux, "xcb_render_create_picture_aux");
+     (C, xcb_render_create_picture_aux, "Ada_xcb_render_create_picture_aux");
    pragma Import
      (C,
       xcb_render_create_picture_value_list,
-      "xcb_render_create_picture_value_list");
+      "Ada_xcb_render_create_picture_value_list");
    pragma Import
      (C,
       xcb_render_change_picture_value_list_serialize,
-      "xcb_render_change_picture_value_list_serialize");
+      "Ada_xcb_render_change_picture_value_list_serialize");
    pragma Import
      (C,
       xcb_render_change_picture_value_list_unpack,
-      "xcb_render_change_picture_value_list_unpack");
+      "Ada_xcb_render_change_picture_value_list_unpack");
    pragma Import
      (C,
       xcb_render_change_picture_value_list_sizeof,
-      "xcb_render_change_picture_value_list_sizeof");
+      "Ada_xcb_render_change_picture_value_list_sizeof");
    pragma Import
-     (C, xcb_render_change_picture_sizeof, "xcb_render_change_picture_sizeof");
+     (C,
+      xcb_render_change_picture_sizeof,
+      "Ada_xcb_render_change_picture_sizeof");
    pragma Import
      (C,
       xcb_render_change_picture_checked,
-      "xcb_render_change_picture_checked");
-   pragma Import (C, xcb_render_change_picture, "xcb_render_change_picture");
+      "Ada_xcb_render_change_picture_checked");
+   pragma Import
+     (C, xcb_render_change_picture, "Ada_xcb_render_change_picture");
    pragma Import
      (C,
       xcb_render_change_picture_aux_checked,
-      "xcb_render_change_picture_aux_checked");
+      "Ada_xcb_render_change_picture_aux_checked");
    pragma Import
-     (C, xcb_render_change_picture_aux, "xcb_render_change_picture_aux");
+     (C, xcb_render_change_picture_aux, "Ada_xcb_render_change_picture_aux");
    pragma Import
      (C,
       xcb_render_change_picture_value_list,
-      "xcb_render_change_picture_value_list");
+      "Ada_xcb_render_change_picture_value_list");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles_sizeof,
-      "xcb_render_set_picture_clip_rectangles_sizeof");
+      "Ada_xcb_render_set_picture_clip_rectangles_sizeof");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles_checked,
-      "xcb_render_set_picture_clip_rectangles_checked");
+      "Ada_xcb_render_set_picture_clip_rectangles_checked");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles,
-      "xcb_render_set_picture_clip_rectangles");
+      "Ada_xcb_render_set_picture_clip_rectangles");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles_rectangles,
-      "xcb_render_set_picture_clip_rectangles_rectangles");
+      "Ada_xcb_render_set_picture_clip_rectangles_rectangles");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles_rectangles_length,
-      "xcb_render_set_picture_clip_rectangles_rectangles_length");
+      "Ada_xcb_render_set_picture_clip_rectangles_rectangles_length");
    pragma Import
      (C,
       xcb_render_set_picture_clip_rectangles_rectangles_iterator,
-      "xcb_render_set_picture_clip_rectangles_rectangles_iterator");
+      "Ada_xcb_render_set_picture_clip_rectangles_rectangles_iterator");
    pragma Import
-     (C, xcb_render_free_picture_checked, "xcb_render_free_picture_checked");
-   pragma Import (C, xcb_render_free_picture, "xcb_render_free_picture");
+     (C,
+      xcb_render_free_picture_checked,
+      "Ada_xcb_render_free_picture_checked");
+   pragma Import (C, xcb_render_free_picture, "Ada_xcb_render_free_picture");
    pragma Import
-     (C, xcb_render_composite_checked, "xcb_render_composite_checked");
-   pragma Import (C, xcb_render_composite, "xcb_render_composite");
+     (C, xcb_render_composite_checked, "Ada_xcb_render_composite_checked");
+   pragma Import (C, xcb_render_composite, "Ada_xcb_render_composite");
    pragma Import
-     (C, xcb_render_trapezoids_sizeof, "xcb_render_trapezoids_sizeof");
+     (C, xcb_render_trapezoids_sizeof, "Ada_xcb_render_trapezoids_sizeof");
    pragma Import
-     (C, xcb_render_trapezoids_checked, "xcb_render_trapezoids_checked");
-   pragma Import (C, xcb_render_trapezoids, "xcb_render_trapezoids");
+     (C, xcb_render_trapezoids_checked, "Ada_xcb_render_trapezoids_checked");
+   pragma Import (C, xcb_render_trapezoids, "Ada_xcb_render_trapezoids");
    pragma Import
-     (C, xcb_render_trapezoids_traps, "xcb_render_trapezoids_traps");
+     (C, xcb_render_trapezoids_traps, "Ada_xcb_render_trapezoids_traps");
    pragma Import
      (C,
       xcb_render_trapezoids_traps_length,
-      "xcb_render_trapezoids_traps_length");
+      "Ada_xcb_render_trapezoids_traps_length");
    pragma Import
      (C,
       xcb_render_trapezoids_traps_iterator,
-      "xcb_render_trapezoids_traps_iterator");
+      "Ada_xcb_render_trapezoids_traps_iterator");
    pragma Import
-     (C, xcb_render_triangles_sizeof, "xcb_render_triangles_sizeof");
+     (C, xcb_render_triangles_sizeof, "Ada_xcb_render_triangles_sizeof");
    pragma Import
-     (C, xcb_render_triangles_checked, "xcb_render_triangles_checked");
-   pragma Import (C, xcb_render_triangles, "xcb_render_triangles");
+     (C, xcb_render_triangles_checked, "Ada_xcb_render_triangles_checked");
+   pragma Import (C, xcb_render_triangles, "Ada_xcb_render_triangles");
    pragma Import
-     (C, xcb_render_triangles_triangles, "xcb_render_triangles_triangles");
+     (C, xcb_render_triangles_triangles, "Ada_xcb_render_triangles_triangles");
    pragma Import
      (C,
       xcb_render_triangles_triangles_length,
-      "xcb_render_triangles_triangles_length");
+      "Ada_xcb_render_triangles_triangles_length");
    pragma Import
      (C,
       xcb_render_triangles_triangles_iterator,
-      "xcb_render_triangles_triangles_iterator");
+      "Ada_xcb_render_triangles_triangles_iterator");
    pragma Import
-     (C, xcb_render_tri_strip_sizeof, "xcb_render_tri_strip_sizeof");
+     (C, xcb_render_tri_strip_sizeof, "Ada_xcb_render_tri_strip_sizeof");
    pragma Import
-     (C, xcb_render_tri_strip_checked, "xcb_render_tri_strip_checked");
-   pragma Import (C, xcb_render_tri_strip, "xcb_render_tri_strip");
+     (C, xcb_render_tri_strip_checked, "Ada_xcb_render_tri_strip_checked");
+   pragma Import (C, xcb_render_tri_strip, "Ada_xcb_render_tri_strip");
    pragma Import
-     (C, xcb_render_tri_strip_points, "xcb_render_tri_strip_points");
+     (C, xcb_render_tri_strip_points, "Ada_xcb_render_tri_strip_points");
    pragma Import
      (C,
       xcb_render_tri_strip_points_length,
-      "xcb_render_tri_strip_points_length");
+      "Ada_xcb_render_tri_strip_points_length");
    pragma Import
      (C,
       xcb_render_tri_strip_points_iterator,
-      "xcb_render_tri_strip_points_iterator");
-   pragma Import (C, xcb_render_tri_fan_sizeof, "xcb_render_tri_fan_sizeof");
-   pragma Import (C, xcb_render_tri_fan_checked, "xcb_render_tri_fan_checked");
-   pragma Import (C, xcb_render_tri_fan, "xcb_render_tri_fan");
-   pragma Import (C, xcb_render_tri_fan_points, "xcb_render_tri_fan_points");
+      "Ada_xcb_render_tri_strip_points_iterator");
    pragma Import
-     (C, xcb_render_tri_fan_points_length, "xcb_render_tri_fan_points_length");
+     (C, xcb_render_tri_fan_sizeof, "Ada_xcb_render_tri_fan_sizeof");
+   pragma Import
+     (C, xcb_render_tri_fan_checked, "Ada_xcb_render_tri_fan_checked");
+   pragma Import (C, xcb_render_tri_fan, "Ada_xcb_render_tri_fan");
+   pragma Import
+     (C, xcb_render_tri_fan_points, "Ada_xcb_render_tri_fan_points");
+   pragma Import
+     (C,
+      xcb_render_tri_fan_points_length,
+      "Ada_xcb_render_tri_fan_points_length");
    pragma Import
      (C,
       xcb_render_tri_fan_points_iterator,
-      "xcb_render_tri_fan_points_iterator");
+      "Ada_xcb_render_tri_fan_points_iterator");
    pragma Import
      (C,
       xcb_render_create_glyph_set_checked,
-      "xcb_render_create_glyph_set_checked");
+      "Ada_xcb_render_create_glyph_set_checked");
    pragma Import
-     (C, xcb_render_create_glyph_set, "xcb_render_create_glyph_set");
+     (C, xcb_render_create_glyph_set, "Ada_xcb_render_create_glyph_set");
    pragma Import
      (C,
       xcb_render_reference_glyph_set_checked,
-      "xcb_render_reference_glyph_set_checked");
+      "Ada_xcb_render_reference_glyph_set_checked");
    pragma Import
-     (C, xcb_render_reference_glyph_set, "xcb_render_reference_glyph_set");
+     (C, xcb_render_reference_glyph_set, "Ada_xcb_render_reference_glyph_set");
    pragma Import
      (C,
       xcb_render_free_glyph_set_checked,
-      "xcb_render_free_glyph_set_checked");
-   pragma Import (C, xcb_render_free_glyph_set, "xcb_render_free_glyph_set");
+      "Ada_xcb_render_free_glyph_set_checked");
    pragma Import
-     (C, xcb_render_add_glyphs_sizeof, "xcb_render_add_glyphs_sizeof");
+     (C, xcb_render_free_glyph_set, "Ada_xcb_render_free_glyph_set");
    pragma Import
-     (C, xcb_render_add_glyphs_checked, "xcb_render_add_glyphs_checked");
-   pragma Import (C, xcb_render_add_glyphs, "xcb_render_add_glyphs");
+     (C, xcb_render_add_glyphs_sizeof, "Ada_xcb_render_add_glyphs_sizeof");
    pragma Import
-     (C, xcb_render_add_glyphs_glyphids, "xcb_render_add_glyphs_glyphids");
+     (C, xcb_render_add_glyphs_checked, "Ada_xcb_render_add_glyphs_checked");
+   pragma Import (C, xcb_render_add_glyphs, "Ada_xcb_render_add_glyphs");
+   pragma Import
+     (C, xcb_render_add_glyphs_glyphids, "Ada_xcb_render_add_glyphs_glyphids");
    pragma Import
      (C,
       xcb_render_add_glyphs_glyphids_length,
-      "xcb_render_add_glyphs_glyphids_length");
+      "Ada_xcb_render_add_glyphs_glyphids_length");
    pragma Import
      (C,
       xcb_render_add_glyphs_glyphids_end,
-      "xcb_render_add_glyphs_glyphids_end");
+      "Ada_xcb_render_add_glyphs_glyphids_end");
    pragma Import
-     (C, xcb_render_add_glyphs_glyphs, "xcb_render_add_glyphs_glyphs");
+     (C, xcb_render_add_glyphs_glyphs, "Ada_xcb_render_add_glyphs_glyphs");
    pragma Import
      (C,
       xcb_render_add_glyphs_glyphs_length,
-      "xcb_render_add_glyphs_glyphs_length");
+      "Ada_xcb_render_add_glyphs_glyphs_length");
    pragma Import
      (C,
       xcb_render_add_glyphs_glyphs_iterator,
-      "xcb_render_add_glyphs_glyphs_iterator");
-   pragma Import (C, xcb_render_add_glyphs_data, "xcb_render_add_glyphs_data");
+      "Ada_xcb_render_add_glyphs_glyphs_iterator");
+   pragma Import
+     (C, xcb_render_add_glyphs_data, "Ada_xcb_render_add_glyphs_data");
    pragma Import
      (C,
       xcb_render_add_glyphs_data_length,
-      "xcb_render_add_glyphs_data_length");
+      "Ada_xcb_render_add_glyphs_data_length");
    pragma Import
-     (C, xcb_render_add_glyphs_data_end, "xcb_render_add_glyphs_data_end");
+     (C, xcb_render_add_glyphs_data_end, "Ada_xcb_render_add_glyphs_data_end");
    pragma Import
-     (C, xcb_render_free_glyphs_sizeof, "xcb_render_free_glyphs_sizeof");
+     (C, xcb_render_free_glyphs_sizeof, "Ada_xcb_render_free_glyphs_sizeof");
    pragma Import
-     (C, xcb_render_free_glyphs_checked, "xcb_render_free_glyphs_checked");
-   pragma Import (C, xcb_render_free_glyphs, "xcb_render_free_glyphs");
+     (C, xcb_render_free_glyphs_checked, "Ada_xcb_render_free_glyphs_checked");
+   pragma Import (C, xcb_render_free_glyphs, "Ada_xcb_render_free_glyphs");
    pragma Import
-     (C, xcb_render_free_glyphs_glyphs, "xcb_render_free_glyphs_glyphs");
+     (C, xcb_render_free_glyphs_glyphs, "Ada_xcb_render_free_glyphs_glyphs");
    pragma Import
      (C,
       xcb_render_free_glyphs_glyphs_length,
-      "xcb_render_free_glyphs_glyphs_length");
+      "Ada_xcb_render_free_glyphs_glyphs_length");
    pragma Import
      (C,
       xcb_render_free_glyphs_glyphs_end,
-      "xcb_render_free_glyphs_glyphs_end");
+      "Ada_xcb_render_free_glyphs_glyphs_end");
    pragma Import
      (C,
       xcb_render_composite_glyphs_8_sizeof,
-      "xcb_render_composite_glyphs_8_sizeof");
+      "Ada_xcb_render_composite_glyphs_8_sizeof");
    pragma Import
      (C,
       xcb_render_composite_glyphs_8_checked,
-      "xcb_render_composite_glyphs_8_checked");
+      "Ada_xcb_render_composite_glyphs_8_checked");
    pragma Import
-     (C, xcb_render_composite_glyphs_8, "xcb_render_composite_glyphs_8");
+     (C, xcb_render_composite_glyphs_8, "Ada_xcb_render_composite_glyphs_8");
    pragma Import
      (C,
       xcb_render_composite_glyphs_8_glyphcmds,
-      "xcb_render_composite_glyphs_8_glyphcmds");
+      "Ada_xcb_render_composite_glyphs_8_glyphcmds");
    pragma Import
      (C,
       xcb_render_composite_glyphs_8_glyphcmds_length,
-      "xcb_render_composite_glyphs_8_glyphcmds_length");
+      "Ada_xcb_render_composite_glyphs_8_glyphcmds_length");
    pragma Import
      (C,
       xcb_render_composite_glyphs_8_glyphcmds_end,
-      "xcb_render_composite_glyphs_8_glyphcmds_end");
+      "Ada_xcb_render_composite_glyphs_8_glyphcmds_end");
    pragma Import
      (C,
       xcb_render_composite_glyphs_16_sizeof,
-      "xcb_render_composite_glyphs_16_sizeof");
+      "Ada_xcb_render_composite_glyphs_16_sizeof");
    pragma Import
      (C,
       xcb_render_composite_glyphs_16_checked,
-      "xcb_render_composite_glyphs_16_checked");
+      "Ada_xcb_render_composite_glyphs_16_checked");
    pragma Import
-     (C, xcb_render_composite_glyphs_16, "xcb_render_composite_glyphs_16");
+     (C, xcb_render_composite_glyphs_16, "Ada_xcb_render_composite_glyphs_16");
    pragma Import
      (C,
       xcb_render_composite_glyphs_16_glyphcmds,
-      "xcb_render_composite_glyphs_16_glyphcmds");
+      "Ada_xcb_render_composite_glyphs_16_glyphcmds");
    pragma Import
      (C,
       xcb_render_composite_glyphs_16_glyphcmds_length,
-      "xcb_render_composite_glyphs_16_glyphcmds_length");
+      "Ada_xcb_render_composite_glyphs_16_glyphcmds_length");
    pragma Import
      (C,
       xcb_render_composite_glyphs_16_glyphcmds_end,
-      "xcb_render_composite_glyphs_16_glyphcmds_end");
+      "Ada_xcb_render_composite_glyphs_16_glyphcmds_end");
    pragma Import
      (C,
       xcb_render_composite_glyphs_32_sizeof,
-      "xcb_render_composite_glyphs_32_sizeof");
+      "Ada_xcb_render_composite_glyphs_32_sizeof");
    pragma Import
      (C,
       xcb_render_composite_glyphs_32_checked,
-      "xcb_render_composite_glyphs_32_checked");
+      "Ada_xcb_render_composite_glyphs_32_checked");
    pragma Import
-     (C, xcb_render_composite_glyphs_32, "xcb_render_composite_glyphs_32");
+     (C, xcb_render_composite_glyphs_32, "Ada_xcb_render_composite_glyphs_32");
    pragma Import
      (C,
       xcb_render_composite_glyphs_32_glyphcmds,
-      "xcb_render_composite_glyphs_32_glyphcmds");
+      "Ada_xcb_render_composite_glyphs_32_glyphcmds");
    pragma Import
      (C,
       xcb_render_composite_glyphs_32_glyphcmds_length,
-      "xcb_render_composite_glyphs_32_glyphcmds_length");
+      "Ada_xcb_render_composite_glyphs_32_glyphcmds_length");
    pragma Import
      (C,
       xcb_render_composite_glyphs_32_glyphcmds_end,
-      "xcb_render_composite_glyphs_32_glyphcmds_end");
+      "Ada_xcb_render_composite_glyphs_32_glyphcmds_end");
    pragma Import
      (C,
       xcb_render_fill_rectangles_sizeof,
-      "xcb_render_fill_rectangles_sizeof");
+      "Ada_xcb_render_fill_rectangles_sizeof");
    pragma Import
      (C,
       xcb_render_fill_rectangles_checked,
-      "xcb_render_fill_rectangles_checked");
-   pragma Import (C, xcb_render_fill_rectangles, "xcb_render_fill_rectangles");
+      "Ada_xcb_render_fill_rectangles_checked");
    pragma Import
-     (C, xcb_render_fill_rectangles_rects, "xcb_render_fill_rectangles_rects");
+     (C, xcb_render_fill_rectangles, "Ada_xcb_render_fill_rectangles");
+   pragma Import
+     (C,
+      xcb_render_fill_rectangles_rects,
+      "Ada_xcb_render_fill_rectangles_rects");
    pragma Import
      (C,
       xcb_render_fill_rectangles_rects_length,
-      "xcb_render_fill_rectangles_rects_length");
+      "Ada_xcb_render_fill_rectangles_rects_length");
    pragma Import
      (C,
       xcb_render_fill_rectangles_rects_iterator,
-      "xcb_render_fill_rectangles_rects_iterator");
+      "Ada_xcb_render_fill_rectangles_rects_iterator");
    pragma Import
-     (C, xcb_render_create_cursor_checked, "xcb_render_create_cursor_checked");
-   pragma Import (C, xcb_render_create_cursor, "xcb_render_create_cursor");
-   pragma Import (C, xcb_render_transform_next, "xcb_render_transform_next");
-   pragma Import (C, xcb_render_transform_end, "xcb_render_transform_end");
+     (C,
+      xcb_render_create_cursor_checked,
+      "Ada_xcb_render_create_cursor_checked");
+   pragma Import (C, xcb_render_create_cursor, "Ada_xcb_render_create_cursor");
+   pragma Import
+     (C, xcb_render_transform_next, "Ada_xcb_render_transform_next");
+   pragma Import (C, xcb_render_transform_end, "Ada_xcb_render_transform_end");
    pragma Import
      (C,
       xcb_render_set_picture_transform_checked,
-      "xcb_render_set_picture_transform_checked");
+      "Ada_xcb_render_set_picture_transform_checked");
    pragma Import
-     (C, xcb_render_set_picture_transform, "xcb_render_set_picture_transform");
+     (C,
+      xcb_render_set_picture_transform,
+      "Ada_xcb_render_set_picture_transform");
    pragma Import
-     (C, xcb_render_query_filters_sizeof, "xcb_render_query_filters_sizeof");
-   pragma Import (C, xcb_render_query_filters, "xcb_render_query_filters");
+     (C,
+      xcb_render_query_filters_sizeof,
+      "Ada_xcb_render_query_filters_sizeof");
+   pragma Import (C, xcb_render_query_filters, "Ada_xcb_render_query_filters");
    pragma Import
      (C,
       xcb_render_query_filters_unchecked,
-      "xcb_render_query_filters_unchecked");
+      "Ada_xcb_render_query_filters_unchecked");
    pragma Import
-     (C, xcb_render_query_filters_aliases, "xcb_render_query_filters_aliases");
+     (C,
+      xcb_render_query_filters_aliases,
+      "Ada_xcb_render_query_filters_aliases");
    pragma Import
      (C,
       xcb_render_query_filters_aliases_length,
-      "xcb_render_query_filters_aliases_length");
+      "Ada_xcb_render_query_filters_aliases_length");
    pragma Import
      (C,
       xcb_render_query_filters_aliases_end,
-      "xcb_render_query_filters_aliases_end");
+      "Ada_xcb_render_query_filters_aliases_end");
    pragma Import
      (C,
       xcb_render_query_filters_filters_length,
-      "xcb_render_query_filters_filters_length");
+      "Ada_xcb_render_query_filters_filters_length");
    pragma Import
      (C,
       xcb_render_query_filters_filters_iterator,
-      "xcb_render_query_filters_filters_iterator");
+      "Ada_xcb_render_query_filters_filters_iterator");
    pragma Import
-     (C, xcb_render_query_filters_reply, "xcb_render_query_filters_reply");
+     (C, xcb_render_query_filters_reply, "Ada_xcb_render_query_filters_reply");
    pragma Import
      (C,
       xcb_render_set_picture_filter_sizeof,
-      "xcb_render_set_picture_filter_sizeof");
+      "Ada_xcb_render_set_picture_filter_sizeof");
    pragma Import
      (C,
       xcb_render_set_picture_filter_checked,
-      "xcb_render_set_picture_filter_checked");
+      "Ada_xcb_render_set_picture_filter_checked");
    pragma Import
-     (C, xcb_render_set_picture_filter, "xcb_render_set_picture_filter");
+     (C, xcb_render_set_picture_filter, "Ada_xcb_render_set_picture_filter");
    pragma Import
      (C,
       xcb_render_set_picture_filter_filter,
-      "xcb_render_set_picture_filter_filter");
+      "Ada_xcb_render_set_picture_filter_filter");
    pragma Import
      (C,
       xcb_render_set_picture_filter_filter_length,
-      "xcb_render_set_picture_filter_filter_length");
+      "Ada_xcb_render_set_picture_filter_filter_length");
    pragma Import
      (C,
       xcb_render_set_picture_filter_filter_end,
-      "xcb_render_set_picture_filter_filter_end");
+      "Ada_xcb_render_set_picture_filter_filter_end");
    pragma Import
      (C,
       xcb_render_set_picture_filter_values,
-      "xcb_render_set_picture_filter_values");
+      "Ada_xcb_render_set_picture_filter_values");
    pragma Import
      (C,
       xcb_render_set_picture_filter_values_length,
-      "xcb_render_set_picture_filter_values_length");
+      "Ada_xcb_render_set_picture_filter_values_length");
    pragma Import
      (C,
       xcb_render_set_picture_filter_values_end,
-      "xcb_render_set_picture_filter_values_end");
+      "Ada_xcb_render_set_picture_filter_values_end");
    pragma Import
-     (C, xcb_render_animcursorelt_next, "xcb_render_animcursorelt_next");
+     (C, xcb_render_animcursorelt_next, "Ada_xcb_render_animcursorelt_next");
    pragma Import
-     (C, xcb_render_animcursorelt_end, "xcb_render_animcursorelt_end");
+     (C, xcb_render_animcursorelt_end, "Ada_xcb_render_animcursorelt_end");
    pragma Import
      (C,
       xcb_render_create_anim_cursor_sizeof,
-      "xcb_render_create_anim_cursor_sizeof");
+      "Ada_xcb_render_create_anim_cursor_sizeof");
    pragma Import
      (C,
       xcb_render_create_anim_cursor_checked,
-      "xcb_render_create_anim_cursor_checked");
+      "Ada_xcb_render_create_anim_cursor_checked");
    pragma Import
-     (C, xcb_render_create_anim_cursor, "xcb_render_create_anim_cursor");
+     (C, xcb_render_create_anim_cursor, "Ada_xcb_render_create_anim_cursor");
    pragma Import
      (C,
       xcb_render_create_anim_cursor_cursors,
-      "xcb_render_create_anim_cursor_cursors");
+      "Ada_xcb_render_create_anim_cursor_cursors");
    pragma Import
      (C,
       xcb_render_create_anim_cursor_cursors_length,
-      "xcb_render_create_anim_cursor_cursors_length");
+      "Ada_xcb_render_create_anim_cursor_cursors_length");
    pragma Import
      (C,
       xcb_render_create_anim_cursor_cursors_iterator,
-      "xcb_render_create_anim_cursor_cursors_iterator");
-   pragma Import (C, xcb_render_spanfix_next, "xcb_render_spanfix_next");
-   pragma Import (C, xcb_render_spanfix_end, "xcb_render_spanfix_end");
-   pragma Import (C, xcb_render_trap_next, "xcb_render_trap_next");
-   pragma Import (C, xcb_render_trap_end, "xcb_render_trap_end");
+      "Ada_xcb_render_create_anim_cursor_cursors_iterator");
+   pragma Import (C, xcb_render_spanfix_next, "Ada_xcb_render_spanfix_next");
+   pragma Import (C, xcb_render_spanfix_end, "Ada_xcb_render_spanfix_end");
+   pragma Import (C, xcb_render_trap_next, "Ada_xcb_render_trap_next");
+   pragma Import (C, xcb_render_trap_end, "Ada_xcb_render_trap_end");
    pragma Import
-     (C, xcb_render_add_traps_sizeof, "xcb_render_add_traps_sizeof");
+     (C, xcb_render_add_traps_sizeof, "Ada_xcb_render_add_traps_sizeof");
    pragma Import
-     (C, xcb_render_add_traps_checked, "xcb_render_add_traps_checked");
-   pragma Import (C, xcb_render_add_traps, "xcb_render_add_traps");
-   pragma Import (C, xcb_render_add_traps_traps, "xcb_render_add_traps_traps");
+     (C, xcb_render_add_traps_checked, "Ada_xcb_render_add_traps_checked");
+   pragma Import (C, xcb_render_add_traps, "Ada_xcb_render_add_traps");
+   pragma Import
+     (C, xcb_render_add_traps_traps, "Ada_xcb_render_add_traps_traps");
    pragma Import
      (C,
       xcb_render_add_traps_traps_length,
-      "xcb_render_add_traps_traps_length");
+      "Ada_xcb_render_add_traps_traps_length");
    pragma Import
      (C,
       xcb_render_add_traps_traps_iterator,
-      "xcb_render_add_traps_traps_iterator");
+      "Ada_xcb_render_add_traps_traps_iterator");
    pragma Import
      (C,
       xcb_render_create_solid_fill_checked,
-      "xcb_render_create_solid_fill_checked");
+      "Ada_xcb_render_create_solid_fill_checked");
    pragma Import
-     (C, xcb_render_create_solid_fill, "xcb_render_create_solid_fill");
+     (C, xcb_render_create_solid_fill, "Ada_xcb_render_create_solid_fill");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_sizeof,
-      "xcb_render_create_linear_gradient_sizeof");
+      "Ada_xcb_render_create_linear_gradient_sizeof");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_checked,
-      "xcb_render_create_linear_gradient_checked");
+      "Ada_xcb_render_create_linear_gradient_checked");
    pragma Import
      (C,
       xcb_render_create_linear_gradient,
-      "xcb_render_create_linear_gradient");
+      "Ada_xcb_render_create_linear_gradient");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_stops,
-      "xcb_render_create_linear_gradient_stops");
+      "Ada_xcb_render_create_linear_gradient_stops");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_stops_length,
-      "xcb_render_create_linear_gradient_stops_length");
+      "Ada_xcb_render_create_linear_gradient_stops_length");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_stops_end,
-      "xcb_render_create_linear_gradient_stops_end");
+      "Ada_xcb_render_create_linear_gradient_stops_end");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_colors,
-      "xcb_render_create_linear_gradient_colors");
+      "Ada_xcb_render_create_linear_gradient_colors");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_colors_length,
-      "xcb_render_create_linear_gradient_colors_length");
+      "Ada_xcb_render_create_linear_gradient_colors_length");
    pragma Import
      (C,
       xcb_render_create_linear_gradient_colors_iterator,
-      "xcb_render_create_linear_gradient_colors_iterator");
+      "Ada_xcb_render_create_linear_gradient_colors_iterator");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_sizeof,
-      "xcb_render_create_radial_gradient_sizeof");
+      "Ada_xcb_render_create_radial_gradient_sizeof");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_checked,
-      "xcb_render_create_radial_gradient_checked");
+      "Ada_xcb_render_create_radial_gradient_checked");
    pragma Import
      (C,
       xcb_render_create_radial_gradient,
-      "xcb_render_create_radial_gradient");
+      "Ada_xcb_render_create_radial_gradient");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_stops,
-      "xcb_render_create_radial_gradient_stops");
+      "Ada_xcb_render_create_radial_gradient_stops");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_stops_length,
-      "xcb_render_create_radial_gradient_stops_length");
+      "Ada_xcb_render_create_radial_gradient_stops_length");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_stops_end,
-      "xcb_render_create_radial_gradient_stops_end");
+      "Ada_xcb_render_create_radial_gradient_stops_end");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_colors,
-      "xcb_render_create_radial_gradient_colors");
+      "Ada_xcb_render_create_radial_gradient_colors");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_colors_length,
-      "xcb_render_create_radial_gradient_colors_length");
+      "Ada_xcb_render_create_radial_gradient_colors_length");
    pragma Import
      (C,
       xcb_render_create_radial_gradient_colors_iterator,
-      "xcb_render_create_radial_gradient_colors_iterator");
+      "Ada_xcb_render_create_radial_gradient_colors_iterator");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_sizeof,
-      "xcb_render_create_conical_gradient_sizeof");
+      "Ada_xcb_render_create_conical_gradient_sizeof");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_checked,
-      "xcb_render_create_conical_gradient_checked");
+      "Ada_xcb_render_create_conical_gradient_checked");
    pragma Import
      (C,
       xcb_render_create_conical_gradient,
-      "xcb_render_create_conical_gradient");
+      "Ada_xcb_render_create_conical_gradient");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_stops,
-      "xcb_render_create_conical_gradient_stops");
+      "Ada_xcb_render_create_conical_gradient_stops");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_stops_length,
-      "xcb_render_create_conical_gradient_stops_length");
+      "Ada_xcb_render_create_conical_gradient_stops_length");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_stops_end,
-      "xcb_render_create_conical_gradient_stops_end");
+      "Ada_xcb_render_create_conical_gradient_stops_end");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_colors,
-      "xcb_render_create_conical_gradient_colors");
+      "Ada_xcb_render_create_conical_gradient_colors");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_colors_length,
-      "xcb_render_create_conical_gradient_colors_length");
+      "Ada_xcb_render_create_conical_gradient_colors_length");
    pragma Import
      (C,
       xcb_render_create_conical_gradient_colors_iterator,
-      "xcb_render_create_conical_gradient_colors_iterator");
-   pragma Import (C, xcb_send_request, "xcb_send_request");
-   pragma Import (C, xcb_send_request_with_fds, "xcb_send_request_with_fds");
-   pragma Import (C, xcb_send_request64, "xcb_send_request64");
+      "Ada_xcb_render_create_conical_gradient_colors_iterator");
+   pragma Import (C, xcb_send_request, "Ada_xcb_send_request");
    pragma Import
-     (C, xcb_send_request_with_fds64, "xcb_send_request_with_fds64");
-   pragma Import (C, xcb_send_fd, "xcb_send_fd");
-   pragma Import (C, xcb_writev, "xcb_writev");
-   pragma Import (C, xcb_wait_for_reply, "xcb_wait_for_reply");
-   pragma Import (C, xcb_wait_for_reply64, "xcb_wait_for_reply64");
-   pragma Import (C, xcb_poll_for_reply, "xcb_poll_for_reply");
-   pragma Import (C, xcb_poll_for_reply64, "xcb_poll_for_reply64");
-   pragma Import (C, xcb_get_reply_fds, "xcb_get_reply_fds");
-   pragma Import (C, xcb_popcount, "xcb_popcount");
-   pragma Import (C, xcb_sumof, "xcb_sumof");
+     (C, xcb_send_request_with_fds, "Ada_xcb_send_request_with_fds");
+   pragma Import (C, xcb_send_request64, "Ada_xcb_send_request64");
+   pragma Import
+     (C, xcb_send_request_with_fds64, "Ada_xcb_send_request_with_fds64");
+   pragma Import (C, xcb_send_fd, "Ada_xcb_send_fd");
+   pragma Import (C, xcb_writev, "Ada_xcb_writev");
+   pragma Import (C, xcb_wait_for_reply, "Ada_xcb_wait_for_reply");
+   pragma Import (C, xcb_wait_for_reply64, "Ada_xcb_wait_for_reply64");
+   pragma Import (C, xcb_poll_for_reply, "Ada_xcb_poll_for_reply");
+   pragma Import (C, xcb_poll_for_reply64, "Ada_xcb_poll_for_reply64");
+   pragma Import (C, xcb_get_reply_fds, "Ada_xcb_get_reply_fds");
+   pragma Import (C, xcb_popcount, "Ada_xcb_popcount");
+   pragma Import (C, xcb_sumof, "Ada_xcb_sumof");
    pragma Import
      (C,
       xcb_render_util_find_visual_format,
-      "xcb_render_util_find_visual_format");
+      "Ada_xcb_render_util_find_visual_format");
    pragma Import
-     (C, xcb_render_util_find_format, "xcb_render_util_find_format");
+     (C, xcb_render_util_find_format, "Ada_xcb_render_util_find_format");
    pragma Import
      (C,
       xcb_render_util_find_standard_format,
-      "xcb_render_util_find_standard_format");
+      "Ada_xcb_render_util_find_standard_format");
    pragma Import
-     (C, xcb_render_util_query_version, "xcb_render_util_query_version");
+     (C, xcb_render_util_query_version, "Ada_xcb_render_util_query_version");
    pragma Import
-     (C, xcb_render_util_query_formats, "xcb_render_util_query_formats");
-   pragma Import (C, xcb_render_util_disconnect, "xcb_render_util_disconnect");
+     (C, xcb_render_util_query_formats, "Ada_xcb_render_util_query_formats");
+   pragma Import
+     (C, xcb_render_util_disconnect, "Ada_xcb_render_util_disconnect");
    pragma Import
      (C,
       xcb_render_util_composite_text_stream,
-      "xcb_render_util_composite_text_stream");
-   pragma Import (C, xcb_render_util_glyphs_8, "xcb_render_util_glyphs_8");
-   pragma Import (C, xcb_render_util_glyphs_16, "xcb_render_util_glyphs_16");
-   pragma Import (C, xcb_render_util_glyphs_32, "xcb_render_util_glyphs_32");
+      "Ada_xcb_render_util_composite_text_stream");
+   pragma Import (C, xcb_render_util_glyphs_8, "Ada_xcb_render_util_glyphs_8");
    pragma Import
-     (C, xcb_render_util_change_glyphset, "xcb_render_util_change_glyphset");
+     (C, xcb_render_util_glyphs_16, "Ada_xcb_render_util_glyphs_16");
    pragma Import
-     (C, xcb_render_util_composite_text, "xcb_render_util_composite_text");
+     (C, xcb_render_util_glyphs_32, "Ada_xcb_render_util_glyphs_32");
+   pragma Import
+     (C,
+      xcb_render_util_change_glyphset,
+      "Ada_xcb_render_util_change_glyphset");
+   pragma Import
+     (C, xcb_render_util_composite_text, "Ada_xcb_render_util_composite_text");
    pragma Import
      (C,
       xcb_render_util_composite_text_checked,
-      "xcb_render_util_composite_text_checked");
+      "Ada_xcb_render_util_composite_text_checked");
    pragma Import
      (C,
       xcb_render_util_composite_text_free,
-      "xcb_render_util_composite_text_free");
-   pragma Import (C, xcb_xc_misc_get_version, "xcb_xc_misc_get_version");
+      "Ada_xcb_render_util_composite_text_free");
+   pragma Import (C, xcb_xc_misc_get_version, "Ada_xcb_xc_misc_get_version");
    pragma Import
      (C,
       xcb_xc_misc_get_version_unchecked,
-      "xcb_xc_misc_get_version_unchecked");
+      "Ada_xcb_xc_misc_get_version_unchecked");
    pragma Import
-     (C, xcb_xc_misc_get_version_reply, "xcb_xc_misc_get_version_reply");
-   pragma Import (C, xcb_xc_misc_get_xid_range, "xcb_xc_misc_get_xid_range");
+     (C, xcb_xc_misc_get_version_reply, "Ada_xcb_xc_misc_get_version_reply");
+   pragma Import
+     (C, xcb_xc_misc_get_xid_range, "Ada_xcb_xc_misc_get_xid_range");
    pragma Import
      (C,
       xcb_xc_misc_get_xid_range_unchecked,
-      "xcb_xc_misc_get_xid_range_unchecked");
+      "Ada_xcb_xc_misc_get_xid_range_unchecked");
    pragma Import
-     (C, xcb_xc_misc_get_xid_range_reply, "xcb_xc_misc_get_xid_range_reply");
+     (C,
+      xcb_xc_misc_get_xid_range_reply,
+      "Ada_xcb_xc_misc_get_xid_range_reply");
    pragma Import
-     (C, xcb_xc_misc_get_xid_list_sizeof, "xcb_xc_misc_get_xid_list_sizeof");
-   pragma Import (C, xcb_xc_misc_get_xid_list, "xcb_xc_misc_get_xid_list");
+     (C,
+      xcb_xc_misc_get_xid_list_sizeof,
+      "Ada_xcb_xc_misc_get_xid_list_sizeof");
+   pragma Import (C, xcb_xc_misc_get_xid_list, "Ada_xcb_xc_misc_get_xid_list");
    pragma Import
      (C,
       xcb_xc_misc_get_xid_list_unchecked,
-      "xcb_xc_misc_get_xid_list_unchecked");
+      "Ada_xcb_xc_misc_get_xid_list_unchecked");
    pragma Import
-     (C, xcb_xc_misc_get_xid_list_ids, "xcb_xc_misc_get_xid_list_ids");
+     (C, xcb_xc_misc_get_xid_list_ids, "Ada_xcb_xc_misc_get_xid_list_ids");
    pragma Import
      (C,
       xcb_xc_misc_get_xid_list_ids_length,
-      "xcb_xc_misc_get_xid_list_ids_length");
+      "Ada_xcb_xc_misc_get_xid_list_ids_length");
    pragma Import
-     (C, xcb_xc_misc_get_xid_list_ids_end, "xcb_xc_misc_get_xid_list_ids_end");
+     (C,
+      xcb_xc_misc_get_xid_list_ids_end,
+      "Ada_xcb_xc_misc_get_xid_list_ids_end");
    pragma Import
-     (C, xcb_xc_misc_get_xid_list_reply, "xcb_xc_misc_get_xid_list_reply");
-   pragma Import (C, xcb_glx_pixmap_next, "xcb_glx_pixmap_next");
-   pragma Import (C, xcb_glx_pixmap_end, "xcb_glx_pixmap_end");
-   pragma Import (C, xcb_glx_context_next, "xcb_glx_context_next");
-   pragma Import (C, xcb_glx_context_end, "xcb_glx_context_end");
-   pragma Import (C, xcb_glx_pbuffer_next, "xcb_glx_pbuffer_next");
-   pragma Import (C, xcb_glx_pbuffer_end, "xcb_glx_pbuffer_end");
-   pragma Import (C, xcb_glx_window_next, "xcb_glx_window_next");
-   pragma Import (C, xcb_glx_window_end, "xcb_glx_window_end");
-   pragma Import (C, xcb_glx_fbconfig_next, "xcb_glx_fbconfig_next");
-   pragma Import (C, xcb_glx_fbconfig_end, "xcb_glx_fbconfig_end");
-   pragma Import (C, xcb_glx_drawable_next, "xcb_glx_drawable_next");
-   pragma Import (C, xcb_glx_drawable_end, "xcb_glx_drawable_end");
-   pragma Import (C, xcb_glx_float32_next, "xcb_glx_float32_next");
-   pragma Import (C, xcb_glx_float32_end, "xcb_glx_float32_end");
-   pragma Import (C, xcb_glx_float64_next, "xcb_glx_float64_next");
-   pragma Import (C, xcb_glx_float64_end, "xcb_glx_float64_end");
-   pragma Import (C, xcb_glx_bool32_next, "xcb_glx_bool32_next");
-   pragma Import (C, xcb_glx_bool32_end, "xcb_glx_bool32_end");
-   pragma Import (C, xcb_glx_context_tag_next, "xcb_glx_context_tag_next");
-   pragma Import (C, xcb_glx_context_tag_end, "xcb_glx_context_tag_end");
-   pragma Import (C, xcb_glx_render_sizeof, "xcb_glx_render_sizeof");
-   pragma Import (C, xcb_glx_render_checked, "xcb_glx_render_checked");
-   pragma Import (C, xcb_glx_render, "xcb_glx_render");
-   pragma Import (C, xcb_glx_render_data, "xcb_glx_render_data");
-   pragma Import (C, xcb_glx_render_data_length, "xcb_glx_render_data_length");
-   pragma Import (C, xcb_glx_render_data_end, "xcb_glx_render_data_end");
+     (C, xcb_xc_misc_get_xid_list_reply, "Ada_xcb_xc_misc_get_xid_list_reply");
+   pragma Import (C, xcb_glx_pixmap_next, "Ada_xcb_glx_pixmap_next");
+   pragma Import (C, xcb_glx_pixmap_end, "Ada_xcb_glx_pixmap_end");
+   pragma Import (C, xcb_glx_context_next, "Ada_xcb_glx_context_next");
+   pragma Import (C, xcb_glx_context_end, "Ada_xcb_glx_context_end");
+   pragma Import (C, xcb_glx_pbuffer_next, "Ada_xcb_glx_pbuffer_next");
+   pragma Import (C, xcb_glx_pbuffer_end, "Ada_xcb_glx_pbuffer_end");
+   pragma Import (C, xcb_glx_window_next, "Ada_xcb_glx_window_next");
+   pragma Import (C, xcb_glx_window_end, "Ada_xcb_glx_window_end");
+   pragma Import (C, xcb_glx_fbconfig_next, "Ada_xcb_glx_fbconfig_next");
+   pragma Import (C, xcb_glx_fbconfig_end, "Ada_xcb_glx_fbconfig_end");
+   pragma Import (C, xcb_glx_drawable_next, "Ada_xcb_glx_drawable_next");
+   pragma Import (C, xcb_glx_drawable_end, "Ada_xcb_glx_drawable_end");
+   pragma Import (C, xcb_glx_float32_next, "Ada_xcb_glx_float32_next");
+   pragma Import (C, xcb_glx_float32_end, "Ada_xcb_glx_float32_end");
+   pragma Import (C, xcb_glx_float64_next, "Ada_xcb_glx_float64_next");
+   pragma Import (C, xcb_glx_float64_end, "Ada_xcb_glx_float64_end");
+   pragma Import (C, xcb_glx_bool32_next, "Ada_xcb_glx_bool32_next");
+   pragma Import (C, xcb_glx_bool32_end, "Ada_xcb_glx_bool32_end");
+   pragma Import (C, xcb_glx_context_tag_next, "Ada_xcb_glx_context_tag_next");
+   pragma Import (C, xcb_glx_context_tag_end, "Ada_xcb_glx_context_tag_end");
+   pragma Import (C, xcb_glx_render_sizeof, "Ada_xcb_glx_render_sizeof");
+   pragma Import (C, xcb_glx_render_checked, "Ada_xcb_glx_render_checked");
+   pragma Import (C, xcb_glx_render, "Ada_xcb_glx_render");
+   pragma Import (C, xcb_glx_render_data, "Ada_xcb_glx_render_data");
    pragma Import
-     (C, xcb_glx_render_large_sizeof, "xcb_glx_render_large_sizeof");
+     (C, xcb_glx_render_data_length, "Ada_xcb_glx_render_data_length");
+   pragma Import (C, xcb_glx_render_data_end, "Ada_xcb_glx_render_data_end");
    pragma Import
-     (C, xcb_glx_render_large_checked, "xcb_glx_render_large_checked");
-   pragma Import (C, xcb_glx_render_large, "xcb_glx_render_large");
-   pragma Import (C, xcb_glx_render_large_data, "xcb_glx_render_large_data");
+     (C, xcb_glx_render_large_sizeof, "Ada_xcb_glx_render_large_sizeof");
    pragma Import
-     (C, xcb_glx_render_large_data_length, "xcb_glx_render_large_data_length");
+     (C, xcb_glx_render_large_checked, "Ada_xcb_glx_render_large_checked");
+   pragma Import (C, xcb_glx_render_large, "Ada_xcb_glx_render_large");
    pragma Import
-     (C, xcb_glx_render_large_data_end, "xcb_glx_render_large_data_end");
+     (C, xcb_glx_render_large_data, "Ada_xcb_glx_render_large_data");
    pragma Import
-     (C, xcb_glx_create_context_checked, "xcb_glx_create_context_checked");
-   pragma Import (C, xcb_glx_create_context, "xcb_glx_create_context");
+     (C,
+      xcb_glx_render_large_data_length,
+      "Ada_xcb_glx_render_large_data_length");
    pragma Import
-     (C, xcb_glx_destroy_context_checked, "xcb_glx_destroy_context_checked");
-   pragma Import (C, xcb_glx_destroy_context, "xcb_glx_destroy_context");
-   pragma Import (C, xcb_glx_make_current, "xcb_glx_make_current");
+     (C, xcb_glx_render_large_data_end, "Ada_xcb_glx_render_large_data_end");
    pragma Import
-     (C, xcb_glx_make_current_unchecked, "xcb_glx_make_current_unchecked");
-   pragma Import (C, xcb_glx_make_current_reply, "xcb_glx_make_current_reply");
-   pragma Import (C, xcb_glx_is_direct, "xcb_glx_is_direct");
+     (C, xcb_glx_create_context_checked, "Ada_xcb_glx_create_context_checked");
+   pragma Import (C, xcb_glx_create_context, "Ada_xcb_glx_create_context");
    pragma Import
-     (C, xcb_glx_is_direct_unchecked, "xcb_glx_is_direct_unchecked");
-   pragma Import (C, xcb_glx_is_direct_reply, "xcb_glx_is_direct_reply");
-   pragma Import (C, xcb_glx_query_version, "xcb_glx_query_version");
+     (C,
+      xcb_glx_destroy_context_checked,
+      "Ada_xcb_glx_destroy_context_checked");
+   pragma Import (C, xcb_glx_destroy_context, "Ada_xcb_glx_destroy_context");
+   pragma Import (C, xcb_glx_make_current, "Ada_xcb_glx_make_current");
    pragma Import
-     (C, xcb_glx_query_version_unchecked, "xcb_glx_query_version_unchecked");
+     (C, xcb_glx_make_current_unchecked, "Ada_xcb_glx_make_current_unchecked");
    pragma Import
-     (C, xcb_glx_query_version_reply, "xcb_glx_query_version_reply");
-   pragma Import (C, xcb_glx_wait_gl_checked, "xcb_glx_wait_gl_checked");
-   pragma Import (C, xcb_glx_wait_gl, "xcb_glx_wait_gl");
-   pragma Import (C, xcb_glx_wait_x_checked, "xcb_glx_wait_x_checked");
-   pragma Import (C, xcb_glx_wait_x, "xcb_glx_wait_x");
+     (C, xcb_glx_make_current_reply, "Ada_xcb_glx_make_current_reply");
+   pragma Import (C, xcb_glx_is_direct, "Ada_xcb_glx_is_direct");
    pragma Import
-     (C, xcb_glx_copy_context_checked, "xcb_glx_copy_context_checked");
-   pragma Import (C, xcb_glx_copy_context, "xcb_glx_copy_context");
+     (C, xcb_glx_is_direct_unchecked, "Ada_xcb_glx_is_direct_unchecked");
+   pragma Import (C, xcb_glx_is_direct_reply, "Ada_xcb_glx_is_direct_reply");
+   pragma Import (C, xcb_glx_query_version, "Ada_xcb_glx_query_version");
    pragma Import
-     (C, xcb_glx_swap_buffers_checked, "xcb_glx_swap_buffers_checked");
-   pragma Import (C, xcb_glx_swap_buffers, "xcb_glx_swap_buffers");
-   pragma Import (C, xcb_glx_use_x_font_checked, "xcb_glx_use_x_font_checked");
-   pragma Import (C, xcb_glx_use_x_font, "xcb_glx_use_x_font");
+     (C,
+      xcb_glx_query_version_unchecked,
+      "Ada_xcb_glx_query_version_unchecked");
+   pragma Import
+     (C, xcb_glx_query_version_reply, "Ada_xcb_glx_query_version_reply");
+   pragma Import (C, xcb_glx_wait_gl_checked, "Ada_xcb_glx_wait_gl_checked");
+   pragma Import (C, xcb_glx_wait_gl, "Ada_xcb_glx_wait_gl");
+   pragma Import (C, xcb_glx_wait_x_checked, "Ada_xcb_glx_wait_x_checked");
+   pragma Import (C, xcb_glx_wait_x, "Ada_xcb_glx_wait_x");
+   pragma Import
+     (C, xcb_glx_copy_context_checked, "Ada_xcb_glx_copy_context_checked");
+   pragma Import (C, xcb_glx_copy_context, "Ada_xcb_glx_copy_context");
+   pragma Import
+     (C, xcb_glx_swap_buffers_checked, "Ada_xcb_glx_swap_buffers_checked");
+   pragma Import (C, xcb_glx_swap_buffers, "Ada_xcb_glx_swap_buffers");
+   pragma Import
+     (C, xcb_glx_use_x_font_checked, "Ada_xcb_glx_use_x_font_checked");
+   pragma Import (C, xcb_glx_use_x_font, "Ada_xcb_glx_use_x_font");
    pragma Import
      (C,
       xcb_glx_create_glx_pixmap_checked,
-      "xcb_glx_create_glx_pixmap_checked");
-   pragma Import (C, xcb_glx_create_glx_pixmap, "xcb_glx_create_glx_pixmap");
+      "Ada_xcb_glx_create_glx_pixmap_checked");
+   pragma Import
+     (C, xcb_glx_create_glx_pixmap, "Ada_xcb_glx_create_glx_pixmap");
    pragma Import
      (C,
       xcb_glx_get_visual_configs_sizeof,
-      "xcb_glx_get_visual_configs_sizeof");
-   pragma Import (C, xcb_glx_get_visual_configs, "xcb_glx_get_visual_configs");
+      "Ada_xcb_glx_get_visual_configs_sizeof");
+   pragma Import
+     (C, xcb_glx_get_visual_configs, "Ada_xcb_glx_get_visual_configs");
    pragma Import
      (C,
       xcb_glx_get_visual_configs_unchecked,
-      "xcb_glx_get_visual_configs_unchecked");
+      "Ada_xcb_glx_get_visual_configs_unchecked");
    pragma Import
      (C,
       xcb_glx_get_visual_configs_property_list,
-      "xcb_glx_get_visual_configs_property_list");
+      "Ada_xcb_glx_get_visual_configs_property_list");
    pragma Import
      (C,
       xcb_glx_get_visual_configs_property_list_length,
-      "xcb_glx_get_visual_configs_property_list_length");
+      "Ada_xcb_glx_get_visual_configs_property_list_length");
    pragma Import
      (C,
       xcb_glx_get_visual_configs_property_list_end,
-      "xcb_glx_get_visual_configs_property_list_end");
+      "Ada_xcb_glx_get_visual_configs_property_list_end");
    pragma Import
-     (C, xcb_glx_get_visual_configs_reply, "xcb_glx_get_visual_configs_reply");
+     (C,
+      xcb_glx_get_visual_configs_reply,
+      "Ada_xcb_glx_get_visual_configs_reply");
    pragma Import
      (C,
       xcb_glx_destroy_glx_pixmap_checked,
-      "xcb_glx_destroy_glx_pixmap_checked");
-   pragma Import (C, xcb_glx_destroy_glx_pixmap, "xcb_glx_destroy_glx_pixmap");
+      "Ada_xcb_glx_destroy_glx_pixmap_checked");
    pragma Import
-     (C, xcb_glx_vendor_private_sizeof, "xcb_glx_vendor_private_sizeof");
+     (C, xcb_glx_destroy_glx_pixmap, "Ada_xcb_glx_destroy_glx_pixmap");
    pragma Import
-     (C, xcb_glx_vendor_private_checked, "xcb_glx_vendor_private_checked");
-   pragma Import (C, xcb_glx_vendor_private, "xcb_glx_vendor_private");
+     (C, xcb_glx_vendor_private_sizeof, "Ada_xcb_glx_vendor_private_sizeof");
    pragma Import
-     (C, xcb_glx_vendor_private_data, "xcb_glx_vendor_private_data");
+     (C, xcb_glx_vendor_private_checked, "Ada_xcb_glx_vendor_private_checked");
+   pragma Import (C, xcb_glx_vendor_private, "Ada_xcb_glx_vendor_private");
+   pragma Import
+     (C, xcb_glx_vendor_private_data, "Ada_xcb_glx_vendor_private_data");
    pragma Import
      (C,
       xcb_glx_vendor_private_data_length,
-      "xcb_glx_vendor_private_data_length");
+      "Ada_xcb_glx_vendor_private_data_length");
    pragma Import
-     (C, xcb_glx_vendor_private_data_end, "xcb_glx_vendor_private_data_end");
+     (C,
+      xcb_glx_vendor_private_data_end,
+      "Ada_xcb_glx_vendor_private_data_end");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_sizeof,
-      "xcb_glx_vendor_private_with_reply_sizeof");
+      "Ada_xcb_glx_vendor_private_with_reply_sizeof");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply,
-      "xcb_glx_vendor_private_with_reply");
+      "Ada_xcb_glx_vendor_private_with_reply");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_unchecked,
-      "xcb_glx_vendor_private_with_reply_unchecked");
+      "Ada_xcb_glx_vendor_private_with_reply_unchecked");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_data_2,
-      "xcb_glx_vendor_private_with_reply_data_2");
+      "Ada_xcb_glx_vendor_private_with_reply_data_2");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_data_2_length,
-      "xcb_glx_vendor_private_with_reply_data_2_length");
+      "Ada_xcb_glx_vendor_private_with_reply_data_2_length");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_data_2_end,
-      "xcb_glx_vendor_private_with_reply_data_2_end");
+      "Ada_xcb_glx_vendor_private_with_reply_data_2_end");
    pragma Import
      (C,
       xcb_glx_vendor_private_with_reply_reply,
-      "xcb_glx_vendor_private_with_reply_reply");
+      "Ada_xcb_glx_vendor_private_with_reply_reply");
    pragma Import
-     (C, xcb_glx_query_extensions_string, "xcb_glx_query_extensions_string");
+     (C,
+      xcb_glx_query_extensions_string,
+      "Ada_xcb_glx_query_extensions_string");
    pragma Import
      (C,
       xcb_glx_query_extensions_string_unchecked,
-      "xcb_glx_query_extensions_string_unchecked");
+      "Ada_xcb_glx_query_extensions_string_unchecked");
    pragma Import
      (C,
       xcb_glx_query_extensions_string_reply,
-      "xcb_glx_query_extensions_string_reply");
+      "Ada_xcb_glx_query_extensions_string_reply");
    pragma Import
      (C,
       xcb_glx_query_server_string_sizeof,
-      "xcb_glx_query_server_string_sizeof");
+      "Ada_xcb_glx_query_server_string_sizeof");
    pragma Import
-     (C, xcb_glx_query_server_string, "xcb_glx_query_server_string");
+     (C, xcb_glx_query_server_string, "Ada_xcb_glx_query_server_string");
    pragma Import
      (C,
       xcb_glx_query_server_string_unchecked,
-      "xcb_glx_query_server_string_unchecked");
+      "Ada_xcb_glx_query_server_string_unchecked");
    pragma Import
      (C,
       xcb_glx_query_server_string_string,
-      "xcb_glx_query_server_string_string");
+      "Ada_xcb_glx_query_server_string_string");
    pragma Import
      (C,
       xcb_glx_query_server_string_string_length,
-      "xcb_glx_query_server_string_string_length");
+      "Ada_xcb_glx_query_server_string_string_length");
    pragma Import
      (C,
       xcb_glx_query_server_string_string_end,
-      "xcb_glx_query_server_string_string_end");
+      "Ada_xcb_glx_query_server_string_string_end");
    pragma Import
      (C,
       xcb_glx_query_server_string_reply,
-      "xcb_glx_query_server_string_reply");
-   pragma Import (C, xcb_glx_client_info_sizeof, "xcb_glx_client_info_sizeof");
+      "Ada_xcb_glx_query_server_string_reply");
    pragma Import
-     (C, xcb_glx_client_info_checked, "xcb_glx_client_info_checked");
-   pragma Import (C, xcb_glx_client_info, "xcb_glx_client_info");
-   pragma Import (C, xcb_glx_client_info_string, "xcb_glx_client_info_string");
+     (C, xcb_glx_client_info_sizeof, "Ada_xcb_glx_client_info_sizeof");
+   pragma Import
+     (C, xcb_glx_client_info_checked, "Ada_xcb_glx_client_info_checked");
+   pragma Import (C, xcb_glx_client_info, "Ada_xcb_glx_client_info");
+   pragma Import
+     (C, xcb_glx_client_info_string, "Ada_xcb_glx_client_info_string");
    pragma Import
      (C,
       xcb_glx_client_info_string_length,
-      "xcb_glx_client_info_string_length");
+      "Ada_xcb_glx_client_info_string_length");
    pragma Import
-     (C, xcb_glx_client_info_string_end, "xcb_glx_client_info_string_end");
+     (C, xcb_glx_client_info_string_end, "Ada_xcb_glx_client_info_string_end");
    pragma Import
-     (C, xcb_glx_get_fb_configs_sizeof, "xcb_glx_get_fb_configs_sizeof");
-   pragma Import (C, xcb_glx_get_fb_configs, "xcb_glx_get_fb_configs");
+     (C, xcb_glx_get_fb_configs_sizeof, "Ada_xcb_glx_get_fb_configs_sizeof");
+   pragma Import (C, xcb_glx_get_fb_configs, "Ada_xcb_glx_get_fb_configs");
    pragma Import
-     (C, xcb_glx_get_fb_configs_unchecked, "xcb_glx_get_fb_configs_unchecked");
+     (C,
+      xcb_glx_get_fb_configs_unchecked,
+      "Ada_xcb_glx_get_fb_configs_unchecked");
    pragma Import
      (C,
       xcb_glx_get_fb_configs_property_list,
-      "xcb_glx_get_fb_configs_property_list");
+      "Ada_xcb_glx_get_fb_configs_property_list");
    pragma Import
      (C,
       xcb_glx_get_fb_configs_property_list_length,
-      "xcb_glx_get_fb_configs_property_list_length");
+      "Ada_xcb_glx_get_fb_configs_property_list_length");
    pragma Import
      (C,
       xcb_glx_get_fb_configs_property_list_end,
-      "xcb_glx_get_fb_configs_property_list_end");
+      "Ada_xcb_glx_get_fb_configs_property_list_end");
    pragma Import
-     (C, xcb_glx_get_fb_configs_reply, "xcb_glx_get_fb_configs_reply");
+     (C, xcb_glx_get_fb_configs_reply, "Ada_xcb_glx_get_fb_configs_reply");
    pragma Import
-     (C, xcb_glx_create_pixmap_sizeof, "xcb_glx_create_pixmap_sizeof");
+     (C, xcb_glx_create_pixmap_sizeof, "Ada_xcb_glx_create_pixmap_sizeof");
    pragma Import
-     (C, xcb_glx_create_pixmap_checked, "xcb_glx_create_pixmap_checked");
-   pragma Import (C, xcb_glx_create_pixmap, "xcb_glx_create_pixmap");
+     (C, xcb_glx_create_pixmap_checked, "Ada_xcb_glx_create_pixmap_checked");
+   pragma Import (C, xcb_glx_create_pixmap, "Ada_xcb_glx_create_pixmap");
    pragma Import
-     (C, xcb_glx_create_pixmap_attribs, "xcb_glx_create_pixmap_attribs");
+     (C, xcb_glx_create_pixmap_attribs, "Ada_xcb_glx_create_pixmap_attribs");
    pragma Import
      (C,
       xcb_glx_create_pixmap_attribs_length,
-      "xcb_glx_create_pixmap_attribs_length");
+      "Ada_xcb_glx_create_pixmap_attribs_length");
    pragma Import
      (C,
       xcb_glx_create_pixmap_attribs_end,
-      "xcb_glx_create_pixmap_attribs_end");
+      "Ada_xcb_glx_create_pixmap_attribs_end");
    pragma Import
-     (C, xcb_glx_destroy_pixmap_checked, "xcb_glx_destroy_pixmap_checked");
-   pragma Import (C, xcb_glx_destroy_pixmap, "xcb_glx_destroy_pixmap");
+     (C, xcb_glx_destroy_pixmap_checked, "Ada_xcb_glx_destroy_pixmap_checked");
+   pragma Import (C, xcb_glx_destroy_pixmap, "Ada_xcb_glx_destroy_pixmap");
    pragma Import
      (C,
       xcb_glx_create_new_context_checked,
-      "xcb_glx_create_new_context_checked");
-   pragma Import (C, xcb_glx_create_new_context, "xcb_glx_create_new_context");
+      "Ada_xcb_glx_create_new_context_checked");
    pragma Import
-     (C, xcb_glx_query_context_sizeof, "xcb_glx_query_context_sizeof");
-   pragma Import (C, xcb_glx_query_context, "xcb_glx_query_context");
+     (C, xcb_glx_create_new_context, "Ada_xcb_glx_create_new_context");
    pragma Import
-     (C, xcb_glx_query_context_unchecked, "xcb_glx_query_context_unchecked");
+     (C, xcb_glx_query_context_sizeof, "Ada_xcb_glx_query_context_sizeof");
+   pragma Import (C, xcb_glx_query_context, "Ada_xcb_glx_query_context");
    pragma Import
-     (C, xcb_glx_query_context_attribs, "xcb_glx_query_context_attribs");
+     (C,
+      xcb_glx_query_context_unchecked,
+      "Ada_xcb_glx_query_context_unchecked");
+   pragma Import
+     (C, xcb_glx_query_context_attribs, "Ada_xcb_glx_query_context_attribs");
    pragma Import
      (C,
       xcb_glx_query_context_attribs_length,
-      "xcb_glx_query_context_attribs_length");
+      "Ada_xcb_glx_query_context_attribs_length");
    pragma Import
      (C,
       xcb_glx_query_context_attribs_end,
-      "xcb_glx_query_context_attribs_end");
+      "Ada_xcb_glx_query_context_attribs_end");
    pragma Import
-     (C, xcb_glx_query_context_reply, "xcb_glx_query_context_reply");
+     (C, xcb_glx_query_context_reply, "Ada_xcb_glx_query_context_reply");
    pragma Import
-     (C, xcb_glx_make_context_current, "xcb_glx_make_context_current");
+     (C, xcb_glx_make_context_current, "Ada_xcb_glx_make_context_current");
    pragma Import
      (C,
       xcb_glx_make_context_current_unchecked,
-      "xcb_glx_make_context_current_unchecked");
+      "Ada_xcb_glx_make_context_current_unchecked");
    pragma Import
      (C,
       xcb_glx_make_context_current_reply,
-      "xcb_glx_make_context_current_reply");
+      "Ada_xcb_glx_make_context_current_reply");
    pragma Import
-     (C, xcb_glx_create_pbuffer_sizeof, "xcb_glx_create_pbuffer_sizeof");
+     (C, xcb_glx_create_pbuffer_sizeof, "Ada_xcb_glx_create_pbuffer_sizeof");
    pragma Import
-     (C, xcb_glx_create_pbuffer_checked, "xcb_glx_create_pbuffer_checked");
-   pragma Import (C, xcb_glx_create_pbuffer, "xcb_glx_create_pbuffer");
+     (C, xcb_glx_create_pbuffer_checked, "Ada_xcb_glx_create_pbuffer_checked");
+   pragma Import (C, xcb_glx_create_pbuffer, "Ada_xcb_glx_create_pbuffer");
    pragma Import
-     (C, xcb_glx_create_pbuffer_attribs, "xcb_glx_create_pbuffer_attribs");
+     (C, xcb_glx_create_pbuffer_attribs, "Ada_xcb_glx_create_pbuffer_attribs");
    pragma Import
      (C,
       xcb_glx_create_pbuffer_attribs_length,
-      "xcb_glx_create_pbuffer_attribs_length");
+      "Ada_xcb_glx_create_pbuffer_attribs_length");
    pragma Import
      (C,
       xcb_glx_create_pbuffer_attribs_end,
-      "xcb_glx_create_pbuffer_attribs_end");
+      "Ada_xcb_glx_create_pbuffer_attribs_end");
    pragma Import
-     (C, xcb_glx_destroy_pbuffer_checked, "xcb_glx_destroy_pbuffer_checked");
-   pragma Import (C, xcb_glx_destroy_pbuffer, "xcb_glx_destroy_pbuffer");
+     (C,
+      xcb_glx_destroy_pbuffer_checked,
+      "Ada_xcb_glx_destroy_pbuffer_checked");
+   pragma Import (C, xcb_glx_destroy_pbuffer, "Ada_xcb_glx_destroy_pbuffer");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_sizeof,
-      "xcb_glx_get_drawable_attributes_sizeof");
+      "Ada_xcb_glx_get_drawable_attributes_sizeof");
    pragma Import
-     (C, xcb_glx_get_drawable_attributes, "xcb_glx_get_drawable_attributes");
+     (C,
+      xcb_glx_get_drawable_attributes,
+      "Ada_xcb_glx_get_drawable_attributes");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_unchecked,
-      "xcb_glx_get_drawable_attributes_unchecked");
+      "Ada_xcb_glx_get_drawable_attributes_unchecked");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_attribs,
-      "xcb_glx_get_drawable_attributes_attribs");
+      "Ada_xcb_glx_get_drawable_attributes_attribs");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_attribs_length,
-      "xcb_glx_get_drawable_attributes_attribs_length");
+      "Ada_xcb_glx_get_drawable_attributes_attribs_length");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_attribs_end,
-      "xcb_glx_get_drawable_attributes_attribs_end");
+      "Ada_xcb_glx_get_drawable_attributes_attribs_end");
    pragma Import
      (C,
       xcb_glx_get_drawable_attributes_reply,
-      "xcb_glx_get_drawable_attributes_reply");
+      "Ada_xcb_glx_get_drawable_attributes_reply");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes_sizeof,
-      "xcb_glx_change_drawable_attributes_sizeof");
+      "Ada_xcb_glx_change_drawable_attributes_sizeof");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes_checked,
-      "xcb_glx_change_drawable_attributes_checked");
+      "Ada_xcb_glx_change_drawable_attributes_checked");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes,
-      "xcb_glx_change_drawable_attributes");
+      "Ada_xcb_glx_change_drawable_attributes");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes_attribs,
-      "xcb_glx_change_drawable_attributes_attribs");
+      "Ada_xcb_glx_change_drawable_attributes_attribs");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes_attribs_length,
-      "xcb_glx_change_drawable_attributes_attribs_length");
+      "Ada_xcb_glx_change_drawable_attributes_attribs_length");
    pragma Import
      (C,
       xcb_glx_change_drawable_attributes_attribs_end,
-      "xcb_glx_change_drawable_attributes_attribs_end");
+      "Ada_xcb_glx_change_drawable_attributes_attribs_end");
    pragma Import
-     (C, xcb_glx_create_window_sizeof, "xcb_glx_create_window_sizeof");
+     (C, xcb_glx_create_window_sizeof, "Ada_xcb_glx_create_window_sizeof");
    pragma Import
-     (C, xcb_glx_create_window_checked, "xcb_glx_create_window_checked");
-   pragma Import (C, xcb_glx_create_window, "xcb_glx_create_window");
+     (C, xcb_glx_create_window_checked, "Ada_xcb_glx_create_window_checked");
+   pragma Import (C, xcb_glx_create_window, "Ada_xcb_glx_create_window");
    pragma Import
-     (C, xcb_glx_create_window_attribs, "xcb_glx_create_window_attribs");
+     (C, xcb_glx_create_window_attribs, "Ada_xcb_glx_create_window_attribs");
    pragma Import
      (C,
       xcb_glx_create_window_attribs_length,
-      "xcb_glx_create_window_attribs_length");
+      "Ada_xcb_glx_create_window_attribs_length");
    pragma Import
      (C,
       xcb_glx_create_window_attribs_end,
-      "xcb_glx_create_window_attribs_end");
+      "Ada_xcb_glx_create_window_attribs_end");
    pragma Import
-     (C, xcb_glx_delete_window_checked, "xcb_glx_delete_window_checked");
-   pragma Import (C, xcb_glx_delete_window, "xcb_glx_delete_window");
+     (C, xcb_glx_delete_window_checked, "Ada_xcb_glx_delete_window_checked");
+   pragma Import (C, xcb_glx_delete_window, "Ada_xcb_glx_delete_window");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_sizeof,
-      "xcb_glx_set_client_info_arb_sizeof");
+      "Ada_xcb_glx_set_client_info_arb_sizeof");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_checked,
-      "xcb_glx_set_client_info_arb_checked");
+      "Ada_xcb_glx_set_client_info_arb_checked");
    pragma Import
-     (C, xcb_glx_set_client_info_arb, "xcb_glx_set_client_info_arb");
+     (C, xcb_glx_set_client_info_arb, "Ada_xcb_glx_set_client_info_arb");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_versions,
-      "xcb_glx_set_client_info_arb_gl_versions");
+      "Ada_xcb_glx_set_client_info_arb_gl_versions");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_versions_length,
-      "xcb_glx_set_client_info_arb_gl_versions_length");
+      "Ada_xcb_glx_set_client_info_arb_gl_versions_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_versions_end,
-      "xcb_glx_set_client_info_arb_gl_versions_end");
+      "Ada_xcb_glx_set_client_info_arb_gl_versions_end");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_extension_string,
-      "xcb_glx_set_client_info_arb_gl_extension_string");
+      "Ada_xcb_glx_set_client_info_arb_gl_extension_string");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_extension_string_length,
-      "xcb_glx_set_client_info_arb_gl_extension_string_length");
+      "Ada_xcb_glx_set_client_info_arb_gl_extension_string_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_gl_extension_string_end,
-      "xcb_glx_set_client_info_arb_gl_extension_string_end");
+      "Ada_xcb_glx_set_client_info_arb_gl_extension_string_end");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_glx_extension_string,
-      "xcb_glx_set_client_info_arb_glx_extension_string");
+      "Ada_xcb_glx_set_client_info_arb_glx_extension_string");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_glx_extension_string_length,
-      "xcb_glx_set_client_info_arb_glx_extension_string_length");
+      "Ada_xcb_glx_set_client_info_arb_glx_extension_string_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_arb_glx_extension_string_end,
-      "xcb_glx_set_client_info_arb_glx_extension_string_end");
+      "Ada_xcb_glx_set_client_info_arb_glx_extension_string_end");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb_sizeof,
-      "xcb_glx_create_context_attribs_arb_sizeof");
+      "Ada_xcb_glx_create_context_attribs_arb_sizeof");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb_checked,
-      "xcb_glx_create_context_attribs_arb_checked");
+      "Ada_xcb_glx_create_context_attribs_arb_checked");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb,
-      "xcb_glx_create_context_attribs_arb");
+      "Ada_xcb_glx_create_context_attribs_arb");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb_attribs,
-      "xcb_glx_create_context_attribs_arb_attribs");
+      "Ada_xcb_glx_create_context_attribs_arb_attribs");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb_attribs_length,
-      "xcb_glx_create_context_attribs_arb_attribs_length");
+      "Ada_xcb_glx_create_context_attribs_arb_attribs_length");
    pragma Import
      (C,
       xcb_glx_create_context_attribs_arb_attribs_end,
-      "xcb_glx_create_context_attribs_arb_attribs_end");
+      "Ada_xcb_glx_create_context_attribs_arb_attribs_end");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_sizeof,
-      "xcb_glx_set_client_info_2arb_sizeof");
+      "Ada_xcb_glx_set_client_info_2arb_sizeof");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_checked,
-      "xcb_glx_set_client_info_2arb_checked");
+      "Ada_xcb_glx_set_client_info_2arb_checked");
    pragma Import
-     (C, xcb_glx_set_client_info_2arb, "xcb_glx_set_client_info_2arb");
+     (C, xcb_glx_set_client_info_2arb, "Ada_xcb_glx_set_client_info_2arb");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_versions,
-      "xcb_glx_set_client_info_2arb_gl_versions");
+      "Ada_xcb_glx_set_client_info_2arb_gl_versions");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_versions_length,
-      "xcb_glx_set_client_info_2arb_gl_versions_length");
+      "Ada_xcb_glx_set_client_info_2arb_gl_versions_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_versions_end,
-      "xcb_glx_set_client_info_2arb_gl_versions_end");
+      "Ada_xcb_glx_set_client_info_2arb_gl_versions_end");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_extension_string,
-      "xcb_glx_set_client_info_2arb_gl_extension_string");
+      "Ada_xcb_glx_set_client_info_2arb_gl_extension_string");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_extension_string_length,
-      "xcb_glx_set_client_info_2arb_gl_extension_string_length");
+      "Ada_xcb_glx_set_client_info_2arb_gl_extension_string_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_gl_extension_string_end,
-      "xcb_glx_set_client_info_2arb_gl_extension_string_end");
+      "Ada_xcb_glx_set_client_info_2arb_gl_extension_string_end");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_glx_extension_string,
-      "xcb_glx_set_client_info_2arb_glx_extension_string");
+      "Ada_xcb_glx_set_client_info_2arb_glx_extension_string");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_glx_extension_string_length,
-      "xcb_glx_set_client_info_2arb_glx_extension_string_length");
+      "Ada_xcb_glx_set_client_info_2arb_glx_extension_string_length");
    pragma Import
      (C,
       xcb_glx_set_client_info_2arb_glx_extension_string_end,
-      "xcb_glx_set_client_info_2arb_glx_extension_string_end");
-   pragma Import (C, xcb_glx_new_list_checked, "xcb_glx_new_list_checked");
-   pragma Import (C, xcb_glx_new_list, "xcb_glx_new_list");
-   pragma Import (C, xcb_glx_end_list_checked, "xcb_glx_end_list_checked");
-   pragma Import (C, xcb_glx_end_list, "xcb_glx_end_list");
+      "Ada_xcb_glx_set_client_info_2arb_glx_extension_string_end");
+   pragma Import (C, xcb_glx_new_list_checked, "Ada_xcb_glx_new_list_checked");
+   pragma Import (C, xcb_glx_new_list, "Ada_xcb_glx_new_list");
+   pragma Import (C, xcb_glx_end_list_checked, "Ada_xcb_glx_end_list_checked");
+   pragma Import (C, xcb_glx_end_list, "Ada_xcb_glx_end_list");
    pragma Import
-     (C, xcb_glx_delete_lists_checked, "xcb_glx_delete_lists_checked");
-   pragma Import (C, xcb_glx_delete_lists, "xcb_glx_delete_lists");
-   pragma Import (C, xcb_glx_gen_lists, "xcb_glx_gen_lists");
+     (C, xcb_glx_delete_lists_checked, "Ada_xcb_glx_delete_lists_checked");
+   pragma Import (C, xcb_glx_delete_lists, "Ada_xcb_glx_delete_lists");
+   pragma Import (C, xcb_glx_gen_lists, "Ada_xcb_glx_gen_lists");
    pragma Import
-     (C, xcb_glx_gen_lists_unchecked, "xcb_glx_gen_lists_unchecked");
-   pragma Import (C, xcb_glx_gen_lists_reply, "xcb_glx_gen_lists_reply");
+     (C, xcb_glx_gen_lists_unchecked, "Ada_xcb_glx_gen_lists_unchecked");
+   pragma Import (C, xcb_glx_gen_lists_reply, "Ada_xcb_glx_gen_lists_reply");
    pragma Import
-     (C, xcb_glx_feedback_buffer_checked, "xcb_glx_feedback_buffer_checked");
-   pragma Import (C, xcb_glx_feedback_buffer, "xcb_glx_feedback_buffer");
+     (C,
+      xcb_glx_feedback_buffer_checked,
+      "Ada_xcb_glx_feedback_buffer_checked");
+   pragma Import (C, xcb_glx_feedback_buffer, "Ada_xcb_glx_feedback_buffer");
    pragma Import
-     (C, xcb_glx_select_buffer_checked, "xcb_glx_select_buffer_checked");
-   pragma Import (C, xcb_glx_select_buffer, "xcb_glx_select_buffer");
-   pragma Import (C, xcb_glx_render_mode_sizeof, "xcb_glx_render_mode_sizeof");
-   pragma Import (C, xcb_glx_render_mode, "xcb_glx_render_mode");
+     (C, xcb_glx_select_buffer_checked, "Ada_xcb_glx_select_buffer_checked");
+   pragma Import (C, xcb_glx_select_buffer, "Ada_xcb_glx_select_buffer");
    pragma Import
-     (C, xcb_glx_render_mode_unchecked, "xcb_glx_render_mode_unchecked");
-   pragma Import (C, xcb_glx_render_mode_data, "xcb_glx_render_mode_data");
+     (C, xcb_glx_render_mode_sizeof, "Ada_xcb_glx_render_mode_sizeof");
+   pragma Import (C, xcb_glx_render_mode, "Ada_xcb_glx_render_mode");
    pragma Import
-     (C, xcb_glx_render_mode_data_length, "xcb_glx_render_mode_data_length");
+     (C, xcb_glx_render_mode_unchecked, "Ada_xcb_glx_render_mode_unchecked");
+   pragma Import (C, xcb_glx_render_mode_data, "Ada_xcb_glx_render_mode_data");
    pragma Import
-     (C, xcb_glx_render_mode_data_end, "xcb_glx_render_mode_data_end");
-   pragma Import (C, xcb_glx_render_mode_reply, "xcb_glx_render_mode_reply");
-   pragma Import (C, xcb_glx_finish, "xcb_glx_finish");
-   pragma Import (C, xcb_glx_finish_unchecked, "xcb_glx_finish_unchecked");
-   pragma Import (C, xcb_glx_finish_reply, "xcb_glx_finish_reply");
+     (C,
+      xcb_glx_render_mode_data_length,
+      "Ada_xcb_glx_render_mode_data_length");
    pragma Import
-     (C, xcb_glx_pixel_storef_checked, "xcb_glx_pixel_storef_checked");
-   pragma Import (C, xcb_glx_pixel_storef, "xcb_glx_pixel_storef");
+     (C, xcb_glx_render_mode_data_end, "Ada_xcb_glx_render_mode_data_end");
    pragma Import
-     (C, xcb_glx_pixel_storei_checked, "xcb_glx_pixel_storei_checked");
-   pragma Import (C, xcb_glx_pixel_storei, "xcb_glx_pixel_storei");
-   pragma Import (C, xcb_glx_read_pixels_sizeof, "xcb_glx_read_pixels_sizeof");
-   pragma Import (C, xcb_glx_read_pixels, "xcb_glx_read_pixels");
+     (C, xcb_glx_render_mode_reply, "Ada_xcb_glx_render_mode_reply");
+   pragma Import (C, xcb_glx_finish, "Ada_xcb_glx_finish");
+   pragma Import (C, xcb_glx_finish_unchecked, "Ada_xcb_glx_finish_unchecked");
+   pragma Import (C, xcb_glx_finish_reply, "Ada_xcb_glx_finish_reply");
    pragma Import
-     (C, xcb_glx_read_pixels_unchecked, "xcb_glx_read_pixels_unchecked");
-   pragma Import (C, xcb_glx_read_pixels_data, "xcb_glx_read_pixels_data");
+     (C, xcb_glx_pixel_storef_checked, "Ada_xcb_glx_pixel_storef_checked");
+   pragma Import (C, xcb_glx_pixel_storef, "Ada_xcb_glx_pixel_storef");
    pragma Import
-     (C, xcb_glx_read_pixels_data_length, "xcb_glx_read_pixels_data_length");
+     (C, xcb_glx_pixel_storei_checked, "Ada_xcb_glx_pixel_storei_checked");
+   pragma Import (C, xcb_glx_pixel_storei, "Ada_xcb_glx_pixel_storei");
    pragma Import
-     (C, xcb_glx_read_pixels_data_end, "xcb_glx_read_pixels_data_end");
-   pragma Import (C, xcb_glx_read_pixels_reply, "xcb_glx_read_pixels_reply");
+     (C, xcb_glx_read_pixels_sizeof, "Ada_xcb_glx_read_pixels_sizeof");
+   pragma Import (C, xcb_glx_read_pixels, "Ada_xcb_glx_read_pixels");
    pragma Import
-     (C, xcb_glx_get_booleanv_sizeof, "xcb_glx_get_booleanv_sizeof");
-   pragma Import (C, xcb_glx_get_booleanv, "xcb_glx_get_booleanv");
+     (C, xcb_glx_read_pixels_unchecked, "Ada_xcb_glx_read_pixels_unchecked");
+   pragma Import (C, xcb_glx_read_pixels_data, "Ada_xcb_glx_read_pixels_data");
    pragma Import
-     (C, xcb_glx_get_booleanv_unchecked, "xcb_glx_get_booleanv_unchecked");
-   pragma Import (C, xcb_glx_get_booleanv_data, "xcb_glx_get_booleanv_data");
+     (C,
+      xcb_glx_read_pixels_data_length,
+      "Ada_xcb_glx_read_pixels_data_length");
    pragma Import
-     (C, xcb_glx_get_booleanv_data_length, "xcb_glx_get_booleanv_data_length");
+     (C, xcb_glx_read_pixels_data_end, "Ada_xcb_glx_read_pixels_data_end");
    pragma Import
-     (C, xcb_glx_get_booleanv_data_end, "xcb_glx_get_booleanv_data_end");
-   pragma Import (C, xcb_glx_get_booleanv_reply, "xcb_glx_get_booleanv_reply");
+     (C, xcb_glx_read_pixels_reply, "Ada_xcb_glx_read_pixels_reply");
    pragma Import
-     (C, xcb_glx_get_clip_plane_sizeof, "xcb_glx_get_clip_plane_sizeof");
-   pragma Import (C, xcb_glx_get_clip_plane, "xcb_glx_get_clip_plane");
+     (C, xcb_glx_get_booleanv_sizeof, "Ada_xcb_glx_get_booleanv_sizeof");
+   pragma Import (C, xcb_glx_get_booleanv, "Ada_xcb_glx_get_booleanv");
    pragma Import
-     (C, xcb_glx_get_clip_plane_unchecked, "xcb_glx_get_clip_plane_unchecked");
+     (C, xcb_glx_get_booleanv_unchecked, "Ada_xcb_glx_get_booleanv_unchecked");
    pragma Import
-     (C, xcb_glx_get_clip_plane_data, "xcb_glx_get_clip_plane_data");
+     (C, xcb_glx_get_booleanv_data, "Ada_xcb_glx_get_booleanv_data");
+   pragma Import
+     (C,
+      xcb_glx_get_booleanv_data_length,
+      "Ada_xcb_glx_get_booleanv_data_length");
+   pragma Import
+     (C, xcb_glx_get_booleanv_data_end, "Ada_xcb_glx_get_booleanv_data_end");
+   pragma Import
+     (C, xcb_glx_get_booleanv_reply, "Ada_xcb_glx_get_booleanv_reply");
+   pragma Import
+     (C, xcb_glx_get_clip_plane_sizeof, "Ada_xcb_glx_get_clip_plane_sizeof");
+   pragma Import (C, xcb_glx_get_clip_plane, "Ada_xcb_glx_get_clip_plane");
+   pragma Import
+     (C,
+      xcb_glx_get_clip_plane_unchecked,
+      "Ada_xcb_glx_get_clip_plane_unchecked");
+   pragma Import
+     (C, xcb_glx_get_clip_plane_data, "Ada_xcb_glx_get_clip_plane_data");
    pragma Import
      (C,
       xcb_glx_get_clip_plane_data_length,
-      "xcb_glx_get_clip_plane_data_length");
+      "Ada_xcb_glx_get_clip_plane_data_length");
    pragma Import
-     (C, xcb_glx_get_clip_plane_data_end, "xcb_glx_get_clip_plane_data_end");
+     (C,
+      xcb_glx_get_clip_plane_data_end,
+      "Ada_xcb_glx_get_clip_plane_data_end");
    pragma Import
-     (C, xcb_glx_get_clip_plane_reply, "xcb_glx_get_clip_plane_reply");
-   pragma Import (C, xcb_glx_get_doublev_sizeof, "xcb_glx_get_doublev_sizeof");
-   pragma Import (C, xcb_glx_get_doublev, "xcb_glx_get_doublev");
+     (C, xcb_glx_get_clip_plane_reply, "Ada_xcb_glx_get_clip_plane_reply");
    pragma Import
-     (C, xcb_glx_get_doublev_unchecked, "xcb_glx_get_doublev_unchecked");
-   pragma Import (C, xcb_glx_get_doublev_data, "xcb_glx_get_doublev_data");
+     (C, xcb_glx_get_doublev_sizeof, "Ada_xcb_glx_get_doublev_sizeof");
+   pragma Import (C, xcb_glx_get_doublev, "Ada_xcb_glx_get_doublev");
    pragma Import
-     (C, xcb_glx_get_doublev_data_length, "xcb_glx_get_doublev_data_length");
+     (C, xcb_glx_get_doublev_unchecked, "Ada_xcb_glx_get_doublev_unchecked");
+   pragma Import (C, xcb_glx_get_doublev_data, "Ada_xcb_glx_get_doublev_data");
    pragma Import
-     (C, xcb_glx_get_doublev_data_end, "xcb_glx_get_doublev_data_end");
-   pragma Import (C, xcb_glx_get_doublev_reply, "xcb_glx_get_doublev_reply");
-   pragma Import (C, xcb_glx_get_error, "xcb_glx_get_error");
+     (C,
+      xcb_glx_get_doublev_data_length,
+      "Ada_xcb_glx_get_doublev_data_length");
    pragma Import
-     (C, xcb_glx_get_error_unchecked, "xcb_glx_get_error_unchecked");
-   pragma Import (C, xcb_glx_get_error_reply, "xcb_glx_get_error_reply");
-   pragma Import (C, xcb_glx_get_floatv_sizeof, "xcb_glx_get_floatv_sizeof");
-   pragma Import (C, xcb_glx_get_floatv, "xcb_glx_get_floatv");
+     (C, xcb_glx_get_doublev_data_end, "Ada_xcb_glx_get_doublev_data_end");
    pragma Import
-     (C, xcb_glx_get_floatv_unchecked, "xcb_glx_get_floatv_unchecked");
-   pragma Import (C, xcb_glx_get_floatv_data, "xcb_glx_get_floatv_data");
+     (C, xcb_glx_get_doublev_reply, "Ada_xcb_glx_get_doublev_reply");
+   pragma Import (C, xcb_glx_get_error, "Ada_xcb_glx_get_error");
    pragma Import
-     (C, xcb_glx_get_floatv_data_length, "xcb_glx_get_floatv_data_length");
+     (C, xcb_glx_get_error_unchecked, "Ada_xcb_glx_get_error_unchecked");
+   pragma Import (C, xcb_glx_get_error_reply, "Ada_xcb_glx_get_error_reply");
    pragma Import
-     (C, xcb_glx_get_floatv_data_end, "xcb_glx_get_floatv_data_end");
-   pragma Import (C, xcb_glx_get_floatv_reply, "xcb_glx_get_floatv_reply");
+     (C, xcb_glx_get_floatv_sizeof, "Ada_xcb_glx_get_floatv_sizeof");
+   pragma Import (C, xcb_glx_get_floatv, "Ada_xcb_glx_get_floatv");
    pragma Import
-     (C, xcb_glx_get_integerv_sizeof, "xcb_glx_get_integerv_sizeof");
-   pragma Import (C, xcb_glx_get_integerv, "xcb_glx_get_integerv");
+     (C, xcb_glx_get_floatv_unchecked, "Ada_xcb_glx_get_floatv_unchecked");
+   pragma Import (C, xcb_glx_get_floatv_data, "Ada_xcb_glx_get_floatv_data");
    pragma Import
-     (C, xcb_glx_get_integerv_unchecked, "xcb_glx_get_integerv_unchecked");
-   pragma Import (C, xcb_glx_get_integerv_data, "xcb_glx_get_integerv_data");
+     (C, xcb_glx_get_floatv_data_length, "Ada_xcb_glx_get_floatv_data_length");
    pragma Import
-     (C, xcb_glx_get_integerv_data_length, "xcb_glx_get_integerv_data_length");
+     (C, xcb_glx_get_floatv_data_end, "Ada_xcb_glx_get_floatv_data_end");
+   pragma Import (C, xcb_glx_get_floatv_reply, "Ada_xcb_glx_get_floatv_reply");
    pragma Import
-     (C, xcb_glx_get_integerv_data_end, "xcb_glx_get_integerv_data_end");
-   pragma Import (C, xcb_glx_get_integerv_reply, "xcb_glx_get_integerv_reply");
-   pragma Import (C, xcb_glx_get_lightfv_sizeof, "xcb_glx_get_lightfv_sizeof");
-   pragma Import (C, xcb_glx_get_lightfv, "xcb_glx_get_lightfv");
+     (C, xcb_glx_get_integerv_sizeof, "Ada_xcb_glx_get_integerv_sizeof");
+   pragma Import (C, xcb_glx_get_integerv, "Ada_xcb_glx_get_integerv");
    pragma Import
-     (C, xcb_glx_get_lightfv_unchecked, "xcb_glx_get_lightfv_unchecked");
-   pragma Import (C, xcb_glx_get_lightfv_data, "xcb_glx_get_lightfv_data");
+     (C, xcb_glx_get_integerv_unchecked, "Ada_xcb_glx_get_integerv_unchecked");
    pragma Import
-     (C, xcb_glx_get_lightfv_data_length, "xcb_glx_get_lightfv_data_length");
+     (C, xcb_glx_get_integerv_data, "Ada_xcb_glx_get_integerv_data");
    pragma Import
-     (C, xcb_glx_get_lightfv_data_end, "xcb_glx_get_lightfv_data_end");
-   pragma Import (C, xcb_glx_get_lightfv_reply, "xcb_glx_get_lightfv_reply");
-   pragma Import (C, xcb_glx_get_lightiv_sizeof, "xcb_glx_get_lightiv_sizeof");
-   pragma Import (C, xcb_glx_get_lightiv, "xcb_glx_get_lightiv");
+     (C,
+      xcb_glx_get_integerv_data_length,
+      "Ada_xcb_glx_get_integerv_data_length");
    pragma Import
-     (C, xcb_glx_get_lightiv_unchecked, "xcb_glx_get_lightiv_unchecked");
-   pragma Import (C, xcb_glx_get_lightiv_data, "xcb_glx_get_lightiv_data");
+     (C, xcb_glx_get_integerv_data_end, "Ada_xcb_glx_get_integerv_data_end");
    pragma Import
-     (C, xcb_glx_get_lightiv_data_length, "xcb_glx_get_lightiv_data_length");
+     (C, xcb_glx_get_integerv_reply, "Ada_xcb_glx_get_integerv_reply");
    pragma Import
-     (C, xcb_glx_get_lightiv_data_end, "xcb_glx_get_lightiv_data_end");
-   pragma Import (C, xcb_glx_get_lightiv_reply, "xcb_glx_get_lightiv_reply");
-   pragma Import (C, xcb_glx_get_mapdv_sizeof, "xcb_glx_get_mapdv_sizeof");
-   pragma Import (C, xcb_glx_get_mapdv, "xcb_glx_get_mapdv");
+     (C, xcb_glx_get_lightfv_sizeof, "Ada_xcb_glx_get_lightfv_sizeof");
+   pragma Import (C, xcb_glx_get_lightfv, "Ada_xcb_glx_get_lightfv");
    pragma Import
-     (C, xcb_glx_get_mapdv_unchecked, "xcb_glx_get_mapdv_unchecked");
-   pragma Import (C, xcb_glx_get_mapdv_data, "xcb_glx_get_mapdv_data");
+     (C, xcb_glx_get_lightfv_unchecked, "Ada_xcb_glx_get_lightfv_unchecked");
+   pragma Import (C, xcb_glx_get_lightfv_data, "Ada_xcb_glx_get_lightfv_data");
    pragma Import
-     (C, xcb_glx_get_mapdv_data_length, "xcb_glx_get_mapdv_data_length");
-   pragma Import (C, xcb_glx_get_mapdv_data_end, "xcb_glx_get_mapdv_data_end");
-   pragma Import (C, xcb_glx_get_mapdv_reply, "xcb_glx_get_mapdv_reply");
-   pragma Import (C, xcb_glx_get_mapfv_sizeof, "xcb_glx_get_mapfv_sizeof");
-   pragma Import (C, xcb_glx_get_mapfv, "xcb_glx_get_mapfv");
+     (C,
+      xcb_glx_get_lightfv_data_length,
+      "Ada_xcb_glx_get_lightfv_data_length");
    pragma Import
-     (C, xcb_glx_get_mapfv_unchecked, "xcb_glx_get_mapfv_unchecked");
-   pragma Import (C, xcb_glx_get_mapfv_data, "xcb_glx_get_mapfv_data");
+     (C, xcb_glx_get_lightfv_data_end, "Ada_xcb_glx_get_lightfv_data_end");
    pragma Import
-     (C, xcb_glx_get_mapfv_data_length, "xcb_glx_get_mapfv_data_length");
-   pragma Import (C, xcb_glx_get_mapfv_data_end, "xcb_glx_get_mapfv_data_end");
-   pragma Import (C, xcb_glx_get_mapfv_reply, "xcb_glx_get_mapfv_reply");
-   pragma Import (C, xcb_glx_get_mapiv_sizeof, "xcb_glx_get_mapiv_sizeof");
-   pragma Import (C, xcb_glx_get_mapiv, "xcb_glx_get_mapiv");
+     (C, xcb_glx_get_lightfv_reply, "Ada_xcb_glx_get_lightfv_reply");
    pragma Import
-     (C, xcb_glx_get_mapiv_unchecked, "xcb_glx_get_mapiv_unchecked");
-   pragma Import (C, xcb_glx_get_mapiv_data, "xcb_glx_get_mapiv_data");
+     (C, xcb_glx_get_lightiv_sizeof, "Ada_xcb_glx_get_lightiv_sizeof");
+   pragma Import (C, xcb_glx_get_lightiv, "Ada_xcb_glx_get_lightiv");
    pragma Import
-     (C, xcb_glx_get_mapiv_data_length, "xcb_glx_get_mapiv_data_length");
-   pragma Import (C, xcb_glx_get_mapiv_data_end, "xcb_glx_get_mapiv_data_end");
-   pragma Import (C, xcb_glx_get_mapiv_reply, "xcb_glx_get_mapiv_reply");
+     (C, xcb_glx_get_lightiv_unchecked, "Ada_xcb_glx_get_lightiv_unchecked");
+   pragma Import (C, xcb_glx_get_lightiv_data, "Ada_xcb_glx_get_lightiv_data");
    pragma Import
-     (C, xcb_glx_get_materialfv_sizeof, "xcb_glx_get_materialfv_sizeof");
-   pragma Import (C, xcb_glx_get_materialfv, "xcb_glx_get_materialfv");
+     (C,
+      xcb_glx_get_lightiv_data_length,
+      "Ada_xcb_glx_get_lightiv_data_length");
    pragma Import
-     (C, xcb_glx_get_materialfv_unchecked, "xcb_glx_get_materialfv_unchecked");
+     (C, xcb_glx_get_lightiv_data_end, "Ada_xcb_glx_get_lightiv_data_end");
    pragma Import
-     (C, xcb_glx_get_materialfv_data, "xcb_glx_get_materialfv_data");
+     (C, xcb_glx_get_lightiv_reply, "Ada_xcb_glx_get_lightiv_reply");
+   pragma Import (C, xcb_glx_get_mapdv_sizeof, "Ada_xcb_glx_get_mapdv_sizeof");
+   pragma Import (C, xcb_glx_get_mapdv, "Ada_xcb_glx_get_mapdv");
+   pragma Import
+     (C, xcb_glx_get_mapdv_unchecked, "Ada_xcb_glx_get_mapdv_unchecked");
+   pragma Import (C, xcb_glx_get_mapdv_data, "Ada_xcb_glx_get_mapdv_data");
+   pragma Import
+     (C, xcb_glx_get_mapdv_data_length, "Ada_xcb_glx_get_mapdv_data_length");
+   pragma Import
+     (C, xcb_glx_get_mapdv_data_end, "Ada_xcb_glx_get_mapdv_data_end");
+   pragma Import (C, xcb_glx_get_mapdv_reply, "Ada_xcb_glx_get_mapdv_reply");
+   pragma Import (C, xcb_glx_get_mapfv_sizeof, "Ada_xcb_glx_get_mapfv_sizeof");
+   pragma Import (C, xcb_glx_get_mapfv, "Ada_xcb_glx_get_mapfv");
+   pragma Import
+     (C, xcb_glx_get_mapfv_unchecked, "Ada_xcb_glx_get_mapfv_unchecked");
+   pragma Import (C, xcb_glx_get_mapfv_data, "Ada_xcb_glx_get_mapfv_data");
+   pragma Import
+     (C, xcb_glx_get_mapfv_data_length, "Ada_xcb_glx_get_mapfv_data_length");
+   pragma Import
+     (C, xcb_glx_get_mapfv_data_end, "Ada_xcb_glx_get_mapfv_data_end");
+   pragma Import (C, xcb_glx_get_mapfv_reply, "Ada_xcb_glx_get_mapfv_reply");
+   pragma Import (C, xcb_glx_get_mapiv_sizeof, "Ada_xcb_glx_get_mapiv_sizeof");
+   pragma Import (C, xcb_glx_get_mapiv, "Ada_xcb_glx_get_mapiv");
+   pragma Import
+     (C, xcb_glx_get_mapiv_unchecked, "Ada_xcb_glx_get_mapiv_unchecked");
+   pragma Import (C, xcb_glx_get_mapiv_data, "Ada_xcb_glx_get_mapiv_data");
+   pragma Import
+     (C, xcb_glx_get_mapiv_data_length, "Ada_xcb_glx_get_mapiv_data_length");
+   pragma Import
+     (C, xcb_glx_get_mapiv_data_end, "Ada_xcb_glx_get_mapiv_data_end");
+   pragma Import (C, xcb_glx_get_mapiv_reply, "Ada_xcb_glx_get_mapiv_reply");
+   pragma Import
+     (C, xcb_glx_get_materialfv_sizeof, "Ada_xcb_glx_get_materialfv_sizeof");
+   pragma Import (C, xcb_glx_get_materialfv, "Ada_xcb_glx_get_materialfv");
+   pragma Import
+     (C,
+      xcb_glx_get_materialfv_unchecked,
+      "Ada_xcb_glx_get_materialfv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_materialfv_data, "Ada_xcb_glx_get_materialfv_data");
    pragma Import
      (C,
       xcb_glx_get_materialfv_data_length,
-      "xcb_glx_get_materialfv_data_length");
+      "Ada_xcb_glx_get_materialfv_data_length");
    pragma Import
-     (C, xcb_glx_get_materialfv_data_end, "xcb_glx_get_materialfv_data_end");
+     (C,
+      xcb_glx_get_materialfv_data_end,
+      "Ada_xcb_glx_get_materialfv_data_end");
    pragma Import
-     (C, xcb_glx_get_materialfv_reply, "xcb_glx_get_materialfv_reply");
+     (C, xcb_glx_get_materialfv_reply, "Ada_xcb_glx_get_materialfv_reply");
    pragma Import
-     (C, xcb_glx_get_materialiv_sizeof, "xcb_glx_get_materialiv_sizeof");
-   pragma Import (C, xcb_glx_get_materialiv, "xcb_glx_get_materialiv");
+     (C, xcb_glx_get_materialiv_sizeof, "Ada_xcb_glx_get_materialiv_sizeof");
+   pragma Import (C, xcb_glx_get_materialiv, "Ada_xcb_glx_get_materialiv");
    pragma Import
-     (C, xcb_glx_get_materialiv_unchecked, "xcb_glx_get_materialiv_unchecked");
+     (C,
+      xcb_glx_get_materialiv_unchecked,
+      "Ada_xcb_glx_get_materialiv_unchecked");
    pragma Import
-     (C, xcb_glx_get_materialiv_data, "xcb_glx_get_materialiv_data");
+     (C, xcb_glx_get_materialiv_data, "Ada_xcb_glx_get_materialiv_data");
    pragma Import
      (C,
       xcb_glx_get_materialiv_data_length,
-      "xcb_glx_get_materialiv_data_length");
+      "Ada_xcb_glx_get_materialiv_data_length");
    pragma Import
-     (C, xcb_glx_get_materialiv_data_end, "xcb_glx_get_materialiv_data_end");
+     (C,
+      xcb_glx_get_materialiv_data_end,
+      "Ada_xcb_glx_get_materialiv_data_end");
    pragma Import
-     (C, xcb_glx_get_materialiv_reply, "xcb_glx_get_materialiv_reply");
+     (C, xcb_glx_get_materialiv_reply, "Ada_xcb_glx_get_materialiv_reply");
    pragma Import
-     (C, xcb_glx_get_pixel_mapfv_sizeof, "xcb_glx_get_pixel_mapfv_sizeof");
-   pragma Import (C, xcb_glx_get_pixel_mapfv, "xcb_glx_get_pixel_mapfv");
+     (C, xcb_glx_get_pixel_mapfv_sizeof, "Ada_xcb_glx_get_pixel_mapfv_sizeof");
+   pragma Import (C, xcb_glx_get_pixel_mapfv, "Ada_xcb_glx_get_pixel_mapfv");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapfv_unchecked,
-      "xcb_glx_get_pixel_mapfv_unchecked");
+      "Ada_xcb_glx_get_pixel_mapfv_unchecked");
    pragma Import
-     (C, xcb_glx_get_pixel_mapfv_data, "xcb_glx_get_pixel_mapfv_data");
+     (C, xcb_glx_get_pixel_mapfv_data, "Ada_xcb_glx_get_pixel_mapfv_data");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapfv_data_length,
-      "xcb_glx_get_pixel_mapfv_data_length");
+      "Ada_xcb_glx_get_pixel_mapfv_data_length");
    pragma Import
-     (C, xcb_glx_get_pixel_mapfv_data_end, "xcb_glx_get_pixel_mapfv_data_end");
+     (C,
+      xcb_glx_get_pixel_mapfv_data_end,
+      "Ada_xcb_glx_get_pixel_mapfv_data_end");
    pragma Import
-     (C, xcb_glx_get_pixel_mapfv_reply, "xcb_glx_get_pixel_mapfv_reply");
+     (C, xcb_glx_get_pixel_mapfv_reply, "Ada_xcb_glx_get_pixel_mapfv_reply");
    pragma Import
-     (C, xcb_glx_get_pixel_mapuiv_sizeof, "xcb_glx_get_pixel_mapuiv_sizeof");
-   pragma Import (C, xcb_glx_get_pixel_mapuiv, "xcb_glx_get_pixel_mapuiv");
+     (C,
+      xcb_glx_get_pixel_mapuiv_sizeof,
+      "Ada_xcb_glx_get_pixel_mapuiv_sizeof");
+   pragma Import (C, xcb_glx_get_pixel_mapuiv, "Ada_xcb_glx_get_pixel_mapuiv");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapuiv_unchecked,
-      "xcb_glx_get_pixel_mapuiv_unchecked");
+      "Ada_xcb_glx_get_pixel_mapuiv_unchecked");
    pragma Import
-     (C, xcb_glx_get_pixel_mapuiv_data, "xcb_glx_get_pixel_mapuiv_data");
+     (C, xcb_glx_get_pixel_mapuiv_data, "Ada_xcb_glx_get_pixel_mapuiv_data");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapuiv_data_length,
-      "xcb_glx_get_pixel_mapuiv_data_length");
+      "Ada_xcb_glx_get_pixel_mapuiv_data_length");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapuiv_data_end,
-      "xcb_glx_get_pixel_mapuiv_data_end");
+      "Ada_xcb_glx_get_pixel_mapuiv_data_end");
    pragma Import
-     (C, xcb_glx_get_pixel_mapuiv_reply, "xcb_glx_get_pixel_mapuiv_reply");
+     (C, xcb_glx_get_pixel_mapuiv_reply, "Ada_xcb_glx_get_pixel_mapuiv_reply");
    pragma Import
-     (C, xcb_glx_get_pixel_mapusv_sizeof, "xcb_glx_get_pixel_mapusv_sizeof");
-   pragma Import (C, xcb_glx_get_pixel_mapusv, "xcb_glx_get_pixel_mapusv");
+     (C,
+      xcb_glx_get_pixel_mapusv_sizeof,
+      "Ada_xcb_glx_get_pixel_mapusv_sizeof");
+   pragma Import (C, xcb_glx_get_pixel_mapusv, "Ada_xcb_glx_get_pixel_mapusv");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapusv_unchecked,
-      "xcb_glx_get_pixel_mapusv_unchecked");
+      "Ada_xcb_glx_get_pixel_mapusv_unchecked");
    pragma Import
-     (C, xcb_glx_get_pixel_mapusv_data, "xcb_glx_get_pixel_mapusv_data");
+     (C, xcb_glx_get_pixel_mapusv_data, "Ada_xcb_glx_get_pixel_mapusv_data");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapusv_data_length,
-      "xcb_glx_get_pixel_mapusv_data_length");
+      "Ada_xcb_glx_get_pixel_mapusv_data_length");
    pragma Import
      (C,
       xcb_glx_get_pixel_mapusv_data_end,
-      "xcb_glx_get_pixel_mapusv_data_end");
+      "Ada_xcb_glx_get_pixel_mapusv_data_end");
    pragma Import
-     (C, xcb_glx_get_pixel_mapusv_reply, "xcb_glx_get_pixel_mapusv_reply");
+     (C, xcb_glx_get_pixel_mapusv_reply, "Ada_xcb_glx_get_pixel_mapusv_reply");
    pragma Import
      (C,
       xcb_glx_get_polygon_stipple_sizeof,
-      "xcb_glx_get_polygon_stipple_sizeof");
+      "Ada_xcb_glx_get_polygon_stipple_sizeof");
    pragma Import
-     (C, xcb_glx_get_polygon_stipple, "xcb_glx_get_polygon_stipple");
+     (C, xcb_glx_get_polygon_stipple, "Ada_xcb_glx_get_polygon_stipple");
    pragma Import
      (C,
       xcb_glx_get_polygon_stipple_unchecked,
-      "xcb_glx_get_polygon_stipple_unchecked");
+      "Ada_xcb_glx_get_polygon_stipple_unchecked");
    pragma Import
-     (C, xcb_glx_get_polygon_stipple_data, "xcb_glx_get_polygon_stipple_data");
+     (C,
+      xcb_glx_get_polygon_stipple_data,
+      "Ada_xcb_glx_get_polygon_stipple_data");
    pragma Import
      (C,
       xcb_glx_get_polygon_stipple_data_length,
-      "xcb_glx_get_polygon_stipple_data_length");
+      "Ada_xcb_glx_get_polygon_stipple_data_length");
    pragma Import
      (C,
       xcb_glx_get_polygon_stipple_data_end,
-      "xcb_glx_get_polygon_stipple_data_end");
+      "Ada_xcb_glx_get_polygon_stipple_data_end");
    pragma Import
      (C,
       xcb_glx_get_polygon_stipple_reply,
-      "xcb_glx_get_polygon_stipple_reply");
-   pragma Import (C, xcb_glx_get_string_sizeof, "xcb_glx_get_string_sizeof");
-   pragma Import (C, xcb_glx_get_string, "xcb_glx_get_string");
+      "Ada_xcb_glx_get_polygon_stipple_reply");
    pragma Import
-     (C, xcb_glx_get_string_unchecked, "xcb_glx_get_string_unchecked");
-   pragma Import (C, xcb_glx_get_string_string, "xcb_glx_get_string_string");
+     (C, xcb_glx_get_string_sizeof, "Ada_xcb_glx_get_string_sizeof");
+   pragma Import (C, xcb_glx_get_string, "Ada_xcb_glx_get_string");
    pragma Import
-     (C, xcb_glx_get_string_string_length, "xcb_glx_get_string_string_length");
+     (C, xcb_glx_get_string_unchecked, "Ada_xcb_glx_get_string_unchecked");
    pragma Import
-     (C, xcb_glx_get_string_string_end, "xcb_glx_get_string_string_end");
-   pragma Import (C, xcb_glx_get_string_reply, "xcb_glx_get_string_reply");
+     (C, xcb_glx_get_string_string, "Ada_xcb_glx_get_string_string");
    pragma Import
-     (C, xcb_glx_get_tex_envfv_sizeof, "xcb_glx_get_tex_envfv_sizeof");
-   pragma Import (C, xcb_glx_get_tex_envfv, "xcb_glx_get_tex_envfv");
+     (C,
+      xcb_glx_get_string_string_length,
+      "Ada_xcb_glx_get_string_string_length");
    pragma Import
-     (C, xcb_glx_get_tex_envfv_unchecked, "xcb_glx_get_tex_envfv_unchecked");
-   pragma Import (C, xcb_glx_get_tex_envfv_data, "xcb_glx_get_tex_envfv_data");
+     (C, xcb_glx_get_string_string_end, "Ada_xcb_glx_get_string_string_end");
+   pragma Import (C, xcb_glx_get_string_reply, "Ada_xcb_glx_get_string_reply");
+   pragma Import
+     (C, xcb_glx_get_tex_envfv_sizeof, "Ada_xcb_glx_get_tex_envfv_sizeof");
+   pragma Import (C, xcb_glx_get_tex_envfv, "Ada_xcb_glx_get_tex_envfv");
+   pragma Import
+     (C,
+      xcb_glx_get_tex_envfv_unchecked,
+      "Ada_xcb_glx_get_tex_envfv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_envfv_data, "Ada_xcb_glx_get_tex_envfv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_envfv_data_length,
-      "xcb_glx_get_tex_envfv_data_length");
+      "Ada_xcb_glx_get_tex_envfv_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_envfv_data_end, "xcb_glx_get_tex_envfv_data_end");
+     (C, xcb_glx_get_tex_envfv_data_end, "Ada_xcb_glx_get_tex_envfv_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_envfv_reply, "xcb_glx_get_tex_envfv_reply");
+     (C, xcb_glx_get_tex_envfv_reply, "Ada_xcb_glx_get_tex_envfv_reply");
    pragma Import
-     (C, xcb_glx_get_tex_enviv_sizeof, "xcb_glx_get_tex_enviv_sizeof");
-   pragma Import (C, xcb_glx_get_tex_enviv, "xcb_glx_get_tex_enviv");
+     (C, xcb_glx_get_tex_enviv_sizeof, "Ada_xcb_glx_get_tex_enviv_sizeof");
+   pragma Import (C, xcb_glx_get_tex_enviv, "Ada_xcb_glx_get_tex_enviv");
    pragma Import
-     (C, xcb_glx_get_tex_enviv_unchecked, "xcb_glx_get_tex_enviv_unchecked");
-   pragma Import (C, xcb_glx_get_tex_enviv_data, "xcb_glx_get_tex_enviv_data");
+     (C,
+      xcb_glx_get_tex_enviv_unchecked,
+      "Ada_xcb_glx_get_tex_enviv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_enviv_data, "Ada_xcb_glx_get_tex_enviv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_enviv_data_length,
-      "xcb_glx_get_tex_enviv_data_length");
+      "Ada_xcb_glx_get_tex_enviv_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_enviv_data_end, "xcb_glx_get_tex_enviv_data_end");
+     (C, xcb_glx_get_tex_enviv_data_end, "Ada_xcb_glx_get_tex_enviv_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_enviv_reply, "xcb_glx_get_tex_enviv_reply");
+     (C, xcb_glx_get_tex_enviv_reply, "Ada_xcb_glx_get_tex_enviv_reply");
    pragma Import
-     (C, xcb_glx_get_tex_gendv_sizeof, "xcb_glx_get_tex_gendv_sizeof");
-   pragma Import (C, xcb_glx_get_tex_gendv, "xcb_glx_get_tex_gendv");
+     (C, xcb_glx_get_tex_gendv_sizeof, "Ada_xcb_glx_get_tex_gendv_sizeof");
+   pragma Import (C, xcb_glx_get_tex_gendv, "Ada_xcb_glx_get_tex_gendv");
    pragma Import
-     (C, xcb_glx_get_tex_gendv_unchecked, "xcb_glx_get_tex_gendv_unchecked");
-   pragma Import (C, xcb_glx_get_tex_gendv_data, "xcb_glx_get_tex_gendv_data");
+     (C,
+      xcb_glx_get_tex_gendv_unchecked,
+      "Ada_xcb_glx_get_tex_gendv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_gendv_data, "Ada_xcb_glx_get_tex_gendv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_gendv_data_length,
-      "xcb_glx_get_tex_gendv_data_length");
+      "Ada_xcb_glx_get_tex_gendv_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_gendv_data_end, "xcb_glx_get_tex_gendv_data_end");
+     (C, xcb_glx_get_tex_gendv_data_end, "Ada_xcb_glx_get_tex_gendv_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_gendv_reply, "xcb_glx_get_tex_gendv_reply");
+     (C, xcb_glx_get_tex_gendv_reply, "Ada_xcb_glx_get_tex_gendv_reply");
    pragma Import
-     (C, xcb_glx_get_tex_genfv_sizeof, "xcb_glx_get_tex_genfv_sizeof");
-   pragma Import (C, xcb_glx_get_tex_genfv, "xcb_glx_get_tex_genfv");
+     (C, xcb_glx_get_tex_genfv_sizeof, "Ada_xcb_glx_get_tex_genfv_sizeof");
+   pragma Import (C, xcb_glx_get_tex_genfv, "Ada_xcb_glx_get_tex_genfv");
    pragma Import
-     (C, xcb_glx_get_tex_genfv_unchecked, "xcb_glx_get_tex_genfv_unchecked");
-   pragma Import (C, xcb_glx_get_tex_genfv_data, "xcb_glx_get_tex_genfv_data");
+     (C,
+      xcb_glx_get_tex_genfv_unchecked,
+      "Ada_xcb_glx_get_tex_genfv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_genfv_data, "Ada_xcb_glx_get_tex_genfv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_genfv_data_length,
-      "xcb_glx_get_tex_genfv_data_length");
+      "Ada_xcb_glx_get_tex_genfv_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_genfv_data_end, "xcb_glx_get_tex_genfv_data_end");
+     (C, xcb_glx_get_tex_genfv_data_end, "Ada_xcb_glx_get_tex_genfv_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_genfv_reply, "xcb_glx_get_tex_genfv_reply");
+     (C, xcb_glx_get_tex_genfv_reply, "Ada_xcb_glx_get_tex_genfv_reply");
    pragma Import
-     (C, xcb_glx_get_tex_geniv_sizeof, "xcb_glx_get_tex_geniv_sizeof");
-   pragma Import (C, xcb_glx_get_tex_geniv, "xcb_glx_get_tex_geniv");
+     (C, xcb_glx_get_tex_geniv_sizeof, "Ada_xcb_glx_get_tex_geniv_sizeof");
+   pragma Import (C, xcb_glx_get_tex_geniv, "Ada_xcb_glx_get_tex_geniv");
    pragma Import
-     (C, xcb_glx_get_tex_geniv_unchecked, "xcb_glx_get_tex_geniv_unchecked");
-   pragma Import (C, xcb_glx_get_tex_geniv_data, "xcb_glx_get_tex_geniv_data");
+     (C,
+      xcb_glx_get_tex_geniv_unchecked,
+      "Ada_xcb_glx_get_tex_geniv_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_geniv_data, "Ada_xcb_glx_get_tex_geniv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_geniv_data_length,
-      "xcb_glx_get_tex_geniv_data_length");
+      "Ada_xcb_glx_get_tex_geniv_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_geniv_data_end, "xcb_glx_get_tex_geniv_data_end");
+     (C, xcb_glx_get_tex_geniv_data_end, "Ada_xcb_glx_get_tex_geniv_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_geniv_reply, "xcb_glx_get_tex_geniv_reply");
+     (C, xcb_glx_get_tex_geniv_reply, "Ada_xcb_glx_get_tex_geniv_reply");
    pragma Import
-     (C, xcb_glx_get_tex_image_sizeof, "xcb_glx_get_tex_image_sizeof");
-   pragma Import (C, xcb_glx_get_tex_image, "xcb_glx_get_tex_image");
+     (C, xcb_glx_get_tex_image_sizeof, "Ada_xcb_glx_get_tex_image_sizeof");
+   pragma Import (C, xcb_glx_get_tex_image, "Ada_xcb_glx_get_tex_image");
    pragma Import
-     (C, xcb_glx_get_tex_image_unchecked, "xcb_glx_get_tex_image_unchecked");
-   pragma Import (C, xcb_glx_get_tex_image_data, "xcb_glx_get_tex_image_data");
+     (C,
+      xcb_glx_get_tex_image_unchecked,
+      "Ada_xcb_glx_get_tex_image_unchecked");
+   pragma Import
+     (C, xcb_glx_get_tex_image_data, "Ada_xcb_glx_get_tex_image_data");
    pragma Import
      (C,
       xcb_glx_get_tex_image_data_length,
-      "xcb_glx_get_tex_image_data_length");
+      "Ada_xcb_glx_get_tex_image_data_length");
    pragma Import
-     (C, xcb_glx_get_tex_image_data_end, "xcb_glx_get_tex_image_data_end");
+     (C, xcb_glx_get_tex_image_data_end, "Ada_xcb_glx_get_tex_image_data_end");
    pragma Import
-     (C, xcb_glx_get_tex_image_reply, "xcb_glx_get_tex_image_reply");
+     (C, xcb_glx_get_tex_image_reply, "Ada_xcb_glx_get_tex_image_reply");
    pragma Import
      (C,
       xcb_glx_get_tex_parameterfv_sizeof,
-      "xcb_glx_get_tex_parameterfv_sizeof");
+      "Ada_xcb_glx_get_tex_parameterfv_sizeof");
    pragma Import
-     (C, xcb_glx_get_tex_parameterfv, "xcb_glx_get_tex_parameterfv");
+     (C, xcb_glx_get_tex_parameterfv, "Ada_xcb_glx_get_tex_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_tex_parameterfv_unchecked,
-      "xcb_glx_get_tex_parameterfv_unchecked");
+      "Ada_xcb_glx_get_tex_parameterfv_unchecked");
    pragma Import
-     (C, xcb_glx_get_tex_parameterfv_data, "xcb_glx_get_tex_parameterfv_data");
+     (C,
+      xcb_glx_get_tex_parameterfv_data,
+      "Ada_xcb_glx_get_tex_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_parameterfv_data_length,
-      "xcb_glx_get_tex_parameterfv_data_length");
+      "Ada_xcb_glx_get_tex_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_tex_parameterfv_data_end,
-      "xcb_glx_get_tex_parameterfv_data_end");
+      "Ada_xcb_glx_get_tex_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_tex_parameterfv_reply,
-      "xcb_glx_get_tex_parameterfv_reply");
+      "Ada_xcb_glx_get_tex_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_tex_parameteriv_sizeof,
-      "xcb_glx_get_tex_parameteriv_sizeof");
+      "Ada_xcb_glx_get_tex_parameteriv_sizeof");
    pragma Import
-     (C, xcb_glx_get_tex_parameteriv, "xcb_glx_get_tex_parameteriv");
+     (C, xcb_glx_get_tex_parameteriv, "Ada_xcb_glx_get_tex_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_tex_parameteriv_unchecked,
-      "xcb_glx_get_tex_parameteriv_unchecked");
+      "Ada_xcb_glx_get_tex_parameteriv_unchecked");
    pragma Import
-     (C, xcb_glx_get_tex_parameteriv_data, "xcb_glx_get_tex_parameteriv_data");
+     (C,
+      xcb_glx_get_tex_parameteriv_data,
+      "Ada_xcb_glx_get_tex_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_parameteriv_data_length,
-      "xcb_glx_get_tex_parameteriv_data_length");
+      "Ada_xcb_glx_get_tex_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_tex_parameteriv_data_end,
-      "xcb_glx_get_tex_parameteriv_data_end");
+      "Ada_xcb_glx_get_tex_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_tex_parameteriv_reply,
-      "xcb_glx_get_tex_parameteriv_reply");
+      "Ada_xcb_glx_get_tex_parameteriv_reply");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_sizeof,
-      "xcb_glx_get_tex_level_parameterfv_sizeof");
+      "Ada_xcb_glx_get_tex_level_parameterfv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv,
-      "xcb_glx_get_tex_level_parameterfv");
+      "Ada_xcb_glx_get_tex_level_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_unchecked,
-      "xcb_glx_get_tex_level_parameterfv_unchecked");
+      "Ada_xcb_glx_get_tex_level_parameterfv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_data,
-      "xcb_glx_get_tex_level_parameterfv_data");
+      "Ada_xcb_glx_get_tex_level_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_data_length,
-      "xcb_glx_get_tex_level_parameterfv_data_length");
+      "Ada_xcb_glx_get_tex_level_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_data_end,
-      "xcb_glx_get_tex_level_parameterfv_data_end");
+      "Ada_xcb_glx_get_tex_level_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameterfv_reply,
-      "xcb_glx_get_tex_level_parameterfv_reply");
+      "Ada_xcb_glx_get_tex_level_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_sizeof,
-      "xcb_glx_get_tex_level_parameteriv_sizeof");
+      "Ada_xcb_glx_get_tex_level_parameteriv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv,
-      "xcb_glx_get_tex_level_parameteriv");
+      "Ada_xcb_glx_get_tex_level_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_unchecked,
-      "xcb_glx_get_tex_level_parameteriv_unchecked");
+      "Ada_xcb_glx_get_tex_level_parameteriv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_data,
-      "xcb_glx_get_tex_level_parameteriv_data");
+      "Ada_xcb_glx_get_tex_level_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_data_length,
-      "xcb_glx_get_tex_level_parameteriv_data_length");
+      "Ada_xcb_glx_get_tex_level_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_data_end,
-      "xcb_glx_get_tex_level_parameteriv_data_end");
+      "Ada_xcb_glx_get_tex_level_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_tex_level_parameteriv_reply,
-      "xcb_glx_get_tex_level_parameteriv_reply");
-   pragma Import (C, xcb_glx_is_enabled, "xcb_glx_is_enabled");
+      "Ada_xcb_glx_get_tex_level_parameteriv_reply");
+   pragma Import (C, xcb_glx_is_enabled, "Ada_xcb_glx_is_enabled");
    pragma Import
-     (C, xcb_glx_is_enabled_unchecked, "xcb_glx_is_enabled_unchecked");
-   pragma Import (C, xcb_glx_is_enabled_reply, "xcb_glx_is_enabled_reply");
-   pragma Import (C, xcb_glx_is_list, "xcb_glx_is_list");
-   pragma Import (C, xcb_glx_is_list_unchecked, "xcb_glx_is_list_unchecked");
-   pragma Import (C, xcb_glx_is_list_reply, "xcb_glx_is_list_reply");
-   pragma Import (C, xcb_glx_flush_checked, "xcb_glx_flush_checked");
-   pragma Import (C, xcb_glx_flush, "xcb_glx_flush");
+     (C, xcb_glx_is_enabled_unchecked, "Ada_xcb_glx_is_enabled_unchecked");
+   pragma Import (C, xcb_glx_is_enabled_reply, "Ada_xcb_glx_is_enabled_reply");
+   pragma Import (C, xcb_glx_is_list, "Ada_xcb_glx_is_list");
+   pragma Import
+     (C, xcb_glx_is_list_unchecked, "Ada_xcb_glx_is_list_unchecked");
+   pragma Import (C, xcb_glx_is_list_reply, "Ada_xcb_glx_is_list_reply");
+   pragma Import (C, xcb_glx_flush_checked, "Ada_xcb_glx_flush_checked");
+   pragma Import (C, xcb_glx_flush, "Ada_xcb_glx_flush");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_sizeof,
-      "xcb_glx_are_textures_resident_sizeof");
+      "Ada_xcb_glx_are_textures_resident_sizeof");
    pragma Import
-     (C, xcb_glx_are_textures_resident, "xcb_glx_are_textures_resident");
+     (C, xcb_glx_are_textures_resident, "Ada_xcb_glx_are_textures_resident");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_unchecked,
-      "xcb_glx_are_textures_resident_unchecked");
+      "Ada_xcb_glx_are_textures_resident_unchecked");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_data,
-      "xcb_glx_are_textures_resident_data");
+      "Ada_xcb_glx_are_textures_resident_data");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_data_length,
-      "xcb_glx_are_textures_resident_data_length");
+      "Ada_xcb_glx_are_textures_resident_data_length");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_data_end,
-      "xcb_glx_are_textures_resident_data_end");
+      "Ada_xcb_glx_are_textures_resident_data_end");
    pragma Import
      (C,
       xcb_glx_are_textures_resident_reply,
-      "xcb_glx_are_textures_resident_reply");
+      "Ada_xcb_glx_are_textures_resident_reply");
    pragma Import
-     (C, xcb_glx_delete_textures_sizeof, "xcb_glx_delete_textures_sizeof");
+     (C, xcb_glx_delete_textures_sizeof, "Ada_xcb_glx_delete_textures_sizeof");
    pragma Import
-     (C, xcb_glx_delete_textures_checked, "xcb_glx_delete_textures_checked");
-   pragma Import (C, xcb_glx_delete_textures, "xcb_glx_delete_textures");
+     (C,
+      xcb_glx_delete_textures_checked,
+      "Ada_xcb_glx_delete_textures_checked");
+   pragma Import (C, xcb_glx_delete_textures, "Ada_xcb_glx_delete_textures");
    pragma Import
-     (C, xcb_glx_delete_textures_textures, "xcb_glx_delete_textures_textures");
+     (C,
+      xcb_glx_delete_textures_textures,
+      "Ada_xcb_glx_delete_textures_textures");
    pragma Import
      (C,
       xcb_glx_delete_textures_textures_length,
-      "xcb_glx_delete_textures_textures_length");
+      "Ada_xcb_glx_delete_textures_textures_length");
    pragma Import
      (C,
       xcb_glx_delete_textures_textures_end,
-      "xcb_glx_delete_textures_textures_end");
+      "Ada_xcb_glx_delete_textures_textures_end");
    pragma Import
-     (C, xcb_glx_gen_textures_sizeof, "xcb_glx_gen_textures_sizeof");
-   pragma Import (C, xcb_glx_gen_textures, "xcb_glx_gen_textures");
+     (C, xcb_glx_gen_textures_sizeof, "Ada_xcb_glx_gen_textures_sizeof");
+   pragma Import (C, xcb_glx_gen_textures, "Ada_xcb_glx_gen_textures");
    pragma Import
-     (C, xcb_glx_gen_textures_unchecked, "xcb_glx_gen_textures_unchecked");
-   pragma Import (C, xcb_glx_gen_textures_data, "xcb_glx_gen_textures_data");
+     (C, xcb_glx_gen_textures_unchecked, "Ada_xcb_glx_gen_textures_unchecked");
    pragma Import
-     (C, xcb_glx_gen_textures_data_length, "xcb_glx_gen_textures_data_length");
+     (C, xcb_glx_gen_textures_data, "Ada_xcb_glx_gen_textures_data");
    pragma Import
-     (C, xcb_glx_gen_textures_data_end, "xcb_glx_gen_textures_data_end");
-   pragma Import (C, xcb_glx_gen_textures_reply, "xcb_glx_gen_textures_reply");
-   pragma Import (C, xcb_glx_is_texture, "xcb_glx_is_texture");
+     (C,
+      xcb_glx_gen_textures_data_length,
+      "Ada_xcb_glx_gen_textures_data_length");
    pragma Import
-     (C, xcb_glx_is_texture_unchecked, "xcb_glx_is_texture_unchecked");
-   pragma Import (C, xcb_glx_is_texture_reply, "xcb_glx_is_texture_reply");
+     (C, xcb_glx_gen_textures_data_end, "Ada_xcb_glx_gen_textures_data_end");
    pragma Import
-     (C, xcb_glx_get_color_table_sizeof, "xcb_glx_get_color_table_sizeof");
-   pragma Import (C, xcb_glx_get_color_table, "xcb_glx_get_color_table");
+     (C, xcb_glx_gen_textures_reply, "Ada_xcb_glx_gen_textures_reply");
+   pragma Import (C, xcb_glx_is_texture, "Ada_xcb_glx_is_texture");
+   pragma Import
+     (C, xcb_glx_is_texture_unchecked, "Ada_xcb_glx_is_texture_unchecked");
+   pragma Import (C, xcb_glx_is_texture_reply, "Ada_xcb_glx_is_texture_reply");
+   pragma Import
+     (C, xcb_glx_get_color_table_sizeof, "Ada_xcb_glx_get_color_table_sizeof");
+   pragma Import (C, xcb_glx_get_color_table, "Ada_xcb_glx_get_color_table");
    pragma Import
      (C,
       xcb_glx_get_color_table_unchecked,
-      "xcb_glx_get_color_table_unchecked");
+      "Ada_xcb_glx_get_color_table_unchecked");
    pragma Import
-     (C, xcb_glx_get_color_table_data, "xcb_glx_get_color_table_data");
+     (C, xcb_glx_get_color_table_data, "Ada_xcb_glx_get_color_table_data");
    pragma Import
      (C,
       xcb_glx_get_color_table_data_length,
-      "xcb_glx_get_color_table_data_length");
+      "Ada_xcb_glx_get_color_table_data_length");
    pragma Import
-     (C, xcb_glx_get_color_table_data_end, "xcb_glx_get_color_table_data_end");
+     (C,
+      xcb_glx_get_color_table_data_end,
+      "Ada_xcb_glx_get_color_table_data_end");
    pragma Import
-     (C, xcb_glx_get_color_table_reply, "xcb_glx_get_color_table_reply");
+     (C, xcb_glx_get_color_table_reply, "Ada_xcb_glx_get_color_table_reply");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_sizeof,
-      "xcb_glx_get_color_table_parameterfv_sizeof");
+      "Ada_xcb_glx_get_color_table_parameterfv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv,
-      "xcb_glx_get_color_table_parameterfv");
+      "Ada_xcb_glx_get_color_table_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_unchecked,
-      "xcb_glx_get_color_table_parameterfv_unchecked");
+      "Ada_xcb_glx_get_color_table_parameterfv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_data,
-      "xcb_glx_get_color_table_parameterfv_data");
+      "Ada_xcb_glx_get_color_table_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_data_length,
-      "xcb_glx_get_color_table_parameterfv_data_length");
+      "Ada_xcb_glx_get_color_table_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_data_end,
-      "xcb_glx_get_color_table_parameterfv_data_end");
+      "Ada_xcb_glx_get_color_table_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameterfv_reply,
-      "xcb_glx_get_color_table_parameterfv_reply");
+      "Ada_xcb_glx_get_color_table_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_sizeof,
-      "xcb_glx_get_color_table_parameteriv_sizeof");
+      "Ada_xcb_glx_get_color_table_parameteriv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv,
-      "xcb_glx_get_color_table_parameteriv");
+      "Ada_xcb_glx_get_color_table_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_unchecked,
-      "xcb_glx_get_color_table_parameteriv_unchecked");
+      "Ada_xcb_glx_get_color_table_parameteriv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_data,
-      "xcb_glx_get_color_table_parameteriv_data");
+      "Ada_xcb_glx_get_color_table_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_data_length,
-      "xcb_glx_get_color_table_parameteriv_data_length");
+      "Ada_xcb_glx_get_color_table_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_data_end,
-      "xcb_glx_get_color_table_parameteriv_data_end");
+      "Ada_xcb_glx_get_color_table_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_color_table_parameteriv_reply,
-      "xcb_glx_get_color_table_parameteriv_reply");
+      "Ada_xcb_glx_get_color_table_parameteriv_reply");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_sizeof,
-      "xcb_glx_get_convolution_filter_sizeof");
+      "Ada_xcb_glx_get_convolution_filter_sizeof");
    pragma Import
-     (C, xcb_glx_get_convolution_filter, "xcb_glx_get_convolution_filter");
+     (C, xcb_glx_get_convolution_filter, "Ada_xcb_glx_get_convolution_filter");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_unchecked,
-      "xcb_glx_get_convolution_filter_unchecked");
+      "Ada_xcb_glx_get_convolution_filter_unchecked");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_data,
-      "xcb_glx_get_convolution_filter_data");
+      "Ada_xcb_glx_get_convolution_filter_data");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_data_length,
-      "xcb_glx_get_convolution_filter_data_length");
+      "Ada_xcb_glx_get_convolution_filter_data_length");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_data_end,
-      "xcb_glx_get_convolution_filter_data_end");
+      "Ada_xcb_glx_get_convolution_filter_data_end");
    pragma Import
      (C,
       xcb_glx_get_convolution_filter_reply,
-      "xcb_glx_get_convolution_filter_reply");
+      "Ada_xcb_glx_get_convolution_filter_reply");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_sizeof,
-      "xcb_glx_get_convolution_parameterfv_sizeof");
+      "Ada_xcb_glx_get_convolution_parameterfv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv,
-      "xcb_glx_get_convolution_parameterfv");
+      "Ada_xcb_glx_get_convolution_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_unchecked,
-      "xcb_glx_get_convolution_parameterfv_unchecked");
+      "Ada_xcb_glx_get_convolution_parameterfv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_data,
-      "xcb_glx_get_convolution_parameterfv_data");
+      "Ada_xcb_glx_get_convolution_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_data_length,
-      "xcb_glx_get_convolution_parameterfv_data_length");
+      "Ada_xcb_glx_get_convolution_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_data_end,
-      "xcb_glx_get_convolution_parameterfv_data_end");
+      "Ada_xcb_glx_get_convolution_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameterfv_reply,
-      "xcb_glx_get_convolution_parameterfv_reply");
+      "Ada_xcb_glx_get_convolution_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_sizeof,
-      "xcb_glx_get_convolution_parameteriv_sizeof");
+      "Ada_xcb_glx_get_convolution_parameteriv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv,
-      "xcb_glx_get_convolution_parameteriv");
+      "Ada_xcb_glx_get_convolution_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_unchecked,
-      "xcb_glx_get_convolution_parameteriv_unchecked");
+      "Ada_xcb_glx_get_convolution_parameteriv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_data,
-      "xcb_glx_get_convolution_parameteriv_data");
+      "Ada_xcb_glx_get_convolution_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_data_length,
-      "xcb_glx_get_convolution_parameteriv_data_length");
+      "Ada_xcb_glx_get_convolution_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_data_end,
-      "xcb_glx_get_convolution_parameteriv_data_end");
+      "Ada_xcb_glx_get_convolution_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_convolution_parameteriv_reply,
-      "xcb_glx_get_convolution_parameteriv_reply");
+      "Ada_xcb_glx_get_convolution_parameteriv_reply");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_sizeof,
-      "xcb_glx_get_separable_filter_sizeof");
+      "Ada_xcb_glx_get_separable_filter_sizeof");
    pragma Import
-     (C, xcb_glx_get_separable_filter, "xcb_glx_get_separable_filter");
+     (C, xcb_glx_get_separable_filter, "Ada_xcb_glx_get_separable_filter");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_unchecked,
-      "xcb_glx_get_separable_filter_unchecked");
+      "Ada_xcb_glx_get_separable_filter_unchecked");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_rows_and_cols,
-      "xcb_glx_get_separable_filter_rows_and_cols");
+      "Ada_xcb_glx_get_separable_filter_rows_and_cols");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_rows_and_cols_length,
-      "xcb_glx_get_separable_filter_rows_and_cols_length");
+      "Ada_xcb_glx_get_separable_filter_rows_and_cols_length");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_rows_and_cols_end,
-      "xcb_glx_get_separable_filter_rows_and_cols_end");
+      "Ada_xcb_glx_get_separable_filter_rows_and_cols_end");
    pragma Import
      (C,
       xcb_glx_get_separable_filter_reply,
-      "xcb_glx_get_separable_filter_reply");
+      "Ada_xcb_glx_get_separable_filter_reply");
    pragma Import
-     (C, xcb_glx_get_histogram_sizeof, "xcb_glx_get_histogram_sizeof");
-   pragma Import (C, xcb_glx_get_histogram, "xcb_glx_get_histogram");
+     (C, xcb_glx_get_histogram_sizeof, "Ada_xcb_glx_get_histogram_sizeof");
+   pragma Import (C, xcb_glx_get_histogram, "Ada_xcb_glx_get_histogram");
    pragma Import
-     (C, xcb_glx_get_histogram_unchecked, "xcb_glx_get_histogram_unchecked");
-   pragma Import (C, xcb_glx_get_histogram_data, "xcb_glx_get_histogram_data");
+     (C,
+      xcb_glx_get_histogram_unchecked,
+      "Ada_xcb_glx_get_histogram_unchecked");
+   pragma Import
+     (C, xcb_glx_get_histogram_data, "Ada_xcb_glx_get_histogram_data");
    pragma Import
      (C,
       xcb_glx_get_histogram_data_length,
-      "xcb_glx_get_histogram_data_length");
+      "Ada_xcb_glx_get_histogram_data_length");
    pragma Import
-     (C, xcb_glx_get_histogram_data_end, "xcb_glx_get_histogram_data_end");
+     (C, xcb_glx_get_histogram_data_end, "Ada_xcb_glx_get_histogram_data_end");
    pragma Import
-     (C, xcb_glx_get_histogram_reply, "xcb_glx_get_histogram_reply");
+     (C, xcb_glx_get_histogram_reply, "Ada_xcb_glx_get_histogram_reply");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_sizeof,
-      "xcb_glx_get_histogram_parameterfv_sizeof");
+      "Ada_xcb_glx_get_histogram_parameterfv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv,
-      "xcb_glx_get_histogram_parameterfv");
+      "Ada_xcb_glx_get_histogram_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_unchecked,
-      "xcb_glx_get_histogram_parameterfv_unchecked");
+      "Ada_xcb_glx_get_histogram_parameterfv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_data,
-      "xcb_glx_get_histogram_parameterfv_data");
+      "Ada_xcb_glx_get_histogram_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_data_length,
-      "xcb_glx_get_histogram_parameterfv_data_length");
+      "Ada_xcb_glx_get_histogram_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_data_end,
-      "xcb_glx_get_histogram_parameterfv_data_end");
+      "Ada_xcb_glx_get_histogram_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameterfv_reply,
-      "xcb_glx_get_histogram_parameterfv_reply");
+      "Ada_xcb_glx_get_histogram_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_sizeof,
-      "xcb_glx_get_histogram_parameteriv_sizeof");
+      "Ada_xcb_glx_get_histogram_parameteriv_sizeof");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv,
-      "xcb_glx_get_histogram_parameteriv");
+      "Ada_xcb_glx_get_histogram_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_unchecked,
-      "xcb_glx_get_histogram_parameteriv_unchecked");
+      "Ada_xcb_glx_get_histogram_parameteriv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_data,
-      "xcb_glx_get_histogram_parameteriv_data");
+      "Ada_xcb_glx_get_histogram_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_data_length,
-      "xcb_glx_get_histogram_parameteriv_data_length");
+      "Ada_xcb_glx_get_histogram_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_data_end,
-      "xcb_glx_get_histogram_parameteriv_data_end");
+      "Ada_xcb_glx_get_histogram_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_histogram_parameteriv_reply,
-      "xcb_glx_get_histogram_parameteriv_reply");
-   pragma Import (C, xcb_glx_get_minmax_sizeof, "xcb_glx_get_minmax_sizeof");
-   pragma Import (C, xcb_glx_get_minmax, "xcb_glx_get_minmax");
+      "Ada_xcb_glx_get_histogram_parameteriv_reply");
    pragma Import
-     (C, xcb_glx_get_minmax_unchecked, "xcb_glx_get_minmax_unchecked");
-   pragma Import (C, xcb_glx_get_minmax_data, "xcb_glx_get_minmax_data");
+     (C, xcb_glx_get_minmax_sizeof, "Ada_xcb_glx_get_minmax_sizeof");
+   pragma Import (C, xcb_glx_get_minmax, "Ada_xcb_glx_get_minmax");
    pragma Import
-     (C, xcb_glx_get_minmax_data_length, "xcb_glx_get_minmax_data_length");
+     (C, xcb_glx_get_minmax_unchecked, "Ada_xcb_glx_get_minmax_unchecked");
+   pragma Import (C, xcb_glx_get_minmax_data, "Ada_xcb_glx_get_minmax_data");
    pragma Import
-     (C, xcb_glx_get_minmax_data_end, "xcb_glx_get_minmax_data_end");
-   pragma Import (C, xcb_glx_get_minmax_reply, "xcb_glx_get_minmax_reply");
+     (C, xcb_glx_get_minmax_data_length, "Ada_xcb_glx_get_minmax_data_length");
+   pragma Import
+     (C, xcb_glx_get_minmax_data_end, "Ada_xcb_glx_get_minmax_data_end");
+   pragma Import (C, xcb_glx_get_minmax_reply, "Ada_xcb_glx_get_minmax_reply");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_sizeof,
-      "xcb_glx_get_minmax_parameterfv_sizeof");
+      "Ada_xcb_glx_get_minmax_parameterfv_sizeof");
    pragma Import
-     (C, xcb_glx_get_minmax_parameterfv, "xcb_glx_get_minmax_parameterfv");
+     (C, xcb_glx_get_minmax_parameterfv, "Ada_xcb_glx_get_minmax_parameterfv");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_unchecked,
-      "xcb_glx_get_minmax_parameterfv_unchecked");
+      "Ada_xcb_glx_get_minmax_parameterfv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_data,
-      "xcb_glx_get_minmax_parameterfv_data");
+      "Ada_xcb_glx_get_minmax_parameterfv_data");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_data_length,
-      "xcb_glx_get_minmax_parameterfv_data_length");
+      "Ada_xcb_glx_get_minmax_parameterfv_data_length");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_data_end,
-      "xcb_glx_get_minmax_parameterfv_data_end");
+      "Ada_xcb_glx_get_minmax_parameterfv_data_end");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameterfv_reply,
-      "xcb_glx_get_minmax_parameterfv_reply");
+      "Ada_xcb_glx_get_minmax_parameterfv_reply");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_sizeof,
-      "xcb_glx_get_minmax_parameteriv_sizeof");
+      "Ada_xcb_glx_get_minmax_parameteriv_sizeof");
    pragma Import
-     (C, xcb_glx_get_minmax_parameteriv, "xcb_glx_get_minmax_parameteriv");
+     (C, xcb_glx_get_minmax_parameteriv, "Ada_xcb_glx_get_minmax_parameteriv");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_unchecked,
-      "xcb_glx_get_minmax_parameteriv_unchecked");
+      "Ada_xcb_glx_get_minmax_parameteriv_unchecked");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_data,
-      "xcb_glx_get_minmax_parameteriv_data");
+      "Ada_xcb_glx_get_minmax_parameteriv_data");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_data_length,
-      "xcb_glx_get_minmax_parameteriv_data_length");
+      "Ada_xcb_glx_get_minmax_parameteriv_data_length");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_data_end,
-      "xcb_glx_get_minmax_parameteriv_data_end");
+      "Ada_xcb_glx_get_minmax_parameteriv_data_end");
    pragma Import
      (C,
       xcb_glx_get_minmax_parameteriv_reply,
-      "xcb_glx_get_minmax_parameteriv_reply");
+      "Ada_xcb_glx_get_minmax_parameteriv_reply");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_sizeof,
-      "xcb_glx_get_compressed_tex_image_arb_sizeof");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_sizeof");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb,
-      "xcb_glx_get_compressed_tex_image_arb");
+      "Ada_xcb_glx_get_compressed_tex_image_arb");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_unchecked,
-      "xcb_glx_get_compressed_tex_image_arb_unchecked");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_unchecked");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_data,
-      "xcb_glx_get_compressed_tex_image_arb_data");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_data");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_data_length,
-      "xcb_glx_get_compressed_tex_image_arb_data_length");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_data_length");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_data_end,
-      "xcb_glx_get_compressed_tex_image_arb_data_end");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_data_end");
    pragma Import
      (C,
       xcb_glx_get_compressed_tex_image_arb_reply,
-      "xcb_glx_get_compressed_tex_image_arb_reply");
+      "Ada_xcb_glx_get_compressed_tex_image_arb_reply");
    pragma Import
      (C,
       xcb_glx_delete_queries_arb_sizeof,
-      "xcb_glx_delete_queries_arb_sizeof");
+      "Ada_xcb_glx_delete_queries_arb_sizeof");
    pragma Import
      (C,
       xcb_glx_delete_queries_arb_checked,
-      "xcb_glx_delete_queries_arb_checked");
-   pragma Import (C, xcb_glx_delete_queries_arb, "xcb_glx_delete_queries_arb");
+      "Ada_xcb_glx_delete_queries_arb_checked");
    pragma Import
-     (C, xcb_glx_delete_queries_arb_ids, "xcb_glx_delete_queries_arb_ids");
+     (C, xcb_glx_delete_queries_arb, "Ada_xcb_glx_delete_queries_arb");
+   pragma Import
+     (C, xcb_glx_delete_queries_arb_ids, "Ada_xcb_glx_delete_queries_arb_ids");
    pragma Import
      (C,
       xcb_glx_delete_queries_arb_ids_length,
-      "xcb_glx_delete_queries_arb_ids_length");
+      "Ada_xcb_glx_delete_queries_arb_ids_length");
    pragma Import
      (C,
       xcb_glx_delete_queries_arb_ids_end,
-      "xcb_glx_delete_queries_arb_ids_end");
+      "Ada_xcb_glx_delete_queries_arb_ids_end");
    pragma Import
-     (C, xcb_glx_gen_queries_arb_sizeof, "xcb_glx_gen_queries_arb_sizeof");
-   pragma Import (C, xcb_glx_gen_queries_arb, "xcb_glx_gen_queries_arb");
+     (C, xcb_glx_gen_queries_arb_sizeof, "Ada_xcb_glx_gen_queries_arb_sizeof");
+   pragma Import (C, xcb_glx_gen_queries_arb, "Ada_xcb_glx_gen_queries_arb");
    pragma Import
      (C,
       xcb_glx_gen_queries_arb_unchecked,
-      "xcb_glx_gen_queries_arb_unchecked");
+      "Ada_xcb_glx_gen_queries_arb_unchecked");
    pragma Import
-     (C, xcb_glx_gen_queries_arb_data, "xcb_glx_gen_queries_arb_data");
+     (C, xcb_glx_gen_queries_arb_data, "Ada_xcb_glx_gen_queries_arb_data");
    pragma Import
      (C,
       xcb_glx_gen_queries_arb_data_length,
-      "xcb_glx_gen_queries_arb_data_length");
+      "Ada_xcb_glx_gen_queries_arb_data_length");
    pragma Import
-     (C, xcb_glx_gen_queries_arb_data_end, "xcb_glx_gen_queries_arb_data_end");
+     (C,
+      xcb_glx_gen_queries_arb_data_end,
+      "Ada_xcb_glx_gen_queries_arb_data_end");
    pragma Import
-     (C, xcb_glx_gen_queries_arb_reply, "xcb_glx_gen_queries_arb_reply");
-   pragma Import (C, xcb_glx_is_query_arb, "xcb_glx_is_query_arb");
+     (C, xcb_glx_gen_queries_arb_reply, "Ada_xcb_glx_gen_queries_arb_reply");
+   pragma Import (C, xcb_glx_is_query_arb, "Ada_xcb_glx_is_query_arb");
    pragma Import
-     (C, xcb_glx_is_query_arb_unchecked, "xcb_glx_is_query_arb_unchecked");
-   pragma Import (C, xcb_glx_is_query_arb_reply, "xcb_glx_is_query_arb_reply");
+     (C, xcb_glx_is_query_arb_unchecked, "Ada_xcb_glx_is_query_arb_unchecked");
    pragma Import
-     (C, xcb_glx_get_queryiv_arb_sizeof, "xcb_glx_get_queryiv_arb_sizeof");
-   pragma Import (C, xcb_glx_get_queryiv_arb, "xcb_glx_get_queryiv_arb");
+     (C, xcb_glx_is_query_arb_reply, "Ada_xcb_glx_is_query_arb_reply");
+   pragma Import
+     (C, xcb_glx_get_queryiv_arb_sizeof, "Ada_xcb_glx_get_queryiv_arb_sizeof");
+   pragma Import (C, xcb_glx_get_queryiv_arb, "Ada_xcb_glx_get_queryiv_arb");
    pragma Import
      (C,
       xcb_glx_get_queryiv_arb_unchecked,
-      "xcb_glx_get_queryiv_arb_unchecked");
+      "Ada_xcb_glx_get_queryiv_arb_unchecked");
    pragma Import
-     (C, xcb_glx_get_queryiv_arb_data, "xcb_glx_get_queryiv_arb_data");
+     (C, xcb_glx_get_queryiv_arb_data, "Ada_xcb_glx_get_queryiv_arb_data");
    pragma Import
      (C,
       xcb_glx_get_queryiv_arb_data_length,
-      "xcb_glx_get_queryiv_arb_data_length");
+      "Ada_xcb_glx_get_queryiv_arb_data_length");
    pragma Import
-     (C, xcb_glx_get_queryiv_arb_data_end, "xcb_glx_get_queryiv_arb_data_end");
+     (C,
+      xcb_glx_get_queryiv_arb_data_end,
+      "Ada_xcb_glx_get_queryiv_arb_data_end");
    pragma Import
-     (C, xcb_glx_get_queryiv_arb_reply, "xcb_glx_get_queryiv_arb_reply");
+     (C, xcb_glx_get_queryiv_arb_reply, "Ada_xcb_glx_get_queryiv_arb_reply");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_sizeof,
-      "xcb_glx_get_query_objectiv_arb_sizeof");
+      "Ada_xcb_glx_get_query_objectiv_arb_sizeof");
    pragma Import
-     (C, xcb_glx_get_query_objectiv_arb, "xcb_glx_get_query_objectiv_arb");
+     (C, xcb_glx_get_query_objectiv_arb, "Ada_xcb_glx_get_query_objectiv_arb");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_unchecked,
-      "xcb_glx_get_query_objectiv_arb_unchecked");
+      "Ada_xcb_glx_get_query_objectiv_arb_unchecked");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_data,
-      "xcb_glx_get_query_objectiv_arb_data");
+      "Ada_xcb_glx_get_query_objectiv_arb_data");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_data_length,
-      "xcb_glx_get_query_objectiv_arb_data_length");
+      "Ada_xcb_glx_get_query_objectiv_arb_data_length");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_data_end,
-      "xcb_glx_get_query_objectiv_arb_data_end");
+      "Ada_xcb_glx_get_query_objectiv_arb_data_end");
    pragma Import
      (C,
       xcb_glx_get_query_objectiv_arb_reply,
-      "xcb_glx_get_query_objectiv_arb_reply");
+      "Ada_xcb_glx_get_query_objectiv_arb_reply");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_sizeof,
-      "xcb_glx_get_query_objectuiv_arb_sizeof");
+      "Ada_xcb_glx_get_query_objectuiv_arb_sizeof");
    pragma Import
-     (C, xcb_glx_get_query_objectuiv_arb, "xcb_glx_get_query_objectuiv_arb");
+     (C,
+      xcb_glx_get_query_objectuiv_arb,
+      "Ada_xcb_glx_get_query_objectuiv_arb");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_unchecked,
-      "xcb_glx_get_query_objectuiv_arb_unchecked");
+      "Ada_xcb_glx_get_query_objectuiv_arb_unchecked");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_data,
-      "xcb_glx_get_query_objectuiv_arb_data");
+      "Ada_xcb_glx_get_query_objectuiv_arb_data");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_data_length,
-      "xcb_glx_get_query_objectuiv_arb_data_length");
+      "Ada_xcb_glx_get_query_objectuiv_arb_data_length");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_data_end,
-      "xcb_glx_get_query_objectuiv_arb_data_end");
+      "Ada_xcb_glx_get_query_objectuiv_arb_data_end");
    pragma Import
      (C,
       xcb_glx_get_query_objectuiv_arb_reply,
-      "xcb_glx_get_query_objectuiv_arb_reply");
-   pragma Import (C, x11_XOpenDisplay, "x11_XOpenDisplay");
-   pragma Import (C, x11_DefaultScreen, "x11_DefaultScreen");
-   pragma Import (C, x11_XGetXCBConnection, "x11_XGetXCBConnection");
-   pragma Import (C, x11_XSetEventQueueOwner, "x11_XSetEventQueueOwner");
+      "Ada_xcb_glx_get_query_objectuiv_arb_reply");
+   pragma Import (C, x11_XOpenDisplay, "Ada_x11_XOpenDisplay");
+   pragma Import (C, x11_DefaultScreen, "Ada_x11_DefaultScreen");
+   pragma Import (C, x11_XGetXCBConnection, "Ada_x11_XGetXCBConnection");
+   pragma Import (C, x11_XSetEventQueueOwner, "Ada_x11_XSetEventQueueOwner");
 
 end xcb.Binding;

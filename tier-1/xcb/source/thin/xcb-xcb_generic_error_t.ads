@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_generic_error_t is
@@ -42,7 +43,8 @@ package xcb.xcb_generic_error_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_generic_error_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_generic_error_t
        .Pointer;
 
    -- Pointer_Pointer

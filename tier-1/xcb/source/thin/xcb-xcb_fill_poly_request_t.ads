@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_fill_poly_request_t is
@@ -18,14 +19,15 @@ package xcb.xcb_fill_poly_request_t is
       gc              : aliased xcb.xcb_gcontext_t;
       shape           : aliased Interfaces.Unsigned_8;
       coordinate_mode : aliased Interfaces.Unsigned_8;
-      pad1            : aliased swig.int8_t_Array (0 .. 1);
+      pad1            : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_fill_poly_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_fill_poly_request_t
        .Item;
 
    -- Pointer
@@ -42,7 +44,8 @@ package xcb.xcb_fill_poly_request_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_fill_poly_request_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_fill_poly_request_t
        .Pointer;
 
    -- Pointer_Pointer

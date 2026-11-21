@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_create_context_attribs_arb_request_t is
@@ -19,7 +20,7 @@ package xcb.xcb_glx_create_context_attribs_arb_request_t is
       screen       : aliased Interfaces.Unsigned_32;
       share_list   : aliased xcb.xcb_glx_context_t;
       is_direct    : aliased Interfaces.Unsigned_8;
-      pad0         : aliased swig.int8_t_Array (0 .. 2);
+      pad0         : aliased swig.uint8_t_Array (0 .. 2);
       num_attribs  : aliased Interfaces.Unsigned_32;
    end record;
 
@@ -35,9 +36,9 @@ package xcb.xcb_glx_create_context_attribs_arb_request_t is
    -- Pointer
    --
    package C_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
-      Element       => xcb.xcb_glx_create_context_attribs_arb_request_t.Item,
-      Element_Array =>
+     (Index              => Interfaces.C.size_t,
+      Element => xcb.xcb_glx_create_context_attribs_arb_request_t.Item,
+      Element_Array      =>
         xcb.xcb_glx_create_context_attribs_arb_request_t.Item_Array,
       Default_Terminator => (others => <>));
 
@@ -55,9 +56,9 @@ package xcb.xcb_glx_create_context_attribs_arb_request_t is
    -- Pointer_Pointer
    --
    package C_Pointer_Pointers is new Interfaces.C.Pointers
-     (Index         => Interfaces.C.size_t,
+     (Index              => Interfaces.C.size_t,
       Element => xcb.xcb_glx_create_context_attribs_arb_request_t.Pointer,
-      Element_Array =>
+      Element_Array      =>
         xcb.xcb_glx_create_context_attribs_arb_request_t.Pointer_Array,
       Default_Terminator => null);
 

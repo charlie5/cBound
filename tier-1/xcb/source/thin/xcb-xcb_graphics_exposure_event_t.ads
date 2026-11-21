@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_graphics_exposure_event_t is
@@ -22,7 +23,7 @@ package xcb.xcb_graphics_exposure_event_t is
       minor_opcode  : aliased Interfaces.Unsigned_16;
       count         : aliased Interfaces.Unsigned_16;
       major_opcode  : aliased Interfaces.Unsigned_8;
-      pad1          : aliased swig.int8_t_Array (0 .. 2);
+      pad1          : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array

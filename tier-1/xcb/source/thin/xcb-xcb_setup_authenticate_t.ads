@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_setup_authenticate_t is
@@ -12,7 +13,7 @@ package xcb.xcb_setup_authenticate_t is
 
    type Item is record
       status : aliased Interfaces.Unsigned_8;
-      pad0   : aliased swig.int8_t_Array (0 .. 4);
+      pad0   : aliased swig.uint8_t_Array (0 .. 4);
       length : aliased Interfaces.Unsigned_16;
    end record;
 
@@ -20,7 +21,8 @@ package xcb.xcb_setup_authenticate_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_setup_authenticate_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_setup_authenticate_t
        .Item;
 
    -- Pointer
@@ -37,7 +39,8 @@ package xcb.xcb_setup_authenticate_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_setup_authenticate_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_setup_authenticate_t
        .Pointer;
 
    -- Pointer_Pointer

@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_render_pictvisual_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_pictvisual_iterator_t is

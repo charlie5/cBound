@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_depth_t is
@@ -14,7 +15,7 @@ package xcb.xcb_depth_t is
       depth       : aliased Interfaces.Unsigned_8;
       pad0        : aliased Interfaces.Unsigned_8;
       visuals_len : aliased Interfaces.Unsigned_16;
-      pad1        : aliased swig.int8_t_Array (0 .. 3);
+      pad1        : aliased swig.uint8_t_Array (0 .. 3);
    end record;
 
    -- Item_Array

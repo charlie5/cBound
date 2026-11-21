@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_list_properties_reply_t is
@@ -16,7 +17,7 @@ package xcb.xcb_list_properties_reply_t is
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
       atoms_len     : aliased Interfaces.Unsigned_16;
-      pad1          : aliased swig.int8_t_Array (0 .. 21);
+      pad1          : aliased swig.uint8_t_Array (0 .. 21);
    end record;
 
    -- Item_Array

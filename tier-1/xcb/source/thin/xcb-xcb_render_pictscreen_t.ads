@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_pictscreen_t is
@@ -18,7 +19,8 @@ package xcb.xcb_render_pictscreen_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_render_pictscreen_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_render_pictscreen_t
        .Item;
 
    -- Pointer
@@ -35,7 +37,8 @@ package xcb.xcb_render_pictscreen_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_render_pictscreen_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_render_pictscreen_t
        .Pointer;
 
    -- Pointer_Pointer

@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_glyph_set_error_t is
@@ -13,6 +14,9 @@ package xcb.xcb_render_glyph_set_error_t is
       response_type : aliased Interfaces.Unsigned_8;
       error_code    : aliased Interfaces.Unsigned_8;
       sequence      : aliased Interfaces.Unsigned_16;
+      bad_value     : aliased Interfaces.Unsigned_32;
+      minor_opcode  : aliased Interfaces.Unsigned_16;
+      major_opcode  : aliased Interfaces.Unsigned_8;
    end record;
 
    -- Item_Array

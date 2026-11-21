@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_visualtype_t is
@@ -18,7 +19,7 @@ package xcb.xcb_visualtype_t is
       red_mask           : aliased Interfaces.Unsigned_32;
       green_mask         : aliased Interfaces.Unsigned_32;
       blue_mask          : aliased Interfaces.Unsigned_32;
-      pad0               : aliased swig.int8_t_Array (0 .. 3);
+      pad0               : aliased swig.uint8_t_Array (0 .. 3);
    end record;
 
    -- Item_Array

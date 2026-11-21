@@ -4,6 +4,7 @@ with Interfaces;
 with swig;
 with xcb.xcb_charinfo_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_font_reply_t is
@@ -17,9 +18,9 @@ package xcb.xcb_query_font_reply_t is
       sequence          : aliased Interfaces.Unsigned_16;
       length            : aliased Interfaces.Unsigned_32;
       min_bounds        : aliased xcb.xcb_charinfo_t.Item;
-      pad1              : aliased swig.int8_t_Array (0 .. 3);
+      pad1              : aliased swig.uint8_t_Array (0 .. 3);
       max_bounds        : aliased xcb.xcb_charinfo_t.Item;
-      pad2              : aliased swig.int8_t_Array (0 .. 3);
+      pad2              : aliased swig.uint8_t_Array (0 .. 3);
       min_char_or_byte2 : aliased Interfaces.Unsigned_16;
       max_char_or_byte2 : aliased Interfaces.Unsigned_16;
       default_char      : aliased Interfaces.Unsigned_16;
@@ -37,7 +38,8 @@ package xcb.xcb_query_font_reply_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_font_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_font_reply_t
        .Item;
 
    -- Pointer
@@ -54,7 +56,8 @@ package xcb.xcb_query_font_reply_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_font_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_font_reply_t
        .Pointer;
 
    -- Pointer_Pointer

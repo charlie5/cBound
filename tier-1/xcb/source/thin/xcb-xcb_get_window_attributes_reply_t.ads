@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_window_attributes_reply_t is
@@ -29,7 +30,7 @@ package xcb.xcb_get_window_attributes_reply_t is
       all_event_masks       : aliased Interfaces.Unsigned_32;
       your_event_mask       : aliased Interfaces.Unsigned_32;
       do_not_propagate_mask : aliased Interfaces.Unsigned_16;
-      pad0                  : aliased swig.int8_t_Array (0 .. 1);
+      pad0                  : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array

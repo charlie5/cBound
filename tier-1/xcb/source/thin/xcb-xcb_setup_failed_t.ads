@@ -2,6 +2,7 @@
 --
 with Interfaces;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_setup_failed_t is
@@ -37,7 +38,8 @@ package xcb.xcb_setup_failed_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_setup_failed_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_setup_failed_t
        .Pointer;
 
    -- Pointer_Pointer

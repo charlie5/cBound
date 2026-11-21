@@ -3,6 +3,7 @@
 with Interfaces;
 with xcb.xcb_client_message_data_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_client_message_event_t is
@@ -23,7 +24,8 @@ package xcb.xcb_client_message_event_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_client_message_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_client_message_event_t
        .Item;
 
    -- Pointer
@@ -40,7 +42,8 @@ package xcb.xcb_client_message_event_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_client_message_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_client_message_event_t
        .Pointer;
 
    -- Pointer_Pointer

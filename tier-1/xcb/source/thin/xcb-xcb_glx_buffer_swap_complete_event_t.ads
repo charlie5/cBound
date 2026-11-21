@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_buffer_swap_complete_event_t is
@@ -15,7 +16,7 @@ package xcb.xcb_glx_buffer_swap_complete_event_t is
       pad0          : aliased Interfaces.Unsigned_8;
       sequence      : aliased Interfaces.Unsigned_16;
       event_type    : aliased Interfaces.Unsigned_16;
-      pad1          : aliased swig.int8_t_Array (0 .. 1);
+      pad1          : aliased swig.uint8_t_Array (0 .. 1);
       drawable      : aliased xcb.xcb_glx_drawable_t;
       ust_hi        : aliased Interfaces.Unsigned_32;
       ust_lo        : aliased Interfaces.Unsigned_32;

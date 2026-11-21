@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_setup_failed_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_setup_failed_iterator_t is

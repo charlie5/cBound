@@ -3,6 +3,7 @@
 with Interfaces.C;
 with xcb.xcb_client_message_data_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_client_message_data_iterator_t is

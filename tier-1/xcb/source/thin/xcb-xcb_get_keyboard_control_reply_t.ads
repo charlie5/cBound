@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_get_keyboard_control_reply_t is
@@ -20,8 +21,8 @@ package xcb.xcb_get_keyboard_control_reply_t is
       bell_percent       : aliased Interfaces.Unsigned_8;
       bell_pitch         : aliased Interfaces.Unsigned_16;
       bell_duration      : aliased Interfaces.Unsigned_16;
-      pad0               : aliased swig.int8_t_Array (0 .. 1);
-      auto_repeats       : aliased swig.int8_t_Array (0 .. 31);
+      pad0               : aliased swig.uint8_t_Array (0 .. 1);
+      auto_repeats       : aliased swig.uint8_t_Array (0 .. 31);
    end record;
 
    -- Item_Array

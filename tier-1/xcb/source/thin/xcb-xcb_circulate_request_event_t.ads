@@ -2,6 +2,7 @@
 --
 with xcb.xcb_circulate_notify_event_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_circulate_request_event_t is
@@ -12,38 +13,18 @@ package xcb.xcb_circulate_request_event_t is
 
    -- Item_Array
    --
-   type Item_Array is
-     array
-       (Interfaces.C
-          .size_t range <>) of aliased xcb.xcb_circulate_request_event_t
-       .Item;
+   subtype Item_Array is xcb.xcb_circulate_notify_event_t.Item_Array;
 
    -- Pointer
    --
-   package C_Pointers is new Interfaces.C.Pointers
-     (Index              => Interfaces.C.size_t,
-      Element            => xcb.xcb_circulate_request_event_t.Item,
-      Element_Array      => xcb.xcb_circulate_request_event_t.Item_Array,
-      Default_Terminator => (others => <>));
-
-   subtype Pointer is C_Pointers.Pointer;
+   subtype Pointer is xcb.xcb_circulate_notify_event_t.Pointer;
 
    -- Pointer_Array
    --
-   type Pointer_Array is
-     array
-       (Interfaces.C
-          .size_t range <>) of aliased xcb.xcb_circulate_request_event_t
-       .Pointer;
+   subtype Pointer_Array is xcb.xcb_circulate_notify_event_t.Pointer_Array;
 
    -- Pointer_Pointer
    --
-   package C_Pointer_Pointers is new Interfaces.C.Pointers
-     (Index              => Interfaces.C.size_t,
-      Element            => xcb.xcb_circulate_request_event_t.Pointer,
-      Element_Array      => xcb.xcb_circulate_request_event_t.Pointer_Array,
-      Default_Terminator => null);
-
-   subtype Pointer_Pointer is C_Pointer_Pointers.Pointer;
+   subtype Pointer_Pointer is xcb.xcb_circulate_notify_event_t.Pointer_Pointer;
 
 end xcb.xcb_circulate_request_event_t;

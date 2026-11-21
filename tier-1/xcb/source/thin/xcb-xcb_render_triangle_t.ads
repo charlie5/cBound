@@ -2,6 +2,7 @@
 --
 with xcb.xcb_render_pointfix_t;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_render_triangle_t is
@@ -19,7 +20,8 @@ package xcb.xcb_render_triangle_t is
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_render_triangle_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_render_triangle_t
        .Item;
 
    -- Pointer
@@ -36,7 +38,8 @@ package xcb.xcb_render_triangle_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_render_triangle_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_render_triangle_t
        .Pointer;
 
    -- Pointer_Pointer

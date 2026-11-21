@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_glx_generic_error_t is
@@ -17,14 +18,15 @@ package xcb.xcb_glx_generic_error_t is
       bad_value     : aliased Interfaces.Unsigned_32;
       minor_opcode  : aliased Interfaces.Unsigned_16;
       major_opcode  : aliased Interfaces.Unsigned_8;
-      pad0          : aliased swig.int8_t_Array (0 .. 20);
+      pad0          : aliased swig.uint8_t_Array (0 .. 20);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_glx_generic_error_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_glx_generic_error_t
        .Item;
 
    -- Pointer
@@ -41,7 +43,8 @@ package xcb.xcb_glx_generic_error_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_glx_generic_error_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_glx_generic_error_t
        .Pointer;
 
    -- Pointer_Pointer

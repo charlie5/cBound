@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_alloc_named_color_request_t is
@@ -16,7 +17,7 @@ package xcb.xcb_alloc_named_color_request_t is
       length       : aliased Interfaces.Unsigned_16;
       cmap         : aliased xcb.xcb_colormap_t;
       name_len     : aliased Interfaces.Unsigned_16;
-      pad1         : aliased swig.int8_t_Array (0 .. 1);
+      pad1         : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array

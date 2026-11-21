@@ -2,6 +2,7 @@
 --
 with xcb.Pointers;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.pointer_Pointers is
@@ -1167,9 +1168,9 @@ package xcb.pointer_Pointers is
    package C_xcb_render_util_composite_text_stream_t_Pointer_Pointers is new Interfaces
      .C
      .Pointers
-     (Index         => Interfaces.C.size_t,
+     (Index              => Interfaces.C.size_t,
       Element => xcb.Pointers.xcb_render_util_composite_text_stream_t_Pointer,
-      Element_Array =>
+      Element_Array      =>
         xcb.Pointers.xcb_render_util_composite_text_stream_t_Pointer_Array,
       Default_Terminator => null);
 

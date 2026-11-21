@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_expose_event_t is
@@ -20,7 +21,7 @@ package xcb.xcb_expose_event_t is
       width         : aliased Interfaces.Unsigned_16;
       height        : aliased Interfaces.Unsigned_16;
       count         : aliased Interfaces.Unsigned_16;
-      pad1          : aliased swig.int8_t_Array (0 .. 1);
+      pad1          : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
@@ -43,7 +44,8 @@ package xcb.xcb_expose_event_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_expose_event_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_expose_event_t
        .Pointer;
 
    -- Pointer_Pointer

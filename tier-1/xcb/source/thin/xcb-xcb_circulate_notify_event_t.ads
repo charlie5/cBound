@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_circulate_notify_event_t is
@@ -16,9 +17,9 @@ package xcb.xcb_circulate_notify_event_t is
       sequence      : aliased Interfaces.Unsigned_16;
       event         : aliased xcb.xcb_window_t;
       window        : aliased xcb.xcb_window_t;
-      pad1          : aliased swig.int8_t_Array (0 .. 3);
+      pad1          : aliased swig.uint8_t_Array (0 .. 3);
       place         : aliased Interfaces.Unsigned_8;
-      pad2          : aliased swig.int8_t_Array (0 .. 2);
+      pad2          : aliased swig.uint8_t_Array (0 .. 2);
    end record;
 
    -- Item_Array

@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_keymap_reply_t is
@@ -15,14 +16,15 @@ package xcb.xcb_query_keymap_reply_t is
       pad0          : aliased Interfaces.Unsigned_8;
       sequence      : aliased Interfaces.Unsigned_16;
       length        : aliased Interfaces.Unsigned_32;
-      keys          : aliased swig.int8_t_Array (0 .. 31);
+      keys          : aliased swig.uint8_t_Array (0 .. 31);
    end record;
 
    -- Item_Array
    --
    type Item_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_keymap_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_keymap_reply_t
        .Item;
 
    -- Pointer
@@ -39,7 +41,8 @@ package xcb.xcb_query_keymap_reply_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_query_keymap_reply_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_query_keymap_reply_t
        .Pointer;
 
    -- Pointer_Pointer

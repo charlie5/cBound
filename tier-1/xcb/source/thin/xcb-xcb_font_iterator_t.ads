@@ -2,6 +2,7 @@
 --
 with Interfaces.C;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_font_iterator_t is
@@ -35,7 +36,8 @@ package xcb.xcb_font_iterator_t is
    --
    type Pointer_Array is
      array
-       (Interfaces.C.size_t range <>) of aliased xcb.xcb_font_iterator_t
+       (Interfaces.C
+          .size_t range <>) of aliased xcb.xcb_font_iterator_t
        .Pointer;
 
    -- Pointer_Pointer

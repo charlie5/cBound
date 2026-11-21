@@ -3,6 +3,7 @@
 with Interfaces;
 with swig;
 with Interfaces.C;
+use Interfaces.C;
 with Interfaces.C.Pointers;
 
 package xcb.xcb_query_extension_request_t is
@@ -15,7 +16,7 @@ package xcb.xcb_query_extension_request_t is
       pad0         : aliased Interfaces.Unsigned_8;
       length       : aliased Interfaces.Unsigned_16;
       name_len     : aliased Interfaces.Unsigned_16;
-      pad1         : aliased swig.int8_t_Array (0 .. 1);
+      pad1         : aliased swig.uint8_t_Array (0 .. 1);
    end record;
 
    -- Item_Array
