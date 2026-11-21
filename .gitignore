@@ -45,3 +45,4 @@ gmp-prior
 
 portable_new_line_Token.tmp
 *.cswi
+tier-1/tensorflow/applet/demo/hello_tf/hello_tf
