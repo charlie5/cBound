@@ -1,0 +1,119 @@
+#!/bin/bash
+#
+#  Builds each binding, and builds and runs its demos, to see that all still work
+#  (after a change to swig4ada, or to a library of the system, say).
+#
+#  Usage:  ./check_all [binding ...]        With no binding named, all are checked.
+#
+#  A demo which needs a display, or which makes a sound, is only built.
+#  Exits with a failure status if any step fails. The output of a step which fails is shown.
+#
+
+CBOUND=$(cd "$(dirname "$0")" && pwd)
+
+for Each in "$CBOUND"/tier-*/*/library
+do
+   case $Each in
+      *-prior/library | *-old/library)  ;;                                   # An earlier form of a binding, kept beside it.
+      *)                                GPR_PROJECT_PATH=$Each:$GPR_PROJECT_PATH ;;
+   esac
+done
+
+export GPR_PROJECT_PATH
+
+Logs=$(mktemp -d)
+Failures=0
+Wanted=" $* "
+
+
+#  Each line:  <binding>  <what to do>  <project file>  [<executable>]
+#
+#     library   Build the project.
+#     run       Build the project and run its executable, which must exit with a success status.
+#     build     Build the project only.
+#
+Steps="
+swig          library  tier-0/swig/library/swig.gpr
+
+gmp           library  tier-1/gmp/library/gmp.gpr
+gmp           run      tier-1/gmp/applet/test/minimal/minimal.gpr          minimal
+
+fann          library  tier-1/fann/library/fann.gpr
+fann          run      tier-1/fann/applet/demo/simple/test.gpr             test
+
+clib          library  tier-1/clib/library/clib.gpr
+clib          run      tier-1/clib/applet/demo/simple/simple.gpr           simple
+
+tensorflow    library  tier-1/tensorflow/library/tensorflow.gpr
+tensorflow    run      tier-1/tensorflow/applet/demo/hello_tf/hello_tf.gpr hello_tf
+
+xcb           library  tier-1/xcb/library/xcb.gpr
+xcb           build    tier-1/xcb/applet/demo/simple/simple.gpr            simple
+
+speech_tools  library  tier-1/speech_tools/library/speech_tools.gpr
+
+festival      library  tier-2/festival/library/festival.gpr
+festival      build    tier-2/festival/applet/demo/say_hello.gpr           say_hello
+
+opencv        library  tier-1/opencv/library/opencv.gpr
+opencv        run      tier-1/opencv/applet/demo/simple/simple.gpr         simple
+opencv        run      tier-1/opencv/applet/demo/images/images.gpr         images
+opencv        run      tier-1/opencv/applet/demo/contours/contours.gpr     contours
+opencv        run      tier-1/opencv/applet/demo/video/video.gpr           video
+"
+
+
+report ()     # <outcome> <binding> <what> <project> <log>
+{
+   printf '   %-7s %-13s %-8s %s\n' "$1" "$2" "$3" "$4"
+
+   if [ "$1" = FAILED ]
+   then
+      Failures=$((Failures + 1))
+      sed 's/^/              | /' "$5" | tail -15
+   fi
+}
+
+
+echo
+echo "Checking the bindings of cBound."
+echo
+
+while read -r Binding What Project Executable
+do
+   [ -z "$Binding" ] && continue
+   [ "$Wanted" != "  " ] && [[ "$Wanted" != *" $Binding "* ]] && continue
+
+   Folder=$CBOUND/$(dirname "$Project")
+   Log=$Logs/$(echo "$Project" | tr '/' '_').log
+   Had_executable=no
+
+   [ -n "$Executable" ] && [ -e "$Folder/$Executable" ] && Had_executable=yes
+
+   if ! (cd "$Folder" && gprbuild -q -p -P "$(basename "$Project")") > "$Log" 2>&1
+   then
+      report FAILED "$Binding" "$What" "$Project" "$Log"
+
+   elif [ "$What" = run ] && ! (cd "$Folder" && timeout 300 "./$Executable") > "$Log" 2>&1
+   then
+      report FAILED "$Binding" "$What" "$Project" "$Log"
+   else
+      report ok "$Binding" "$What" "$Project" "$Log"
+   fi
+
+   #  Leave no executable behind which was not there before.
+   #
+   [ -n "$Executable" ] && [ "$Had_executable" = no ] && rm -f "$Folder/$Executable"
+
+done <<< "$Steps"
+
+rm -rf "$Logs"
+echo
+
+if [ $Failures = 0 ]
+then
+   echo "All of the bindings build, and their demos pass."
+else
+   echo "$Failures step(s) failed."
+   exit 1
+fi
