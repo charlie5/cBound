@@ -14,7 +14,7 @@ echo
 echo Generating the binding ...
 echo
 
-swig_ada  -ada -I/usr/include  tensorflow.i 
+swig4ada  -ada -I/usr/include  tensorflow.i 
 
 echo
 echo Pretty printing ...
