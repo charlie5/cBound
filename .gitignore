@@ -31,7 +31,6 @@ b__*.ad[sb]
 .idea
 
 tier-1/clib/generate/*.ads
-tier-1/gaul
 
 tensorflow-old
 
