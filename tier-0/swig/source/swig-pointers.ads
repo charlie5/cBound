@@ -376,27 +376,6 @@ is
    subtype long_double_pointer_Pointer    is c_long_double_pointer_Pointers.Pointer;
 
 
-   ---------------
-   -- std::string*
-   --
-   null_std_string : constant std_string := (M_dataplus => system.null_Address);
-
-   package c_std_string_Pointers is new C.Pointers (Index              => C.size_t,
-                                                    Element            => std_string,
-                                                    element_Array      => std_string_Array,
-                                                    default_Terminator => null_std_string);
-   subtype std_string_Pointer    is c_std_string_Pointers.Pointer;
-
-
-   --  std::string**
-   --
-   type std_string_pointer_Array is array (C.size_t range <>) of aliased std_string_Pointer;
-
-   package c_std_string_pointer_Pointers is new C.Pointers (Index              => C.size_t,
-                                                            Element            => std_string_Pointer,
-                                                            element_Array      => std_string_pointer_Array,
-                                                            default_Terminator => null);
-   subtype std_string_pointer_Pointer    is c_std_string_pointer_Pointers.Pointer;
 
 
    -----------
