@@ -13,14 +13,14 @@ echo
 echo Generating the binding ...
 echo
 
-swig_ada  -ada  -cpperraswarn   -I/usr/include   xcb.i 
+swig4ada  -ada  -cpperraswarn   -I/usr/include   xcb.i 
 
 
 echo
 echo Pretty printing ...
 echo
 
-gnatpp  --no-compact  --par-threshold=1  -rnb  -I/usr/local/include  *.ads
+gnatpp  --no-compact  --par-threshold=1  -rnb  -I../../../tier-0/swig/source  *.ads
 clang-format  -i  --style=GNU  *.c
 
 
