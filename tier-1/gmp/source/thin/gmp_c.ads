@@ -90,8 +90,8 @@ package gmp_c is
 
 private
 
-   pragma Import (CPP, bits_per_limb, "bits_per_limb");
-   pragma Import (CPP, errno, "errno");
-   pragma Import (CPP, version, "version");
+   pragma Import (CPP, bits_per_limb, "__gmp_bits_per_limb");
+   pragma Import (CPP, errno, "__gmp_errno");
+   pragma Import (CPP, version, "__gmp_version");
 
 end gmp_c;
