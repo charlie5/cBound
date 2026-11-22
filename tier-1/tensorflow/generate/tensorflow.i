@@ -21,6 +21,11 @@ typedef bool      TF_Bool;
 
 %include <tensorflow/tensorflow/c/tf_attrtype.h>
 %include <tensorflow/tensorflow/c/tf_datatype.h>
+// The type of the function which 'TF_ForEachPayload' calls. It is declared in a header of the status
+// library ('tsl_status.h'), of which nothing else is wanted here.
+//
+typedef void (*TSL_PayloadVisitor) (const char* key, const char* value, void* capture);
+
 %include <tensorflow/tensorflow/c/tf_status.h>
 
 %ignore TF_NewTensor;

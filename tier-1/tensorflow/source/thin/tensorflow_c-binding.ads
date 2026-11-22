@@ -5,6 +5,7 @@ with TensorFlow_C.TF_AttrMetadata;
 with TensorFlow_C.TF_Input;
 with TensorFlow_C.TF_Output;
 with TensorFlow_C.TF_WhileParams;
+with TensorFlow_C.TSL_PayloadVisitor;
 with TensorFlow_C.pointer_Pointers;
 with Interfaces;
 with Interfaces.C;
@@ -29,6 +30,10 @@ package TensorFlow_C.Binding is
    procedure TF_SetPayload
      (s     : in TensorFlow_C.Pointers.TF_Status_Pointer; key : in Interfaces.C.Strings.chars_ptr;
       value : in Interfaces.C.Strings.chars_ptr);
+
+   procedure TF_ForEachPayload
+     (s       : in TensorFlow_C.Pointers.TF_Status_Pointer; visitor : in TensorFlow_C.TSL_PayloadVisitor.Item;
+      capture : in swig.void_ptr);
 
    procedure TF_SetStatusFromIOError
      (s       : in TensorFlow_C.Pointers.TF_Status_Pointer; error_code : in Interfaces.C.int;
@@ -800,6 +805,7 @@ private
    pragma Import (C, TF_DeleteStatus, "Ada_TF_DeleteStatus");
    pragma Import (C, TF_SetStatus, "Ada_TF_SetStatus");
    pragma Import (C, TF_SetPayload, "Ada_TF_SetPayload");
+   pragma Import (C, TF_ForEachPayload, "Ada_TF_ForEachPayload");
    pragma Import (C, TF_SetStatusFromIOError, "Ada_TF_SetStatusFromIOError");
    pragma Import (C, TF_GetCode, "Ada_TF_GetCode");
    pragma Import (C, TF_Message, "Ada_TF_Message");

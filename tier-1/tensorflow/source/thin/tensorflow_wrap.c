@@ -429,19 +429,16 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_ForEachPayload (void *a_arg1,
-						    TSL_PayloadVisitor *
-						    a_arg2, void *a_arg3)
+						    void *a_arg2,
+						    void *a_arg3)
   {
     TF_Status      *arg1 = 0;
-    TSL_PayloadVisitor arg2;
+    TSL_PayloadVisitor arg2 = 0;
     void           *arg3 = 0;
-    TSL_PayloadVisitor *argp2;
 
     arg1 = (TF_Status *) a_arg1;
 
-    argp2 = (TSL_PayloadVisitor *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = (TSL_PayloadVisitor) a_arg2;
 
     arg3 = (void *) a_arg3;
 
