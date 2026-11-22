@@ -703,9 +703,9 @@ extern          "C"
 
   }
 
-  DllExport unsigned int SWIGSTDCALL Ada_TF_TensorIsAligned (void *a_arg1)
+  DllExport unsigned char SWIGSTDCALL Ada_TF_TensorIsAligned (void *a_arg1)
   {
-    unsigned int    jresult;
+    unsigned char   jresult;
     TF_Tensor      *arg1 = 0;
     bool            result;
 
@@ -4619,7 +4619,7 @@ extern          "C"
   }
 
   DllExport void SWIGSTDCALL Ada_TF_SetRequireShapeInferenceFns (void *a_arg1,
-								 unsigned int
+								 unsigned char
 								 a_arg2)
   {
     TF_Graph       *arg1 = 0;
