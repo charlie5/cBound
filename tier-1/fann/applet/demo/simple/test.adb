@@ -36,10 +36,20 @@ is
    input         : array (1 .. 1) of aliased fann_Type;
    worst_Error   : fann_Type := 0.0;
 
+   procedure seed_random_Numbers (Seed : in unsigned);
+   pragma Import (C, seed_random_Numbers, "srand");
+
 begin
    --  Make the network and train it.
    --
    ann := fann_create_standard_array (3, Layers (0)'unchecked_Access);
+
+   --  The library gives a new network weights at random, from a seed which it takes from the clock, so that now
+   --  and then the training does not come close enough. The weights are given again from a fixed seed, so that
+   --  each run trains the same network.
+   --
+   seed_random_Numbers (1);
+   fann_randomize_weights (ann, -0.1, 0.1);
 
    fann_set_activation_function_hidden (ann, FANN_SIGMOID_SYMMETRIC);
    fann_set_activation_function_output (ann, FANN_SIGMOID_SYMMETRIC);
