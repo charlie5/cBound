@@ -444,6 +444,27 @@ template < typename T > T SwigValueInit ()
 
 #include <festival/festival.h>
 
+#ifdef __cplusplus
+/* Gives an object as itself, to be copied, where its class can be copied, and else as one which may be moved from.
+   The compiler says which, as it alone knows of a class which holds what the interface does not show (a member which
+   is a 'std::unique_ptr') whether it can be copied. */
+#if __cplusplus >= 201103L
+#include <type_traits>
+
+template < typename T > static typename
+  std::conditional <
+  std::is_copy_constructible <
+T >::value, T &, T && >::type
+swig_ada_copied_or_moved (T & object)
+{
+  return static_cast < typename std::conditional <
+    std::is_copy_constructible < T >::value, T &, T && >::type > (object);
+}
+#else
+#define swig_ada_copied_or_moved(object) (object)
+#endif
+#endif
+
 void
 set_festival_libdir (const char *To)
 {
@@ -631,15 +652,12 @@ extern          "C"
     EST_String     *arg2 = 0;
     EST_Item_featfunc arg3;
     char           *arg4 = 0;
-    EST_Item_featfunc *argp3;
 
     arg1 = (EST_String *) a_arg1;
 
     arg2 = (EST_String *) a_arg2;
 
-    argp3 = (EST_Item_featfunc *) a_arg3;
-
-    arg3 = *argp3;
+    arg3 = swig_ada_copied_or_moved (*(EST_Item_featfunc *) a_arg3);
 
     arg4 = (char *) a_arg4;
 
@@ -756,13 +774,10 @@ extern          "C"
     EST_Item       *arg1 = 0;
     LISP            arg2;
     EST_Val         result;
-    LISP           *argp2;
 
     arg1 = (EST_Item *) a_arg1;
 
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     result = wagon_predict (arg1, SWIG_STD_MOVE (*(&arg2)));
 
@@ -778,13 +793,10 @@ extern          "C"
     EST_Item       *arg1 = 0;
     LISP            arg2;
     LISP            result;
-    LISP           *argp2;
 
     arg1 = (EST_Item *) a_arg1;
 
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     result = wagon_pd (arg1, SWIG_STD_MOVE (*(&arg2)));
 
@@ -800,13 +812,10 @@ extern          "C"
     EST_Item       *arg1 = 0;
     LISP            arg2;
     EST_Val         result;
-    LISP           *argp2;
 
     arg1 = (EST_Item *) a_arg1;
 
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     result = lr_predict (arg1, SWIG_STD_MOVE (*(&arg2)));
 
@@ -895,16 +904,10 @@ extern          "C"
     LISP            arg1;
     LISP            arg2;
     LISP            result;
-    LISP           *argp1;
-    LISP           *argp2;
 
-    argp1 = (LISP *) a_arg1;
+    arg1 = swig_ada_copied_or_moved (*(LISP *) a_arg1);
 
-    arg1 = *argp1;
-
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     result =
       lisp_wfst_transduce (SWIG_STD_MOVE (*(&arg1)),
@@ -923,11 +926,8 @@ extern          "C"
     LISP            arg1;
     EST_String     *arg2 = 0;
     EST_String      result;
-    LISP           *argp1;
 
-    argp1 = (LISP *) a_arg1;
-
-    arg1 = *argp1;
+    arg1 = swig_ada_copied_or_moved (*(LISP *) a_arg1);
 
     arg2 = (EST_String *) a_arg2;
 
@@ -946,16 +946,10 @@ extern          "C"
     LISP            arg1;
     LISP            arg2;
     LISP            result;
-    LISP           *argp1;
-    LISP           *argp2;
 
-    argp1 = (LISP *) a_arg1;
+    arg1 = swig_ada_copied_or_moved (*(LISP *) a_arg1);
 
-    arg1 = *argp1;
-
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     result = map_pos (SWIG_STD_MOVE (*(&arg1)), SWIG_STD_MOVE (*(&arg2)));
 
@@ -996,13 +990,10 @@ extern          "C"
   {
     EST_Item       *arg1 = 0;
     LISP            arg2;
-    LISP           *argp2;
 
     arg1 = (EST_Item *) a_arg1;
 
-    argp2 = (LISP *) a_arg2;
-
-    arg2 = *argp2;
+    arg2 = swig_ada_copied_or_moved (*(LISP *) a_arg2);
 
     add_item_features (arg1, SWIG_STD_MOVE (*(&arg2)));
 
