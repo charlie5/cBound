@@ -48,6 +48,8 @@ package gmp_c.a_a_mpf_struct is
 
    function construct return gmp_c.a_a_mpf_struct.Item;
 
+   procedure delete (Object : in gmp_c.a_a_mpf_struct.Pointer);
+
    procedure destruct_0 (Self : in gmp_c.a_a_mpf_struct.Item);
 
    procedure destruct (Self : in gmp_c.a_a_mpf_struct.Item);
@@ -55,6 +57,7 @@ package gmp_c.a_a_mpf_struct is
 private
 
    pragma Import (CPP, construct, "ada_new___mpf_struct___mpf_struct");
+   pragma Import (C, delete, "Ada_delete___mpf_struct");
    pragma Import (C, destruct_0, "ada_destruct___mpf_struct");
    pragma Import (C, destruct, "ada_destruct___mpf_struct");
 
