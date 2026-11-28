@@ -99,6 +99,26 @@ is
    subtype wchar_t_Pointer    is c_wchar_t_Pointers.Pointer;
 
 
+   ------------
+   -- char16_t*
+   --
+   package c_char16_t_Pointers is new C.Pointers (Index              => C.size_t,
+                                                  Element            => C.char16_t,
+                                                  element_Array      => C.char16_array,
+                                                  default_Terminator => C.char16_t'First);
+   subtype char16_t_Pointer   is c_char16_t_Pointers.Pointer;
+
+
+   ------------
+   -- char32_t*
+   --
+   package c_char32_t_Pointers is new C.Pointers (Index              => C.size_t,
+                                                  Element            => C.char32_t,
+                                                  element_Array      => C.char32_array,
+                                                  default_Terminator => C.char32_t'First);
+   subtype char32_t_Pointer   is c_char32_t_Pointers.Pointer;
+
+
    ----------------
    --  signed char*
    --
@@ -442,6 +462,28 @@ is
                                                          element_Array      => wchar_t_pointer_Array,
                                                          default_Terminator => null);
    subtype wchar_t_pointer_Pointer    is c_wchar_t_pointer_Pointers.Pointer;
+
+
+   --  char16_t**
+   --
+   type char16_t_pointer_Array is array (C.size_t range <>) of aliased char16_t_Pointer;
+
+   package c_char16_t_pointer_Pointers is new C.Pointers (Index              => C.size_t,
+                                                          Element            => char16_t_Pointer,
+                                                          element_Array      => char16_t_pointer_Array,
+                                                          default_Terminator => null);
+   subtype char16_t_pointer_Pointer   is c_char16_t_pointer_Pointers.Pointer;
+
+
+   --  char32_t**
+   --
+   type char32_t_pointer_Array is array (C.size_t range <>) of aliased char32_t_Pointer;
+
+   package c_char32_t_pointer_Pointers is new C.Pointers (Index              => C.size_t,
+                                                          Element            => char32_t_Pointer,
+                                                          element_Array      => char32_t_pointer_Array,
+                                                          default_Terminator => null);
+   subtype char32_t_pointer_Pointer   is c_char32_t_pointer_Pointers.Pointer;
 
 
    --  short**
