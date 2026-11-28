@@ -21,8 +21,6 @@ package clib is
    type FILE_array is
      array (interfaces.C.Size_t range <>) of aliased clib.FILE;
 
-   use type Interfaces.C.long;
-
    a_SYS_CDEFS_H                   : constant := 1;
    a_a_glibc_c99_flexarr_available : constant := 0;
    a_a_HAVE_GENERIC_SELECTION      : constant := 0;
